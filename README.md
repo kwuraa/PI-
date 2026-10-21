@@ -1,7 +1,7 @@
-# Gestor de P.I. — Sistema de Gestão, Publicação e Validação de Projetos Integradores
+# PI² — Sistema de Gestão, Publicação e Validação de Projetos Integradores
 
 > **Instituição:** FATEC Votorantim — Curso Superior de Tecnologia em **Desenvolvimento de Software Multiplataforma (DSM)**
-> **Protótipo de Interface:** [Figma — Gestor de P.I.](https://www.figma.com/design/tfx1Huoex0774lj9QpqLXL/Untitled?node-id=5-6950&t=f8c9JjEtV2FquzTI-1)
+> **Protótipo de Interface:** [Figma — PI²](https://www.figma.com/design/tfx1Huoex0774lj9QpqLXL/Untitled?node-id=5-6950&t=f8c9JjEtV2FquzTI-1)
 > **Stack do Frontend:** HTML5 · CSS3 · JavaScript ES6+ · Bootstrap 5
 > **Natureza:** Projeto Acadêmico Integrador
 
@@ -24,7 +24,7 @@
 
 | Campo | Descrição |
 |---|---|
-| **Nome do Projeto** | Gestor de P.I. (Plataforma Administrativa de Projetos Integradores) |
+| **Nome do Projeto** | PI² (Plataforma Administrativa de Projetos Integradores) |
 | **Domínio** | Gestão acadêmica e administrativa de Projetos Integradores |
 | **Curso Atendido** | DSM — Desenvolvimento de Software Multiplataforma |
 | **Instituição** | FATEC Votorantim |
@@ -33,7 +33,7 @@
 
 ### 1.2. Descrição do Produto
 
-O **Gestor de P.I.** é uma aplicação web desenvolvida exclusivamente para a **gestão administrativa, acompanhamento, avaliação paritária, controle de matrículas/trilhas e validação dos Projetos Integradores (PI)** do curso de Desenvolvimento de Software Multiplataforma (DSM).
+O **PI²** é uma aplicação web desenvolvida exclusivamente para a **gestão administrativa, acompanhamento, avaliação paritária, controle de matrículas/trilhas e validação dos Projetos Integradores (PI)** do curso de Desenvolvimento de Software Multiplataforma (DSM).
 
 O sistema consolida em um único ambiente digital os processos que hoje são dispersos entre planilhas, documentos e comunicações informais:
 
@@ -525,4 +525,4 @@ Este projeto está licenciado sob a licença [MIT](LICENSE).
 
 ---
 
-*Documento técnico oficial — Gestor de P.I. · FATEC Votorantim · Curso DSM*
+*Documento técnico oficial — PI² · FATEC Votorantim · Curso DSM*
