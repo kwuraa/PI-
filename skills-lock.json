@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "documentation-writer": {
+      "source": "github/awesome-copilot",
+      "sourceType": "github",
+      "skillPath": "skills/documentation-writer/SKILL.md",
+      "computedHash": "ee53d65b163cd7eb953a930c95841cfe398cc2c0bd24c06508bbaa07c432be35"
+    },
+    "software-architecture": {
+      "source": "danieldxd/myapp-skills",
+      "sourceType": "github",
+      "skillPath": "skills/software-architecture/SKILL.md",
+      "computedHash": "8e1ce93b8f1f44f1f428d79aa0f69768a8b81ecb77cc939bbe18eba053196efb"
+    }
+  }
+}
