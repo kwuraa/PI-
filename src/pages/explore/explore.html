@@ -24,9 +24,133 @@
   <body>
     <!-- ===================== TELA 6 — EXPLORAR ===================== -->
     <main class="screen">
-      <div class="screen__inner">
-        <!-- Cabeçalho do app (âncora #topo = destino de fechar o modal) -->
-        <header class="app-header" id="topo">
+      <div class="screen__inner" id="topo">
+        <!-- Barra do app (só no desktop) — reutiliza o componente site-header -->
+        <header class="site-header page-container d-none d-lg-flex">
+          <a class="site-header__brand" href="explore.html">
+            <svg
+              class="site-header__logo"
+              viewBox="0 0 220 220"
+              role="img"
+              aria-label="Logo do PI²: camadas empilhadas"
+            >
+              <path
+                d="M110 18 L180 58 L110 98 L40 58 Z"
+                fill="#c6281e"
+                stroke="#c6281e"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 70 L180 110 L110 150 L40 110 Z"
+                fill="#dd4535"
+                stroke="#dd4535"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 70 L137 84 L110 98 L83 84 Z"
+                fill="#8c1a12"
+                stroke="#8c1a12"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 122 L180 162 L110 202 L40 162 Z"
+                fill="#d8d4ce"
+                stroke="#d8d4ce"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 124 L137 138 L110 152 L83 138 Z"
+                fill="#a93528"
+                stroke="#a93528"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span class="site-header__names">
+              <span class="site-header__name">Repositório acadêmico</span>
+              <span class="site-header__tagline"
+                >Ideias que conectam. Conhecimento que fica.</span
+              >
+            </span>
+          </a>
+
+          <nav class="site-header__nav" aria-label="Seções do app">
+            <a class="is-active" href="explore.html" aria-current="page"
+              >Explorar projetos</a
+            >
+            <a href="#">Meus projetos</a>
+          </nav>
+
+          <div class="app-nav__actions">
+            <a class="btn btn-pi app-nav__publish" href="#">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+                stroke-linecap="round"
+                aria-hidden="true"
+              >
+                <path d="M12 5v14" />
+                <path d="M5 12h14" />
+              </svg>
+              Enviar projeto
+            </a>
+
+            <button
+              class="icon-btn"
+              type="button"
+              aria-label="Notificações"
+            >
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M10.268 21a2 2 0 0 0 3.464 0" />
+                <path
+                  d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326"
+                />
+              </svg>
+            </button>
+
+            <a class="app-nav__user" href="../profile/profile.html">
+              <span class="avatar avatar--sm" aria-hidden="true">AC</span>
+              <span class="app-nav__user-names">
+                <span class="app-nav__user-name">Ana Costa</span>
+                <span class="app-nav__user-role">Aluno</span>
+              </span>
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </a>
+          </div>
+        </header>
+
+        <!-- Cabeçalho do app no celular (âncora #topo era aqui antes) -->
+        <header class="app-header d-lg-none">
           <a class="app-brand" href="explore.html">
             <svg
               class="app-brand__mark"
@@ -79,14 +203,21 @@
           </a>
         </header>
 
-        <!-- Saudação -->
-        <p class="explore-greet">Olá, Ana. O que vamos descobrir?</p>
-        <h1 class="page-title explore-title">
-          Ideias de todos.<br />Inspiração para você.
-        </h1>
+        <!-- Hero do app (no celular, é a saudação) -->
+        <div class="explore-hero page-container">
+          <p class="eyebrow d-none d-lg-block">Ideias de toda a faculdade</p>
+          <p class="explore-greet d-lg-none">Olá, Ana. O que vamos descobrir?</p>
+          <h1 class="page-title explore-title">
+            Ideias de todos.<br />Inspiração para você.
+          </h1>
+          <p class="explore-hero__lead d-none d-lg-block">
+            Explore projetos, conheça novas perspectivas e conecte
+            conhecimentos.
+          </p>
+        </div>
 
         <!-- Busca (só aqui; dentro do explore) -->
-        <div class="explore-search">
+        <form class="explore-search page-container" action="explore.html" method="get">
           <div class="search-bar flex-grow-1">
             <span class="search-bar__icon" aria-hidden="true">
               <svg
@@ -112,9 +243,31 @@
             />
           </div>
 
-          <!-- Botão ao lado: único gatilho do modal de filtros -->
+          <!-- Botão de busca (só no desktop; submete sem JS via GET) -->
+          <button
+            class="btn btn-pi explore-search__submit d-none d-lg-inline-flex"
+            type="submit"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+            Pesquisar projetos
+          </button>
+
+          <!-- Gatilho do modal de filtros: só no celular (no desktop, o gatilho fica na barra lateral) -->
           <a
-            class="explore-search__filter"
+            class="explore-search__filter d-lg-none"
             href="#busca"
             aria-haspopup="dialog"
             aria-controls="busca"
@@ -139,7 +292,181 @@
               <circle cx="7" cy="18" r="2" fill="currentColor" />
             </svg>
           </a>
-        </div>
+        </form>
+
+        <!-- Duas colunas no desktop: filtros + resultados -->
+        <div class="explore-layout page-container">
+          <!-- Barra lateral de filtros (só no desktop) -->
+          <aside class="explore-filters d-none d-lg-block">
+            <div class="explore-filters__head">
+              <h2 class="explore-filters__title">Filtros</h2>
+              <!-- Gatilho do modal de filtros no desktop -->
+              <a
+                class="explore-filters__trigger"
+                href="#busca"
+                aria-haspopup="dialog"
+                aria-controls="busca"
+                aria-label="Filtrar projetos"
+              >
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M4 6h16" />
+                  <path d="M4 12h16" />
+                  <path d="M4 18h16" />
+                  <circle cx="9" cy="6" r="2" fill="currentColor" />
+                  <circle cx="15" cy="12" r="2" fill="currentColor" />
+                  <circle cx="7" cy="18" r="2" fill="currentColor" />
+                </svg>
+              </a>
+            </div>
+
+            <fieldset class="filter-group">
+              <legend class="filter-group__legend">Curso</legend>
+              <label class="filter-radio">
+                <input type="radio" name="curso-lado" id="lc-todos" checked />
+                <span class="filter-radio__label">Todos os cursos</span>
+                <span class="filter-radio__count">1.248</span>
+              </label>
+              <label class="filter-radio">
+                <input type="radio" name="curso-lado" id="lc-admin" />
+                <span class="filter-radio__label">Administração</span>
+                <span class="filter-radio__count">142</span>
+              </label>
+              <label class="filter-radio">
+                <input type="radio" name="curso-lado" id="lc-arq" />
+                <span class="filter-radio__label">Arquitetura e Urbanismo</span>
+                <span class="filter-radio__count">118</span>
+              </label>
+              <label class="filter-radio">
+                <input type="radio" name="curso-lado" id="lc-design" />
+                <span class="filter-radio__label">Design</span>
+                <span class="filter-radio__count">96</span>
+              </label>
+              <label class="filter-radio">
+                <input type="radio" name="curso-lado" id="lc-direito" />
+                <span class="filter-radio__label">Direito</span>
+                <span class="filter-radio__count">164</span>
+              </label>
+              <label class="filter-radio">
+                <input type="radio" name="curso-lado" id="lc-eng" />
+                <span class="filter-radio__label">Engenharia</span>
+                <span class="filter-radio__count">203</span>
+              </label>
+              <label class="filter-radio">
+                <input type="radio" name="curso-lado" id="lc-psico" />
+                <span class="filter-radio__label">Psicologia</span>
+                <span class="filter-radio__count">127</span>
+              </label>
+              <label class="filter-radio">
+                <input type="radio" name="curso-lado" id="lc-si" />
+                <span class="filter-radio__label">Sistemas de Informação</span>
+                <span class="filter-radio__count">185</span>
+              </label>
+              <a class="explore-filters__link" href="#">Ver todos os 18 cursos</a>
+            </fieldset>
+
+            <div class="filter-group">
+              <span class="filter-group__legend">Ano de publicação</span>
+              <select
+                class="form-select pi-input"
+                id="ano-lado"
+                aria-label="Ano de publicação"
+              >
+                <option selected>Todos os anos</option>
+                <option>2026</option>
+                <option>2025</option>
+                <option>2024</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <span class="filter-group__legend">Tipo de trabalho</span>
+              <select
+                class="form-select pi-input"
+                id="tipo-lado"
+                aria-label="Tipo de trabalho"
+              >
+                <option selected>Todos os tipos</option>
+                <option>Projeto integrador</option>
+                <option>Trabalho de conclusão</option>
+                <option>Pesquisa e extensão</option>
+              </select>
+            </div>
+
+            <aside class="explore-filters__cta">
+              <span class="explore-filters__cta-icon" aria-hidden="true">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"
+                  />
+                  <path d="M9 18h6" />
+                  <path d="M10 22h4" />
+                </svg>
+              </span>
+              <p class="explore-filters__cta-title">
+                Sua ideia também tem lugar aqui.
+              </p>
+              <p class="explore-filters__cta-text">
+                Compartilhe seu projeto e inspire outros estudantes.
+              </p>
+              <a class="btn btn-pi-outline" href="#">Enviar meu projeto</a>
+            </aside>
+          </aside>
+
+          <!-- Resultados -->
+          <div class="explore-results">
+            <div class="explore-results__head d-none d-lg-flex">
+              <p class="explore-results__count">
+                1.248 projetos para descobrir
+              </p>
+              <div class="explore-results__sort">
+                <label for="ordenar-lado">Ordenar por</label>
+                <select class="form-select pi-input" id="ordenar-lado">
+                  <option selected>Mais recentes</option>
+                  <option>Mais salvos</option>
+                  <option>Título (A–Z)</option>
+                </select>
+                <span
+                  class="explore-results__view"
+                  aria-hidden="true"
+                  title="Visualização em grade"
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.75"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect width="7" height="7" x="3" y="3" rx="1" />
+                    <rect width="7" height="7" x="14" y="3" rx="1" />
+                    <rect width="7" height="7" x="14" y="14" rx="1" />
+                    <rect width="7" height="7" x="3" y="14" rx="1" />
+                  </svg>
+                </span>
+              </div>
+            </div>
 
         <!-- Cursos (seleção de atalho; não abre o modal) -->
         <div class="explore-chips">
@@ -148,8 +475,8 @@
           <a class="chip" href="#">Tecnologia</a>
         </div>
 
-        <!-- Destaque promocional -->
-        <aside class="promo-card">
+        <!-- Destaque promocional (só no celular; no desktop o convite fica na barra lateral) -->
+        <aside class="promo-card d-lg-none">
           <div class="promo-card__top">
             <p class="promo-card__eyebrow">Conhecimento sem fronteiras</p>
             <span class="promo-card__spark" aria-hidden="true">
@@ -175,8 +502,8 @@
           </p>
         </aside>
 
-        <!-- Em destaque -->
-        <div class="section-head">
+        <!-- Em destaque (só no celular; no desktop os cards viram grade única) -->
+        <div class="section-head d-lg-none">
           <h2 class="section-head__title">Em destaque</h2>
           <a class="section-head__link" href="#">Ver todos</a>
         </div>
@@ -218,8 +545,8 @@
           </div>
         </article>
 
-        <!-- Novas descobertas -->
-        <div class="section-head">
+        <!-- Novas descobertas (só no celular) -->
+        <div class="section-head d-lg-none">
           <h2 class="section-head__title">Novas descobertas</h2>
           <a class="section-head__link" href="#">Mais recentes ↓</a>
         </div>
@@ -302,8 +629,143 @@
           </div>
         </article>
 
-        <!-- Navegação inferior -->
-        <nav class="bottom-nav" aria-label="Navegação principal">
+        <!-- Cards extras do desktop (grade de 6) -->
+        <article class="project-card d-none d-lg-block">
+          <span class="thumb thumb--campus" role="img" aria-label="Estudantes acessando conteúdo em dispositivos móveis"></span>
+          <div class="project-card__body">
+            <div class="project-card__top">
+              <span class="chip chip--sm is-active">Sistemas de Informação</span>
+              <button
+                class="icon-btn icon-btn--ghost"
+                type="button"
+                aria-label="Salvar Conecta"
+                aria-pressed="false"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                </svg>
+              </button>
+            </div>
+            <h3 class="project-card__title">
+              <a class="project-card__link" href="#">
+                Conecta: acessibilidade digital no ambiente acadêmico
+              </a>
+            </h3>
+            <p class="project-card__authors">Gabriel Souza e Amanda Dias · 2026</p>
+            <p class="project-card__meta">
+              <span>Pesquisa e extensão</span>
+              <span>21 salvos</span>
+            </p>
+          </div>
+        </article>
+
+        <article class="project-card d-none d-lg-block">
+          <span class="thumb thumb--water" role="img" aria-label="Ciclo de água em uma edificação universitária"></span>
+          <div class="project-card__body">
+            <div class="project-card__top">
+              <span class="chip chip--sm is-active">Engenharia Civil</span>
+              <button
+                class="icon-btn icon-btn--ghost"
+                type="button"
+                aria-label="Salvar Água em ciclo"
+                aria-pressed="false"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                </svg>
+              </button>
+            </div>
+            <h3 class="project-card__title">
+              <a class="project-card__link" href="#">
+                Água em ciclo: soluções para um campus sustentável
+              </a>
+            </h3>
+            <p class="project-card__authors">Rafael Melo e Camila Reis · 2025</p>
+            <p class="project-card__meta">
+              <span>Trabalho de conclusão</span>
+              <span>15 salvos</span>
+            </p>
+          </div>
+        </article>
+
+        <article class="project-card d-none d-lg-block">
+          <span class="thumb thumb--garden" role="img" aria-label="Registros visuais de memória e identidade local"></span>
+          <div class="project-card__body">
+            <div class="project-card__top">
+              <span class="chip chip--sm is-active">Design</span>
+              <button
+                class="icon-btn icon-btn--ghost"
+                type="button"
+                aria-label="Salvar Memória local"
+                aria-pressed="false"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                </svg>
+              </button>
+            </div>
+            <h3 class="project-card__title">
+              <a class="project-card__link" href="#">
+                Memória local: uma identidade que conta histórias
+              </a>
+            </h3>
+            <p class="project-card__authors">Luiza Martins e Felipe Nunes · 2026</p>
+            <p class="project-card__meta">
+              <span>Projeto integrador</span>
+              <span>29 salvos</span>
+            </p>
+          </div>
+        </article>
+
+        <!-- Paginação (só no desktop) -->
+        <nav class="explore-pagination d-none d-lg-flex" aria-label="Paginação">
+          <p class="explore-pagination__info">
+            Mostrando 1–6 de 1.248 projetos
+          </p>
+          <div class="explore-pagination__pages">
+            <a class="page-num is-active" href="#" aria-current="page">1</a>
+            <a class="page-num" href="#">2</a>
+            <a class="page-num" href="#">3</a>
+            <span class="page-num page-num--gap" aria-hidden="true">…</span>
+            <a class="page-num" href="#">208</a>
+            <a class="page-num" href="#" aria-label="Próxima página">→</a>
+          </div>
+        </nav>
+          </div>
+        </div>
+
+        <!-- Navegação inferior (só no celular) -->
+        <nav class="bottom-nav d-lg-none" aria-label="Navegação principal">
           <a class="nav-item is-active" href="explore.html" aria-current="page">
             <span class="nav-item__icon" aria-hidden="true">
               <svg
@@ -635,6 +1097,18 @@
             </div>
           </section>
         </div>
+
+        <!-- Rodapé do site (só no desktop) -->
+        <footer class="site-footer page-container d-none d-lg-flex">
+          <p class="site-footer__copy">
+            © 2026 PI<sup>2</sup> · Repositório acadêmico da faculdade
+          </p>
+          <nav class="site-footer__nav" aria-label="Links do rodapé">
+            <a href="#">Ajuda</a>
+            <a href="#">Privacidade</a>
+            <a href="#">Fale com a biblioteca</a>
+          </nav>
+        </footer>
       </div>
     </main>
 

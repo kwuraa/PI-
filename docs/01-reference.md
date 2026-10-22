@@ -35,7 +35,7 @@
 - **`Entrar como aluno` hoje é um `<a>`** para `../explore/explore.html` (área logada), com as classes de botão — sem JS o `<button type="submit">` não navegava. Quando o JS voltar, vira `<button type="submit">` de novo (com spinner e `submit-status`).
 - **Rodapé:** `signup-row` — "Ainda não tem conta? Criar conta".
 - **⚠️** a validação nativa está ativa (sem `novalidate`), mas o form não submete: `Entrar como aluno` é um link (ver seção 6).
-- **Layout desktop (≥ 992px):** mesmo `site-header`/`site-footer` da boas-vindas; o `topbar` (voltar/título/menu) vira `d-lg-none` e é substituído pelo cabeçalho do site. O corpo vira 2 colunas: painel `login-promo` à esquerda (título "Um lugar para ideias…", foto-placeholder e cartão "Feito por alunos. Conectado a professores.") e o formulário à direita (`login-panel`), com um `eyebrow` "Bem-vindo de volta" acima do `page-title`.
+- **Layout desktop (≥ 992px):** mesmo `site-header`/`site-footer` da boas-vindas; o `topbar` (voltar/título/menu) vira `d-lg-none` e é substituído pelo cabeçalho do site. O corpo vira 2 colunas: painel `promo-panel` à esquerda (título "Um lugar para ideias…", foto-placeholder e cartão "Feito por alunos. Conectado a professores.") e o formulário à direita (`login-panel`), com um `eyebrow` "Bem-vindo de volta" acima do `page-title`. O `promo-panel` é um **componente compartilhado** (`components.css`) usado também pelo cadastro.
 
 ### 1.3. Cadastro — `src/pages/signup/signup.html`
 
@@ -44,6 +44,7 @@
 - **Formulário:** seleção de perfil (`role-card`) · **Seus dados**: nome, e-mail institucional, matrícula, curso (select), período (select) · **Crie sua senha**: senha e confirmação (ambas com botão de olho) · aceite dos `terms-check` · botão `btn-pi` "Criar conta de aluno" · `info-card` de vínculo institucional.
 - **Rodapé:** `signin-row` — "Já tenho conta · Entrar".
 - **Validação:** sem `novalidate` → a **validação nativa do navegador está ativa** (`required`, `minlength="8"`, `pattern` na matrícula, selects com placeholder desabilitado).
+- **Layout desktop (≥ 992px):** mesmo `site-header`/`site-footer` das outras telas públicas; o `topbar` vira `d-lg-none`. O corpo vira 2 colunas: `promo-panel` à esquerda (mesmo componente do login, com texto próprio: "Sua próxima ideia pode ir mais longe.") e o formulário à direita (`signup-panel`, `max-width: 520px`). O `#signup-form` vira um **grid de 2 colunas**: matrícula+curso e senha+confirmação ficam lado a lado (`.field-duo`); os demais campos ocupam as duas colunas (`grid-column: 1 / -1`). Também há um `eyebrow` "Faça parte da comunidade" acima do `page-title`. Só muda o layout — o conteúdo é o mesmo do celular.
 
 ### 1.4. Recuperação de senha — `src/pages/recovery/recovery.html`
 
@@ -64,7 +65,9 @@ Compartilham o mesmo **cabeçalho do app** (`app-header` com marca + avatar), a 
 | **Salvos** | `Projetos salvos — PI²` | Busca na coleção, cards com `Ver projeto` / `Remover dos salvos`, `Explorar mais projetos` |
 | **Perfil** | `Meu perfil — PI²` | Cartão do usuário, dados institucionais (e-mail e curso travados), switches, lista de links, `Sair da conta` |
 
-**Modal de filtros (`explore.html`):** a antiga tela `search` virou uma folha que **sobe de baixo pra cima** dentro da própria Explorar. **Único gatilho:** o botão vermelho de filtro ao lado da barra de busca (→ `#busca`); a própria barra de busca é um `input` normal e existe **só na página** (não se repete dentro do modal). Fecha pelo backdrop, pelo × ou por `Mostrar 8 projetos` (→ `#topo`), tudo **só com CSS** (`:target`). Conteúdo: filtros ativos, resultados, rádios de curso, ano/ordenação, tipo de projeto e ações.
+**Layout desktop da Explorar (≥ 992px):** o `app-header` e o `bottom-nav` viram `d-lg-none`; no lugar entra o `site-header` no "modo app" (`nav` "Explorar projetos" ativo/"Meus projetos", botão vermelho "Enviar projeto", sino e usuário `Ana Costa · Aluno`) e o `site-footer`. O conteúdo vira 2 colunas (`explore-layout`): barra lateral `explore-filters` (CURSO com contagens, ano, tipo de trabalho e cartão "Sua ideia também tem lugar aqui.") e a área de resultados (`explore-results`), com cabeçalho "1.248 projetos para descobrir" + ordenação, chips, **grade de 3 colunas com 6 `project-card`** (3 deles `d-none d-lg-block`) e paginação. A busca ganha o botão `Pesquisar projetos` (um `<form method="get">` — submete sem JS).
+
+**Modal de filtros (`explore.html`):** a antiga tela `search` virou uma folha que **sobe de baixo pra cima** dentro da própria Explorar. **Um gatilho por breakpoint:** no celular, o botão vermelho de filtro ao lado da busca (→ `#busca`); no desktop, o ícone vermelho ao lado do título "Filtros" na barra lateral (mesmo alvo `#busca`, o outro gatilho é `d-lg-none`). A própria barra de busca é um `input` normal e existe **só na página** (não se repete dentro do modal). Fecha pelo backdrop, pelo × ou por `Mostrar 8 projetos` (→ `#topo`), tudo **só com CSS** (`:target`). Conteúdo: filtros ativos, resultados, rádios de curso, ano/ordenação, tipo de projeto e ações.
 
 **Pendências desta área:**
 - Botões de salvar/remover, switches (perfil) e envio de comentário são **inertes** (sem JS); chips e rádios do modal funcionam, mas não filtram de verdade.
@@ -265,18 +268,19 @@ Carregadas via Google Fonts no `<head>` de todas as telas.
 | Informativo | `.info-card` + `__icon __title __text` |
 | Cabeçalho do site (desktop) | `.page-container` (container de 1280px, ≥ 992px) · `.site-header` + `__brand __logo __names __name __tagline __nav __cta` |
 | Rodapé do site (desktop) | `.site-footer` + `__copy __nav` |
+| Painel promocional (desktop) | `.promo-panel` + `__title __lead __photo __card __card-icon __card-title __card-text` — usado pelo **login e pelo cadastro** |
 
-> **Desktop:** `site-header`, `site-footer` e `page-container` só se aplicam a partir de `992px` e são usados pela boas-vindas e pelo login (por isso ficam em `components.css`). Abaixo desse breakpoint as telas seguem o layout de celular.
+> **Desktop:** `site-header`, `site-footer`, `page-container` e `promo-panel` só se aplicam a partir de `992px` e são usados pela boas-vindas, pelo login, pelo cadastro e pela Explorar (por isso ficam em `components.css`). Abaixo desse breakpoint as telas seguem o layout de celular.
 
 ### 5.3. CSS de cada tela
 
 | Arquivo | Classes |
 | --- | --- |
 | `welcome.css` | `.brand-card*` · `.welcome-hero` + `__copy __media __photo __note __note-icon __note-title __note-text` · `.hero-title` · `.hero-lead` · `.feature*` · `.hero-actions` · `.helper-text` · faixa de métricas `.stats-band*` · `.showcase*` — **e o layout desktop (≥ 992px) da landing** |
-| `login.css` | `.login-layout` · `.login-panel` · `.login-promo*` (painel desktop) · `.remember-row` · `.remember-check` · `.forgot-link` · `.signup-row` · `.stack-form` (utilitário, hoje sem uso) |
-| `signup.css` | `.required-mark` · `.terms-check` · `.signin-row` |
+| `login.css` | `.login-layout` · `.login-panel` · `.remember-row` · `.remember-check` · `.forgot-link` · `.signup-row` · `.stack-form` (utilitário, hoje sem uso) |
+| `signup.css` | `.required-mark` · `.terms-check` · `.signin-row` · `.signup-layout` · `.signup-panel` · `#signup-form` em grid + `.field-duo` (desktop) |
 | `recovery.css` | `.page-icon` · `.steps-card*` · `.steps` · `.step*` (`__num __title __text`) |
-| `explore.css` | `.explore-greet` · `.explore-title` · `.explore-search*` · `.explore-chips` · `.promo-card*` · **modal**: `.search-modal*` (`__backdrop __sheet __handle __head __title`) · `.active-filters` · `.results-count` · `.results` · `.filter-group*` · `.filter-radio*` · `.filter-chips` · `.filter-actions` · `.filter-clear` |
+| `explore.css` | `.explore-greet` · `.explore-title` · `.explore-search*` · `.explore-chips` · `.promo-card*` · **modal**: `.search-modal*` (`__backdrop __sheet __handle __head __title`) · `.active-filters` · `.results-count` · `.results` · `.filter-group*` · `.filter-radio*` · `.filter-chips` · `.filter-actions` · `.filter-clear` — **e o layout desktop (≥ 992px)**: `.explore-hero` + `__lead` · `.app-nav__*` (ações do app) · `.explore-layout` · `.explore-filters*` + `.explore-filters__cta*` · `.explore-results*` + `__sort __view` · `.explore-pagination*` + `.page-num*` |
 | `project.css` | `.project-cover` · `.project-head` · `.project-title` · `.project-meta` · `.project-save` · `.project-text` · `.project-tags` · `.people` · `.person*` · `.files` · `.file*` · `.comments` · `.comment*` · `.comment-form*` |
 | `saved.css` | `.saved-search` · `.card-actions*` · `.icon-btn--ghost.is-saved` · `.saved-more` |
 | `profile.css` | `.user-card*` · `.profile-save` · `.setting-row*` · `.switch` · `.link-list` · `.link-row*` · `.profile-logout` |
@@ -302,7 +306,8 @@ O `js/app.js` foi removido ("por enquanto"). O markup ficou no lugar para o JS v
 | Salvar/remover projeto (bookmark nos cards e no detalhe) | **inerte** — `aria-pressed` fixo no markup |
 | Switches de notificação (perfil) | ✅ **funcionam** — `input[type=checkbox]` + CSS puro (sem persistência) |
 | Comentários do projeto | formulário **inerte** — recarrega a página |
-| Modal de filtros (explorar) | ✅ **abre e fecha** com `:target` (CSS puro) — gatilho único: botão ao lado da busca (`#busca`) → fechar `#topo` |
+| Modal de filtros (explorar) | ✅ **abre e fecha** com `:target` (CSS puro) — um gatilho por breakpoint: no celular o botão ao lado da busca, no desktop o ícone ao lado de "Filtros" na lateral (ambos → `#busca`; fechar → `#topo`) |
+| Busca da explorar (desktop) | ✅ **submete** — é um `<form method="get">` real; sem JS só recarrega a página com `?q=`, sem filtrar |
 | Filtrar de verdade (resultados, chips, rádios) | **inerte** — atualiza a URL, mas não refiltra |
 | Links `#` (Meus projetos, termos, ajuda) | tela/conteúdo ainda não existe |
 

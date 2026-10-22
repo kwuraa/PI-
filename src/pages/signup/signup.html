@@ -25,8 +25,138 @@
     <!-- ===================== TELA 3 — CADASTRO ===================== -->
     <main class="screen">
       <div class="screen__inner">
-        <!-- Barra superior -->
-        <header class="topbar">
+        <!-- Cabeçalho do site (só no desktop) -->
+        <header class="site-header page-container d-none d-lg-flex">
+          <a class="site-header__brand" href="../../../index.html">
+            <svg
+              class="site-header__logo"
+              viewBox="0 0 220 220"
+              role="img"
+              aria-label="Logo do PI²: camadas empilhadas"
+            >
+              <path
+                d="M110 18 L180 58 L110 98 L40 58 Z"
+                fill="#c6281e"
+                stroke="#c6281e"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 70 L180 110 L110 150 L40 110 Z"
+                fill="#dd4535"
+                stroke="#dd4535"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 70 L137 84 L110 98 L83 84 Z"
+                fill="#8c1a12"
+                stroke="#8c1a12"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 122 L180 162 L110 202 L40 162 Z"
+                fill="#d8d4ce"
+                stroke="#d8d4ce"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 124 L137 138 L110 152 L83 138 Z"
+                fill="#a93528"
+                stroke="#a93528"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span class="site-header__names">
+              <span class="site-header__name">Repositório acadêmico</span>
+              <span class="site-header__tagline"
+                >Ideias que conectam. Conhecimento que fica.</span
+              >
+            </span>
+          </a>
+
+          <nav class="site-header__nav" aria-label="Seções do site">
+            <a href="../explore/explore.html">Explorar projetos</a>
+            <a href="#">Sobre o PI<sup>2</sup></a>
+          </nav>
+
+          <a
+            class="btn btn-pi-outline site-header__cta"
+            href="../login/login.html"
+          >
+            Acessar o PI<sup>2</sup>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+        </header>
+
+        <div class="signup-layout page-container">
+          <!-- Painel promocional (só no desktop) -->
+          <aside class="promo-panel d-none d-lg-flex">
+            <p class="eyebrow mb-2">Conhecimento compartilhado</p>
+            <h2 class="promo-panel__title">
+              Sua próxima ideia pode ir mais longe.
+            </h2>
+            <p class="promo-panel__lead">
+              Conecte-se à produção acadêmica da sua faculdade. Descubra
+              projetos, compartilhe descobertas e construa conhecimento em
+              comunidade.
+            </p>
+
+            <span
+              class="promo-panel__photo"
+              role="img"
+              aria-label="Estudantes desenvolvendo um projeto em grupo"
+            ></span>
+
+            <div class="promo-panel__card">
+              <span class="promo-panel__card-icon" aria-hidden="true">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </span>
+              <div>
+                <p class="promo-panel__card-title">
+                  Feito por alunos. Conectado a professores.
+                </p>
+                <p class="promo-panel__card-text">
+                  Um espaço seguro para valorizar cada trajetória.
+                </p>
+              </div>
+            </div>
+          </aside>
+
+          <!-- Formulário -->
+          <div class="signup-panel">
+            <!-- Barra superior (só no celular) -->
+            <header class="topbar d-lg-none">
           <a class="icon-btn" href="../../../index.html" aria-label="Voltar">
             <svg
               width="22"
@@ -65,7 +195,9 @@
           </button>
         </header>
 
-        <h2 class="page-title">Suas ideias começam aqui.</h2>
+            <p class="eyebrow d-none d-lg-block">Faça parte da comunidade</p>
+
+            <h2 class="page-title">Suas ideias começam aqui.</h2>
         <p class="page-lead">
           Faça parte do PI<sup>2</sup> com sua conta institucional. Os campos
           com <span class="required-mark" aria-hidden="true">*</span>
@@ -278,7 +410,7 @@
             </p>
           </div>
 
-          <div class="mb-3">
+          <div class="mb-3 field-duo">
             <label class="field-label" for="matricula">
               Matrícula
               <span class="required-mark" aria-hidden="true">*</span>
@@ -298,7 +430,7 @@
             </div>
           </div>
 
-          <div class="mb-3">
+          <div class="mb-3 field-duo">
             <label class="field-label" for="curso">
               Curso
               <span class="required-mark" aria-hidden="true">*</span>
@@ -372,7 +504,7 @@
           <!-- Senha -->
           <h3 class="section-title">Crie sua senha</h3>
 
-          <div class="mb-3">
+          <div class="mb-3 field-duo">
             <label class="field-label" for="senha">
               Senha
               <span class="required-mark" aria-hidden="true">*</span>
@@ -442,7 +574,7 @@
             </p>
           </div>
 
-          <div class="mb-3">
+          <div class="mb-3 field-duo">
             <label class="field-label" for="senha-confirmacao">
               Confirmar senha
               <span class="required-mark" aria-hidden="true">*</span>
@@ -584,6 +716,20 @@
         <p class="signin-row mt-auto pt-4 mb-0">
           Já tenho conta · <a href="../login/login.html">Entrar</a>
         </p>
+          </div>
+        </div>
+
+        <!-- Rodapé do site (só no desktop) -->
+        <footer class="site-footer page-container d-none d-lg-flex">
+          <p class="site-footer__copy">
+            © 2026 PI<sup>2</sup> · Repositório acadêmico da faculdade
+          </p>
+          <nav class="site-footer__nav" aria-label="Links do rodapé">
+            <a href="#">Ajuda</a>
+            <a href="#">Privacidade</a>
+            <a href="#">Fale com a biblioteca</a>
+          </nav>
+        </footer>
       </div>
     </main>
 
