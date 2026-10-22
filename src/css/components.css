@@ -1,0 +1,266 @@
+/* ============================================================
+   PI² — Componentes compartilhados entre as telas
+   ============================================================ */
+
+/* ---------- Botões ---------- */
+.btn-pi {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: #b31616;
+  --bs-btn-border-color: #b31616;
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-bg: #8e1410;
+  --bs-btn-hover-border-color: #8e1410;
+  --bs-btn-active-bg: #7d120e;
+  --bs-btn-active-border-color: #7d120e;
+  --bs-btn-disabled-bg: #d0908f;
+  --bs-btn-disabled-border-color: #d0908f;
+  --bs-btn-focus-shadow-rgb: 179, 22, 22;
+  --bs-btn-font-weight: 600;
+  --bs-btn-border-radius: 14px;
+  min-height: 56px;
+  font-size: 16.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn-pi-outline {
+  --bs-btn-color: var(--pi-ink);
+  --bs-btn-bg: #fff;
+  --bs-btn-border-color: var(--pi-border);
+  --bs-btn-hover-color: var(--pi-ink);
+  --bs-btn-hover-bg: #f3efe8;
+  --bs-btn-hover-border-color: #d8d1c6;
+  --bs-btn-active-bg: #ece7de;
+  --bs-btn-focus-shadow-rgb: 179, 22, 22;
+  --bs-btn-font-weight: 600;
+  --bs-btn-border-radius: 14px;
+  min-height: 56px;
+  font-size: 16.5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* ---------- Barra superior (topbar) ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.topbar__title {
+  font-family: "Outfit", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: var(--pi-ink);
+  text-decoration: none;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background-color 180ms ease;
+}
+
+.icon-btn:hover {
+  background: rgba(20, 17, 16, 0.07);
+}
+
+.icon-btn--filled {
+  background: #efeae2;
+}
+
+/* ---------- Cabeçalho de página ---------- */
+.page-title {
+  font-size: clamp(30px, 8vw, 34px);
+  font-weight: 800;
+  line-height: 1.12;
+  margin-bottom: 10px;
+}
+
+.page-lead {
+  font-size: 16px;
+  color: var(--pi-muted);
+  margin-bottom: 26px;
+}
+
+/* ---------- Rótulos de campo e legenda ---------- */
+.field-label,
+.roles-legend {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--pi-ink);
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Cartões de rádio (Aluno / Professor) */
+.roles-fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 22px;
+}
+
+.role-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 116px;
+  padding: 16px;
+  background: var(--pi-surface);
+  border: 1.5px solid var(--pi-border);
+  border-radius: var(--pi-radius);
+  cursor: pointer;
+  transition: border-color 180ms ease, background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.role-card:hover {
+  border-color: #d5cdc1;
+}
+
+.role-card:has(input:checked) {
+  background: var(--pi-red-50);
+  border-color: var(--pi-red-700);
+}
+
+.role-card:has(input:focus-visible) {
+  outline: 3px solid var(--pi-red-600);
+  outline-offset: 2px;
+}
+
+.role-card__icon {
+  color: var(--pi-ink);
+}
+
+.role-card:has(input:checked) .role-card__icon {
+  color: var(--pi-red-600);
+}
+
+.role-card__name {
+  font-family: "Outfit", sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.role-card:has(input:checked) .role-card__name {
+  color: var(--pi-red-600);
+}
+
+.role-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.role-card__check {
+  color: #c9c2b7;
+}
+
+.role-card:has(input:checked) .role-card__check {
+  color: var(--pi-red-600);
+}
+
+.role-card:has(input:checked) .role-card__check .unchecked {
+  display: none;
+}
+
+.role-card:not(:has(input:checked)) .role-card__check .checked {
+  display: none;
+}
+
+/* Campos de formulário */
+.pi-input {
+  min-height: 56px;
+  border-radius: var(--pi-radius);
+  border: 1.5px solid var(--pi-border);
+  background: var(--pi-surface);
+  font-size: 16px; /* impede zoom automático no iOS */
+  padding-right: 52px;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.pi-input:hover {
+  border-color: #d5cdc1;
+}
+
+.pi-input:focus {
+  border-color: var(--pi-red-700);
+  box-shadow: 0 0 0 4px rgba(179, 22, 22, 0.14);
+}
+
+.input-affix {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--pi-muted);
+  cursor: pointer;
+  pointer-events: none; /* ícone decorativo não bloqueia o campo */
+}
+
+button.input-affix {
+  pointer-events: auto;
+}
+
+/* Modificadores do campo */
+.pi-input--plain {
+  padding-right: 16px; /* campo sem ícone lateral */
+}
+
+.pi-input--select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: none;
+  padding-right: 52px;
+  cursor: pointer;
+}
+
+/* Cartão informativo */
+.info-card {
+  background: var(--pi-red-50);
+  border-radius: var(--pi-radius);
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.info-card__icon {
+  color: var(--pi-red-600);
+  flex: 0 0 auto;
+}
+
+.info-card__title {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.info-card__text {
+  font-size: 14.5px;
+  color: var(--pi-muted);
+  margin: 0;
+}
