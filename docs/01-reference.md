@@ -22,9 +22,10 @@
 ### 1.1. Boas-vindas — `index.html`
 
 - **Título da aba:** `PI² — Grandes ideias. Conhecimento que se conecta.`
-- **Conteúdo:** marca (logo em SVG + wordmark), `eyebrow` "Repositório acadêmico", `hero-title`, `hero-lead`, um bloco `feature` e dois botões (`btn-pi` e `btn-pi-outline`).
+- **Conteúdo (celular):** marca (logo em SVG + wordmark), `eyebrow` "Repositório acadêmico", `hero-title`, `hero-lead`, um bloco `feature` e dois botões (`btn-pi` e `btn-pi-outline`), empilhados.
 - **Rodapé:** `screen-caption` — "PI² · Ideias que multiplicam conhecimento".
 - **Por que fica na raiz:** é a página inicial do site — o GitHub Pages/qualquer hospedagem estática exige `index.html` na raiz.
+- **Layout desktop (≥ 992px):** passa a página inteira (sem o frame de celular). Vira `site-header` fixo no topo (marca + `nav` "Explorar projetos"/"Sobre o PI²" + botão outline "Acessar o PI²"), hero em 2 colunas (texto à esquerda; foto-placeholder com cartão "O próximo grande projeto pode ser o seu." à direita), faixa vermelha de métricas (1.248 projetos · 18 cursos · 320 professores), seção "Conheça o que nasce por aqui" com 3 `project-card` e `site-footer`. Os blocos desktop são `d-none d-lg-*` e não aparecem no celular.
 
 ### 1.2. Login — `src/pages/login/login.html`
 
@@ -34,6 +35,7 @@
 - **`Entrar como aluno` hoje é um `<a>`** para `../explore/explore.html` (área logada), com as classes de botão — sem JS o `<button type="submit">` não navegava. Quando o JS voltar, vira `<button type="submit">` de novo (com spinner e `submit-status`).
 - **Rodapé:** `signup-row` — "Ainda não tem conta? Criar conta".
 - **⚠️** a validação nativa está ativa (sem `novalidate`), mas o form não submete: `Entrar como aluno` é um link (ver seção 6).
+- **Layout desktop (≥ 992px):** mesmo `site-header`/`site-footer` da boas-vindas; o `topbar` (voltar/título/menu) vira `d-lg-none` e é substituído pelo cabeçalho do site. O corpo vira 2 colunas: painel `login-promo` à esquerda (título "Um lugar para ideias…", foto-placeholder e cartão "Feito por alunos. Conectado a professores.") e o formulário à direita (`login-panel`), com um `eyebrow` "Bem-vindo de volta" acima do `page-title`.
 
 ### 1.3. Cadastro — `src/pages/signup/signup.html`
 
@@ -261,13 +263,17 @@ Carregadas via Google Fonts no `<head>` de todas as telas.
 | Cards de projeto | `.project-card` + `__body __top __title __link __authors __meta` · `.thumb` (+ `--rounded --garden --campus --water`) |
 | Feedback de envio | `.submit-status` (+ `.is-error` `.is-success`), `.spinner-border-sm` |
 | Informativo | `.info-card` + `__icon __title __text` |
+| Cabeçalho do site (desktop) | `.page-container` (container de 1280px, ≥ 992px) · `.site-header` + `__brand __logo __names __name __tagline __nav __cta` |
+| Rodapé do site (desktop) | `.site-footer` + `__copy __nav` |
+
+> **Desktop:** `site-header`, `site-footer` e `page-container` só se aplicam a partir de `992px` e são usados pela boas-vindas e pelo login (por isso ficam em `components.css`). Abaixo desse breakpoint as telas seguem o layout de celular.
 
 ### 5.3. CSS de cada tela
 
 | Arquivo | Classes |
 | --- | --- |
-| `welcome.css` | `.brand-card*` · `.hero-title` · `.hero-lead` · `.feature*` · `.helper-text` |
-| `login.css` | `.remember-row` · `.remember-check` · `.forgot-link` · `.signup-row` · `.stack-form` (utilitário, hoje sem uso) |
+| `welcome.css` | `.brand-card*` · `.welcome-hero` + `__copy __media __photo __note __note-icon __note-title __note-text` · `.hero-title` · `.hero-lead` · `.feature*` · `.hero-actions` · `.helper-text` · faixa de métricas `.stats-band*` · `.showcase*` — **e o layout desktop (≥ 992px) da landing** |
+| `login.css` | `.login-layout` · `.login-panel` · `.login-promo*` (painel desktop) · `.remember-row` · `.remember-check` · `.forgot-link` · `.signup-row` · `.stack-form` (utilitário, hoje sem uso) |
 | `signup.css` | `.required-mark` · `.terms-check` · `.signin-row` |
 | `recovery.css` | `.page-icon` · `.steps-card*` · `.steps` · `.step*` (`__num __title __text`) |
 | `explore.css` | `.explore-greet` · `.explore-title` · `.explore-search*` · `.explore-chips` · `.promo-card*` · **modal**: `.search-modal*` (`__backdrop __sheet __handle __head __title`) · `.active-filters` · `.results-count` · `.results` · `.filter-group*` · `.filter-radio*` · `.filter-chips` · `.filter-actions` · `.filter-clear` |
