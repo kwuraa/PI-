@@ -15,6 +15,7 @@
 4. [Mapeamento do Protótipo (Figma) e Arquitetura das Telas](#4-mapeamento-do-protótipo-figma-e-arquitetura-das-telas)
 5. [Arquitetura Técnica do Sistema](#5-arquitetura-técnica-do-sistema)
 6. [Documento de Requisitos de Produto (PRD)](#6-documento-de-requisitos-de-produto-prd)
+7. [Documentação da Interface (docs/)](#7-documentação-da-interface-docs)
 
 ---
 
@@ -509,6 +510,20 @@ As entidades abaixo representam o **modelo de dados conceitual** do sistema, apr
 | **RNF03** | Performance e Responsividade        | Interface responsiva (mobile/tablet/desktop) com Bootstrap 5; carregamento rápido sem dependência de frameworks JS pesados no frontend.                                                      | Média      |
 | **RNF04** | Integridade e Consistência de Dados | Validação de formulários no cliente, verificação de travas de disciplinas chaves e integridade referencial entre entidades no _store_.                                                       | Média      |
 | **RNF05** | Usabilidade e Acessibilidade        | Navegação intuitiva com componentes Bootstrap acessíveis; contraste adequado, labels associados a campos e navegação por teclado.                                                            | Média      |
+
+---
+
+## 7. Documentação da Interface (docs/)
+
+A interface implementada até aqui e a arquitetura de pastas/estilo estão documentadas em `docs/`, seguindo o framework [Diátaxis](https://diataxis.fr/):
+
+| Documento                  | Tipo          | Serve para…                                                                                     |
+| -------------------------- | ------------- | ----------------------------------------------------------------------------------------------- |
+| [Referência](docs/01-reference.md)             | Referência    | Consultar o mapa das telas, a árvore de pastas, a ordem dos CSS e o dicionário de variáveis     |
+| [Como criar uma tela](docs/02-como-criar-uma-tela.md) | How-to     | Seguir a receita passo a passo para adicionar uma nova tela ao projeto                          |
+| [Arquitetura e design system](docs/03-arquitetura-e-design-system.md) | Explanation | Entender **por que** o CSS é em camadas, por que existem variáveis e como funcionam as branches |
+
+**Telas implementadas hoje:** boas-vindas (`index.html`), login (`src/pages/login/`) e cadastro (`src/pages/signup/`).
 
 ---
 
