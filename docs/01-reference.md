@@ -11,7 +11,7 @@
 | Tela | Arquivo | Apelido | Sai para |
 | --- | --- | --- | --- |
 | **Boas-vindas** (landing) | `index.html` (na raiz) | welcome | `Entrar no PI²` → login · `Criar minha conta` → cadastro |
-| **Login** | `src/pages/login/login.html` | login | `Voltar` → `index.html` · `Criar conta` → cadastro · `Esqueci minha senha` → recuperação |
+| **Login** | `src/pages/login/login.html` | login | `Voltar` → `index.html` · `Criar conta` → cadastro · `Esqueci minha senha` → recuperação · **`Entrar como aluno` → explore (área logada)** |
 | **Cadastro** | `src/pages/signup/signup.html` | signup | `Voltar` → `index.html` · `Já tenho conta · Entrar` → login |
 | **Recuperação de senha** | `src/pages/recovery/recovery.html` | recovery | `Voltar` (topbar e botão) → login · `Alterar senha` no perfil |
 | **Explorar projetos** (área logada) | `src/pages/explore/explore.html` | explore | busca → search · cards → project · avatar/nav → saved, profile |
@@ -31,9 +31,10 @@
 
 - **Título da aba:** `Acessar o PI²`
 - **Estrutura:** `topbar` (voltar · título · menu) → `page-title` "Bom ter você aqui." → `page-lead` → formulário `#login-form`.
-- **Formulário:** seleção de perfil (radio cards **Aluno/Professor**, `role-card`) · `E-mail institucional` · `Senha` com botão de mostrar/ocultar · `remember-row` (lembrar + esqueci) · botão `btn-pi` com spinner e `submit-status` · `info-card`.
+- **Formulário:** seleção de perfil (radio cards **Aluno/Professor**, `role-card`) · `E-mail institucional` · `Senha` com botão de mostrar/ocultar · `remember-row` (lembrar + esqueci) · `Entrar como aluno` · `info-card`.
+- **`Entrar como aluno` hoje é um `<a>`** para `../explore/explore.html` (área logada), com as classes de botão — sem JS o `<button type="submit">` não navegava. Quando o JS voltar, vira `<button type="submit">` de novo (com spinner e `submit-status`).
 - **Rodapé:** `signup-row` — "Ainda não tem conta? Criar conta".
-- **⚠️** o form tem `novalidate` e o JS foi removido → hoje **não há validação** nessa tela (ver seção 6).
+- **⚠️** a validação nativa está ativa (sem `novalidate`), mas o form não submete: `Entrar como aluno` é um link (ver seção 6).
 
 ### 1.3. Cadastro — `src/pages/signup/signup.html`
 
@@ -290,11 +291,12 @@ O `js/app.js` foi removido ("por enquanto"). O markup ficou no lugar para o JS v
 | Elemento | Situação hoje |
 | --- | --- |
 | Botão de mostrar/ocultar senha (login e cadastro) | **inerte** — clica e nada acontece |
-| Spinner e `submit-status` (botão de entrar e de enviar instruções) | **inertes** — nunca aparecem |
+| Spinner e `submit-status` (cadastro e recuperação) | **inertes** — nunca aparecem |
+| `Entrar como aluno` (login) | ✅ **navega** para `explore.html` — é um link enquanto não houver JS |
 | Rótulo "Entrar como aluno/professor" acompanhar o radio | **não acompanha** — fica no texto fixo do HTML |
 | Validação do **cadastro** | ✅ **nativa do navegador** (sem `novalidate`) |
 | Validação da **recuperação de senha** | ✅ **nativa do navegador** (`type="email"` + `required`) |
-| Validação do **login** | ❌ **desligada** (`novalidate` + sem JS) |
+| Validação do **login** | ⚠️ **ativa no markup** (sem `novalidate`), mas irrelevante — o botão virou link e o form não submete |
 | Envio do formulário | sem backend → a página só recarrega |
 | Salvar/remover projeto (bookmark nos cards e no detalhe) | **inerte** — `aria-pressed` fixo no markup |
 | Switches de notificação (perfil) | ✅ **funcionam** — `input[type=checkbox]` + CSS puro (sem persistência) |
@@ -302,7 +304,7 @@ O `js/app.js` foi removido ("por enquanto"). O markup ficou no lugar para o JS v
 | Painel de filtros (busca) | **sempre aberto** — abrir/fechar exige JS |
 | Links `#` (Meus projetos, termos, ajuda) | tela/conteúdo ainda não existe |
 
-**Pendência:** remover `novalidate` do login (ou devolver o JS) antes de qualquer teste com usuário.
+**Pendência:** devolver o JS (ou ligar a um backend) antes de qualquer teste com usuário — hoje o login navega direto para a área logada sem checar credenciais.
 
 ---
 

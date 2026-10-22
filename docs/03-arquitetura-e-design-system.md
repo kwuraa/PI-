@@ -95,7 +95,7 @@ O que hoje é resolvido sem JS:
 - **Validação do cadastro** — `required`, `minlength`, `pattern` do HTML nativo (o cadastro **não** tem `novalidate`).
 - **Acessibilidade** — foco visível, `aria-label`, `prefers-reduced-motion`, `role="status"` já estão no markup/CSS.
 
-O que **exigirá** JS quando voltar: mostrar/ocultar senha, spinner de carregamento, `submit-status`, envio real a um backend, e a validação do login (que hoje está desligada por `novalidate` — pendência conhecida, ver [Referência §6](01-reference.md)).
+O que **exigirá** JS quando voltar: mostrar/ocultar senha, spinner de carregamento, `submit-status`, envio real a um backend, e o login de verdade (hoje `Entrar como aluno` é um link direto para a área logada, ver [Referência §6](01-reference.md)).
 
 Decisão: **não inventar JS enquanto o CSS der conta**. Menos JS é menos superfície de bug e menos coisa para a banca perguntar "por que isso funciona assim?".
 
