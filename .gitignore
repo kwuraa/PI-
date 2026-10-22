@@ -1,0 +1,6 @@
+# Ferramentas de agente/skills — versionadas apenas no branch dev
+# (proteção extra: o hook pre-commit/pre-merge-commit do repositório local
+#  também bloqueia esses caminhos fora do dev)
+.agents/
+.trunk/
+skills-lock.json
