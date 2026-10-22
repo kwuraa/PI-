@@ -1,0 +1,105 @@
+/* ============================================================
+   PI² — Tela 1 — Boas-vindas
+   ============================================================ */
+
+/* ---------- Marca PI² ---------- */
+.brand-card {
+  background: var(--pi-surface);
+  border-radius: var(--pi-radius-lg);
+  padding: 32px 24px 28px;
+  text-align: center;
+}
+
+.brand-card__logo {
+  width: 168px;
+  max-width: 65%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.brand-card__wordmark {
+  font-family: "Outfit", sans-serif;
+  font-weight: 800;
+  font-size: 52px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-top: 4px;
+  color: var(--pi-ink);
+}
+
+.brand-card__wordmark sup {
+  font-size: 0.55em;
+  top: -0.65em;
+}
+
+/* ---------- Tela: boas-vindas ---------- */
+.eyebrow {
+  font-family: "Outfit", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pi-red-600);
+  margin-bottom: 12px;
+}
+
+.hero-title {
+  font-size: clamp(32px, 9vw, 40px);
+  font-weight: 800;
+  line-height: 1.08;
+  margin-bottom: 16px;
+  text-wrap: balance;
+}
+
+.hero-lead {
+  font-size: 16px;
+  color: var(--pi-muted);
+  margin-bottom: 24px;
+}
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+}
+
+.feature__icon {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--pi-red-50);
+  color: var(--pi-red-600);
+  display: grid;
+  place-items: center;
+}
+
+.feature__title {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.feature__text {
+  font-size: 14.5px;
+  color: var(--pi-muted);
+  margin: 2px 0 0;
+}
+
+
+/* ---------- Textos de apoio da tela ---------- */
+.helper-text {
+  font-size: 13.5px;
+  color: var(--pi-muted);
+  text-align: center;
+  margin: 14px 0 0;
+}
+
+.screen-caption {
+  font-size: 13px;
+  color: var(--pi-muted);
+  text-align: center;
+  margin: 0;
+}
