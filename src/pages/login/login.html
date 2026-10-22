@@ -70,7 +70,7 @@
           Entre com sua conta institucional para continuar suas ideias.
         </p>
 
-        <form id="login-form" novalidate>
+        <form id="login-form">
           <!-- Perfil de acesso -->
           <fieldset class="roles-fieldset">
             <legend class="roles-legend">
@@ -300,10 +300,18 @@
               <input type="checkbox" id="lembrar" name="lembrar" checked />
               Lembrar de mim
             </label>
-            <a class="forgot-link" href="../recovery/recovery.html">Esqueci minha senha</a>
+            <a class="forgot-link" href="../recovery/recovery.html"
+              >Esqueci minha senha</a
+            >
           </div>
 
-          <button class="btn btn-pi w-100" type="submit" id="btn-entrar">
+          <!-- Por enquanto, sem JS: o "botão" é um link direto para a área
+               logada. Quando o JS voltar, vira <button type="submit"> de novo. -->
+          <a
+            class="btn btn-pi w-100"
+            id="btn-entrar"
+            href="../explore/explore.html"
+          >
             <span class="btn-label">Entrar como aluno</span>
             <svg
               class="btn-arrow"
@@ -320,12 +328,7 @@
               <path d="M5 12h14" />
               <path d="m12 5 7 7-7 7" />
             </svg>
-            <span
-              class="spinner-border spinner-border-sm d-none"
-              role="status"
-              aria-hidden="true"
-            ></span>
-          </button>
+          </a>
 
           <p
             class="submit-status"

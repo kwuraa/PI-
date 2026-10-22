@@ -72,11 +72,11 @@ src/pages/
 ├── login/     → login.html + login.css
 ├── signup/    → signup.html + signup.css
 ├── recovery/  → recovery.html + recovery.css
-├── explore/   → explore.html + explore.css    ┐
-├── search/    → search.html + search.css     │ área logada
-├── project/   → project.html + project.css   │ (compartilham app-header,
-├── saved/     → saved.html + saved.css       │  bottom-nav e project-card
-└── profile/   → profile.html + profile.css   ┘ no components.css)
+├── explore/   → explore.html + explore.css    ┐ área logada (inclui o
+│                                                 modal de busca/filtros,
+├── project/   → project.html + project.css    │ compartilha app-header,
+├── saved/     → saved.html + saved.css        │ bottom-nav e project-card
+└── profile/   → profile.html + profile.css    ┘ no components.css)
 ```
 
 Telas como pastas, e não arquivos soltos (`login.html`, `login.css`, `cadastro.html`…), porque **HTML e CSS de uma tela são unidade de trabalho**. Quando alguém mexe no login, tudo que importa está numa pasta só — nada de caçar `login.css` numa pasta genérica `css/` com 8 folhas.
@@ -95,7 +95,7 @@ O que hoje é resolvido sem JS:
 - **Validação do cadastro** — `required`, `minlength`, `pattern` do HTML nativo (o cadastro **não** tem `novalidate`).
 - **Acessibilidade** — foco visível, `aria-label`, `prefers-reduced-motion`, `role="status"` já estão no markup/CSS.
 
-O que **exigirá** JS quando voltar: mostrar/ocultar senha, spinner de carregamento, `submit-status`, envio real a um backend, e a validação do login (que hoje está desligada por `novalidate` — pendência conhecida, ver [Referência §6](01-reference.md)).
+O que **exigirá** JS quando voltar: mostrar/ocultar senha, spinner de carregamento, `submit-status`, envio real a um backend, e o login de verdade (hoje `Entrar como aluno` é um link direto para a área logada, ver [Referência §6](01-reference.md)).
 
 Decisão: **não inventar JS enquanto o CSS der conta**. Menos JS é menos superfície de bug e menos coisa para a banca perguntar "por que isso funciona assim?".
 
