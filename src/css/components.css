@@ -239,6 +239,28 @@ button.input-affix {
   cursor: pointer;
 }
 
+/* ---------- Feedback de envio de formulário ---------- */
+.submit-status {
+  font-size: 14.5px;
+  font-weight: 600;
+  text-align: center;
+  margin: 12px 0 0;
+  min-height: 22px;
+}
+
+.submit-status.is-error {
+  color: var(--pi-red-600);
+}
+
+.submit-status.is-success {
+  color: #1f7a3d;
+}
+
+.spinner-border-sm {
+  width: 1rem;
+  height: 1rem;
+}
+
 /* Cartão informativo */
 .info-card {
   background: var(--pi-red-50);

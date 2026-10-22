@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Recuperar acesso — PI²</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/tokens.css" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="recovery.css" />
+  </head>
+
+  <body>
+    <!-- ===================== TELA 5 — RECUPERAÇÃO DE SENHA ===================== -->
+    <main class="screen">
+      <div class="screen__inner">
+        <!-- Barra superior -->
+        <header class="topbar">
+          <a class="icon-btn" href="../login/login.html" aria-label="Voltar">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M19 12H5" />
+              <path d="m12 19-7-7 7-7" />
+            </svg>
+          </a>
+
+          <h1 class="topbar__title">Recuperar acesso</h1>
+
+          <button
+            class="icon-btn icon-btn--filled"
+            type="button"
+            aria-label="Mais opções"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <circle cx="5" cy="12" r="1.8" />
+              <circle cx="12" cy="12" r="1.8" />
+              <circle cx="19" cy="12" r="1.8" />
+            </svg>
+          </button>
+        </header>
+
+        <!-- Ícone decorativo -->
+        <span class="page-icon" aria-hidden="true">
+          <svg
+            width="30"
+            height="30"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="7.5" cy="15.5" r="5.5" />
+            <path d="m21 2-9.6 9.6" />
+            <path d="m15.5 7.5 3 3L22 7l-3-3" />
+          </svg>
+        </span>
+
+        <h2 class="page-title">Vamos recuperar seu acesso.</h2>
+        <p class="page-lead">
+          Informe o e-mail institucional da sua conta. Você receberá as
+          instruções para criar uma nova senha.
+        </p>
+
+        <form id="recovery-form">
+          <div class="mb-3">
+            <label class="field-label" for="email">E-mail institucional</label>
+            <div class="position-relative">
+              <input
+                class="form-control pi-input w-100"
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                placeholder="ana.costa@aluno.faculdade.edu.br"
+                required
+              />
+              <span class="input-affix" aria-hidden="true">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path
+                    d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+                  />
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <button class="btn btn-pi w-100" type="submit" id="btn-enviar">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path
+                d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+              />
+            </svg>
+            <span class="btn-label">Enviar instruções</span>
+            <span
+              class="spinner-border spinner-border-sm d-none"
+              role="status"
+              aria-hidden="true"
+            ></span>
+          </button>
+
+          <p
+            class="submit-status"
+            id="submit-status"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+
+        <!-- Como funciona -->
+        <section class="steps-card" aria-labelledby="como-funciona">
+          <h3 class="steps-card__title" id="como-funciona">
+            Como funciona
+          </h3>
+
+          <ol class="steps">
+            <li class="step">
+              <span class="step__num" aria-hidden="true">1</span>
+              <div>
+                <p class="step__title">Confira sua caixa de entrada</p>
+                <p class="step__text">
+                  Se o e-mail estiver cadastrado, enviaremos uma mensagem de
+                  recuperação.
+                </p>
+              </div>
+            </li>
+
+            <li class="step">
+              <span class="step__num" aria-hidden="true">2</span>
+              <div>
+                <p class="step__title">Crie uma nova senha</p>
+                <p class="step__text">
+                  Abra a mensagem e siga as instruções para redefinir sua
+                  senha.
+                </p>
+              </div>
+            </li>
+
+            <li class="step">
+              <span class="step__num" aria-hidden="true">3</span>
+              <div>
+                <p class="step__title">Volte ao PI<sup>2</sup></p>
+                <p class="step__text">
+                  Entre novamente com a nova senha.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <!-- Cartão informativo -->
+        <aside class="info-card mt-3">
+          <span class="info-card__icon" aria-hidden="true">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <path d="M12 16v-4" />
+              <path d="M12 8h.01" />
+            </svg>
+          </span>
+          <div>
+            <p class="info-card__title">Não encontrou a mensagem?</p>
+            <p class="info-card__text">
+              Confira a pasta de spam. Se não tiver acesso ao e-mail
+              institucional, procure o suporte da sua faculdade.
+            </p>
+          </div>
+        </aside>
+
+        <div class="mt-auto pt-4">
+          <a class="btn btn-pi-outline w-100" href="../login/login.html">
+            Voltar para o acesso
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
