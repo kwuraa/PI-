@@ -45,3 +45,129 @@
 .stack-form > * + * {
   margin-top: 18px;
 }
+
+/* ---------- Layout do login (2 colunas no desktop) ---------- */
+.login-layout {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* empurra o rodapé para baixo no celular */
+}
+
+/* No celular o painel apenas empilha; flex mantém o "Criar conta" no fim
+   da tela (comportamento do .screen__inner antigo) sem colapsar margens. */
+.login-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ============================================================
+   Layout desktop (>= 992px) — a partir daqui, nada muda no celular
+   ============================================================ */
+@media (min-width: 992px) {
+  /* A tela deixa de ser um "card de celular" e passa a página inteira */
+  .screen {
+    padding: 0;
+  }
+
+  .screen--login {
+    background: #fbfaf7;
+  }
+
+  .screen__inner {
+    max-width: none;
+    margin: 0;
+    min-height: 100dvh;
+  }
+
+  .login-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 480px);
+    gap: clamp(40px, 5vw, 80px);
+    align-items: center;
+    padding-block: clamp(24px, 3vw, 48px) clamp(40px, 4vw, 64px);
+  }
+
+  /* Painel promocional à esquerda */
+  .login-promo {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    padding: clamp(28px, 3vw, 48px);
+    background: var(--pi-red-50);
+    border-radius: var(--pi-radius-lg);
+  }
+
+  .login-promo__title {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(28px, 2.6vw, 38px);
+    font-weight: 800;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  .login-promo__lead {
+    font-size: 16.5px;
+    color: var(--pi-muted);
+    margin: 0 0 28px;
+    max-width: 52ch;
+  }
+
+  /* Placeholder de foto: gradiente quente com "silhuetas" de pessoas */
+  .login-promo__photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    border-radius: var(--pi-radius);
+    background:
+      radial-gradient(120px 130px at 24% 80%, rgba(20, 17, 16, 0.2), transparent 70%),
+      radial-gradient(140px 150px at 50% 86%, rgba(20, 17, 16, 0.16), transparent 70%),
+      radial-gradient(110px 120px at 74% 82%, rgba(20, 17, 16, 0.2), transparent 70%),
+      linear-gradient(135deg, #c98a5e, #e2b287 55%, #efd7ba);
+  }
+
+  .login-promo__card {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 16px 18px;
+    background: var(--pi-surface);
+    border-radius: var(--pi-radius);
+  }
+
+  .login-promo__card-icon {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--pi-red-50);
+    color: var(--pi-red-600);
+    display: grid;
+    place-items: center;
+  }
+
+  .login-promo__card-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .login-promo__card-text {
+    font-size: 13.5px;
+    color: var(--pi-muted);
+    margin: 2px 0 0;
+  }
+
+  /* Coluna do formulário */
+  .login-panel {
+    width: 100%;
+    max-width: 440px;
+    justify-self: end;
+  }
+
+  .signup-row {
+    text-align: left;
+  }
+}

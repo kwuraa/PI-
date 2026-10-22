@@ -25,8 +25,88 @@
     <!-- ===================== TELA 1 — BOAS-VINDAS ===================== -->
     <main class="screen">
       <div class="screen__inner">
-        <!-- Marca -->
-        <div class="brand-card">
+        <!-- Cabeçalho do site (só no desktop) -->
+        <header class="site-header page-container d-none d-lg-flex">
+          <a class="site-header__brand" href="index.html">
+            <svg
+              class="site-header__logo"
+              viewBox="0 0 220 220"
+              role="img"
+              aria-label="Logo do PI²: camadas empilhadas"
+            >
+              <path
+                d="M110 18 L180 58 L110 98 L40 58 Z"
+                fill="#c6281e"
+                stroke="#c6281e"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 70 L180 110 L110 150 L40 110 Z"
+                fill="#dd4535"
+                stroke="#dd4535"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 70 L137 84 L110 98 L83 84 Z"
+                fill="#8c1a12"
+                stroke="#8c1a12"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 122 L180 162 L110 202 L40 162 Z"
+                fill="#d8d4ce"
+                stroke="#d8d4ce"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 124 L137 138 L110 152 L83 138 Z"
+                fill="#a93528"
+                stroke="#a93528"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span class="site-header__names">
+              <span class="site-header__name">Repositório acadêmico</span>
+              <span class="site-header__tagline"
+                >Ideias que conectam. Conhecimento que fica.</span
+              >
+            </span>
+          </a>
+
+          <nav class="site-header__nav" aria-label="Seções do site">
+            <a href="src/pages/explore/explore.html">Explorar projetos</a>
+            <a href="#">Sobre o PI<sup>2</sup></a>
+          </nav>
+
+          <a
+            class="btn btn-pi-outline site-header__cta"
+            href="src/pages/login/login.html"
+          >
+            Acessar o PI<sup>2</sup>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+        </header>
+
+        <!-- Marca (só no celular) -->
+        <div class="brand-card d-lg-none">
           <svg
             class="brand-card__logo"
             viewBox="0 0 220 220"
@@ -78,75 +158,257 @@
         </div>
 
         <!-- Conteúdo -->
-        <div class="pt-4">
-          <p class="eyebrow mb-2">Repositório acadêmico</p>
-          <h1 class="hero-title">
-            Grandes ideias. Conhecimento que se conecta.
-          </h1>
-          <p class="hero-lead">
-            Projetos de todos os cursos em um só lugar. Compartilhe descobertas
-            e construa o futuro da nossa faculdade.
-          </p>
+        <section class="welcome-hero page-container">
+          <div class="welcome-hero__copy">
+            <p class="eyebrow mb-2">Repositório acadêmico</p>
+            <h1 class="hero-title">
+              Grandes ideias. Conhecimento que se conecta.
+            </h1>
+            <p class="hero-lead">
+              Projetos de todos os cursos em um só lugar. Compartilhe
+              descobertas e construa o futuro da nossa faculdade.
+            </p>
 
-          <div class="feature">
-            <span class="feature__icon" aria-hidden="true">
-              <svg
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.75"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+            <div class="feature">
+              <span class="feature__icon" aria-hidden="true">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                </svg>
+              </span>
+              <div>
+                <p class="feature__title">
+                  Feito por alunos. Conectado a professores.
+                </p>
+                <p class="feature__text">
+                  Da primeira ideia ao projeto publicado.
+                </p>
+              </div>
+            </div>
+
+            <div class="gap-3 mt-4 hero-actions">
+              <a class="btn btn-pi w-100" href="src/pages/login/login.html">
+                <span>Entrar no PI<sup>2</sup></span>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+              <a
+                class="btn btn-pi-outline w-100"
+                href="src/pages/signup/signup.html"
               >
-                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-              </svg>
-            </span>
-            <div>
-              <p class="feature__title">
-                Feito por alunos. Conectado a professores.
-              </p>
-              <p class="feature__text">
-                Da primeira ideia ao projeto publicado.
-              </p>
+                Criar minha conta
+              </a>
+            </div>
+
+            <p class="helper-text">
+              Seu e-mail institucional é a sua porta de entrada.
+            </p>
+          </div>
+
+          <!-- Imagem de destaque (só no desktop; placeholder em CSS) -->
+          <div class="welcome-hero__media d-none d-lg-block">
+            <span
+              class="welcome-hero__photo"
+              role="img"
+              aria-label="Estudantes desenvolvendo um projeto em grupo"
+            ></span>
+            <div class="welcome-hero__note">
+              <span class="welcome-hero__note-icon" aria-hidden="true">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M15 14c.2-1 .7-1.7 1.5-2.5A5.6 5.6 0 0 0 18 7.7 6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.8.8 1.3 1.5 1.5 2.5"
+                  />
+                  <path d="M9 18h6" />
+                  <path d="M10 22h4" />
+                </svg>
+              </span>
+              <div>
+                <p class="welcome-hero__note-title">
+                  O próximo grande projeto pode ser o seu.
+                </p>
+                <p class="welcome-hero__note-text">
+                  Conhecimento que nasce aqui e transforma lá fora.
+                </p>
+              </div>
             </div>
           </div>
+        </section>
 
-          <div class="d-grid gap-3 mt-4">
-            <a class="btn btn-pi w-100" href="src/pages/login/login.html">
-              <span>Entrar no PI<sup>2</sup></span>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M5 12h14" />
-                <path d="m12 5 7 7-7 7" />
-              </svg>
-            </a>
-            <a class="btn btn-pi-outline w-100" href="src/pages/signup/signup.html">
-              Criar minha conta
+        <!-- Faixa de métricas (só no desktop) -->
+        <section class="stats-band d-none d-lg-block">
+          <div class="stats-band__inner page-container">
+            <p class="stats-band__lead">
+              Diferentes cursos.<br />
+              Uma comunidade de descobertas.
+            </p>
+            <dl class="stats-band__list">
+              <div class="stats-band__item">
+                <dt class="stats-band__value">1.248</dt>
+                <dd class="stats-band__label">projetos compartilhados</dd>
+              </div>
+              <div class="stats-band__item">
+                <dt class="stats-band__value">18</dt>
+                <dd class="stats-band__label">cursos conectados</dd>
+              </div>
+              <div class="stats-band__item">
+                <dt class="stats-band__value">320</dt>
+                <dd class="stats-band__label">professores orientadores</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <!-- Projetos em destaque (só no desktop) -->
+        <section class="showcase page-container d-none d-lg-block">
+          <div class="showcase__head">
+            <div>
+              <h2 class="showcase__title">Conheça o que nasce por aqui</h2>
+              <p class="showcase__lead">
+                Uma amostra das ideias que estão transformando nossa comunidade.
+              </p>
+            </div>
+            <a
+              class="btn btn-pi-outline showcase__cta"
+              href="src/pages/explore/explore.html"
+            >
+              Explorar todos os projetos
             </a>
           </div>
 
-          <p class="helper-text">
-            Seu e-mail institucional é a sua porta de entrada.
-          </p>
-        </div>
+          <div class="showcase__grid">
+            <article class="project-card">
+              <span
+                class="thumb thumb--garden"
+                role="img"
+                aria-label="Horta com canteiros e estudantes"
+              ></span>
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <span class="chip chip--sm is-active"
+                    >Arquitetura e Urbanismo</span
+                  >
+                </div>
+                <h3 class="project-card__title">
+                  <a class="project-card__link" href="#"
+                    >Horta Viva: cultivo e comunidade</a
+                  >
+                </h3>
+                <p class="project-card__authors">
+                  Luiza Santos e mais 2 autores · 2026
+                </p>
+                <p class="project-card__meta">
+                  <span>Projeto integrador</span>
+                  <span>Acesso aberto</span>
+                </p>
+              </div>
+            </article>
 
-        <p class="screen-caption mt-auto pt-5 mb-0">
+            <article class="project-card">
+              <span
+                class="thumb thumb--campus"
+                role="img"
+                aria-label="Pessoa usando celular em um campus"
+              ></span>
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <span class="chip chip--sm is-active"
+                    >Sistemas de Informação</span
+                  >
+                </div>
+                <h3 class="project-card__title">
+                  <a
+                    class="project-card__link"
+                    href="src/pages/project/project.html"
+                  >
+                    Rota Acessível: um campus para todos
+                  </a>
+                </h3>
+                <p class="project-card__authors">
+                  Ana Costa e Lucas Silva · 2026
+                </p>
+                <p class="project-card__meta">
+                  <span>Projeto integrador</span>
+                  <span>Acesso aberto</span>
+                </p>
+              </div>
+            </article>
+
+            <article class="project-card">
+              <span
+                class="thumb thumb--water"
+                role="img"
+                aria-label="Instrumentos de medição de qualidade da água"
+              ></span>
+              <div class="project-card__body">
+                <div class="project-card__top">
+                  <span class="chip chip--sm is-active"
+                    >Engenharia Ambiental</span
+                  >
+                </div>
+                <h3 class="project-card__title">
+                  <a class="project-card__link" href="#">
+                    Água em Foco: qualidade e território
+                  </a>
+                </h3>
+                <p class="project-card__authors">
+                  Camila Rocha e João Freitas · 2026
+                </p>
+                <p class="project-card__meta">
+                  <span>Projeto integrador</span>
+                  <span>Acesso aberto</span>
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <p class="screen-caption mt-auto pt-5 mb-0 d-lg-none">
           PI<sup>2</sup> · Ideias que multiplicam conhecimento
         </p>
+
+        <!-- Rodapé do site (só no desktop) -->
+        <footer class="site-footer page-container d-none d-lg-flex">
+          <p class="site-footer__copy">
+            © 2026 PI<sup>2</sup> · Repositório acadêmico da faculdade
+          </p>
+          <nav class="site-footer__nav" aria-label="Links do rodapé">
+            <a href="#">Ajuda</a>
+            <a href="#">Privacidade</a>
+            <a href="#">Fale com a biblioteca</a>
+          </nav>
+        </footer>
       </div>
     </main>
 

@@ -42,6 +42,15 @@ O benefício prático: uma tela pode ajustar um componente **sem tocar no compon
 
 **Regra prática:** se um estilo serve para 2 ou mais telas, ele sobe de camada (da página para `components.css`; de `components.css` para `base.css`; cores/raios para `tokens.css`).
 
+### 2.1. Responsividade: o breakpoint de desktop é `992px`
+
+O projeto é **mobile-first**. Abaixo de `992px` toda tela usa a moldura `.screen` (frame de 460px simulando um celular). A partir de `992px` (Bootstrap `lg`) a **boas-vindas** e o **login** passam a um layout desktop de página inteira, conforme o mock.
+
+- Os blocos exclusivos do desktop (`site-header`, `site-footer`, faixa de métricas, showcase, painel `login-promo`) são marcados no HTML com `d-none d-lg-*` — **não aparecem no celular**.
+- O CSS desktop fica **dentro do `@media (min-width: 992px)`** de cada `welcome.css`/`login.css`. Abaixo disso, nada muda: o celular é idêntico ao que já existia.
+- `site-header`, `site-footer` e `page-container` são compartilhados pelas duas telas, por isso vivem em `components.css`.
+- As telas da área logada (explore, project, saved, profile) ainda **não têm** versão desktop — seguem o frame de celular em qualquer largura.
+
 ---
 
 ## 3. Por que variáveis e não cores soltas

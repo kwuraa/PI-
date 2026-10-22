@@ -288,6 +288,123 @@ button.input-affix {
 }
 
 /* ============================================================
+   Componentes da área pública (boas-vindas + login)
+   ============================================================ */
+
+/* Container de página: margens laterais do layout desktop.
+   Só existe a partir de 992px — abaixo disso o layout é o do celular. */
+@media (min-width: 992px) {
+  .page-container {
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 48px;
+  }
+}
+
+/* ---------- Cabeçalho do site (exibido só no desktop) ---------- */
+.site-header {
+  align-items: center;
+  gap: 28px;
+  padding: 22px 0;
+}
+
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--pi-ink);
+}
+
+.site-header__brand:hover {
+  color: var(--pi-ink);
+}
+
+.site-header__logo {
+  width: 42px;
+  height: 42px;
+  display: block;
+  flex: 0 0 auto;
+}
+
+.site-header__names {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+
+.site-header__name {
+  font-family: "Outfit", sans-serif;
+  font-size: 15.5px;
+  font-weight: 700;
+}
+
+.site-header__tagline {
+  font-size: 13px;
+  color: var(--pi-muted);
+}
+
+.site-header__nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-left: 24px;
+}
+
+.site-header__nav a {
+  color: var(--pi-ink);
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.site-header__nav a:hover {
+  color: var(--pi-red-600);
+}
+
+.site-header__cta {
+  margin-left: auto;
+  min-height: 46px;
+  font-size: 15px;
+  padding-inline: 20px;
+  text-decoration: none;
+}
+
+/* ---------- Rodapé do site (exibido só no desktop) ---------- */
+.site-footer {
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: auto; /* empurra para o fim da coluna da tela */
+  padding: 26px 0;
+  border-top: 1px solid var(--pi-border);
+}
+
+.site-footer__copy {
+  font-size: 13.5px;
+  color: var(--pi-muted);
+  margin: 0;
+}
+
+.site-footer__nav {
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+.site-footer__nav a {
+  color: var(--pi-muted);
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.site-footer__nav a:hover {
+  color: var(--pi-ink);
+}
+
+/* ============================================================
    Componentes da área logada (usados por 2+ telas)
    ============================================================ */
 
