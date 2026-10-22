@@ -71,7 +71,12 @@ src/pages/
 ├── welcome/   → welcome.css
 ├── login/     → login.html + login.css
 ├── signup/    → signup.html + signup.css
-└── recovery/  → recovery.html + recovery.css
+├── recovery/  → recovery.html + recovery.css
+├── explore/   → explore.html + explore.css    ┐
+├── search/    → search.html + search.css     │ área logada
+├── project/   → project.html + project.css   │ (compartilham app-header,
+├── saved/     → saved.html + saved.css       │  bottom-nav e project-card
+└── profile/   → profile.html + profile.css   ┘ no components.css)
 ```
 
 Telas como pastas, e não arquivos soltos (`login.html`, `login.css`, `cadastro.html`…), porque **HTML e CSS de uma tela são unidade de trabalho**. Quando alguém mexe no login, tudo que importa está numa pasta só — nada de caçar `login.css` numa pasta genérica `css/` com 8 folhas.

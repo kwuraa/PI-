@@ -1,0 +1,96 @@
+/* ============================================================
+   PI² — Tela 6 — Explorar projetos (explore)
+   ============================================================ */
+
+/* ---------- Saudação e título ---------- */
+.explore-greet {
+  font-size: 15px;
+  color: var(--pi-muted);
+  margin: 0 0 4px;
+}
+
+.explore-title {
+  margin-bottom: 20px;
+}
+
+/* ---------- Busca com botão de filtro ---------- */
+.explore-search {
+  display: flex;
+  gap: 10px;
+  align-items: stretch;
+}
+
+.explore-search__filter {
+  flex: 0 0 auto;
+  width: 56px;
+  border-radius: var(--pi-radius);
+  background: var(--pi-red-700);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  transition: background-color 180ms ease;
+}
+
+.explore-search__filter:hover {
+  background: var(--pi-red-900);
+  color: #fff;
+}
+
+/* ---------- Linha de chips de curso ---------- */
+.explore-chips {
+  display: flex;
+  gap: 10px;
+  margin: 16px 0 20px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.explore-chips::-webkit-scrollbar {
+  display: none;
+}
+
+/* ---------- Destaque promocional ---------- */
+.promo-card {
+  background: var(--pi-red-50);
+  border-radius: var(--pi-radius-lg);
+  padding: 18px;
+}
+
+.promo-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.promo-card__eyebrow {
+  font-family: "Outfit", sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pi-red-700);
+  margin: 0;
+}
+
+.promo-card__spark {
+  color: var(--pi-red-500);
+  flex: 0 0 auto;
+}
+
+.promo-card__title {
+  font-family: "Outfit", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 10px 0 8px;
+}
+
+.promo-card__meta {
+  font-size: 13.5px;
+  color: var(--pi-muted);
+  margin: 0;
+}

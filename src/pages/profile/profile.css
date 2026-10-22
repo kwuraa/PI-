@@ -1,0 +1,156 @@
+/* ============================================================
+   PI² — Tela 10 — Perfil e configurações (profile)
+   ============================================================ */
+
+/* ---------- Cartão do usuário ---------- */
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--pi-surface);
+  border: 1.5px solid var(--pi-border);
+  border-radius: var(--pi-radius-lg);
+  padding: 18px;
+  margin-bottom: 8px;
+}
+
+.user-card__avatar {
+  width: 56px;
+  height: 56px;
+  font-size: 19px;
+}
+
+.user-card__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-family: "Outfit", sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 4px;
+}
+
+.user-card__meta {
+  font-size: 13.5px;
+  color: var(--pi-muted);
+  margin: 0;
+}
+
+/* ---------- Botão de salvar ---------- */
+.profile-save {
+  margin-top: 8px;
+}
+
+/* ---------- Linha de configuração (switch) ---------- */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 0;
+}
+
+.setting-row + .setting-row {
+  border-top: 1px solid var(--pi-border);
+}
+
+.setting-row__title {
+  font-size: 15.5px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.setting-row__text {
+  font-size: 13.5px;
+  color: var(--pi-muted);
+  margin: 2px 0 0;
+}
+
+/* Interruptor (switch) */
+.switch {
+  appearance: none;
+  -webkit-appearance: none;
+  flex: 0 0 auto;
+  width: 52px;
+  height: 30px;
+  border-radius: 999px;
+  background: #ddd6cc;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 180ms ease;
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(20, 17, 16, 0.25);
+  transition: transform 180ms ease;
+}
+
+.switch:checked {
+  background: var(--pi-red-700);
+}
+
+.switch:checked::after {
+  transform: translateX(22px);
+}
+
+/* ---------- Lista de links (conta e privacidade) ---------- */
+.link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--pi-surface);
+  border: 1.5px solid var(--pi-border);
+  border-radius: var(--pi-radius);
+  overflow: hidden;
+}
+
+.link-list li + li .link-row {
+  border-top: 1px solid var(--pi-border);
+}
+
+.link-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 0 16px;
+  color: var(--pi-ink);
+  text-decoration: none;
+  transition: background-color 180ms ease;
+}
+
+.link-row:hover {
+  background: #f7f4ef;
+  color: var(--pi-ink);
+}
+
+.link-row__icon {
+  flex: 0 0 auto;
+  color: var(--pi-red-600);
+}
+
+.link-row__label {
+  flex: 1;
+  font-size: 15.5px;
+  font-weight: 600;
+}
+
+.link-row__chevron {
+  flex: 0 0 auto;
+  color: var(--pi-muted);
+}
+
+/* ---------- Sair ---------- */
+.profile-logout {
+  margin-top: 26px;
+}
