@@ -1,0 +1,39 @@
+# ============================================================
+# Guarda: impede que ferramentas (skills/agentes) cheguem ao main.
+#
+# O hook local (.git/hooks/pre-commit) protege commits na sua máquina,
+# mas não roda em merges feitos no GitHub — esta Action cobre esse caso.
+#
+# Protegido: .agents/ · .trunk/ · skills-lock.json
+# Esses arquivos são versionados apenas no branch dev.
+# ============================================================
+name: guarda-ferramentas
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    name: main sem ferramentas
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verificar se ferramentas entraram na árvore do main
+        run: |
+          violacoes=$(git ls-tree -r --name-only HEAD \
+            | grep -E '^(\.agents/|\.trunk/|skills-lock\.json$)' || true)
+
+          if [ -n "$violacoes" ]; then
+            echo "::error::Ferramentas de agente/skills não podem ir para o main. Versione-as apenas no branch dev."
+            printf '%s\n' "$violacoes"
+            exit 1
+          fi
+
+          echo "OK — main contém apenas o produto (HTML/CSS/docs)."
