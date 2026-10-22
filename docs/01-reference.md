@@ -11,8 +11,9 @@
 | Tela | Arquivo | Apelido | Sai para |
 | --- | --- | --- | --- |
 | **Boas-vindas** (landing) | `index.html` (na raiz) | welcome | `Entrar no PI²` → login · `Criar minha conta` → cadastro |
-| **Login** | `src/pages/login/login.html` | login | `Voltar` → `index.html` · `Criar conta` → cadastro |
+| **Login** | `src/pages/login/login.html` | login | `Voltar` → `index.html` · `Criar conta` → cadastro · `Esqueci minha senha` → recuperação |
 | **Cadastro** | `src/pages/signup/signup.html` | signup | `Voltar` → `index.html` · `Já tenho conta · Entrar` → login |
+| **Recuperação de senha** | `src/pages/recovery/recovery.html` | recovery | `Voltar` (topbar e botão) → login |
 
 ### 1.1. Boas-vindas — `index.html`
 
@@ -37,6 +38,14 @@
 - **Rodapé:** `signin-row` — "Já tenho conta · Entrar".
 - **Validação:** sem `novalidate` → a **validação nativa do navegador está ativa** (`required`, `minlength="8"`, `pattern` na matrícula, selects com placeholder desabilitado).
 
+### 1.4. Recuperação de senha — `src/pages/recovery/recovery.html`
+
+- **Título da aba:** `Recuperar acesso — PI²`
+- **Chegada:** pelo link "Esqueci minha senha" do login.
+- **Estrutura:** `topbar` → `page-icon` (chave) → `page-title` "Vamos recuperar seu acesso." → `page-lead` → formulário `#recovery-form` → cartão `steps-card` "Como funciona" (3 passos numerados) → `info-card` "Não encontrou a mensagem?" → botão outline "Voltar para o acesso".
+- **Formulário:** apenas `E-mail institucional` + botão `btn-pi` "Enviar instruções" (com spinner e `submit-status`).
+- **Validação:** sem `novalidate` → **nativa ativa** (`required` + `type="email"`).
+
 ---
 
 ## 2. Estrutura de pastas
@@ -58,9 +67,12 @@
         ├── login/
         │   ├── login.html
         │   └── login.css
-        └── signup/
-            ├── signup.html
-            └── signup.css
+        ├── signup/
+        │   ├── signup.html
+        │   └── signup.css
+        └── recovery/
+            ├── recovery.html
+            └── recovery.css
 ```
 
 **Regra de decisão:**
@@ -198,6 +210,7 @@ Carregadas via Google Fonts no `<head>` de todas as telas.
 | Rótulos | `.field-label`, `.roles-legend` |
 | Seleção de perfil | `.roles-fieldset`, `.role-card` + `__top __icon __name __check` + estados (`:hover`, `:has(input:checked)`, `:has(input:focus-visible)`) |
 | Campos | `.pi-input` (+ modificadores `--plain`, `--select`), `.input-affix` |
+| Feedback de envio | `.submit-status` (+ `.is-error` `.is-success`), `.spinner-border-sm` |
 | Informativo | `.info-card` + `__icon __title __text` |
 
 ### 5.3. CSS de cada tela
@@ -205,8 +218,9 @@ Carregadas via Google Fonts no `<head>` de todas as telas.
 | Arquivo | Classes |
 | --- | --- |
 | `welcome.css` | `.brand-card*` · `.eyebrow` · `.hero-title` · `.hero-lead` · `.feature*` · `.helper-text` · `.screen-caption` |
-| `login.css` | `.remember-row` · `.remember-check` · `.forgot-link` · `.signup-row` · `.submit-status` (+ `.is-error` `.is-success`) · `.spinner-border-sm` · `.stack-form` (utilitário, hoje sem uso) |
+| `login.css` | `.remember-row` · `.remember-check` · `.forgot-link` · `.signup-row` · `.stack-form` (utilitário, hoje sem uso) |
 | `signup.css` | `.section-title` · `.required-mark` · `.field-hint` · `.terms-check` · `.signin-row` |
+| `recovery.css` | `.page-icon` · `.steps-card*` · `.steps` · `.step*` (`__num __title __text`) |
 
 ---
 
@@ -217,9 +231,10 @@ O `js/app.js` foi removido ("por enquanto"). O markup ficou no lugar para o JS v
 | Elemento | Situação hoje |
 | --- | --- |
 | Botão de mostrar/ocultar senha (login e cadastro) | **inerte** — clica e nada acontece |
-| Spinner e `submit-status` do botão de entrar | **inertes** — nunca aparecem |
+| Spinner e `submit-status` (botão de entrar e de enviar instruções) | **inertes** — nunca aparecem |
 | Rótulo "Entrar como aluno/professor" acompanhar o radio | **não acompanha** — fica no texto fixo do HTML |
 | Validação do **cadastro** | ✅ **nativa do navegador** (sem `novalidate`) |
+| Validação da **recuperação de senha** | ✅ **nativa do navegador** (`type="email"` + `required`) |
 | Validação do **login** | ❌ **desligada** (`novalidate` + sem JS) |
 | Envio do formulário | sem backend → a página só recarrega |
 

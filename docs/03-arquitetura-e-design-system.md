@@ -70,7 +70,8 @@ Além disso, as variáveis são usadas para **puxar o Bootstrap para a marca** (
 src/pages/
 ├── welcome/   → welcome.css
 ├── login/     → login.html + login.css
-└── signup/    → signup.html + signup.css
+├── signup/    → signup.html + signup.css
+└── recovery/  → recovery.html + recovery.css
 ```
 
 Telas como pastas, e não arquivos soltos (`login.html`, `login.css`, `cadastro.html`…), porque **HTML e CSS de uma tela são unidade de trabalho**. Quando alguém mexe no login, tudo que importa está numa pasta só — nada de caçar `login.css` numa pasta genérica `css/` com 8 folhas.
