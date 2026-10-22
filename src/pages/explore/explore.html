@@ -85,14 +85,9 @@
           Ideias de todos.<br />Inspiração para você.
         </h1>
 
-        <!-- Busca + filtros — gatilhos do modal (sem JS, via ":target") -->
+        <!-- Busca (só aqui; dentro do explore) -->
         <div class="explore-search">
-          <a
-            class="search-bar search-bar--trigger flex-grow-1"
-            href="#busca"
-            aria-haspopup="dialog"
-            aria-controls="busca"
-          >
+          <div class="search-bar flex-grow-1">
             <span class="search-bar__icon" aria-hidden="true">
               <svg
                 width="20"
@@ -108,9 +103,16 @@
                 <path d="m21 21-4.3-4.3" />
               </svg>
             </span>
-            Buscar projetos, temas ou autores
-          </a>
+            <input
+              class="form-control pi-input"
+              type="search"
+              name="q"
+              aria-label="Buscar projetos, temas ou autores"
+              placeholder="Buscar projetos, temas ou autores"
+            />
+          </div>
 
+          <!-- Botão ao lado: único gatilho do modal de filtros -->
           <a
             class="explore-search__filter"
             href="#busca"
@@ -139,11 +141,11 @@
           </a>
         </div>
 
-        <!-- Cursos -->
+        <!-- Cursos (seleção de atalho; não abre o modal) -->
         <div class="explore-chips">
-          <a class="chip is-active" href="#busca">Todos os cursos</a>
-          <a class="chip" href="#busca">Arquitetura</a>
-          <a class="chip" href="#busca">Tecnologia</a>
+          <a class="chip is-active" href="#">Todos os cursos</a>
+          <a class="chip" href="#">Arquitetura</a>
+          <a class="chip" href="#">Tecnologia</a>
         </div>
 
         <!-- Destaque promocional -->
@@ -176,7 +178,7 @@
         <!-- Em destaque -->
         <div class="section-head">
           <h2 class="section-head__title">Em destaque</h2>
-          <a class="section-head__link" href="#busca">Ver todos</a>
+          <a class="section-head__link" href="#">Ver todos</a>
         </div>
 
         <article class="project-card">
@@ -219,7 +221,7 @@
         <!-- Novas descobertas -->
         <div class="section-head">
           <h2 class="section-head__title">Novas descobertas</h2>
-          <a class="section-head__link" href="#busca">Mais recentes ↓</a>
+          <a class="section-head__link" href="#">Mais recentes ↓</a>
         </div>
 
         <article class="project-card">
@@ -383,14 +385,14 @@
              Abre/fecha com CSS puro (":target"): qualquer gatilho aponta
              para #busca; o backdrop e o botão fechar voltam para #topo. -->
         <div class="search-modal" id="busca" role="dialog" aria-modal="true" aria-labelledby="busca-titulo">
-          <a class="search-modal__backdrop" href="#topo" aria-label="Fechar busca"></a>
+          <a class="search-modal__backdrop" href="#topo" aria-label="Fechar filtros"></a>
 
           <section class="search-modal__sheet">
             <span class="search-modal__handle" aria-hidden="true"></span>
 
             <div class="search-modal__head">
-              <h2 class="search-modal__title" id="busca-titulo">Buscar projetos</h2>
-              <a class="icon-btn icon-btn--ghost" href="#topo" aria-label="Fechar busca">
+              <h2 class="search-modal__title" id="busca-titulo">Filtrar projetos</h2>
+              <a class="icon-btn icon-btn--ghost" href="#topo" aria-label="Fechar filtros">
                 <svg
                   width="20"
                   height="20"
@@ -405,32 +407,6 @@
                   <path d="m6 6 12 12" />
                 </svg>
               </a>
-            </div>
-
-            <!-- Campo de busca -->
-            <div class="search-bar mb-3">
-              <span class="search-bar__icon" aria-hidden="true">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.75"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="11" cy="11" r="8" />
-                  <path d="m21 21-4.3-4.3" />
-                </svg>
-              </span>
-              <input
-                class="form-control pi-input"
-                type="search"
-                name="q"
-                aria-label="Buscar projetos, temas ou autores"
-                placeholder="Buscar projetos, temas ou autores"
-              />
             </div>
 
             <!-- Filtros ativos -->

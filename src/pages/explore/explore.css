@@ -95,28 +95,8 @@
   margin: 0;
 }
 
-/* ---------- Campo de busca como gatilho do modal ---------- */
-.search-bar--trigger {
-  min-height: 56px;
-  padding-left: 48px;
-  border: 1.5px solid var(--pi-border);
-  border-radius: var(--pi-radius);
-  background: var(--pi-surface);
-  display: flex;
-  align-items: center;
-  color: var(--pi-muted);
-  font-size: 16px;
-  text-decoration: none;
-  transition: border-color 180ms ease;
-}
-
-.search-bar--trigger:hover {
-  border-color: #d8d1c6;
-  color: var(--pi-muted);
-}
-
 /* ============================================================
-   Modal de busca e filtros — sobe de baixo pra cima.
+   Modal de filtros — sobe de baixo pra cima.
    Abre/fecha só com CSS (":target"), sem JavaScript.
    ============================================================ */
 .search-modal {

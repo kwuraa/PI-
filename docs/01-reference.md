@@ -14,7 +14,7 @@
 | **Login** | `src/pages/login/login.html` | login | `Voltar` → `index.html` · `Criar conta` → cadastro · `Esqueci minha senha` → recuperação · **`Entrar como aluno` → explore (área logada)** |
 | **Cadastro** | `src/pages/signup/signup.html` | signup | `Voltar` → `index.html` · `Já tenho conta · Entrar` → login |
 | **Recuperação de senha** | `src/pages/recovery/recovery.html` | recovery | `Voltar` (topbar e botão) → login · `Alterar senha` no perfil |
-| **Explorar projetos** (área logada) | `src/pages/explore/explore.html` | explore | busca/chips → **modal `#busca`** · cards → project · avatar/nav → saved, profile |
+| **Explorar projetos** (área logada) | `src/pages/explore/explore.html` | explore | botão de filtro → **modal `#busca`** · cards → project · avatar/nav → saved, profile |
 | **Detalhes do projeto** | `src/pages/project/project.html` | project | `Voltar`/nav → explore · nav → saved, profile |
 | **Projetos salvos** | `src/pages/saved/saved.html` | saved | `Ver projeto` → project · `Explorar mais` → explore · nav → profile |
 | **Perfil e configurações** | `src/pages/profile/profile.html` | profile | `Alterar senha` → recovery · `Sair da conta` → `index.html` · nav → explore, saved |
@@ -57,12 +57,12 @@ Compartilham o mesmo **cabeçalho do app** (`app-header` com marca + avatar), a 
 
 | Tela | Título da aba | Conteúdo principal |
 | --- | --- | --- |
-| **Explorar** | `Explorar projetos — PI²` | Saudação, gatilhos de busca/filtro, chips de curso, destaque promocional, seções `Em destaque` e `Novas descobertas` + **modal de busca** |
+| **Explorar** | `Explorar projetos — PI²` | Saudação, barra de busca (única, só na página) + botão de filtro, chips de curso, destaque promocional, seções `Em destaque` e `Novas descobertas` + **modal de filtros** |
 | **Detalhes** | `Rota Acessível — PI²` | Capa, tags, botão salvar, texto, equipe (`people`), arquivos (`files`), comentários e formulário |
 | **Salvos** | `Projetos salvos — PI²` | Busca na coleção, cards com `Ver projeto` / `Remover dos salvos`, `Explorar mais projetos` |
 | **Perfil** | `Meu perfil — PI²` | Cartão do usuário, dados institucionais (e-mail e curso travados), switches, lista de links, `Sair da conta` |
 
-**Modal de busca (`explore.html`):** a antiga tela `search` virou uma folha que **sobe de baixo pra cima** dentro da própria Explorar. Gatilhos: campo de busca, botão de filtro, chips de curso, `Ver todos` e `Mais recentes ↓` — todos apontam para `#busca`. Abre/fecha **só com CSS** (`:target`): o backdrop e o botão fechar voltam para `#topo`, o `:target` some e a folha desce. Conteúdo: campo real, filtros ativos, resultados, rádios de curso, ano/ordenação, tipo de projeto e ações.
+**Modal de filtros (`explore.html`):** a antiga tela `search` virou uma folha que **sobe de baixo pra cima** dentro da própria Explorar. **Único gatilho:** o botão vermelho de filtro ao lado da barra de busca (→ `#busca`); a própria barra de busca é um `input` normal e existe **só na página** (não se repete dentro do modal). Fecha pelo backdrop, pelo × ou por `Mostrar 8 projetos` (→ `#topo`), tudo **só com CSS** (`:target`). Conteúdo: filtros ativos, resultados, rádios de curso, ano/ordenação, tipo de projeto e ações.
 
 **Pendências desta área:**
 - Botões de salvar/remover, switches (perfil) e envio de comentário são **inertes** (sem JS); chips e rádios do modal funcionam, mas não filtram de verdade.
@@ -270,7 +270,7 @@ Carregadas via Google Fonts no `<head>` de todas as telas.
 | `login.css` | `.remember-row` · `.remember-check` · `.forgot-link` · `.signup-row` · `.stack-form` (utilitário, hoje sem uso) |
 | `signup.css` | `.required-mark` · `.terms-check` · `.signin-row` |
 | `recovery.css` | `.page-icon` · `.steps-card*` · `.steps` · `.step*` (`__num __title __text`) |
-| `explore.css` | `.explore-greet` · `.explore-title` · `.explore-search*` · `.search-bar--trigger` · `.explore-chips` · `.promo-card*` · **modal**: `.search-modal*` (`__backdrop __sheet __handle __head __title`) · `.active-filters` · `.results-count` · `.results` · `.filter-group*` · `.filter-radio*` · `.filter-chips` · `.filter-actions` · `.filter-clear` |
+| `explore.css` | `.explore-greet` · `.explore-title` · `.explore-search*` · `.explore-chips` · `.promo-card*` · **modal**: `.search-modal*` (`__backdrop __sheet __handle __head __title`) · `.active-filters` · `.results-count` · `.results` · `.filter-group*` · `.filter-radio*` · `.filter-chips` · `.filter-actions` · `.filter-clear` |
 | `project.css` | `.project-cover` · `.project-head` · `.project-title` · `.project-meta` · `.project-save` · `.project-text` · `.project-tags` · `.people` · `.person*` · `.files` · `.file*` · `.comments` · `.comment*` · `.comment-form*` |
 | `saved.css` | `.saved-search` · `.card-actions*` · `.icon-btn--ghost.is-saved` · `.saved-more` |
 | `profile.css` | `.user-card*` · `.profile-save` · `.setting-row*` · `.switch` · `.link-list` · `.link-row*` · `.profile-logout` |
@@ -296,7 +296,7 @@ O `js/app.js` foi removido ("por enquanto"). O markup ficou no lugar para o JS v
 | Salvar/remover projeto (bookmark nos cards e no detalhe) | **inerte** — `aria-pressed` fixo no markup |
 | Switches de notificação (perfil) | ✅ **funcionam** — `input[type=checkbox]` + CSS puro (sem persistência) |
 | Comentários do projeto | formulário **inerte** — recarrega a página |
-| Modal de busca/filtros (explorar) | ✅ **abre e fecha** com `:target` (CSS puro) — gatilhos `#busca` → fechar `#topo` |
+| Modal de filtros (explorar) | ✅ **abre e fecha** com `:target` (CSS puro) — gatilho único: botão ao lado da busca (`#busca`) → fechar `#topo` |
 | Filtrar de verdade (resultados, chips, rádios) | **inerte** — atualiza a URL, mas não refiltra |
 | Links `#` (Meus projetos, termos, ajuda) | tela/conteúdo ainda não existe |
 
