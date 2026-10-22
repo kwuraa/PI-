@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rota Acessível — PI²</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/tokens.css" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="project.css" />
+  </head>
+
+  <body>
+    <!-- ===================== TELA 8 — DETALHES DO PROJETO ===================== -->
+    <main class="screen">
+      <div class="screen__inner">
+        <!-- Barra superior -->
+        <header class="topbar">
+          <a class="icon-btn" href="../explore/explore.html" aria-label="Voltar">
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M19 12H5" />
+              <path d="m12 19-7-7 7-7" />
+            </svg>
+          </a>
+
+          <h1 class="topbar__title">Projeto</h1>
+
+          <button
+            class="icon-btn icon-btn--filled"
+            type="button"
+            aria-label="Mais opções"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <circle cx="5" cy="12" r="1.8" />
+              <circle cx="12" cy="12" r="1.8" />
+              <circle cx="19" cy="12" r="1.8" />
+            </svg>
+          </button>
+        </header>
+
+        <!-- Imagem de capa -->
+        <span
+          class="thumb thumb--rounded thumb--campus project-cover"
+          role="img"
+          aria-label="Pessoa usando celular em um campus universitário"
+        ></span>
+
+        <!-- Cabeçalho do projeto -->
+        <div class="project-head">
+          <span class="chip chip--sm is-active">Sistemas de Informação</span>
+          <span class="chip chip--sm chip--muted">Publicada</span>
+        </div>
+
+        <h2 class="page-title project-title">
+          Rota Acessível: um campus para todos
+        </h2>
+
+        <p class="project-meta">Projeto integrador · 2026.2</p>
+        <p class="project-meta">
+          Publicado em 02 out. 2026 · 24 salvos
+        </p>
+
+        <!-- Salvar projeto -->
+        <button
+          class="btn btn-pi-outline w-100 project-save"
+          type="button"
+          aria-pressed="false"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+          </svg>
+          <span class="btn-label">Projeto salvo</span>
+        </button>
+
+        <!-- Sobre -->
+        <h3 class="section-title">Sobre o projeto</h3>
+        <p class="project-text">
+          Uma plataforma para mapear rotas acessíveis no campus, conectando
+          estudantes a trajetos com rampas, piso tátil e elevadores. O projeto
+          combina pesquisa com a comunidade acadêmica e um protótipo navegável
+          para tornar a faculdade mais inclusiva.
+        </p>
+
+        <div class="project-tags">
+          <span class="chip chip--sm">Acessibilidade</span>
+          <span class="chip chip--sm">Tecnologia</span>
+          <span class="chip chip--sm">Inclusão</span>
+        </div>
+
+        <!-- Autores -->
+        <h3 class="section-title">Ideia construída por:</h3>
+
+        <ul class="people">
+          <li class="person">
+            <span class="avatar avatar--sm" aria-hidden="true">AC</span>
+            <div>
+              <p class="person__name">Ana Costa</p>
+              <p class="person__role">Autora · Sistemas de Informação</p>
+            </div>
+          </li>
+
+          <li class="person">
+            <span class="avatar avatar--sm" aria-hidden="true">LS</span>
+            <div>
+              <p class="person__name">Lucas Silva</p>
+              <p class="person__role">Autor · Sistemas de Informação</p>
+            </div>
+          </li>
+
+          <li class="person">
+            <span class="avatar avatar--sm" aria-hidden="true">RM</span>
+            <div>
+              <p class="person__name">Prof. Rafael Martins</p>
+              <p class="person__role">Orientador</p>
+            </div>
+          </li>
+        </ul>
+
+        <!-- Arquivos -->
+        <div class="section-head">
+          <h3 class="section-head__title">Arquivos do projeto</h3>
+          <span class="section-head__link section-head__count">2 arquivos</span>
+        </div>
+
+        <ul class="files">
+          <li class="file">
+            <span class="file__icon" aria-hidden="true">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                />
+                <path d="M14 2v6h6" />
+                <path d="M9 13h6" />
+                <path d="M9 17h6" />
+              </svg>
+            </span>
+            <div class="file__info">
+              <p class="file__name">Relatório_Rota_Acessível.pdf</p>
+              <p class="file__meta">PDF · 2,4 MB</p>
+            </div>
+            <button
+              class="icon-btn icon-btn--ghost"
+              type="button"
+              aria-label="Baixar Relatório_Rota_Acessível.pdf"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <path d="m7 10 5 5 5-5" />
+                <path d="M12 15V3" />
+              </svg>
+            </button>
+          </li>
+
+          <li class="file">
+            <span class="file__icon" aria-hidden="true">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                />
+                <path d="M14 2v6h6" />
+                <path d="m10 13 2 2 2-2" />
+                <path d="M12 15v-4" />
+              </svg>
+            </span>
+            <div class="file__info">
+              <p class="file__name">Protótipo_Rota_Acessível.zip</p>
+              <p class="file__meta">ZIP · 8,1 MB</p>
+            </div>
+            <button
+              class="icon-btn icon-btn--ghost"
+              type="button"
+              aria-label="Baixar Protótipo_Rota_Acessível.zip"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <path d="m7 10 5 5 5-5" />
+                <path d="M12 15V3" />
+              </svg>
+            </button>
+          </li>
+        </ul>
+
+        <!-- Comentários -->
+        <div class="section-head">
+          <h3 class="section-head__title">Comentários</h3>
+          <span class="section-head__link section-head__count">2 comentários</span>
+        </div>
+
+        <ul class="comments">
+          <li class="comment">
+            <div class="comment__head">
+              <p class="comment__author">Marina Oliveira</p>
+              <span class="comment__time">Há 2 dias</span>
+            </div>
+            <p class="comment__text">
+              Ótima iniciativa! O mapa também contempla o acesso à biblioteca?
+            </p>
+          </li>
+
+          <li class="comment">
+            <div class="comment__head">
+              <p class="comment__author">Ana Costa</p>
+              <span class="comment__time">Há 1 dia · Autora</span>
+            </div>
+            <p class="comment__text">
+              Sim, Marina! Incluímos a biblioteca e os laboratórios no
+              mapeamento.
+            </p>
+          </li>
+        </ul>
+
+        <!-- Novo comentário -->
+        <form class="comment-form">
+          <label class="field-label" for="novo-comentario">
+            Participe da conversa
+          </label>
+          <textarea
+            class="form-control pi-input pi-input--plain comment-form__input"
+            id="novo-comentario"
+            name="comentario"
+            rows="2"
+            placeholder="Escreva um comentário..."
+          ></textarea>
+
+          <button class="btn btn-pi w-100" type="submit">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="m22 2-7 20-4-9-9-4z" />
+              <path d="M22 2 11 13" />
+            </svg>
+            <span class="btn-label">Enviar comentário</span>
+          </button>
+        </form>
+
+        <!-- Navegação inferior -->
+        <nav class="bottom-nav" aria-label="Navegação principal">
+          <a class="nav-item is-active" href="../explore/explore.html" aria-current="page">
+            <span class="nav-item__icon" aria-hidden="true">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="m16.13 7.87-2.11 6.34-6.34 2.11 2.11-6.34z" />
+              </svg>
+            </span>
+            <span class="nav-item__label">Explorar</span>
+          </a>
+
+          <a class="nav-item" href="#">
+            <span class="nav-item__icon" aria-hidden="true">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m12.83 2.18-8.23 3.65a1 1 0 0 0 0 1.83l8.23 3.65a2 2 0 0 0 1.66 0l8.23-3.65a1 1 0 0 0 0-1.83l-8.23-3.65a2 2 0 0 0-1.66 0" />
+                <path d="m22 12.5-9.17 4.08a2 2 0 0 1-1.66 0L2 12.5" />
+                <path d="m22 17.5-9.17 4.08a2 2 0 0 1-1.66 0L2 17.5" />
+              </svg>
+            </span>
+            <span class="nav-item__label">Meus projetos</span>
+          </a>
+
+          <a class="nav-item" href="../saved/saved.html">
+            <span class="nav-item__icon" aria-hidden="true">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+              </svg>
+            </span>
+            <span class="nav-item__label">Salvos</span>
+          </a>
+
+          <a class="nav-item" href="../profile/profile.html">
+            <span class="nav-item__icon" aria-hidden="true">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </span>
+            <span class="nav-item__label">Perfil</span>
+          </a>
+        </nav>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

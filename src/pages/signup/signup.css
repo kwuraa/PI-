@@ -2,26 +2,9 @@
    PI² — Tela 3 — Cadastro (signup)
    ============================================================ */
 
-/* ---------- Título de seção (Seus dados / Crie sua senha) ---------- */
-.section-title {
-  font-family: "Outfit", sans-serif;
-  font-size: 21px;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-  color: var(--pi-ink);
-  margin: 26px 0 14px;
-}
-
 /* ---------- Asterisco de campo obrigatório ---------- */
 .required-mark {
   color: var(--pi-red-600);
-}
-
-/* ---------- Texto auxiliar abaixo do campo ---------- */
-.field-hint {
-  font-size: 13.5px;
-  color: var(--pi-muted);
-  margin: 8px 0 0;
 }
 
 /* ---------- Aceite dos termos ---------- */

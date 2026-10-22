@@ -286,3 +286,344 @@ button.input-affix {
   color: var(--pi-muted);
   margin: 0;
 }
+
+/* ============================================================
+   Componentes da área logada (usados por 2+ telas)
+   ============================================================ */
+
+/* ---------- Cabeçalho do app (marca + avatar) ---------- */
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.app-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+  flex: 0 0 auto;
+}
+
+.app-brand__mark {
+  width: 38px;
+  height: 38px;
+  display: block;
+}
+
+.app-brand__wordmark {
+  font-family: "Outfit", sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--pi-ink);
+  margin-top: 2px;
+}
+
+.app-brand__wordmark sup {
+  font-size: 0.55em;
+  top: -0.65em;
+}
+
+.app-header__caption {
+  flex: 1;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pi-muted);
+}
+
+/* ---------- Avatar com iniciais ---------- */
+.avatar {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--pi-red-50);
+  color: var(--pi-red-700);
+  font-family: "Outfit", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+}
+
+.avatar--sm {
+  width: 40px;
+  height: 40px;
+  font-size: 14px;
+}
+
+/* ---------- Navegação inferior ---------- */
+.bottom-nav {
+  position: sticky;
+  bottom: 0;
+  margin-top: 32px;
+  padding: 10px 0 14px;
+  background: var(--pi-surface);
+  border-top: 1px solid var(--pi-border);
+  display: flex;
+  justify-content: space-around;
+}
+
+.bottom-nav::after {
+  /* indicador de área segura (home indicator) */
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  transform: translateX(-50%);
+  width: 128px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--pi-ink);
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: var(--pi-muted);
+}
+
+.nav-item__icon {
+  width: 44px;
+  height: 28px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  transition: background-color 180ms ease;
+}
+
+.nav-item__label {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.nav-item:hover {
+  color: var(--pi-ink);
+}
+
+.nav-item.is-active {
+  color: var(--pi-red-600);
+}
+
+.nav-item.is-active .nav-item__icon {
+  background: var(--pi-red-50);
+}
+
+/* ---------- Chips (filtros e tags) ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--pi-border);
+  background: var(--pi-surface);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--pi-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.chip.is-active {
+  background: var(--pi-red-50);
+  border-color: transparent;
+  color: var(--pi-red-700);
+}
+
+.chip--sm {
+  min-height: 28px;
+  padding: 0 10px;
+  font-size: 12.5px;
+}
+
+.chip--muted {
+  background: #efece5;
+  border-color: transparent;
+  color: var(--pi-muted);
+}
+
+.chip__remove {
+  display: grid;
+  place-items: center;
+  color: inherit;
+  opacity: 0.7;
+}
+
+/* ---------- Campo de busca ---------- */
+.search-bar {
+  position: relative;
+}
+
+.search-bar .pi-input {
+  padding-left: 48px;
+}
+
+.search-bar__icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: var(--pi-muted);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+/* ---------- Cabeçalho de seção (título + link) ---------- */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 28px 0 14px;
+}
+
+.section-head__title {
+  font-family: "Outfit", sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.section-head__link {
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* ---------- Sobretítulo (eyebrow) e títulos de seção ---------- */
+.screen-caption {
+  font-size: 13px;
+  color: var(--pi-muted);
+  text-align: center;
+  margin: 0;
+}
+
+.eyebrow {
+  font-family: "Outfit", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pi-red-600);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-family: "Outfit", sans-serif;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--pi-ink);
+  margin: 26px 0 14px;
+}
+
+.field-hint {
+  font-size: 13.5px;
+  color: var(--pi-muted);
+  margin: 8px 0 0;
+}
+
+/* ---------- Card de projeto ---------- */
+.project-card {
+  background: var(--pi-surface);
+  border: 1.5px solid var(--pi-border);
+  border-radius: var(--pi-radius-lg);
+  overflow: hidden;
+}
+
+.project-card__body {
+  padding: 14px 16px 16px;
+}
+
+.project-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.project-card__title {
+  font-family: "Outfit", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin: 0 0 6px;
+}
+
+.project-card__link {
+  color: var(--pi-ink);
+  text-decoration: none;
+}
+
+.project-card__link:hover {
+  color: var(--pi-red-700);
+}
+
+.project-card__authors {
+  font-size: 13.5px;
+  color: var(--pi-muted);
+  margin: 0;
+}
+
+.project-card__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--pi-muted);
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--pi-border);
+}
+
+.project-card + .project-card {
+  margin-top: 16px;
+}
+
+/* ---------- Miniatura (placeholder de imagem) ---------- */
+.thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #ddd8d0;
+}
+
+.thumb--rounded {
+  border-radius: var(--pi-radius);
+}
+
+.thumb--garden {
+  background: linear-gradient(135deg, #6f8552, #a9bd80 60%, #c9d6a6);
+}
+
+.thumb--campus {
+  background: linear-gradient(135deg, #7f838b, #b5b9c0 60%, #d7d9dd);
+}
+
+.thumb--water {
+  background: linear-gradient(135deg, #567a91, #8fb2c7 60%, #bfd6e2);
+}
+
+/* ---------- Ícone decorativo (lupa/fechamento etc.) ---------- */
+.icon-btn--ghost {
+  width: 40px;
+  height: 40px;
+  color: var(--pi-muted);
+}

@@ -13,7 +13,12 @@
 | **Boas-vindas** (landing) | `index.html` (na raiz) | welcome | `Entrar no PI²` → login · `Criar minha conta` → cadastro |
 | **Login** | `src/pages/login/login.html` | login | `Voltar` → `index.html` · `Criar conta` → cadastro · `Esqueci minha senha` → recuperação |
 | **Cadastro** | `src/pages/signup/signup.html` | signup | `Voltar` → `index.html` · `Já tenho conta · Entrar` → login |
-| **Recuperação de senha** | `src/pages/recovery/recovery.html` | recovery | `Voltar` (topbar e botão) → login |
+| **Recuperação de senha** | `src/pages/recovery/recovery.html` | recovery | `Voltar` (topbar e botão) → login · `Alterar senha` no perfil |
+| **Explorar projetos** (área logada) | `src/pages/explore/explore.html` | explore | busca → search · cards → project · avatar/nav → saved, profile |
+| **Resultados e filtros** | `src/pages/search/search.html` | search | `Voltar` → explore · card → project |
+| **Detalhes do projeto** | `src/pages/project/project.html` | project | `Voltar`/nav → explore · nav → saved, profile |
+| **Projetos salvos** | `src/pages/saved/saved.html` | saved | `Ver projeto` → project · `Explorar mais` → explore · nav → profile |
+| **Perfil e configurações** | `src/pages/profile/profile.html` | profile | `Alterar senha` → recovery · `Sair da conta` → `index.html` · nav → explore, saved |
 
 ### 1.1. Boas-vindas — `index.html`
 
@@ -46,6 +51,23 @@
 - **Formulário:** apenas `E-mail institucional` + botão `btn-pi` "Enviar instruções" (com spinner e `submit-status`).
 - **Validação:** sem `novalidate` → **nativa ativa** (`required` + `type="email"`).
 
+### 1.5. Telas da área logada (explore · search · project · saved · profile)
+
+Compartilham o mesmo **cabeçalho do app** (`app-header` com marca + avatar), a **navegação inferior** (`bottom-nav`: Explorar · Meus projetos · Salvos · Perfil) e os **cards de projeto** (`project-card`).
+
+| Tela | Título da aba | Conteúdo principal |
+| --- | --- | --- |
+| **Explorar** | `Explorar projetos — PI²` | Saudação, busca + botão de filtro, chips de curso, destaque promocional, seções `Em destaque` e `Novas descobertas` |
+| **Resultados** | `Buscar projetos — PI²` | Chips de filtro ativo (removíveis), contagem, lista compacta e **painel inferior** `filter-sheet` (curso/ano/ordenação/tipo) |
+| **Detalhes** | `Rota Acessível — PI²` | Capa, tags, botão salvar, texto, equipe (`people`), arquivos (`files`), comentários e formulário |
+| **Salvos** | `Projetos salvos — PI²` | Busca na coleção, cards com `Ver projeto` / `Remover dos salvos`, `Explorar mais projetos` |
+| **Perfil** | `Meu perfil — PI²` | Cartão do usuário, dados institucionais (e-mail e curso travados), switches, lista de links, `Sair da conta` |
+
+**Pendências desta área:**
+- O painel de filtros da tela de busca está **sempre visível** — abrir/fechar exige JS.
+- Botões de salvar/remover, switches e envio de comentário são **inertes** (sem JS).
+- `Meus projetos` na navegação aponta para `#` (tela ainda não existe).
+
 ---
 
 ## 2. Estrutura de pastas
@@ -70,9 +92,33 @@
         ├── signup/
         │   ├── signup.html
         │   └── signup.css
-        └── recovery/
-            ├── recovery.html
-            └── recovery.css
+        └── pages/
+            ├── welcome/
+            │   └── welcome.css       ← só o que é da landing
+            ├── login/
+            │   ├── login.html
+            │   └── login.css
+            ├── signup/
+            │   ├── signup.html
+            │   └── signup.css
+            ├── recovery/
+            │   ├── recovery.html
+            │   └── recovery.css
+            ├── explore/              ← área logada
+            │   ├── explore.html
+            │   └── explore.css
+            ├── search/
+            │   ├── search.html
+            │   └── search.css
+            ├── project/
+            │   ├── project.html
+            │   └── project.css
+            ├── saved/
+            │   ├── saved.html
+            │   └── saved.css
+            └── profile/
+                ├── profile.html
+                └── profile.css
 ```
 
 **Regra de decisão:**
@@ -205,11 +251,17 @@ Carregadas via Google Fonts no `<head>` de todas as telas.
 | Grupo | Classes |
 | --- | --- |
 | Botões | `.btn-pi`, `.btn-pi-outline` |
-| Barra superior | `.topbar`, `.topbar__title`, `.icon-btn`, `.icon-btn--filled` |
-| Cabeçalho de página | `.page-title`, `.page-lead` |
-| Rótulos | `.field-label`, `.roles-legend` |
+| Barra superior | `.topbar`, `.topbar__title`, `.icon-btn`, `.icon-btn--filled`, `.icon-btn--ghost` |
+| Cabeçalho de página | `.page-title`, `.page-lead`, `.eyebrow`, `.section-title`, `.screen-caption` |
+| Cabeçalho do app | `.app-header` + `__caption` · `.app-brand` + `__mark __wordmark` · `.avatar` (+ `--sm`) |
+| Navegação inferior | `.bottom-nav` · `.nav-item` + `__icon __label` (+ estados `.is-active`, `aria-current`) |
+| Rótulos | `.field-label`, `.roles-legend`, `.field-hint` |
 | Seleção de perfil | `.roles-fieldset`, `.role-card` + `__top __icon __name __check` + estados (`:hover`, `:has(input:checked)`, `:has(input:focus-visible)`) |
 | Campos | `.pi-input` (+ modificadores `--plain`, `--select`), `.input-affix` |
+| Chips | `.chip` (+ modificadores `--sm`, `--muted`, estado `.is-active`) · `.chip__remove` |
+| Busca | `.search-bar` + `__icon` |
+| Cabeçalho de seção | `.section-head` + `__title __link` · `.section-head__count` |
+| Cards de projeto | `.project-card` + `__body __top __title __link __authors __meta` · `.thumb` (+ `--rounded --garden --campus --water`) |
 | Feedback de envio | `.submit-status` (+ `.is-error` `.is-success`), `.spinner-border-sm` |
 | Informativo | `.info-card` + `__icon __title __text` |
 
@@ -217,10 +269,17 @@ Carregadas via Google Fonts no `<head>` de todas as telas.
 
 | Arquivo | Classes |
 | --- | --- |
-| `welcome.css` | `.brand-card*` · `.eyebrow` · `.hero-title` · `.hero-lead` · `.feature*` · `.helper-text` · `.screen-caption` |
+| `welcome.css` | `.brand-card*` · `.hero-title` · `.hero-lead` · `.feature*` · `.helper-text` |
 | `login.css` | `.remember-row` · `.remember-check` · `.forgot-link` · `.signup-row` · `.stack-form` (utilitário, hoje sem uso) |
-| `signup.css` | `.section-title` · `.required-mark` · `.field-hint` · `.terms-check` · `.signin-row` |
+| `signup.css` | `.required-mark` · `.terms-check` · `.signin-row` |
 | `recovery.css` | `.page-icon` · `.steps-card*` · `.steps` · `.step*` (`__num __title __text`) |
+| `explore.css` | `.explore-greet` · `.explore-title` · `.explore-search*` · `.explore-chips` · `.promo-card*` |
+| `search.css` | `.search-title` · `.active-filters` · `.results-count` · `.results` · `.sheet-backdrop` · `.filter-sheet*` · `.filter-group*` · `.filter-radio*` · `.filter-chips` |
+| `project.css` | `.project-cover` · `.project-head` · `.project-title` · `.project-meta` · `.project-save` · `.project-text` · `.project-tags` · `.people` · `.person*` · `.files` · `.file*` · `.comments` · `.comment*` · `.comment-form*` |
+| `saved.css` | `.saved-search` · `.card-actions*` · `.icon-btn--ghost.is-saved` · `.saved-more` |
+| `profile.css` | `.user-card*` · `.profile-save` · `.setting-row*` · `.switch` · `.link-list` · `.link-row*` · `.profile-logout` |
+
+> **Regra de promoção:** quando uma classe de página passa a ser usada por 2+ telas, ela sobe para `src/css/components.css` (ex.: `.eyebrow`, `.section-title`, `.field-hint`, `.screen-caption` vindos do welcome/signup).
 
 ---
 
@@ -237,6 +296,11 @@ O `js/app.js` foi removido ("por enquanto"). O markup ficou no lugar para o JS v
 | Validação da **recuperação de senha** | ✅ **nativa do navegador** (`type="email"` + `required`) |
 | Validação do **login** | ❌ **desligada** (`novalidate` + sem JS) |
 | Envio do formulário | sem backend → a página só recarrega |
+| Salvar/remover projeto (bookmark nos cards e no detalhe) | **inerte** — `aria-pressed` fixo no markup |
+| Switches de notificação (perfil) | ✅ **funcionam** — `input[type=checkbox]` + CSS puro (sem persistência) |
+| Comentários do projeto | formulário **inerte** — recarrega a página |
+| Painel de filtros (busca) | **sempre aberto** — abrir/fechar exige JS |
+| Links `#` (Meus projetos, termos, ajuda) | tela/conteúdo ainda não existe |
 
 **Pendência:** remover `novalidate` do login (ou devolver o JS) antes de qualquer teste com usuário.
 

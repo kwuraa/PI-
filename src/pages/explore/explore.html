@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Explorar projetos — PI²</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/tokens.css" />
+    <link rel="stylesheet" href="../../css/base.css" />
+    <link rel="stylesheet" href="../../css/components.css" />
+    <link rel="stylesheet" href="explore.css" />
+  </head>
+
+  <body>
+    <!-- ===================== TELA 6 — EXPLORAR ===================== -->
+    <main class="screen">
+      <div class="screen__inner">
+        <!-- Cabeçalho do app -->
+        <header class="app-header">
+          <a class="app-brand" href="explore.html">
+            <svg
+              class="app-brand__mark"
+              viewBox="0 0 220 220"
+              aria-hidden="true"
+            >
+              <path
+                d="M110 18 L180 58 L110 98 L40 58 Z"
+                fill="#c6281e"
+                stroke="#c6281e"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 70 L180 110 L110 150 L40 110 Z"
+                fill="#dd4535"
+                stroke="#dd4535"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 70 L137 84 L110 98 L83 84 Z"
+                fill="#8c1a12"
+                stroke="#8c1a12"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 122 L180 162 L110 202 L40 162 Z"
+                fill="#d8d4ce"
+                stroke="#d8d4ce"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M110 124 L137 138 L110 152 L83 138 Z"
+                fill="#a93528"
+                stroke="#a93528"
+                stroke-width="14"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span class="app-brand__wordmark">PI<sup>2</sup></span>
+          </a>
+
+          <span class="app-header__caption">Conhecimento conectado</span>
+
+          <a class="avatar avatar--sm" href="../profile/profile.html" aria-label="Meu perfil">
+            AC
+          </a>
+        </header>
+
+        <!-- Saudação -->
+        <p class="explore-greet">Olá, Ana. O que vamos descobrir?</p>
+        <h1 class="page-title explore-title">
+          Ideias de todos.<br />Inspiração para você.
+        </h1>
+
+        <!-- Busca + filtros -->
+        <form class="explore-search" role="search">
+          <div class="search-bar flex-grow-1">
+            <span class="search-bar__icon" aria-hidden="true">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.3-4.3" />
+              </svg>
+            </span>
+            <input
+              class="form-control pi-input"
+              type="search"
+              name="q"
+              aria-label="Buscar projetos, temas ou autores"
+              placeholder="Buscar projetos, temas ou autores"
+            />
+          </div>
+
+          <a
+            class="explore-search__filter"
+            href="../search/search.html"
+            aria-label="Filtrar projetos"
+          >
+            <svg
+              width="22"
+              height="22"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 6h16" />
+              <path d="M4 12h16" />
+              <path d="M4 18h16" />
+              <circle cx="9" cy="6" r="2" fill="currentColor" />
+              <circle cx="15" cy="12" r="2" fill="currentColor" />
+              <circle cx="7" cy="18" r="2" fill="currentColor" />
+            </svg>
+          </a>
+        </form>
+
+        <!-- Cursos -->
+        <div class="explore-chips">
+          <a class="chip is-active" href="../search/search.html">Todos os cursos</a>
+          <a class="chip" href="../search/search.html">Arquitetura</a>
+          <a class="chip" href="../search/search.html">Tecnologia</a>
+        </div>
+
+        <!-- Destaque promocional -->
+        <aside class="promo-card">
+          <div class="promo-card__top">
+            <p class="promo-card__eyebrow">Conhecimento sem fronteiras</p>
+            <span class="promo-card__spark" aria-hidden="true">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 2l1.8 5.4L19 9.2l-5.2 1.8L12 16.4l-1.8-5.4L5 9.2l5.2-1.8z"
+                />
+                <circle cx="18.5" cy="17.5" r="1.6" />
+                <circle cx="5.5" cy="18.5" r="1.2" />
+              </svg>
+            </span>
+          </div>
+          <p class="promo-card__title">
+            Seu próximo projeto pode começar com uma descoberta.
+          </p>
+          <p class="promo-card__meta">
+            128 projetos · 12 cursos · muitas conexões
+          </p>
+        </aside>
+
+        <!-- Em destaque -->
+        <div class="section-head">
+          <h2 class="section-head__title">Em destaque</h2>
+          <a class="section-head__link" href="../search/search.html">Ver todos</a>
+        </div>
+
+        <article class="project-card">
+          <span class="thumb thumb--garden" role="img" aria-label="Horta com canteiros e estudantes"></span>
+          <div class="project-card__body">
+            <div class="project-card__top">
+              <span class="chip chip--sm is-active">Arquitetura e Urbanismo</span>
+              <button
+                class="icon-btn icon-btn--ghost"
+                type="button"
+                aria-label="Salvar Horta Viva"
+                aria-pressed="false"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                </svg>
+              </button>
+            </div>
+            <h3 class="project-card__title">
+              <a class="project-card__link" href="#">Horta Viva: cultivo e comunidade</a>
+            </h3>
+            <p class="project-card__authors">Luiza Santos e mais 2 autores · 2026</p>
+            <p class="project-card__meta">
+              <span>Projeto integrador</span>
+              <span>32 salvos</span>
+            </p>
+          </div>
+        </article>
+
+        <!-- Novas descobertas -->
+        <div class="section-head">
+          <h2 class="section-head__title">Novas descobertas</h2>
+          <a class="section-head__link" href="../search/search.html">Mais recentes ↓</a>
+        </div>
+
+        <article class="project-card">
+          <span class="thumb thumb--campus" role="img" aria-label="Pessoa usando celular em um campus"></span>
+          <div class="project-card__body">
+            <div class="project-card__top">
+              <span class="chip chip--sm is-active">Sistemas de Informação</span>
+              <button
+                class="icon-btn icon-btn--ghost"
+                type="button"
+                aria-label="Salvar Rota Acessível"
+                aria-pressed="false"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                </svg>
+              </button>
+            </div>
+            <h3 class="project-card__title">
+              <a class="project-card__link" href="../project/project.html">
+                Rota Acessível: um campus para todos
+              </a>
+            </h3>
+            <p class="project-card__authors">Ana Costa e Lucas Silva · 2026</p>
+            <p class="project-card__meta">
+              <span>Projeto integrador</span>
+              <span>24 salvos</span>
+            </p>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <span class="thumb thumb--water" role="img" aria-label="Instrumentos de medição de qualidade da água"></span>
+          <div class="project-card__body">
+            <div class="project-card__top">
+              <span class="chip chip--sm is-active">Engenharia Ambiental</span>
+              <button
+                class="icon-btn icon-btn--ghost"
+                type="button"
+                aria-label="Salvar Água em Foco"
+                aria-pressed="false"
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+                </svg>
+              </button>
+            </div>
+            <h3 class="project-card__title">
+              <a class="project-card__link" href="#">
+                Água em Foco: qualidade e território
+              </a>
+            </h3>
+            <p class="project-card__authors">Camila Rocha e João Freitas · 2026</p>
+            <p class="project-card__meta">
+              <span>Projeto integrador</span>
+              <span>18 salvos</span>
+            </p>
+          </div>
+        </article>
+
+        <!-- Navegação inferior -->
+        <nav class="bottom-nav" aria-label="Navegação principal">
+          <a class="nav-item is-active" href="explore.html" aria-current="page">
+            <span class="nav-item__icon" aria-hidden="true">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="m16.13 7.87-2.11 6.34-6.34 2.11 2.11-6.34z" />
+              </svg>
+            </span>
+            <span class="nav-item__label">Explorar</span>
+          </a>
+
+          <a class="nav-item" href="#">
+            <span class="nav-item__icon" aria-hidden="true">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m12.83 2.18-8.23 3.65a1 1 0 0 0 0 1.83l8.23 3.65a2 2 0 0 0 1.66 0l8.23-3.65a1 1 0 0 0 0-1.83l-8.23-3.65a2 2 0 0 0-1.66 0" />
+                <path d="m22 12.5-9.17 4.08a2 2 0 0 1-1.66 0L2 12.5" />
+                <path d="m22 17.5-9.17 4.08a2 2 0 0 1-1.66 0L2 17.5" />
+              </svg>
+            </span>
+            <span class="nav-item__label">Meus projetos</span>
+          </a>
+
+          <a class="nav-item" href="../saved/saved.html">
+            <span class="nav-item__icon" aria-hidden="true">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+              </svg>
+            </span>
+            <span class="nav-item__label">Salvos</span>
+          </a>
+
+          <a class="nav-item" href="../profile/profile.html">
+            <span class="nav-item__icon" aria-hidden="true">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+            </span>
+            <span class="nav-item__label">Perfil</span>
+          </a>
+        </nav>
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

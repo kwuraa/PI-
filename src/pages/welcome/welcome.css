@@ -34,16 +34,6 @@
 }
 
 /* ---------- Tela: boas-vindas ---------- */
-.eyebrow {
-  font-family: "Outfit", sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--pi-red-600);
-  margin-bottom: 12px;
-}
-
 .hero-title {
   font-size: clamp(32px, 9vw, 40px);
   font-weight: 800;
@@ -95,11 +85,4 @@
   color: var(--pi-muted);
   text-align: center;
   margin: 14px 0 0;
-}
-
-.screen-caption {
-  font-size: 13px;
-  color: var(--pi-muted);
-  text-align: center;
-  margin: 0;
 }
