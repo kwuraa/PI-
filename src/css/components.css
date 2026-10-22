@@ -359,29 +359,23 @@ button.input-affix {
   font-size: 14px;
 }
 
-/* ---------- Navegação inferior ---------- */
+/* ---------- Navegação inferior (fixa, largura total da tela) ---------- */
 .bottom-nav {
-  position: sticky;
+  position: fixed;
+  left: 0;
+  right: 0;
   bottom: 0;
-  margin-top: 32px;
-  padding: 10px 0 14px;
+  z-index: 5;
+  padding: 10px 0 calc(12px + env(safe-area-inset-bottom));
   background: var(--pi-surface);
   border-top: 1px solid var(--pi-border);
   display: flex;
   justify-content: space-around;
 }
 
-.bottom-nav::after {
-  /* indicador de área segura (home indicator) */
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: 6px;
-  transform: translateX(-50%);
-  width: 128px;
-  height: 5px;
-  border-radius: 999px;
-  background: var(--pi-ink);
+/* Reserva o espaço da nav para o conteúdo da página não ficar escondido atrás */
+.screen__inner:has(.bottom-nav) {
+  padding-bottom: calc(84px + env(safe-area-inset-bottom));
 }
 
 .nav-item {

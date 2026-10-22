@@ -523,7 +523,7 @@ A interface implementada até aqui e a arquitetura de pastas/estilo estão docum
 | [Como criar uma tela](docs/02-como-criar-uma-tela.md) | How-to     | Seguir a receita passo a passo para adicionar uma nova tela ao projeto                          |
 | [Arquitetura e design system](docs/03-arquitetura-e-design-system.md) | Explanation | Entender **por que** o CSS é em camadas, por que existem variáveis e como funcionam as branches |
 
-**Telas implementadas hoje:** boas-vindas (`index.html`), login (`src/pages/login/`), cadastro (`src/pages/signup/`), recuperação de senha (`src/pages/recovery/`) e a área logada — explorar (`src/pages/explore/`), resultados com filtros (`src/pages/search/`), detalhe do projeto (`src/pages/project/`), projetos salvos (`src/pages/saved/`) e perfil (`src/pages/profile/`).
+**Telas implementadas hoje:** boas-vindas (`index.html`), login (`src/pages/login/`), cadastro (`src/pages/signup/`), recuperação de senha (`src/pages/recovery/`) e a área logada — explorar com busca/filtros em modal (`src/pages/explore/`), detalhe do projeto (`src/pages/project/`), projetos salvos (`src/pages/saved/`) e perfil (`src/pages/profile/`).
 
 ---
 

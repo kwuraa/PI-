@@ -14,8 +14,7 @@
 | **Login** | `src/pages/login/login.html` | login | `Voltar` → `index.html` · `Criar conta` → cadastro · `Esqueci minha senha` → recuperação · **`Entrar como aluno` → explore (área logada)** |
 | **Cadastro** | `src/pages/signup/signup.html` | signup | `Voltar` → `index.html` · `Já tenho conta · Entrar` → login |
 | **Recuperação de senha** | `src/pages/recovery/recovery.html` | recovery | `Voltar` (topbar e botão) → login · `Alterar senha` no perfil |
-| **Explorar projetos** (área logada) | `src/pages/explore/explore.html` | explore | busca → search · cards → project · avatar/nav → saved, profile |
-| **Resultados e filtros** | `src/pages/search/search.html` | search | `Voltar` → explore · card → project |
+| **Explorar projetos** (área logada) | `src/pages/explore/explore.html` | explore | busca/chips → **modal `#busca`** · cards → project · avatar/nav → saved, profile |
 | **Detalhes do projeto** | `src/pages/project/project.html` | project | `Voltar`/nav → explore · nav → saved, profile |
 | **Projetos salvos** | `src/pages/saved/saved.html` | saved | `Ver projeto` → project · `Explorar mais` → explore · nav → profile |
 | **Perfil e configurações** | `src/pages/profile/profile.html` | profile | `Alterar senha` → recovery · `Sair da conta` → `index.html` · nav → explore, saved |
@@ -52,21 +51,21 @@
 - **Formulário:** apenas `E-mail institucional` + botão `btn-pi` "Enviar instruções" (com spinner e `submit-status`).
 - **Validação:** sem `novalidate` → **nativa ativa** (`required` + `type="email"`).
 
-### 1.5. Telas da área logada (explore · search · project · saved · profile)
+### 1.5. Telas da área logada (explore · project · saved · profile)
 
-Compartilham o mesmo **cabeçalho do app** (`app-header` com marca + avatar), a **navegação inferior** (`bottom-nav`: Explorar · Meus projetos · Salvos · Perfil) e os **cards de projeto** (`project-card`).
+Compartilham o mesmo **cabeçalho do app** (`app-header` com marca + avatar), a **navegação inferior fixa em 100% da largura** (`bottom-nav`: Explorar · Meus projetos · Salvos · Perfil) e os **cards de projeto** (`project-card`).
 
 | Tela | Título da aba | Conteúdo principal |
 | --- | --- | --- |
-| **Explorar** | `Explorar projetos — PI²` | Saudação, busca + botão de filtro, chips de curso, destaque promocional, seções `Em destaque` e `Novas descobertas` |
-| **Resultados** | `Buscar projetos — PI²` | Chips de filtro ativo (removíveis), contagem, lista compacta e **painel inferior** `filter-sheet` (curso/ano/ordenação/tipo) |
+| **Explorar** | `Explorar projetos — PI²` | Saudação, gatilhos de busca/filtro, chips de curso, destaque promocional, seções `Em destaque` e `Novas descobertas` + **modal de busca** |
 | **Detalhes** | `Rota Acessível — PI²` | Capa, tags, botão salvar, texto, equipe (`people`), arquivos (`files`), comentários e formulário |
 | **Salvos** | `Projetos salvos — PI²` | Busca na coleção, cards com `Ver projeto` / `Remover dos salvos`, `Explorar mais projetos` |
 | **Perfil** | `Meu perfil — PI²` | Cartão do usuário, dados institucionais (e-mail e curso travados), switches, lista de links, `Sair da conta` |
 
+**Modal de busca (`explore.html`):** a antiga tela `search` virou uma folha que **sobe de baixo pra cima** dentro da própria Explorar. Gatilhos: campo de busca, botão de filtro, chips de curso, `Ver todos` e `Mais recentes ↓` — todos apontam para `#busca`. Abre/fecha **só com CSS** (`:target`): o backdrop e o botão fechar voltam para `#topo`, o `:target` some e a folha desce. Conteúdo: campo real, filtros ativos, resultados, rádios de curso, ano/ordenação, tipo de projeto e ações.
+
 **Pendências desta área:**
-- O painel de filtros da tela de busca está **sempre visível** — abrir/fechar exige JS.
-- Botões de salvar/remover, switches e envio de comentário são **inertes** (sem JS).
+- Botões de salvar/remover, switches (perfil) e envio de comentário são **inertes** (sem JS); chips e rádios do modal funcionam, mas não filtram de verdade.
 - `Meus projetos` na navegação aponta para `#` (tela ainda não existe).
 
 ---
@@ -105,12 +104,9 @@ Compartilham o mesmo **cabeçalho do app** (`app-header` com marca + avatar), a 
             ├── recovery/
             │   ├── recovery.html
             │   └── recovery.css
-            ├── explore/              ← área logada
+            ├── explore/              ← área logada (inclui o modal de busca)
             │   ├── explore.html
             │   └── explore.css
-            ├── search/
-            │   ├── search.html
-            │   └── search.css
             ├── project/
             │   ├── project.html
             │   └── project.css
@@ -255,7 +251,7 @@ Carregadas via Google Fonts no `<head>` de todas as telas.
 | Barra superior | `.topbar`, `.topbar__title`, `.icon-btn`, `.icon-btn--filled`, `.icon-btn--ghost` |
 | Cabeçalho de página | `.page-title`, `.page-lead`, `.eyebrow`, `.section-title`, `.screen-caption` |
 | Cabeçalho do app | `.app-header` + `__caption` · `.app-brand` + `__mark __wordmark` · `.avatar` (+ `--sm`) |
-| Navegação inferior | `.bottom-nav` · `.nav-item` + `__icon __label` (+ estados `.is-active`, `aria-current`) |
+| Navegação inferior | `.bottom-nav` · `.nav-item` + `__icon __label` (+ estados `.is-active`, `aria-current`) — **fixa, 100% da largura da tela**, sem `::after`; o conteúdo reserva espaço com `.screen__inner:has(.bottom-nav)` |
 | Rótulos | `.field-label`, `.roles-legend`, `.field-hint` |
 | Seleção de perfil | `.roles-fieldset`, `.role-card` + `__top __icon __name __check` + estados (`:hover`, `:has(input:checked)`, `:has(input:focus-visible)`) |
 | Campos | `.pi-input` (+ modificadores `--plain`, `--select`), `.input-affix` |
@@ -274,8 +270,7 @@ Carregadas via Google Fonts no `<head>` de todas as telas.
 | `login.css` | `.remember-row` · `.remember-check` · `.forgot-link` · `.signup-row` · `.stack-form` (utilitário, hoje sem uso) |
 | `signup.css` | `.required-mark` · `.terms-check` · `.signin-row` |
 | `recovery.css` | `.page-icon` · `.steps-card*` · `.steps` · `.step*` (`__num __title __text`) |
-| `explore.css` | `.explore-greet` · `.explore-title` · `.explore-search*` · `.explore-chips` · `.promo-card*` |
-| `search.css` | `.search-title` · `.active-filters` · `.results-count` · `.results` · `.sheet-backdrop` · `.filter-sheet*` · `.filter-group*` · `.filter-radio*` · `.filter-chips` |
+| `explore.css` | `.explore-greet` · `.explore-title` · `.explore-search*` · `.search-bar--trigger` · `.explore-chips` · `.promo-card*` · **modal**: `.search-modal*` (`__backdrop __sheet __handle __head __title`) · `.active-filters` · `.results-count` · `.results` · `.filter-group*` · `.filter-radio*` · `.filter-chips` · `.filter-actions` · `.filter-clear` |
 | `project.css` | `.project-cover` · `.project-head` · `.project-title` · `.project-meta` · `.project-save` · `.project-text` · `.project-tags` · `.people` · `.person*` · `.files` · `.file*` · `.comments` · `.comment*` · `.comment-form*` |
 | `saved.css` | `.saved-search` · `.card-actions*` · `.icon-btn--ghost.is-saved` · `.saved-more` |
 | `profile.css` | `.user-card*` · `.profile-save` · `.setting-row*` · `.switch` · `.link-list` · `.link-row*` · `.profile-logout` |
@@ -301,7 +296,8 @@ O `js/app.js` foi removido ("por enquanto"). O markup ficou no lugar para o JS v
 | Salvar/remover projeto (bookmark nos cards e no detalhe) | **inerte** — `aria-pressed` fixo no markup |
 | Switches de notificação (perfil) | ✅ **funcionam** — `input[type=checkbox]` + CSS puro (sem persistência) |
 | Comentários do projeto | formulário **inerte** — recarrega a página |
-| Painel de filtros (busca) | **sempre aberto** — abrir/fechar exige JS |
+| Modal de busca/filtros (explorar) | ✅ **abre e fecha** com `:target` (CSS puro) — gatilhos `#busca` → fechar `#topo` |
+| Filtrar de verdade (resultados, chips, rádios) | **inerte** — atualiza a URL, mas não refiltra |
 | Links `#` (Meus projetos, termos, ajuda) | tela/conteúdo ainda não existe |
 
 **Pendência:** devolver o JS (ou ligar a um backend) antes de qualquer teste com usuário — hoje o login navega direto para a área logada sem checar credenciais.

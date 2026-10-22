@@ -25,8 +25,8 @@
     <!-- ===================== TELA 6 — EXPLORAR ===================== -->
     <main class="screen">
       <div class="screen__inner">
-        <!-- Cabeçalho do app -->
-        <header class="app-header">
+        <!-- Cabeçalho do app (âncora #topo = destino de fechar o modal) -->
+        <header class="app-header" id="topo">
           <a class="app-brand" href="explore.html">
             <svg
               class="app-brand__mark"
@@ -85,9 +85,14 @@
           Ideias de todos.<br />Inspiração para você.
         </h1>
 
-        <!-- Busca + filtros -->
-        <form class="explore-search" role="search">
-          <div class="search-bar flex-grow-1">
+        <!-- Busca + filtros — gatilhos do modal (sem JS, via ":target") -->
+        <div class="explore-search">
+          <a
+            class="search-bar search-bar--trigger flex-grow-1"
+            href="#busca"
+            aria-haspopup="dialog"
+            aria-controls="busca"
+          >
             <span class="search-bar__icon" aria-hidden="true">
               <svg
                 width="20"
@@ -103,18 +108,14 @@
                 <path d="m21 21-4.3-4.3" />
               </svg>
             </span>
-            <input
-              class="form-control pi-input"
-              type="search"
-              name="q"
-              aria-label="Buscar projetos, temas ou autores"
-              placeholder="Buscar projetos, temas ou autores"
-            />
-          </div>
+            Buscar projetos, temas ou autores
+          </a>
 
           <a
             class="explore-search__filter"
-            href="../search/search.html"
+            href="#busca"
+            aria-haspopup="dialog"
+            aria-controls="busca"
             aria-label="Filtrar projetos"
           >
             <svg
@@ -136,13 +137,13 @@
               <circle cx="7" cy="18" r="2" fill="currentColor" />
             </svg>
           </a>
-        </form>
+        </div>
 
         <!-- Cursos -->
         <div class="explore-chips">
-          <a class="chip is-active" href="../search/search.html">Todos os cursos</a>
-          <a class="chip" href="../search/search.html">Arquitetura</a>
-          <a class="chip" href="../search/search.html">Tecnologia</a>
+          <a class="chip is-active" href="#busca">Todos os cursos</a>
+          <a class="chip" href="#busca">Arquitetura</a>
+          <a class="chip" href="#busca">Tecnologia</a>
         </div>
 
         <!-- Destaque promocional -->
@@ -175,7 +176,7 @@
         <!-- Em destaque -->
         <div class="section-head">
           <h2 class="section-head__title">Em destaque</h2>
-          <a class="section-head__link" href="../search/search.html">Ver todos</a>
+          <a class="section-head__link" href="#busca">Ver todos</a>
         </div>
 
         <article class="project-card">
@@ -218,7 +219,7 @@
         <!-- Novas descobertas -->
         <div class="section-head">
           <h2 class="section-head__title">Novas descobertas</h2>
-          <a class="section-head__link" href="../search/search.html">Mais recentes ↓</a>
+          <a class="section-head__link" href="#busca">Mais recentes ↓</a>
         </div>
 
         <article class="project-card">
@@ -377,6 +378,287 @@
             <span class="nav-item__label">Perfil</span>
           </a>
         </nav>
+
+        <!-- ============ MODAL: BUSCA E FILTROS (sobe de baixo) ============
+             Abre/fecha com CSS puro (":target"): qualquer gatilho aponta
+             para #busca; o backdrop e o botão fechar voltam para #topo. -->
+        <div class="search-modal" id="busca" role="dialog" aria-modal="true" aria-labelledby="busca-titulo">
+          <a class="search-modal__backdrop" href="#topo" aria-label="Fechar busca"></a>
+
+          <section class="search-modal__sheet">
+            <span class="search-modal__handle" aria-hidden="true"></span>
+
+            <div class="search-modal__head">
+              <h2 class="search-modal__title" id="busca-titulo">Buscar projetos</h2>
+              <a class="icon-btn icon-btn--ghost" href="#topo" aria-label="Fechar busca">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  aria-hidden="true"
+                >
+                  <path d="M18 6 6 18" />
+                  <path d="m6 6 12 12" />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Campo de busca -->
+            <div class="search-bar mb-3">
+              <span class="search-bar__icon" aria-hidden="true">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+              </span>
+              <input
+                class="form-control pi-input"
+                type="search"
+                name="q"
+                aria-label="Buscar projetos, temas ou autores"
+                placeholder="Buscar projetos, temas ou autores"
+              />
+            </div>
+
+            <!-- Filtros ativos -->
+            <div class="active-filters">
+              <button class="chip is-active" type="button">
+                Sistemas de Informação
+                <span class="chip__remove" aria-hidden="true">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  >
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                  </svg>
+                </span>
+                <span class="visually-hidden">Remover filtro</span>
+              </button>
+
+              <button class="chip is-active" type="button">
+                2026
+                <span class="chip__remove" aria-hidden="true">
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                    stroke-linecap="round"
+                  >
+                    <path d="M18 6 6 18" />
+                    <path d="m6 6 12 12" />
+                  </svg>
+                </span>
+                <span class="visually-hidden">Remover filtro</span>
+              </button>
+            </div>
+
+            <p class="results-count">8 projetos encontrados · Mais recentes</p>
+
+            <!-- Resultados -->
+            <div class="results mb-4">
+              <article class="project-card">
+                <div class="project-card__body">
+                  <h3 class="project-card__title">
+                    <a class="project-card__link" href="../project/project.html">
+                      Rota Acessível: um campus para todos
+                    </a>
+                  </h3>
+                  <p class="project-card__authors">
+                    Sistemas de Informação · 2026
+                  </p>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="project-card__body">
+                  <h3 class="project-card__title">
+                    <a class="project-card__link" href="#">
+                      Agenda Acadêmica: organização e estudo
+                    </a>
+                  </h3>
+                  <p class="project-card__authors">
+                    Sistemas de Informação · 2026
+                  </p>
+                </div>
+              </article>
+
+              <article class="project-card">
+                <div class="project-card__body">
+                  <h3 class="project-card__title">
+                    <a class="project-card__link" href="#">
+                      Monitoria Remota: apoio entre pares
+                    </a>
+                  </h3>
+                  <p class="project-card__authors">
+                    Sistemas de Informação · 2026
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <!-- Curso -->
+            <fieldset class="filter-group">
+              <legend class="filter-group__legend">Curso</legend>
+
+              <label class="filter-radio" for="curso-todos">
+                <input
+                  type="radio"
+                  name="curso"
+                  id="curso-todos"
+                  value="todos"
+                />
+                <span class="filter-radio__label">Todos os cursos</span>
+                <span class="filter-radio__count">128</span>
+              </label>
+
+              <label class="filter-radio" for="curso-si">
+                <input
+                  type="radio"
+                  name="curso"
+                  id="curso-si"
+                  value="si"
+                  checked
+                />
+                <span class="filter-radio__label">Sistemas de Informação</span>
+                <span class="filter-radio__count">8</span>
+              </label>
+
+              <label class="filter-radio" for="curso-arq">
+                <input
+                  type="radio"
+                  name="curso"
+                  id="curso-arq"
+                  value="arq"
+                />
+                <span class="filter-radio__label">Arquitetura e Urbanismo</span>
+                <span class="filter-radio__count">18</span>
+              </label>
+
+              <label class="filter-radio" for="curso-ambiental">
+                <input
+                  type="radio"
+                  name="curso"
+                  id="curso-ambiental"
+                  value="ambiental"
+                />
+                <span class="filter-radio__label">Engenharia Ambiental</span>
+                <span class="filter-radio__count">12</span>
+              </label>
+
+              <label class="filter-radio" for="curso-adm">
+                <input
+                  type="radio"
+                  name="curso"
+                  id="curso-adm"
+                  value="adm"
+                />
+                <span class="filter-radio__label">Administração</span>
+                <span class="filter-radio__count">21</span>
+              </label>
+            </fieldset>
+
+            <!-- Ano e ordenação -->
+            <div class="row g-3">
+              <div class="col-6">
+                <label class="field-label" for="ano">Ano</label>
+                <div class="position-relative">
+                  <select
+                    class="form-select pi-input pi-input--select w-100"
+                    id="ano"
+                    name="ano"
+                  >
+                    <option>2026</option>
+                    <option>2025</option>
+                    <option>2024</option>
+                  </select>
+                  <span class="input-affix" aria-hidden="true">
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <label class="field-label" for="ordenar">Ordenar por</label>
+                <div class="position-relative">
+                  <select
+                    class="form-select pi-input pi-input--select w-100"
+                    id="ordenar"
+                    name="ordenar"
+                  >
+                    <option>Mais recentes</option>
+                    <option>Mais salvos</option>
+                    <option>Título (A–Z)</option>
+                  </select>
+                  <span class="input-affix" aria-hidden="true">
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.75"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="m6 9 6 6 6-6" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tipo de projeto -->
+            <fieldset class="filter-group filter-group--chips">
+              <legend class="filter-group__legend">Tipo de projeto</legend>
+
+              <div class="filter-chips">
+                <button class="chip is-active" type="button">Todos</button>
+                <button class="chip" type="button">TCC</button>
+                <button class="chip" type="button">Projeto integrador</button>
+                <button class="chip" type="button">Extensão</button>
+              </div>
+            </fieldset>
+
+            <!-- Ações -->
+            <a class="btn btn-pi w-100" href="#topo">Mostrar 8 projetos</a>
+            <div class="filter-actions">
+              <button class="filter-clear" type="button">Limpar filtros</button>
+            </div>
+          </section>
+        </div>
       </div>
     </main>
 
