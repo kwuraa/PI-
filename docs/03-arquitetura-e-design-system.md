@@ -44,12 +44,13 @@ O benefício prático: uma tela pode ajustar um componente **sem tocar no compon
 
 ### 2.1. Responsividade: o breakpoint de desktop é `992px`
 
-O projeto é **mobile-first**. Abaixo de `992px` toda tela usa a moldura `.screen` (frame de 460px simulando um celular). A partir de `992px` (Bootstrap `lg`) a **boas-vindas** e o **login** passam a um layout desktop de página inteira, conforme o mock.
+O projeto é **mobile-first**. Abaixo de `992px` toda tela usa a moldura `.screen` (frame de 460px simulando um celular). A partir de `992px` (Bootstrap `lg`) a **boas-vindas**, o **login**, o **cadastro** e a **Explorar** passam a um layout desktop de página inteira, conforme o mock.
 
-- Os blocos exclusivos do desktop (`site-header`, `site-footer`, faixa de métricas, showcase, painel `login-promo`) são marcados no HTML com `d-none d-lg-*` — **não aparecem no celular**.
-- O CSS desktop fica **dentro do `@media (min-width: 992px)`** de cada `welcome.css`/`login.css`. Abaixo disso, nada muda: o celular é idêntico ao que já existia.
-- `site-header`, `site-footer` e `page-container` são compartilhados pelas duas telas, por isso vivem em `components.css`.
-- As telas da área logada (explore, project, saved, profile) ainda **não têm** versão desktop — seguem o frame de celular em qualquer largura.
+- Os blocos exclusivos do desktop (`site-header`, `site-footer`, faixa de métricas, showcase, painel `promo-panel`, barra lateral de filtros, paginação) são marcados no HTML com `d-none d-lg-*` — **não aparecem no celular**. O inverso também vale: o `topbar`, o `app-header` e o `bottom-nav` ganham `d-lg-none`.
+- O CSS desktop fica **dentro do `@media (min-width: 992px)`** de cada `welcome.css`/`login.css`/`signup.css`/`explore.css`. Abaixo disso, nada muda: o celular é idêntico ao que já existia.
+- `site-header`, `site-footer`, `page-container` e `promo-panel` são compartilhados por várias telas, por isso vivem em `components.css`.
+- A **Explorar** é o primeiro caso de "área logada" desktop: o `site-header` assume o modo app (nav com item ativo, botão "Enviar projeto", sino e usuário) e o conteúdo vira grid de 2 colunas (filtros + grade de cards). O `promo-card` do celular vira `d-lg-none` e o convite correspondente aparece no fim da barra lateral.
+- As demais telas da área logada (project, saved, profile) ainda **não têm** versão desktop — seguem o frame de celular em qualquer largura.
 
 ---
 

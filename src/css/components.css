@@ -295,6 +295,7 @@ button.input-affix {
    Só existe a partir de 992px — abaixo disso o layout é o do celular. */
 @media (min-width: 992px) {
   .page-container {
+    width: 100%; /* estica como item de flex antes de respeitar o max-width */
     max-width: 1280px;
     margin-inline: auto;
     padding-inline: 48px;
@@ -402,6 +403,80 @@ button.input-affix {
 
 .site-footer__nav a:hover {
   color: var(--pi-ink);
+}
+
+/* ---------- Painel promocional (login + cadastro, só no desktop) ---------- */
+@media (min-width: 992px) {
+  .promo-panel {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0;
+    padding: clamp(28px, 3vw, 48px);
+    background: var(--pi-red-50);
+    border-radius: var(--pi-radius-lg);
+  }
+
+  .promo-panel__title {
+    font-family: "Outfit", sans-serif;
+    font-size: clamp(28px, 2.6vw, 38px);
+    font-weight: 800;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+    text-wrap: balance;
+  }
+
+  .promo-panel__lead {
+    font-size: 16.5px;
+    color: var(--pi-muted);
+    margin: 0 0 28px;
+    max-width: 52ch;
+  }
+
+  /* Placeholder de foto: gradiente quente com "silhuetas" de pessoas */
+  .promo-panel__photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--pi-radius);
+    background:
+      radial-gradient(120px 130px at 24% 80%, rgba(20, 17, 16, 0.2), transparent 70%),
+      radial-gradient(140px 150px at 50% 86%, rgba(20, 17, 16, 0.16), transparent 70%),
+      radial-gradient(110px 120px at 74% 82%, rgba(20, 17, 16, 0.2), transparent 70%),
+      linear-gradient(135deg, #c98a5e, #e2b287 55%, #efd7ba);
+  }
+
+  .promo-panel__card {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+    padding: 16px 18px;
+    background: var(--pi-surface);
+    border-radius: var(--pi-radius);
+  }
+
+  .promo-panel__card-icon {
+    flex: 0 0 auto;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: var(--pi-red-50);
+    color: var(--pi-red-600);
+    display: grid;
+    place-items: center;
+  }
+
+  .promo-panel__card-title {
+    font-size: 14.5px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .promo-panel__card-text {
+    font-size: 13.5px;
+    color: var(--pi-muted);
+    margin: 2px 0 0;
+  }
 }
 
 /* ============================================================
