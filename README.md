@@ -16,6 +16,7 @@
 5. [Arquitetura Técnica do Sistema](#5-arquitetura-técnica-do-sistema)
 6. [Documento de Requisitos de Produto (PRD)](#6-documento-de-requisitos-de-produto-prd)
 7. [Documentação da Interface (docs/)](#7-documentação-da-interface-docs)
+8. [Branches do repositório](#8-branches-do-repositório)
 
 ---
 
@@ -524,6 +525,35 @@ A interface implementada até aqui e a arquitetura de pastas/estilo estão docum
 | [Arquitetura e design system](docs/03-arquitetura-e-design-system.md) | Explanation | Entender **por que** o CSS é em camadas, por que existem variáveis e como funcionam as branches |
 
 **Telas implementadas hoje:** boas-vindas (`index.html`), login (`src/pages/login/`), cadastro (`src/pages/signup/`), recuperação de senha (`src/pages/recovery/`) e a área logada — explorar com busca/filtros em modal (`src/pages/explore/`), detalhe do projeto (`src/pages/project/`), projetos salvos (`src/pages/saved/`) e perfil (`src/pages/profile/`).
+
+---
+
+## 8. Branches do repositório
+
+O Git do projeto separa **produto** de **ferramentamento de IA** e organiza o trabalho por tema:
+
+| Branch | Papel | Conteúdo |
+| --- | --- | --- |
+| `main` | **Entrega** | Só o produto: `.github`, `.gitignore`, `LICENSE`, `README.md`, `index.html`, `src/`, `docs/`. É o que um avaliador clona — não pode conter configuração de agente de IA. |
+| `dev` | **Integração** | Produto + ferramentas: `.agents/` (skills), `.trunk/` e `skills-lock.json`. Tudo que é integrado passa por aqui. |
+| `feat/<tema>` | **Feature** | Branch temporária de um tema. Ex.: `feat/desktop` — versão desktop (≥ 992px) das telas conforme o mock. |
+| `screens/<tema>` | **Lote de telas** | Branch de entrega de telas prontas. Ex.: `screens/explorer-saves-profile` — explorar, busca, projeto, salvos e perfil. |
+
+**Fluxo de trabalho:**
+
+1. Nasce uma branch de tema a partir de `dev`.
+2. Os commits da branch são integrados de volta ao `dev` (merge local ou PR).
+3. A entrega ao `main` é feita por **PR** (de `dev` ou de uma feature branch), e a Action `guarda-ferramentas` reprova o PR se `.agents/`, `.trunk/` ou `skills-lock.json` tentarem entrar.
+
+**Proteções do `main`** (por que não basta o `.gitignore` — ele esconde arquivos não rastreados, mas não impede o Git de trazer os que já estão versionados no `dev`):
+
+1. **Hooks locais** (`.git/hooks/pre-commit` e `pre-merge-commit`) — bloqueiam a entrada dos caminhos protegidos fora do `dev` na sua própria máquina.
+2. **Action `guarda-ferramentas`** (`.github/workflows/guard-tooling.yml`) — roda em PRs e pushes para `main`; protege merges feitos pela interface do GitHub, que ignoram os hooks locais.
+3. **`.gitignore`** — evita recriação/acidental rastreamento desses arquivos.
+
+Hoje **não há branch protection/ruleset** no GitHub: a Action sinaliza o problema (fica vermelha), mas não impede o merge. A regra histórica do projeto é: se o `main` ganhar ferramentas de novo, removê-las com um `chore` dedicado e corrigir a causa.
+
+> Detalhamento do porquê e das três camadas em [docs/03 — Arquitetura e design system, §6](docs/03-arquitetura-e-design-system.md).
 
 ---
 
