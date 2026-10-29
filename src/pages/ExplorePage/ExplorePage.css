@@ -1,0 +1,74 @@
+/* ============================================================
+   ExplorePage — tela "Explorar projetos"
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.explore__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.explore__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Introdução ---------- */
+.explore__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.explore__greeting {
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+}
+
+.explore__headline {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+/* ---------- Filtros ---------- */
+.explore__filters {
+  display: flex;
+  gap: var(--space-2);
+  margin-right: calc(var(--page-padding) * -1);
+  margin-left: calc(var(--page-padding) * -1);
+  padding-right: var(--page-padding);
+  padding-left: var(--page-padding);
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.explore__filters::-webkit-scrollbar {
+  display: none; /* Safari/Chrome */
+}
+
+/* ---------- Seções ---------- */
+.explore__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.explore__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ============================================================
+   Desktop (preparado — feed em duas colunas)
+   ============================================================ */
+@media (min-width: 768px) {
+  .explore__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+}

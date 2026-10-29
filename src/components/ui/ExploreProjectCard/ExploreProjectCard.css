@@ -1,0 +1,132 @@
+/* ============================================================
+   ExploreProjectCard — card de projeto com capa (feed)
+   ============================================================ */
+
+.explore-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.explore-card__image {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 366 / 148;
+  object-fit: cover;
+  background-color: #e9e4dc; /* reserva enquanto carrega (CLS) */
+}
+
+.explore-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.explore-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.explore-card__category {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-text);
+  background-color: var(--color-primary-tint);
+  border-radius: var(--radius-pill);
+}
+
+.explore-card__save {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-right: calc(var(--space-2) * -1);
+  color: var(--color-ink);
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition-fast);
+}
+
+.explore-card__save:hover {
+  background-color: rgba(20, 17, 16, 0.06);
+}
+
+/* Estado "salvo" — marcador preenchido em vermelho */
+.explore-card__save--saved {
+  color: var(--color-primary-text);
+}
+
+.explore-card__title {
+  margin-top: var(--space-1);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-snug);
+}
+
+.explore-card__title a {
+  color: var(--color-ink);
+}
+
+.explore-card__title a:hover {
+  color: var(--color-primary-text);
+}
+
+.explore-card__authors {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.explore-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* Linha de ações (cartões salvos): Ver projeto · Remover dos salvos */
+.explore-card__actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+}
+
+.explore-card__action {
+  padding: 0;
+  font-family: inherit;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-muted);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.explore-card__action:hover {
+  color: var(--color-ink);
+}
+
+.explore-card__action--primary {
+  color: var(--color-primary-text);
+}
+
+.explore-card__action--primary:hover {
+  color: var(--color-primary-hover);
+}

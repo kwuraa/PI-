@@ -1,0 +1,25 @@
+/* ============================================================
+   SectionHeader — título de seção + ação
+   ============================================================ */
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.section-header__title {
+  font-size: var(--font-size-h3);
+  color: var(--color-ink);
+}
+
+.section-header__action {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+}
+
+.section-header__action:hover {
+  color: var(--color-primary-hover);
+}

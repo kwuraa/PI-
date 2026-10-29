@@ -1,0 +1,33 @@
+/* ============================================================
+   Tabs — controle segmentado
+   ============================================================ */
+
+.tabs {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background-color: rgba(20, 17, 16, 0.05);
+  border-radius: var(--radius-lg);
+}
+
+.tabs__item {
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-muted);
+  border-radius: var(--radius-md);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.tabs__item--active {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-tab);
+}

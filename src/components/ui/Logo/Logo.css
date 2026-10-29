@@ -1,0 +1,56 @@
+/* ============================================================
+   Logo PI²
+   ============================================================ */
+
+.logo {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  line-height: 1;
+}
+
+.logo__symbol {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Paleta das camadas (extraída do design) */
+.logo__layer--gray {
+  fill: #c9c6c2;
+}
+
+.logo__layer--soft {
+  fill: #e5635e;
+  fill-opacity: 0.75;
+}
+
+.logo__layer--red {
+  fill: var(--color-primary-graphic);
+}
+
+.logo__core {
+  fill: var(--color-primary-hover);
+}
+
+.logo__word {
+  font-size: 2rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.03em;
+  color: var(--color-muted);
+}
+
+/* ---------- Variantes de tamanho ---------- */
+.logo--stack {
+  width: 34px;
+}
+
+.logo--stack-lg {
+  width: 168px;
+  gap: var(--space-3);
+}
+
+.logo--full {
+  width: 44px;
+}

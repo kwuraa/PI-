@@ -1,0 +1,134 @@
+/* ============================================================
+   WelcomePage — tela de boas-vindas
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.welcome__content {
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--space-4) + env(safe-area-inset-top)) var(--page-padding)
+    var(--space-6);
+}
+
+/* ---------- Marca ---------- */
+.welcome__brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  padding: var(--space-6) var(--space-4);
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl);
+}
+
+.welcome__brand-word {
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.03em;
+  color: var(--color-muted);
+}
+
+/* ---------- Textos ---------- */
+.welcome__eyebrow {
+  margin-top: var(--space-5);
+  font-size: var(--font-size-micro);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-primary-text);
+}
+
+.welcome__title {
+  margin-top: var(--space-3);
+  font-size: var(--font-size-hero);
+  line-height: 1.1;
+  color: var(--color-ink);
+}
+
+.welcome__description {
+  margin-top: var(--space-4);
+  font-size: var(--font-size-body);
+  color: var(--color-muted);
+}
+
+/* ---------- Destaque com ícone ---------- */
+.welcome__feature {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.welcome__feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  color: var(--color-primary-text);
+  background-color: var(--color-primary-tint);
+  border-radius: var(--radius-pill);
+}
+
+.welcome__feature-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.welcome__feature-text strong {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+}
+
+.welcome__feature-text span {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* ---------- Ações ---------- */
+.welcome__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.welcome__note {
+  margin-top: var(--space-5);
+  font-size: var(--font-size-caption);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* ---------- Rodapé ---------- */
+.welcome__footer {
+  margin-top: auto;
+  padding: var(--space-5) var(--page-padding);
+  font-size: var(--font-size-micro);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   Desktop (preparado — layout centralizado em coluna)
+   ============================================================ */
+@media (min-width: 768px) {
+  .welcome__content {
+    max-width: 560px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}

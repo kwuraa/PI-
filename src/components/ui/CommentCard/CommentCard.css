@@ -1,0 +1,38 @@
+/* ============================================================
+   CommentCard — comentário na conversa do projeto
+   ============================================================ */
+
+.comment-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.comment-card__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.comment-card__author {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.comment-card__time {
+  flex-shrink: 0;
+  font-size: var(--font-size-micro);
+  color: var(--color-muted);
+}
+
+.comment-card__text {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}

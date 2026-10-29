@@ -1,0 +1,53 @@
+/* ============================================================
+   AlertCard — cartão de alerta (fundo rosa)
+   ============================================================ */
+
+.alert-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-primary-tint);
+  border-radius: var(--radius-lg);
+}
+
+.alert-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.alert-card__icon {
+  display: inline-flex;
+  color: var(--color-primary-text);
+}
+
+.alert-card__title {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+}
+
+.alert-card__description {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* Ação como link (mesma aparência do botão primário) */
+.alert-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 54px;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-lg);
+  transition: background-color var(--transition-fast);
+}
+
+.alert-card__action:hover {
+  background-color: var(--color-primary-hover);
+}

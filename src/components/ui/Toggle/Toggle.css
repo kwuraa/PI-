@@ -1,0 +1,32 @@
+/* ============================================================
+   Toggle — chave ligar/desligar
+   ============================================================ */
+
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 28px;
+  padding: 3px;
+  background-color: #ddd6cc; /* desligado */
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition-fast);
+}
+
+.toggle--on {
+  background-color: var(--color-primary);
+}
+
+.toggle__knob {
+  width: 22px;
+  height: 22px;
+  background-color: var(--color-white);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 1px 2px rgba(20, 17, 16, 0.25);
+  transition: transform var(--transition-fast);
+}
+
+.toggle--on .toggle__knob {
+  transform: translateX(20px);
+}

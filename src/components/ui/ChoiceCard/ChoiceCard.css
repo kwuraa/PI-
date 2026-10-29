@@ -1,0 +1,71 @@
+/* ============================================================
+   ChoiceCard — cartão de escolha (Aluno / Professor)
+   ============================================================ */
+
+.choice-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-4);
+  text-align: left;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition:
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.choice-card:hover {
+  border-color: var(--color-muted);
+}
+
+.choice-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.choice-card__icon {
+  display: inline-flex;
+  color: var(--color-ink);
+}
+
+.choice-card__check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-white);
+}
+
+.choice-card__label {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+}
+
+/* ---------- Estado selecionado ---------- */
+.choice-card--selected {
+  background-color: var(--color-primary-tint);
+  border-color: var(--color-primary);
+  border-width: 2px;
+  padding: calc(var(--space-4) - 1px); /* compensar a borda extra */
+}
+
+.choice-card--selected:hover {
+  border-color: var(--color-primary);
+}
+
+.choice-card--selected .choice-card__icon,
+.choice-card--selected .choice-card__label {
+  color: var(--color-primary-text);
+}
+
+.choice-card--selected .choice-card__check {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}

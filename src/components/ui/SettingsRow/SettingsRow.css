@@ -1,0 +1,36 @@
+/* ============================================================
+   SettingsRow — linha de ajustes de conta
+   ============================================================ */
+
+.settings-row__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  transition: background-color var(--transition-fast);
+}
+
+.settings-row__link:hover {
+  background-color: rgba(20, 17, 16, 0.03);
+}
+
+.settings-row__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-muted);
+}
+
+.settings-row__label {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.settings-row__chevron {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-muted);
+}

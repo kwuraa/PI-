@@ -1,0 +1,58 @@
+/* ============================================================
+   ShortcutCard — atalho do painel (aba Atalhos)
+   ============================================================ */
+
+.shortcut-card__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-5);
+  transition: background-color var(--transition-fast);
+}
+
+.shortcut-card__link:hover {
+  background-color: rgba(20, 17, 16, 0.03);
+}
+
+.shortcut-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  color: var(--color-primary-text);
+  background-color: var(--color-primary-tint);
+  border-radius: var(--radius-sm);
+}
+
+.shortcut-card__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: var(--space-1);
+}
+
+.shortcut-card__label {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.shortcut-card__role {
+  align-self: flex-start;
+  padding: var(--space-1) var(--space-2);
+  font-size: var(--font-size-micro);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  background-color: rgba(20, 17, 16, 0.06);
+  border-radius: var(--radius-pill);
+}
+
+.shortcut-card__arrow {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-primary-text);
+}

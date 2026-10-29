@@ -1,0 +1,118 @@
+/* ============================================================
+   ProjectDetailsPage — tela "Detalhes do projeto"
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.project-details__topbar {
+  padding: 0 var(--page-padding);
+}
+
+.project-details__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.project-details__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Capa e contexto ---------- */
+.project-details__cover {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 366 / 212;
+  object-fit: cover;
+  background-color: #e9e4dc; /* reserva enquanto carrega (CLS) */
+  border-radius: var(--radius-lg);
+}
+
+.project-details__tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+/* ---------- Cabeçalho do projeto ---------- */
+.project-details__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.project-details__title {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.project-details__meta {
+  margin: 0;
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+}
+
+/* ---------- Seções ---------- */
+.project-details__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.project-details__heading {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.project-details__description {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Listas ---------- */
+.project-details__topics,
+.project-details__authors,
+.project-details__files,
+.project-details__comments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-details__topics {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.project-details__authors {
+  gap: var(--space-4);
+}
+
+/* ---------- Formulário de comentário ---------- */
+.project-details__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ============================================================
+   Desktop (preparado — coluna central mais larga)
+   ============================================================ */
+@media (min-width: 768px) {
+  .project-details__title,
+  .project-details__description,
+  .project-details__form {
+    max-width: 640px;
+  }
+}
