@@ -7,6 +7,7 @@ import DashboardPage from './pages/DashboardPage/DashboardPage';
 import StudentProjectsPage from './pages/StudentProjectsPage/StudentProjectsPage';
 import ExplorePage from './pages/ExplorePage/ExplorePage';
 import ProjectDetailsPage from './pages/ProjectDetailsPage/ProjectDetailsPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -36,7 +37,19 @@ export default function App() {
       <Route path="/explorar" element={<ExplorePage />} />
       <Route path="/projetos/:slug" element={<ProjectDetailsPage />} />
       <Route path="/salvos" element={<PlaceholderPage title="Salvos" />} />
-      <Route path="/perfil" element={<PlaceholderPage title="Perfil" />} />
+      <Route path="/perfil" element={<ProfilePage />} />
+      <Route
+        path="/perfil/alterar-senha"
+        element={<PlaceholderPage title="Alterar senha" />}
+      />
+      <Route
+        path="/perfil/privacidade"
+        element={<PlaceholderPage title="Privacidade e termos de uso" />}
+      />
+      <Route
+        path="/perfil/ajuda"
+        element={<PlaceholderPage title="Ajuda e suporte" />}
+      />
 
       {/* Qualquer outra URL volta ao início */}
       <Route path="*" element={<Navigate to="/" replace />} />

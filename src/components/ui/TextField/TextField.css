@@ -52,6 +52,12 @@
   color: var(--color-muted);
 }
 
+.textfield__input:disabled {
+  color: var(--color-muted);
+  cursor: not-allowed;
+  opacity: 1; /* mantém o texto legível (campo travado, não quebrado) */
+}
+
 .textfield__icon {
   display: inline-flex;
   color: var(--color-muted);

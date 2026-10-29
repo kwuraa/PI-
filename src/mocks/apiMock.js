@@ -363,6 +363,73 @@ export const projectDetailsResponse = {
   },
 };
 
+/** Resposta da tela Perfil e configurações (GET /api/profile) */
+export const profileResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-001',
+      name: 'Ana Costa',
+      initials: 'AC',
+      role: 'student',
+    },
+    header: {
+      context: 'Conhecimento conectado',
+      title: 'Meu perfil',
+      subtitle: 'Seu espaço, suas informações e suas preferências no PI².',
+    },
+    card: {
+      initials: 'AC',
+      name: 'Ana Costa',
+      badge: 'Aluna',
+      meta: 'Sistemas de Informação · 4º período · Matrícula 202610248',
+    },
+    form: {
+      title: 'Dados institucionais',
+      fields: [
+        { id: 'name', label: 'Nome completo', value: 'Ana Costa', locked: false },
+        {
+          id: 'email',
+          label: 'E-mail institucional',
+          value: 'ana.costa@aluno.faculdade.edu.br',
+          locked: true,
+          help: 'Vinculado à sua instituição. Para alterar, procure o suporte acadêmico.',
+        },
+        { id: 'course', label: 'Curso', value: 'Sistemas de Informação', locked: true },
+      ],
+      submitLabel: 'Salvar alterações',
+      savedFeedback: 'Alterações salvas.',
+    },
+    notifications: {
+      title: 'Notificações',
+      options: [
+        {
+          id: 'project-updates',
+          label: 'Atualizações dos meus projetos',
+          description: 'Pareceres, ajustes e aprovações do orientador.',
+          enabled: true,
+        },
+        {
+          id: 'repository-news',
+          label: 'Novidades do repositório',
+          description: 'Novos projetos e descobertas da comunidade.',
+          enabled: false,
+        },
+      ],
+    },
+    account: {
+      title: 'Conta e privacidade',
+      links: [
+        { id: 'password', label: 'Alterar senha', icon: 'key', href: '/perfil/alterar-senha' },
+        { id: 'privacy', label: 'Privacidade e termos de uso', icon: 'shield', href: '/perfil/privacidade' },
+        { id: 'support', label: 'Ajuda e suporte', icon: 'help', href: '/perfil/ajuda' },
+      ],
+      logoutLabel: 'Sair da conta',
+    },
+    footer: 'PI² · Ideias que multiplicam conhecimento',
+  },
+};
+
 /**
  * Mapa de endpoints usado pela camada de serviços.
  * Chave = "MÉTODO /caminho" (mesma convenção das APIs REST).
@@ -377,4 +444,5 @@ export const apiMock = {
   'GET /api/projects/horta-viva': projectDetailsResponse,
   'GET /api/projects/rota-acessivel': projectDetailsResponse,
   'GET /api/projects/agua-em-foco': projectDetailsResponse,
+  'GET /api/profile': profileResponse,
 };

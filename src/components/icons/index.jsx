@@ -236,3 +236,40 @@ export const Send = (props) => (
     <path d="M22 2 15 22l-4-9-9-4 20-7z" />
   </svg>
 );
+
+export const Lock = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <rect x="3" y="11" width="18" height="11" rx="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </svg>
+);
+
+export const Key = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <circle cx="7.5" cy="15.5" r="5.5" />
+    <path d="m21 2-9.6 9.6" />
+    <path d="m15.5 7.5 3 3L22 7l-3-3" />
+  </svg>
+);
+
+export const HelpCircle = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+    <path d="M12 17h.01" />
+  </svg>
+);
+
+export const LogOut = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+    <polyline points="16 17 21 12 16 7" />
+    <line x1="21" y1="12" x2="9" y2="12" />
+  </svg>
+);
+
+export const ChevronRight = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="m9 18 6-6-6-6" />
+  </svg>
+);
