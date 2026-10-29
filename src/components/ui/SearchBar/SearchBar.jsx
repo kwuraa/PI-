@@ -12,6 +12,7 @@ export default function SearchBar({
   onChange,
   filterLabel = 'Filtros',
   onFilterClick,
+  showFilter = true,
 }) {
   return (
     <div className="search-bar">
@@ -29,14 +30,16 @@ export default function SearchBar({
         />
       </div>
 
-      <button
-        type="button"
-        className="search-bar__filter"
-        onClick={onFilterClick}
-        aria-label={filterLabel}
-      >
-        <Sliders size={22} />
-      </button>
+      {showFilter && (
+        <button
+          type="button"
+          className="search-bar__filter"
+          onClick={onFilterClick}
+          aria-label={filterLabel}
+        >
+          <Sliders size={22} />
+        </button>
+      )}
     </div>
   );
 }

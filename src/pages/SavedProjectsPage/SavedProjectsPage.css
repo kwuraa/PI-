@@ -1,0 +1,69 @@
+/* ============================================================
+   SavedProjectsPage — tela "Projetos salvos"
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.saved__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.saved__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Introdução ---------- */
+.saved__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.saved__title {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.saved__subtitle {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Lista ---------- */
+.saved__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.saved__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.saved__empty {
+  margin: 0;
+  padding: var(--space-5) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   Desktop (preparado — lista em duas colunas)
+   ============================================================ */
+@media (min-width: 768px) {
+  .saved__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+}

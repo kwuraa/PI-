@@ -1,13 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Bookmark } from '../../icons';
+import { Bookmark, BookmarkFilled } from '../../icons';
 import './ExploreProjectCard.css';
 
 /**
- * Cartão de projeto com capa (feed da tela Explorar).
+ * Cartão de projeto com capa (feeds de Explorar e Salvos).
  * Estrutura: [foto] [categoria + salvar] [título] [autores] [tipo · salvos]
+ *
+ * `saved` — exibe o marcador preenchido (estado "já salvo").
+ * `onRemove` — ao informar, aparece a linha "Ver projeto / Remover".
  */
-export default function ExploreProjectCard({ project }) {
+export default function ExploreProjectCard({ project, saved = false, onRemove }) {
   const { image, imageAlt, category, title, authors, type, saves, href } =
     project;
 
@@ -27,10 +30,18 @@ export default function ExploreProjectCard({ project }) {
           <span className="explore-card__category">{category}</span>
           <button
             type="button"
-            className="explore-card__save"
-            aria-label={`Salvar ${title}`}
+            className={[
+              'explore-card__save',
+              saved && 'explore-card__save--saved',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            aria-label={
+              saved ? `Remover ${title} dos salvos` : `Salvar ${title}`
+            }
+            onClick={saved ? onRemove : undefined}
           >
-            <Bookmark size={20} />
+            {saved ? <BookmarkFilled size={20} /> : <Bookmark size={20} />}
           </button>
         </div>
 
@@ -44,6 +55,24 @@ export default function ExploreProjectCard({ project }) {
           <span>{type}</span>
           <span>{saves} salvos</span>
         </div>
+
+        {onRemove && (
+          <div className="explore-card__actions">
+            <Link
+              to={href}
+              className="explore-card__action explore-card__action--primary"
+            >
+              Ver projeto
+            </Link>
+            <button
+              type="button"
+              className="explore-card__action"
+              onClick={onRemove}
+            >
+              Remover dos salvos
+            </button>
+          </div>
+        )}
       </div>
     </article>
   );

@@ -155,6 +155,19 @@ export const Bookmark = (props) => (
   </svg>
 );
 
+/** Versão preenchida do marcador (estado "salvo"). */
+export const BookmarkFilled = (props) => (
+  <svg
+    {...baseProps}
+    width={props.size || 24}
+    {...props}
+    fill="currentColor"
+    stroke="none"
+  >
+    <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
+  </svg>
+);
+
 export const User = (props) => (
   <svg {...baseProps} width={props.size || 24} {...props}>
     <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />

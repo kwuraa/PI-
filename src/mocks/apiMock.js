@@ -430,6 +430,63 @@ export const profileResponse = {
   },
 };
 
+/** Resposta da tela Projetos salvos (GET /api/saved-projects) */
+export const savedProjectsResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-001',
+      name: 'Ana Costa',
+      initials: 'AC',
+      role: 'student',
+    },
+    header: {
+      context: 'Conhecimento conectado',
+      badge: 'Sua coleção',
+      title: 'Inspirações para guardar.',
+      subtitle:
+        'Reencontre os projetos que você salvou e continue suas descobertas.',
+    },
+    search: {
+      placeholder: 'Buscar nos projetos salvos',
+    },
+    list: {
+      title: 'Seus salvos',
+      action: { label: 'Mais recentes ↓' },
+      projects: [
+        {
+          id: 'prj-002',
+          image: rotaAcessivelHero,
+          imageAlt:
+            'Pessoa usando o celular para consultar o mapa acessível do campus',
+          category: 'Sistemas de Informação',
+          title: 'Rota Acessível: um campus para todos',
+          authors: 'Ana Costa e Lucas Silva · 2026',
+          type: 'Projeto integrador',
+          saves: 24,
+          href: '/projetos/rota-acessivel',
+        },
+        {
+          id: 'prj-001',
+          image: hortaViva,
+          imageAlt:
+            'Horta com canteiros elevados em espaço comunitário do campus',
+          category: 'Arquitetura e Urbanismo',
+          title: 'Horta Viva: cultivo e comunidade',
+          authors: 'Luiza Santos e mais 2 autores · 2026',
+          type: 'Projeto integrador',
+          saves: 32,
+          href: '/projetos/horta-viva',
+        },
+      ],
+    },
+    footerAction: {
+      label: 'Explorar mais projetos',
+      href: '/explorar',
+    },
+  },
+};
+
 /**
  * Mapa de endpoints usado pela camada de serviços.
  * Chave = "MÉTODO /caminho" (mesma convenção das APIs REST).
@@ -445,4 +502,5 @@ export const apiMock = {
   'GET /api/projects/rota-acessivel': projectDetailsResponse,
   'GET /api/projects/agua-em-foco': projectDetailsResponse,
   'GET /api/profile': profileResponse,
+  'GET /api/saved-projects': savedProjectsResponse,
 };

@@ -8,6 +8,7 @@ import StudentProjectsPage from './pages/StudentProjectsPage/StudentProjectsPage
 import ExplorePage from './pages/ExplorePage/ExplorePage';
 import ProjectDetailsPage from './pages/ProjectDetailsPage/ProjectDetailsPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
+import SavedProjectsPage from './pages/SavedProjectsPage/SavedProjectsPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -36,7 +37,7 @@ export default function App() {
       <Route path="/painel" element={<DashboardPage />} />
       <Route path="/explorar" element={<ExplorePage />} />
       <Route path="/projetos/:slug" element={<ProjectDetailsPage />} />
-      <Route path="/salvos" element={<PlaceholderPage title="Salvos" />} />
+      <Route path="/salvos" element={<SavedProjectsPage />} />
       <Route path="/perfil" element={<ProfilePage />} />
       <Route
         path="/perfil/alterar-senha"
