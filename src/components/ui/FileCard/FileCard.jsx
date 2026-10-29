@@ -4,10 +4,10 @@ import './FileCard.css';
 
 /**
  * Cartão de arquivo do projeto (material anexado).
- * Estrutura: [ícone] [nome] [tamanho] · [baixar]
+ * Estrutura: [ícone] [nome] [tamanho (+ versão)] · [baixar]
  */
 export default function FileCard({ file, onDownload }) {
-  const { name, kind, size } = file;
+  const { name, kind, size, version } = file;
 
   return (
     <li className="file-card">
@@ -19,6 +19,7 @@ export default function FileCard({ file, onDownload }) {
         <strong className="file-card__name">{name}</strong>
         <span className="file-card__meta">
           {kind} · {size}
+          {version ? ` · Versão ${version}` : ''}
         </span>
       </span>
 

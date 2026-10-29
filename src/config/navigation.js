@@ -15,7 +15,13 @@ export const STUDENT_NAV_ITEMS = [
 
 export const PROFESSOR_NAV_ITEMS = [
   { to: '/explorar', label: 'Explorar', icon: Compass },
-  { to: '/painel', label: 'Painel', icon: LayoutGrid },
+  {
+    to: '/painel',
+    label: 'Painel',
+    icon: LayoutGrid,
+    // Telas de revisão/notas pertencem à aba "Painel"
+    match: ['/painel', '/professor', '/coordenador'],
+  },
   { to: '/salvos', label: 'Salvos', icon: Bookmark },
   { to: '/perfil', label: 'Perfil', icon: User },
 ];

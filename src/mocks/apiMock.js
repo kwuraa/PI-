@@ -21,6 +21,7 @@ import hortaViva from '../assets/projects/horta-viva.jpg';
 import rotaAcessivel from '../assets/projects/rota-acessivel.jpg';
 import aguaEmFoco from '../assets/projects/agua-em-foco.jpg';
 import rotaAcessivelHero from '../assets/projects/rota-acessivel-hero.jpg';
+import aquasenseHero from '../assets/projects/aquasense-hero.jpg';
 
 /** Resposta de autenticação (POST /api/auth/login) */
 export const loginResponse = {
@@ -694,6 +695,62 @@ export const savedProjectsResponse = {
   },
 };
 
+/** Resposta da tela Revisão de projeto (GET /api/professor/reviews/:slug) */
+export const projectReviewResponse = {
+  status: 200,
+  data: {
+    header: {
+      title: 'Revisar projeto',
+      menuLabel: 'Mais opções',
+    },
+    review: {
+      id: 'rev-001',
+      slug: 'aquasense',
+      status: { label: 'Aguardando seu parecer', tone: 'amber' },
+      date: '03 out. 2026',
+      cover: {
+        url: aquasenseHero,
+        alt: 'Protótipo com sensores medindo água em laboratório',
+      },
+      title: 'AquaSense: monitoramento da água',
+      meta: 'Engenharia Ambiental · Projeto integrador · 2026.2',
+      authors: 'Beatriz Lima e Pedro Alves',
+      advisor: 'Orientador: Prof. Rafael Martins',
+      summary:
+        'Sistema de baixo custo para monitorar a qualidade da água com sensores de pH e turbidez. Os dados são reunidos em um painel para apoiar ações de educação ambiental e a identificação de alterações em reservatórios da região.',
+      files: [
+        { id: 'file-001', name: 'Relatório_AquaSense.pdf', kind: 'PDF', size: '3,2 MB', version: 1 },
+        { id: 'file-002', name: 'Dados_dos_sensores.xlsx', kind: 'XLSX', size: '840 KB', version: 1 },
+      ],
+      criteria: {
+        title: 'Critérios de revisão',
+        items: [
+          { id: 'authorship', label: 'Dados e autoria conferidos', checked: true },
+          { id: 'files', label: 'Arquivos completos e legíveis', checked: true },
+          { id: 'adequate', label: 'Conteúdo adequado ao repositório', checked: true },
+        ],
+      },
+      opinion: {
+        label: 'Comentário para a equipe',
+        required: true,
+        value:
+          'O projeto apresenta metodologia clara e resultados bem documentados. Os arquivos estão completos e o conteúdo contribui para as pesquisas em monitoramento ambiental. Recomendo a publicação.',
+        helper:
+          'Este parecer será enviado aos autores e ficará no histórico do projeto.',
+      },
+      alert: {
+        icon: 'shield',
+        title: 'Você decide a próxima etapa',
+        description:
+          'Ao aprovar, o projeto será publicado para a comunidade acadêmica. Se solicitar ajustes, informe o que precisa ser revisado.',
+      },
+      approveLabel: 'Aprovar e publicar',
+      requestChangesLabel: 'Solicitar ajustes',
+      decisionFooter: 'A equipe será notificada sobre sua decisão.',
+    },
+  },
+};
+
 /** Índice de payloads por perfil usado pelo handler do dashboard */
 const dashboardByRole = {
   professor: professorDashboardResponse,
@@ -719,4 +776,8 @@ export const apiMock = {
   'GET /api/projects/agua-em-foco': projectDetailsResponse,
   'GET /api/profile': profileResponse,
   'GET /api/saved-projects': savedProjectsResponse,
+  // Revisão: mesmo payload para os slugs em análise (mock único — a API
+  // real devolverá cada projeto pelo :slug)
+  'GET /api/professor/reviews/aquasense': projectReviewResponse,
+  'GET /api/professor/reviews/biblioteca-conectada': projectReviewResponse,
 };

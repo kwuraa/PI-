@@ -1,0 +1,44 @@
+/* ============================================================
+   TextAreaField — campo de várias linhas
+   ============================================================ */
+
+.textarea-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.textarea-field__label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+}
+
+.textarea-field__control {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: inherit;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  resize: vertical;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.textarea-field__control:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-tint);
+}
+
+.textarea-field__helper {
+  margin: 0;
+  font-size: var(--font-size-micro);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}

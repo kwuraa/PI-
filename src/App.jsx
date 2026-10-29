@@ -9,6 +9,7 @@ import ExplorePage from './pages/ExplorePage/ExplorePage';
 import ProjectDetailsPage from './pages/ProjectDetailsPage/ProjectDetailsPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import SavedProjectsPage from './pages/SavedProjectsPage/SavedProjectsPage';
+import ReviewProjectPage from './pages/ReviewProjectPage/ReviewProjectPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -43,7 +44,7 @@ export default function App() {
       />
       <Route
         path="/professor/revisar/:slug"
-        element={<PlaceholderPage title="Revisar projeto" />}
+        element={<ReviewProjectPage />}
       />
       <Route
         path="/professor/criterios"
