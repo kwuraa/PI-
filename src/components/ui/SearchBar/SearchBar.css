@@ -1,0 +1,72 @@
+/* ============================================================
+   SearchBar — campo de busca + botão de filtros
+   ============================================================ */
+
+.search-bar {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.search-bar__field {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  gap: var(--space-3);
+  min-height: 54px;
+  padding: 0 var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.search-bar__field:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-tint);
+}
+
+.search-bar__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-muted);
+}
+
+.search-bar__input {
+  flex: 1;
+  min-width: 0;
+  padding: var(--space-3) 0;
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.search-bar__input::placeholder {
+  color: var(--color-muted);
+}
+
+/* Remove a "lupa" nativa do input[type=search] (Safari/Chrome) */
+.search-bar__input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.search-bar__filter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+}
+
+.search-bar__filter:hover {
+  background-color: var(--color-primary-hover);
+}

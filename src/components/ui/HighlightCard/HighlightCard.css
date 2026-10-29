@@ -1,0 +1,44 @@
+/* ============================================================
+   HighlightCard — cartão rosa de destaque
+   ============================================================ */
+
+.highlight-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-primary-tint);
+  border-radius: var(--radius-lg);
+}
+
+.highlight-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.highlight-card__eyebrow {
+  font-size: var(--font-size-micro);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-primary-text);
+}
+
+.highlight-card__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-primary-graphic);
+}
+
+.highlight-card__title {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.highlight-card__meta {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}

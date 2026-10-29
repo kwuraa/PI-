@@ -5,6 +5,7 @@ import WelcomePage from './pages/WelcomePage/WelcomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import StudentProjectsPage from './pages/StudentProjectsPage/StudentProjectsPage';
+import ExplorePage from './pages/ExplorePage/ExplorePage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -31,7 +32,7 @@ export default function App() {
 
       {/* Área logada — professor/coordenador */}
       <Route path="/painel" element={<DashboardPage />} />
-      <Route path="/explorar" element={<PlaceholderPage title="Explorar" />} />
+      <Route path="/explorar" element={<ExplorePage />} />
       <Route path="/salvos" element={<PlaceholderPage title="Salvos" />} />
       <Route path="/perfil" element={<PlaceholderPage title="Perfil" />} />
 

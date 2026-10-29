@@ -1,0 +1,25 @@
+/* ============================================================
+   FilterChip — pílula de filtro
+   ============================================================ */
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0 var(--space-4);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-muted);
+  background-color: rgba(20, 17, 16, 0.05);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.filter-chip--active {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+  background-color: var(--color-primary-tint);
+}

@@ -17,6 +17,10 @@
  * ============================================================
  */
 
+import hortaViva from '../assets/projects/horta-viva.jpg';
+import rotaAcessivel from '../assets/projects/rota-acessivel.jpg';
+import aguaEmFoco from '../assets/projects/agua-em-foco.jpg';
+
 /** Resposta de autenticação (POST /api/auth/login) */
 export const loginResponse = {
   status: 200,
@@ -195,6 +199,90 @@ export const studentProjectsResponse = {
   },
 };
 
+/** Resposta da tela Explorar (GET /api/projects/explore) */
+export const exploreProjectsResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-001',
+      name: 'Ana Costa',
+      initials: 'AC',
+      role: 'student',
+    },
+    header: {
+      context: 'Conhecimento conectado',
+      greeting: 'Olá, Ana. O que vamos descobrir?',
+      headline: 'Ideias de todos.\nInspiração para você.',
+    },
+    search: {
+      placeholder: 'Buscar projetos, temas ou autores',
+      actionLabel: 'Filtros de busca',
+    },
+    filters: [
+      { id: 'all', label: 'Todos os cursos', active: true },
+      { id: 'architecture', label: 'Arquitetura', active: false },
+      { id: 'technology', label: 'Tecnologia', active: false },
+    ],
+    highlight: {
+      eyebrow: 'Conhecimento sem fronteiras',
+      title: 'Seu próximo projeto pode começar com uma descoberta.',
+      meta: '128 projetos · 12 cursos · muitas conexões',
+    },
+    sections: [
+      {
+        id: 'featured',
+        title: 'Em destaque',
+        action: { label: 'Ver todos', href: '/explorar' },
+        projects: [
+          {
+            id: 'prj-001',
+            image: hortaViva,
+            imageAlt:
+              'Horta com canteiros elevados em espaço comunitário do campus',
+            category: 'Arquitetura e Urbanismo',
+            title: 'Horta Viva: cultivo e comunidade',
+            authors: 'Luiza Santos e mais 2 autores · 2026',
+            type: 'Projeto integrador',
+            saves: 32,
+            href: '/projetos/horta-viva',
+          },
+        ],
+      },
+      {
+        id: 'recent',
+        title: 'Novas descobertas',
+        action: { label: 'Mais recentes ↓', href: '/explorar' },
+        projects: [
+          {
+            id: 'prj-002',
+            image: rotaAcessivel,
+            imageAlt:
+              'Pessoa usando celular em uma calçada acessível do campus',
+            category: 'Sistemas de Informação',
+            title: 'Rota Acessível: um campus para todos',
+            authors: 'Ana Costa e Lucas Silva · 2026',
+            type: 'Projeto integrador',
+            saves: 24,
+            href: '/projetos/rota-acessivel',
+          },
+          {
+            id: 'prj-003',
+            image: aguaEmFoco,
+            imageAlt:
+              'Placa eletrônica e sensores medindo água em laboratório',
+            category: 'Engenharia Ambiental',
+            title: 'Água em Foco: qualidade e território',
+            authors: 'Camila Rocha e João Freitas · 2026',
+            type: 'Projeto integrador',
+            saves: 18,
+            href: '/projetos/agua-em-foco',
+          },
+        ],
+      },
+    ],
+  },
+};
+
 /**
  * Mapa de endpoints usado pela camada de serviços.
  * Chave = "MÉTODO /caminho" (mesma convenção das APIs REST).
@@ -203,4 +291,5 @@ export const apiMock = {
   'POST /api/auth/login': loginResponse,
   'GET /api/dashboard': dashboardResponse,
   'GET /api/student/projects': studentProjectsResponse,
+  'GET /api/projects/explore': exploreProjectsResponse,
 };
