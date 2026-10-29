@@ -35,6 +35,52 @@ export default function App() {
 
       {/* Área logada — professor/coordenador */}
       <Route path="/painel" element={<DashboardPage />} />
+
+      {/* Destinos do painel — telas das próximas etapas */}
+      <Route
+        path="/professor/notas"
+        element={<PlaceholderPage title="Lançar notas" />}
+      />
+      <Route
+        path="/professor/revisar/:slug"
+        element={<PlaceholderPage title="Revisar projeto" />}
+      />
+      <Route
+        path="/professor/criterios"
+        element={<PlaceholderPage title="Meus critérios" />}
+      />
+      <Route
+        path="/professor/relatorio"
+        element={<PlaceholderPage title="Relatório por turma" />}
+      />
+      <Route
+        path="/coordenador/grupos"
+        element={<PlaceholderPage title="Gestão de grupos" />}
+      />
+      <Route
+        path="/coordenador/paritarias"
+        element={<PlaceholderPage title="Avaliação paritária" />}
+      />
+      <Route
+        path="/coordenador/criterios"
+        element={<PlaceholderPage title="Critérios do curso" />}
+      />
+      <Route
+        path="/coordenador/desempenho"
+        element={<PlaceholderPage title="Desempenho docente" />}
+      />
+      <Route
+        path="/coordenador/relatorio"
+        element={<PlaceholderPage title="Relatório consolidado" />}
+      />
+      <Route
+        path="/coordenador/avaliar"
+        element={<PlaceholderPage title="Avaliar docentes" />}
+      />
+      <Route
+        path="/coordenador/entregaveis"
+        element={<PlaceholderPage title="Entregáveis pendentes" />}
+      />
       <Route path="/explorar" element={<ExplorePage />} />
       <Route path="/projetos/:slug" element={<ProjectDetailsPage />} />
       <Route path="/salvos" element={<SavedProjectsPage />} />

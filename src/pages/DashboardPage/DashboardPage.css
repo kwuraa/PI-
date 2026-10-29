@@ -1,5 +1,5 @@
 /* ============================================================
-   DashboardPage — tela "Painel unificado"
+   DashboardPage — tela "Painel" (professor / coordenador / ambos)
    Mobile first — media queries preparadas para desktop
    ============================================================ */
 
@@ -19,17 +19,20 @@
 .dashboard__intro {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--space-3);
 }
 
 .dashboard__greeting {
-  font-size: var(--font-size-h2);
-  line-height: var(--line-height-snug);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
   color: var(--color-ink);
 }
 
 .dashboard__description {
+  margin: 0;
   font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
   color: var(--color-muted);
 }
 
@@ -46,6 +49,14 @@
   gap: var(--space-3);
 }
 
+/* Lista de cartões empilhados (bancas, revisões, orientações) */
+.dashboard__cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* Cartão único com linhas internas (atalhos, contagens) */
 .dashboard__rows {
   display: flex;
   flex-direction: column;
@@ -66,6 +77,10 @@
    ============================================================ */
 @media (min-width: 768px) {
   .dashboard__stats {
+    gap: var(--space-4);
+  }
+
+  .dashboard__cards {
     gap: var(--space-4);
   }
 }

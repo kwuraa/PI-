@@ -1,0 +1,45 @@
+/* ============================================================
+   LinksCard — cartão de áreas com links (professor/coordenador)
+   ============================================================ */
+
+.links-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.links-card__description {
+  margin: 0;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+.links-card__item + .links-card__item {
+  border-top: 1px solid var(--color-border);
+}
+
+.links-card__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+  text-decoration: none;
+  transition:
+    color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.links-card__link:hover {
+  color: var(--color-primary-hover);
+  background-color: rgba(20, 17, 16, 0.03);
+}

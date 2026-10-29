@@ -105,7 +105,7 @@ src/
 ├── pages/                # 🖥 TELAS (uma pasta por tela)
 │   ├── WelcomePage/      # Boas-vindas
 │   ├── LoginPage/        # Acessar o PI²
-│   ├── DashboardPage/    # Painel unificado
+│   ├── DashboardPage/    # Painel (professor / coordenador / ambos)
 │   └── PlaceholderPage/  # Genérica para telas futuras
 │
 ├── components/           # 🧩 COMPONENTES REUTILIZÁVEIS
@@ -213,10 +213,15 @@ devolverá:
 {
   "status": 200,
   "data": {
-    "user": { "id": "usr-002", "name": "Rafael Moura", "initials": "RM" }
+    "user": { "id": "usr-010", "name": "Prof. Rafael Martins", "initials": "RM" }
   }
 }
 ```
+
+Alguns endpoints aceitam **parâmetros**, como o painel
+(`/api/dashboard?role=professor`). Nesses casos, o mock é uma função que
+recebe a query e devolve o payload certo — igualzinho ao que o back-end
+real fará consultando a sessão do usuário.
 
 Isso garante que, quando a API real assumir, **nenhum componente precise ser
 alterado** — só a origem dos dados.
@@ -229,11 +234,27 @@ alterado** — só a origem dos dados.
 | --- | --- | --- |
 | `/` | Boas-vindas | ✅ Implementada |
 | `/acessar` | Acessar o PI² (login) | ✅ Implementada |
-| `/painel` | Painel unificado | ✅ Implementada |
-| `/explorar` | Explorar projetos | 🚧 Em breve (placeholder) |
-| `/meus-projetos` | Meus projetos | 🚧 Em breve (placeholder) |
-| `/salvos` | Projetos salvos | 🚧 Em breve (placeholder) |
-| `/perfil` | Perfil e configurações | 🚧 Em breve (placeholder) |
+| `/meus-projetos` | Meus projetos (aluno) | ✅ Implementada |
+| `/explorar` | Explorar projetos | ✅ Implementada |
+| `/projetos/:slug` | Detalhes do projeto | ✅ Implementada |
+| `/salvos` | Projetos salvos | ✅ Implementada |
+| `/perfil` | Perfil e configurações | ✅ Implementada |
+| `/painel` | Painel (professor/coordenador) | ✅ Implementada |
+| `/professor/*`, `/coordenador/*` | Telas de revisão, notas, turmas etc. | 🚧 Em breve (placeholder) |
+
+### Os três painéis (`/painel`)
+
+O painel se adapta ao perfil de quem entrou. Como ainda não há sessão real,
+o perfil é escolhido pela URL:
+
+| Endereço | Painel exibido |
+| --- | --- |
+| `/painel` ou `/painel?role=professor` | Professor (revisões, bancas e orientações) |
+| `/painel?role=coordinator` | Coordenador (grupos, paritárias e entregáveis) |
+| `/painel?role=both` | Unificado (abas "Painel unificado" e "Atalhos") |
+
+Quando o back-end chegar, a API descobrirá o perfil pelo usuário logado e
+a página continuará igual — só o endereço volta a ser apenas `/painel`.
 
 ---
 

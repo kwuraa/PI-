@@ -25,6 +25,8 @@
   --color-primary-tint: #fdeeed; /* fundo de tags/alertas */
   --color-success-text: #2f7a43; /* texto de status positivo (ex.: Publicado) */
   --color-success-tint: #e7f3ea; /* fundo do badge de sucesso */
+  --color-amber-text: #9a6700; /* texto de status de atenção (ex.: Em análise) */
+  --color-amber-tint: #fbf0d9; /* fundo do badge de atenção */
 
   --color-white: #ffffff;
   --color-black: #000000;

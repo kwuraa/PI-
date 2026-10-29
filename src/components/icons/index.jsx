@@ -286,3 +286,53 @@ export const ChevronRight = (props) => (
     <path d="m9 18 6-6-6-6" />
   </svg>
 );
+
+export const AlertTriangle = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+    <path d="M12 9v4" />
+    <path d="M12 17h.01" />
+  </svg>
+);
+
+export const ListChecks = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="m3 17 2 2 4-4" />
+    <path d="m3 7 2 2 4-4" />
+    <path d="M13 6h8" />
+    <path d="M13 12h8" />
+    <path d="M13 18h8" />
+  </svg>
+);
+
+export const BarChart3 = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="M3 3v18h18" />
+    <path d="M18 17V9" />
+    <path d="M13 17V5" />
+    <path d="M8 17v-3" />
+  </svg>
+);
+
+export const SlidersHorizontal = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <line x1="21" y1="4" x2="14" y2="4" />
+    <line x1="10" y1="4" x2="3" y2="4" />
+    <line x1="21" y1="12" x2="12" y2="12" />
+    <line x1="8" y1="12" x2="3" y2="12" />
+    <line x1="21" y1="20" x2="16" y2="20" />
+    <line x1="12" y1="20" x2="3" y2="20" />
+    <line x1="14" y1="2" x2="14" y2="6" />
+    <line x1="8" y1="10" x2="8" y2="14" />
+    <line x1="16" y1="18" x2="16" y2="22" />
+  </svg>
+);
+
+export const UserSearch = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <circle cx="10" cy="7" r="4" />
+    <path d="M10.3 15H7a4 4 0 0 0-4 4v2" />
+    <circle cx="18" cy="18" r="3" />
+    <path d="m22 22-1.9-1.9" />
+  </svg>
+);

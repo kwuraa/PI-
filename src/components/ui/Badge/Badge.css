@@ -27,3 +27,8 @@
   color: var(--color-success-text);
   background-color: var(--color-success-tint);
 }
+
+.badge--amber {
+  color: var(--color-amber-text);
+  background-color: var(--color-amber-tint);
+}

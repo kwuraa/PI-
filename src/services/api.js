@@ -35,16 +35,24 @@ const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
  */
 export async function request(method, path, body = undefined) {
   if (USE_MOCKS) {
-    const key = `${method} ${path}`;
-    const response = apiMock[key];
+    // Aceita query string no caminho (ex.: '/api/dashboard?role=both'):
+    // a chave do mock é o caminho base; os params são repassados ao handler.
+    const [base, queryString = ''] = path.split('?');
+    const key = `${method} ${base}`;
+    const handler = apiMock[key];
 
     await wait(MOCK_DELAY_MS);
 
-    if (!response) {
+    if (!handler) {
       throw new ApiError(`Endpoint não encontrado no mock: ${key}`, 404);
     }
 
-    return response;
+    if (typeof handler === 'function') {
+      const query = Object.fromEntries(new URLSearchParams(queryString));
+      return handler({ query, body });
+    }
+
+    return handler;
   }
 
   const options = {

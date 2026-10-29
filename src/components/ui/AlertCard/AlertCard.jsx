@@ -1,16 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Link2Off } from '../../icons';
+import { ArrowRight, Link2Off, AlertTriangle } from '../../icons';
 import Button from '../Button/Button';
 import './AlertCard.css';
 
 const ICONS = {
   'link-off': Link2Off,
+  warning: AlertTriangle,
 };
 
 /**
  * Cartão de alerta: título vermelho + descrição + ação.
  * A ação pode ser botão (onClick) ou link interno (href).
+ * `action.arrow: false` remove a seta (ex.: botão "Resolver" simples).
  */
 export default function AlertCard({
   icon = 'link-off',
@@ -34,11 +36,13 @@ export default function AlertCard({
       {action &&
         (action.href ? (
           <Link to={action.href} className="alert-card__action">
-            {action.label} <ArrowRight size={20} />
+            {action.label}
+            {action.arrow !== false && <ArrowRight size={20} />}
           </Link>
         ) : (
           <Button fullWidth onClick={action.onClick}>
-            {action.label} <ArrowRight size={20} />
+            {action.label}
+            {action.arrow !== false && <ArrowRight size={20} />}
           </Button>
         ))}
     </aside>
