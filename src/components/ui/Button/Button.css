@@ -1,0 +1,74 @@
+/* ============================================================
+   Button — botão padrão das telas
+   ============================================================ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 54px;
+  padding: 0 var(--space-5);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.button:active {
+  transform: scale(0.99);
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------- Variações ---------- */
+.button--primary {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+.button--primary:hover:not(:disabled) {
+  background-color: var(--color-primary-hover);
+}
+
+.button--secondary {
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+  border-color: var(--color-border);
+}
+
+.button--secondary:hover:not(:disabled) {
+  border-color: var(--color-muted);
+}
+
+.button--ghost {
+  min-height: auto;
+  padding: 0;
+  color: var(--color-primary-text);
+  background: none;
+}
+
+.button--ghost:hover:not(:disabled) {
+  color: var(--color-primary-hover);
+}
+
+/* ---------- Largura ---------- */
+.button--full {
+  display: flex;
+  width: 100%;
+}
+
+/* Preparação para desktop */
+@media (min-width: 1024px) {
+  .button--full {
+    max-width: 420px;
+  }
+}

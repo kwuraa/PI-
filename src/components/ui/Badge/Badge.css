@@ -1,0 +1,24 @@
+/* ============================================================
+   Badge — pílula de contexto
+   ============================================================ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-micro);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: 0.02em;
+  border-radius: var(--radius-pill);
+}
+
+.badge--primary {
+  color: var(--color-primary-text);
+  background-color: var(--color-primary-tint);
+}
+
+.badge--neutral {
+  color: var(--color-muted);
+  background-color: rgba(20, 17, 16, 0.06);
+}

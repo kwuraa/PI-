@@ -1,0 +1,65 @@
+/* ============================================================
+   StudentProjectsPage — tela "Meus projetos" (área do aluno)
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.student-projects__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.student-projects__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Introdução ---------- */
+.student-projects__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.student-projects__headline {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.student-projects__description {
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+}
+
+/* ---------- Estatísticas ---------- */
+.student-projects__stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+/* ---------- Seção de projetos ---------- */
+.student-projects__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.student-projects__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ============================================================
+   Desktop (preparado — listagem em duas colunas)
+   ============================================================ */
+@media (min-width: 768px) {
+  .student-projects__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+}

@@ -1,0 +1,45 @@
+/* ============================================================
+   ListRow — linha de lista do painel
+   ============================================================ */
+
+.list-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  transition: background-color var(--transition-fast);
+}
+
+.list-row:hover {
+  background-color: rgba(20, 17, 16, 0.03);
+}
+
+.list-row__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  color: var(--color-ink);
+  background-color: #efe9e0;
+  border-radius: var(--radius-sm);
+}
+
+.list-row__value {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+}
+
+.list-row__label {
+  flex: 1;
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.list-row__arrow {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-primary-text);
+}

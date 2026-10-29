@@ -1,0 +1,204 @@
+/* ============================================================
+   PI² — Estilos globais
+   ------------------------------------------------------------
+   · Reset mínimo + tipografia base
+   · Tokens de design (Custom Properties) extraídos dos layouts
+   · Regras utilitárias compartilhadas por toda a aplicação
+   ------------------------------------------------------------
+   Estratégia: MOBILE FIRST.
+   Todo o CSS parte da visão mobile; os blocos @media abaixo
+   ficam reservados para a estilização desktop (próxima fase).
+   ============================================================ */
+
+:root {
+  /* ---------- Cores (paleta do design) ---------- */
+  --color-bg: #f6f2ec; /* fundo das telas (creme) */
+  --color-surface: #ffffff; /* cards, campos e nav */
+  --color-ink: #141110; /* texto principal */
+  --color-muted: #6b6560; /* texto secundário */
+  --color-border: #e5dfd6; /* bordas e divisores */
+
+  --color-primary: #b31616; /* botões e destaques */
+  --color-primary-hover: #8e1410; /* hover/press do botão */
+  --color-primary-text: #bc1c1c; /* texto e links vermelhos */
+  --color-primary-graphic: #d93a2b; /* grafismo do logotipo */
+  --color-primary-tint: #fdeeed; /* fundo de tags/alertas */
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* ---------- Tipografia ---------- */
+  --font-sans: 'Work Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --font-size-hero: 2.5rem; /* 40px — título da tela de boas-vindas */
+  --font-size-h1: 2.125rem; /* 34px — título das telas */
+  --font-size-h2: 1.5rem; /* 24px — títulos de seção */
+  --font-size-h3: 1.25rem; /* 20px — títulos de card */
+  --font-size-body: 1rem; /* 16px */
+  --font-size-small: 0.875rem; /* 14px */
+  --font-size-caption: 0.8125rem; /* 13px */
+  --font-size-micro: 0.75rem; /* 12px — labels uppercase */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.15;
+  --line-height-snug: 1.3;
+  --line-height-base: 1.5;
+
+  /* ---------- Espaçamento (escala de 4px) ---------- */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.5rem; /* 24px */
+  --space-6: 2rem; /* 32px */
+  --space-7: 3rem; /* 48px */
+  --space-8: 4rem; /* 64px */
+
+  /* ---------- Raios ---------- */
+  --radius-sm: 8px; /* tags pequenas */
+  --radius-md: 12px; /* campos de texto */
+  --radius-lg: 16px; /* cards e botões */
+  --radius-xl: 24px; /* cards grandes / logo */
+  --radius-pill: 999px; /* pílulas e avatares */
+
+  /* ---------- Sombras ---------- */
+  --shadow-card: 0 1px 2px rgba(20, 17, 16, 0.04);
+  --shadow-nav: 0 -1px 0 var(--color-border);
+  --shadow-tab: 0 2px 8px rgba(20, 17, 16, 0.12);
+
+  /* ---------- Layout ---------- */
+  --page-padding: 1.5rem; /* 24px — gutter padrão das telas */
+  --content-max-width: 480px; /* limite do conteúdo no mobile */
+  --bottom-nav-height: 72px;
+  --header-height: 60px;
+
+  /* ---------- Transições ---------- */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-base);
+  color: var(--color-ink);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: -0.02em;
+}
+
+/* Remove o brilho azul do iOS em áreas tocáveis */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Acessibilidade: realce de foco para navegação por teclado */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Acessibilidade: respeita a preferência por menos movimento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Regras utilitárias ---------- */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ============================================================
+   MEDIA QUERIES — preparação para o modo desktop
+   Os layouts abaixo serão refinados na fase desktop.
+   Breakpoints definidos: 768px (tablet) e 1024px (desktop).
+   ============================================================ */
+
+@media (min-width: 768px) {
+  :root {
+    --page-padding: 2rem;
+    --content-max-width: 560px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --page-padding: 3rem;
+    --content-max-width: 720px;
+  }
+}

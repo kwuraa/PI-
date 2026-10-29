@@ -1,0 +1,115 @@
+/* ============================================================
+   ProjectCard — cartão de projeto (área do aluno)
+   ============================================================ */
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---------- Cabeçalho: status + menu ---------- */
+.project-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.project-card__status {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-pill);
+}
+
+.project-card--published .project-card__status {
+  color: #1d7a4d;
+  background-color: #e6f4ec;
+}
+
+.project-card--in-review .project-card__status {
+  color: #8a6100;
+  background-color: #fbf0d5;
+}
+
+.project-card--draft .project-card__status {
+  color: var(--color-muted);
+  background-color: rgba(20, 17, 16, 0.07);
+}
+
+.project-card__menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  color: var(--color-muted);
+  border-radius: var(--radius-pill);
+}
+
+.project-card__menu:hover {
+  background-color: rgba(20, 17, 16, 0.06);
+}
+
+/* ---------- Conteúdo ---------- */
+.project-card__title {
+  margin-top: var(--space-1);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.project-card__course {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.project-card__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.project-card__meta svg {
+  flex-shrink: 0;
+}
+
+.project-card--published .project-card__meta svg {
+  color: #1d7a4d;
+}
+
+.project-card--in-review .project-card__meta svg {
+  color: #b98a00;
+}
+
+.project-card--draft .project-card__meta svg {
+  color: var(--color-muted);
+}
+
+/* ---------- Ação ---------- */
+.project-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+  border-top: 1px solid var(--color-border);
+}
+
+.project-card__action:hover {
+  color: var(--color-primary-hover);
+}
