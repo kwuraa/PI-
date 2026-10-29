@@ -1,0 +1,64 @@
+/* ============================================================
+   FileCard — arquivo anexado ao projeto
+   ============================================================ */
+
+.file-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.file-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  color: var(--color-primary-text);
+  background-color: var(--color-primary-tint);
+  border-radius: var(--radius-sm);
+}
+
+.file-card__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.file-card__name {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-card__meta {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.file-card__download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  color: var(--color-muted);
+  border-radius: var(--radius-pill);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.file-card__download:hover {
+  color: var(--color-ink);
+  background-color: rgba(20, 17, 16, 0.06);
+}

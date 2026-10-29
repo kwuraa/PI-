@@ -3,7 +3,7 @@ import './Badge.css';
 
 /**
  * Etiqueta/pílula de contexto (ex.: "Espaço do professor e coordenador").
- * tone: 'primary' (vermelho) | 'neutral' (cinza).
+ * tone: 'primary' (vermelho) | 'neutral' (cinza) | 'success' (verde).
  */
 export default function Badge({ tone = 'primary', children, className = '' }) {
   const classes = ['badge', `badge--${tone}`, className]

@@ -20,6 +20,7 @@
 import hortaViva from '../assets/projects/horta-viva.jpg';
 import rotaAcessivel from '../assets/projects/rota-acessivel.jpg';
 import aguaEmFoco from '../assets/projects/agua-em-foco.jpg';
+import rotaAcessivelHero from '../assets/projects/rota-acessivel-hero.jpg';
 
 /** Resposta de autenticação (POST /api/auth/login) */
 export const loginResponse = {
@@ -284,6 +285,85 @@ export const exploreProjectsResponse = {
 };
 
 /**
+ * Resposta da tela Detalhes do projeto (GET /api/projects/:slug).
+ *
+ * O mock devolve o MESMO projeto para qualquer slug cadastrado no feed
+ * de exploração — a API real distinguirá cada slug pelo parâmetro de rota.
+ */
+export const projectDetailsResponse = {
+  status: 200,
+  data: {
+    header: {
+      title: 'Projeto',
+      menuLabel: 'Mais opções',
+    },
+    project: {
+      id: 'prj-002',
+      slug: 'rota-acessivel',
+      cover: {
+        url: rotaAcessivelHero,
+        alt: 'Estudante usando o celular para consultar o mapa acessível do campus',
+      },
+      category: 'Sistemas de Informação',
+      status: { id: 'published', label: 'Publicado' },
+      title: 'Rota Acessível: um campus para todos',
+      meta: ['Projeto integrador · 2026.2', 'Publicado em 02 out. 2026 · 24 salvos'],
+      saved: true,
+      saveLabel: 'Projeto salvo',
+      description:
+        'Uma plataforma para mapear rotas acessíveis no campus, conectando estudantes a trajetos com rampas, piso tátil e elevadores. O projeto combina pesquisa com a comunidade acadêmica e um protótipo navegável para tornar a faculdade mais inclusiva.',
+      tags: ['Acessibilidade', 'Tecnologia', 'Inclusão'],
+      authors: [
+        {
+          id: 'usr-001',
+          initials: 'AC',
+          name: 'Ana Costa',
+          role: 'Autora · Sistemas de Informação',
+          tone: 'neutral',
+        },
+        {
+          id: 'usr-004',
+          initials: 'LS',
+          name: 'Lucas Silva',
+          role: 'Autor · Sistemas de Informação',
+          tone: 'neutral',
+        },
+        {
+          id: 'usr-010',
+          initials: 'RM',
+          name: 'Prof. Rafael Martins',
+          role: 'Orientador',
+          tone: 'primary',
+        },
+      ],
+      files: [
+        { id: 'file-001', name: 'Relatório_Rota_Acessível.pdf', kind: 'PDF', size: '2,4 MB' },
+        { id: 'file-002', name: 'Protótipo_Rota_Acessível.zip', kind: 'ZIP', size: '8,1 MB' },
+      ],
+      comments: [
+        {
+          id: 'cmt-001',
+          author: 'Marina Oliveira',
+          timeLabel: 'Há 2 dias',
+          text: 'Ótima iniciativa! O mapa também contempla o acesso à biblioteca?',
+        },
+        {
+          id: 'cmt-002',
+          author: 'Ana Costa',
+          timeLabel: 'Há 1 dia · Autora',
+          text: 'Sim, Marina! Incluímos a biblioteca e os laboratórios no mapeamento.',
+        },
+      ],
+      commentForm: {
+        label: 'Participe da conversa',
+        placeholder: 'Escreva um comentário...',
+        submitLabel: 'Enviar comentário',
+      },
+    },
+  },
+};
+
+/**
  * Mapa de endpoints usado pela camada de serviços.
  * Chave = "MÉTODO /caminho" (mesma convenção das APIs REST).
  */
@@ -292,4 +372,9 @@ export const apiMock = {
   'GET /api/dashboard': dashboardResponse,
   'GET /api/student/projects': studentProjectsResponse,
   'GET /api/projects/explore': exploreProjectsResponse,
+  // Detalhe: mesmo payload para os slugs do feed (mock único — a API real
+  // diferenciará cada projeto pelo :slug da rota)
+  'GET /api/projects/horta-viva': projectDetailsResponse,
+  'GET /api/projects/rota-acessivel': projectDetailsResponse,
+  'GET /api/projects/agua-em-foco': projectDetailsResponse,
 };

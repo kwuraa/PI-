@@ -1,0 +1,44 @@
+/* ============================================================
+   AuthorRow — participante do projeto (autor/orientador)
+   ============================================================ */
+
+.author-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.author-row__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+  background-color: rgba(20, 17, 16, 0.06);
+  border-radius: var(--radius-pill);
+}
+
+.author-row--primary .author-row__avatar {
+  color: var(--color-primary-text);
+  background-color: var(--color-primary-tint);
+}
+
+.author-row__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.author-row__name {
+  font-size: var(--font-size-body);
+  color: var(--color-ink);
+}
+
+.author-row__role {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}

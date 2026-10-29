@@ -22,3 +22,8 @@
   color: var(--color-muted);
   background-color: rgba(20, 17, 16, 0.06);
 }
+
+.badge--success {
+  color: var(--color-success-text);
+  background-color: var(--color-success-tint);
+}

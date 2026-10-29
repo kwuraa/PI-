@@ -23,6 +23,8 @@
   --color-primary-text: #bc1c1c; /* texto e links vermelhos */
   --color-primary-graphic: #d93a2b; /* grafismo do logotipo */
   --color-primary-tint: #fdeeed; /* fundo de tags/alertas */
+  --color-success-text: #2f7a43; /* texto de status positivo (ex.: Publicado) */
+  --color-success-tint: #e7f3ea; /* fundo do badge de sucesso */
 
   --color-white: #ffffff;
   --color-black: #000000;

@@ -221,3 +221,18 @@ export const ArrowDown = (props) => (
     <path d="m19 12-7 7-7-7" />
   </svg>
 );
+
+export const Download = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="7 10 12 15 17 10" />
+    <line x1="12" y1="15" x2="12" y2="3" />
+  </svg>
+);
+
+export const Send = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="M22 2 11 13" />
+    <path d="M22 2 15 22l-4-9-9-4 20-7z" />
+  </svg>
+);
