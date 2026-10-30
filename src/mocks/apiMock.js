@@ -1703,6 +1703,164 @@ export const myProjectResponse = {
   },
 };
 
+/** "Meus critérios" — professor (GET /api/professor/criteria) */
+export const professorCriteriaResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-010',
+      name: 'Prof. Rafael Martins',
+      initials: 'RM',
+      role: 'professor',
+    },
+    header: {
+      context: 'Espaço do professor',
+      backLabel: 'Painel do professor',
+      backHref: '/painel',
+      title: 'Meus critérios',
+      description: 'Organize a avaliação da sua disciplina.',
+    },
+    lockedNotice: {
+      icon: 'lock',
+      tone: 'amber',
+      title: 'Critérios gerais definidos pelo coordenador',
+      description:
+        'Somente leitura. Os nomes, pesos e descrições não podem ser alterados pelo professor.',
+    },
+    general: {
+      title: 'Critérios gerais',
+      totalLabel: 'Total 100%',
+      items: [
+        {
+          id: 'crit-doc',
+          name: 'Documentação',
+          weight: '40%',
+          description: 'Clareza, metodologia e registro dos resultados.',
+        },
+        {
+          id: 'crit-pres',
+          name: 'Apresentação',
+          weight: '30%',
+          description: 'Domínio do tema e comunicação da equipe.',
+        },
+        {
+          id: 'crit-code',
+          name: 'Código',
+          weight: '30%',
+          description: 'Funcionamento e qualidade da implementação.',
+        },
+      ],
+    },
+    specific: {
+      title: 'Específicos da disciplina',
+      discipline: {
+        label: 'Disciplina',
+        value: 'Projeto Integrador II',
+        options: ['Projeto Integrador II', 'Projeto Integrador III'],
+      },
+      helper:
+        'Estes critérios compõem a nota de Código pela média ponderada dos pesos. Não alteram os pesos gerais.',
+      addLabel: 'Novo critério',
+      items: [
+        {
+          id: 'crit-tests',
+          name: 'Testes automatizados',
+          weight: 'Peso 2',
+          description: 'Cobertura dos fluxos principais e evidências de execução.',
+        },
+        {
+          id: 'crit-version',
+          name: 'Versionamento',
+          weight: 'Peso 1',
+          description: 'Histórico de commits e organização do repositório.',
+        },
+      ],
+    },
+    form: {
+      title: 'Novo critério',
+      draftBadge: 'Rascunho',
+      fields: {
+        name: {
+          label: 'Nome do critério',
+          required: true,
+          value: 'Qualidade do código',
+        },
+        weight: { label: 'Peso', required: true, value: '2' },
+        description: {
+          label: 'Descrição',
+          required: true,
+          value:
+            'Avaliar legibilidade, organização e aplicação de boas práticas no código.',
+        },
+      },
+      helper: 'Aplicado à nota de Código nesta disciplina após salvar.',
+      saveLabel: 'Salvar critério',
+      cancelLabel: 'Cancelar',
+      savedFeedback: 'Critério salvo e aplicado à disciplina.',
+    },
+  },
+};
+
+/** "Critérios do curso" — coordenador (GET /api/coordinator/criteria) */
+export const coordinatorCriteriaResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-020',
+      name: 'Profa. Marta Campos',
+      initials: 'MC',
+      role: 'coordinator',
+    },
+    header: {
+      context: 'Espaço do coordenador',
+      badge: 'Critérios gerais',
+      title: 'Critérios do curso',
+      description:
+        'Defina os critérios comuns de avaliação dos projetos integradores.',
+    },
+    semester: {
+      label: 'Semestre vigente',
+      value: '2026.2 · 2º semestre',
+      options: ['2026.2 · 2º semestre', '2026.1 · 1º semestre'],
+    },
+    section: { title: '4 critérios ativos', totalLabel: 'Peso total: 100%' },
+    criteria: [
+      {
+        id: 'crit-1',
+        badge: 'Semestre ativo',
+        weight: 'Peso: 30%',
+        title: 'Integração dos conhecimentos',
+        meta: 'Vigência: 2026.2 · Todos os grupos do curso',
+      },
+      {
+        id: 'crit-2',
+        badge: 'Semestre ativo',
+        weight: 'Peso: 30%',
+        title: 'Metodologia e desenvolvimento',
+        meta: 'Vigência: 2026.2 · Todos os grupos do curso',
+      },
+      {
+        id: 'crit-3',
+        badge: 'Semestre ativo',
+        weight: 'Peso: 25%',
+        title: 'Documentação do projeto',
+        meta: 'Vigência: 2026.2 · Todos os grupos do curso',
+      },
+      {
+        id: 'crit-4',
+        badge: 'Semestre ativo',
+        weight: 'Peso: 15%',
+        title: 'Apresentação e comunicação',
+        meta: 'Vigência: 2026.2 · Todos os grupos do curso',
+      },
+    ],
+    actionLabel: 'Editar critério',
+    addLabel: 'Novo critério geral',
+    footer:
+      'Os pesos dos critérios ativos devem somar 100% para compor a avaliação do semestre.',
+  },
+};
+
 /** Índice de payloads por perfil usado pelo handler do dashboard */
 const dashboardByRole = {
   professor: professorDashboardResponse,
@@ -1750,4 +1908,6 @@ export const apiMock = {
   'GET /api/professor/submissions/aquasense': deliveryPendingResponse,
   'GET /api/professor/submissions/biblioteca-conectada':
     deliveryPendingBibliotecaResponse,
+  'GET /api/professor/criteria': professorCriteriaResponse,
+  'GET /api/coordinator/criteria': coordinatorCriteriaResponse,
 };

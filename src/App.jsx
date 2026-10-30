@@ -20,6 +20,8 @@ import ProfessorSubmissionsPage from './pages/ProfessorSubmissionsPage/Professor
 import ProfessorDeliveryPage from './pages/ProfessorDeliveryPage/ProfessorDeliveryPage';
 import PublicProjectPage from './pages/PublicProjectPage/PublicProjectPage';
 import MyProjectPage from './pages/MyProjectPage/MyProjectPage';
+import ProfessorCriteriaPage from './pages/ProfessorCriteriaPage/ProfessorCriteriaPage';
+import CoordinatorCriteriaPage from './pages/CoordinatorCriteriaPage/CoordinatorCriteriaPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -83,7 +85,11 @@ export default function App() {
       />
       <Route
         path="/professor/criterios"
-        element={<PlaceholderPage title="Meus critérios" />}
+        element={<ProfessorCriteriaPage />}
+      />
+      <Route
+        path="/professor/criterios/:id"
+        element={<PlaceholderPage title="Editar critério" />}
       />
       <Route
         path="/professor/relatorio"
@@ -99,7 +105,15 @@ export default function App() {
       />
       <Route
         path="/coordenador/criterios"
-        element={<PlaceholderPage title="Critérios do curso" />}
+        element={<CoordinatorCriteriaPage />}
+      />
+      <Route
+        path="/coordenador/criterios/novo"
+        element={<PlaceholderPage title="Novo critério geral" />}
+      />
+      <Route
+        path="/coordenador/criterios/:id"
+        element={<PlaceholderPage title="Editar critério geral" />}
       />
       <Route
         path="/coordenador/desempenho"
