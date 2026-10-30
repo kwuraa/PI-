@@ -889,6 +889,10 @@ export const newProjectFormResponse = {
           status: 'Upload concluído',
         },
       ],
+      repository: {
+        label: 'Link do repositório do GitHub',
+        placeholder: 'https://github.com/eco-campus',
+      },
     },
     visibility: {
       title: 'Quem poderá ver?',

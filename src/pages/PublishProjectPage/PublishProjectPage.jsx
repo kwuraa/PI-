@@ -49,6 +49,7 @@ export default function PublishProjectPage() {
             description: data.about.fields.description.value,
             members: data.team.members.value,
             advisor: data.team.advisor.value,
+            repository: '',
           });
         }
       } catch (err) {
@@ -187,6 +188,13 @@ export default function PublishProjectPage() {
               <FileCard key={file.id} file={file} />
             ))}
           </ul>
+
+          <TextField
+            label={files.repository.label}
+            placeholder={files.repository.placeholder}
+            value={values.repository}
+            onChange={(event) => handleChange('repository', event.target.value)}
+          />
         </section>
 
         <section className="publish__section">
