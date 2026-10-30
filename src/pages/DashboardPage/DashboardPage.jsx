@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import PageShell from '../../components/layout/PageShell/PageShell';
 import LoggedHeader from '../../components/layout/LoggedHeader/LoggedHeader';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Tabs from '../../components/ui/Tabs/Tabs';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader';
@@ -15,7 +14,6 @@ import InfoCard from '../../components/ui/InfoCard/InfoCard';
 import LinksCard from '../../components/ui/LinksCard/LinksCard';
 import ShortcutCard from '../../components/ui/ShortcutCard/ShortcutCard';
 import { dashboardService } from '../../services/dashboardService';
-import { PROFESSOR_NAV_ITEMS } from '../../config/navigation';
 import './DashboardPage.css';
 
 /** Perfis aceitos pelo painel (?role=... na URL). */
@@ -127,7 +125,6 @@ export default function DashboardPage() {
         )}
       </PageShell>
 
-      <BottomNav items={PROFESSOR_NAV_ITEMS} />
     </>
   );
 }

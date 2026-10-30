@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LoggedHeader from '../../components/layout/LoggedHeader/LoggedHeader';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader';
 import { ArrowRight, AlertTriangle } from '../../components/icons';
 import { groupsService } from '../../services/groupsService';
-import { PROFESSOR_NAV_ITEMS } from '../../config/navigation';
 import './CoordinatorGroupsPage.css';
 
 const STATUS_TONES = {
@@ -163,7 +161,6 @@ export default function CoordinatorGroupsPage() {
         <p className="groups__footer">{data.footer}</p>
       </PageShell>
 
-      <BottomNav items={PROFESSOR_NAV_ITEMS} />
     </>
   );
 }

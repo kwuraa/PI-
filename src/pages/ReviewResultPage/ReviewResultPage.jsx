@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import TopBar from '../../components/layout/TopBar/TopBar';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import AlertCard from '../../components/ui/AlertCard/AlertCard';
@@ -16,7 +15,6 @@ import {
   ArrowRight,
 } from '../../components/icons';
 import { reviewService } from '../../services/reviewService';
-import { PROFESSOR_NAV_ITEMS } from '../../config/navigation';
 import './ReviewResultPage.css';
 
 const HERO_ICONS = {
@@ -199,7 +197,6 @@ export default function ReviewResultPage() {
         </div>
       </PageShell>
 
-      <BottomNav items={PROFESSOR_NAV_ITEMS} />
     </>
   );
 }

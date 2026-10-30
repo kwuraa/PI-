@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopBar from '../../components/layout/TopBar/TopBar';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import AlertCard from '../../components/ui/AlertCard/AlertCard';
@@ -10,7 +9,6 @@ import AuthorRow from '../../components/ui/AuthorRow/AuthorRow';
 import FileCard from '../../components/ui/FileCard/FileCard';
 import { Send, Clock } from '../../components/icons';
 import { studentService } from '../../services/studentService';
-import { STUDENT_NAV_ITEMS } from '../../config/navigation';
 import './SubmissionConfirmationPage.css';
 
 /**
@@ -125,7 +123,6 @@ export default function SubmissionConfirmationPage() {
         </div>
       </PageShell>
 
-      <BottomNav items={STUDENT_NAV_ITEMS} />
     </>
   );
 }

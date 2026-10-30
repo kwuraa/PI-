@@ -113,7 +113,7 @@ src/
 │
 ├── components/           # 🧩 COMPONENTES REUTILIZÁVEIS
 │   ├── ui/               # Peças visuais (Button, TextField, FilterSheet…)
-│   ├── layout/           # Estruturas (TopBar, BottomNav, PageShell…)
+│   ├── layout/           # Estruturas (MainLayout, TopBar, BottomNav, PageShell…)
 │   └── icons/            # Todos os ícones SVG em um só lugar
 │
 ├── services/             # 🔌 CAMADA DE DADOS (o "meio-termo" com a API)

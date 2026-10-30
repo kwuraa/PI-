@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LoggedHeader from '../../components/layout/LoggedHeader/LoggedHeader';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import MiniStat from '../../components/ui/MiniStat/MiniStat';
 import SearchBar from '../../components/ui/SearchBar/SearchBar';
@@ -10,7 +9,6 @@ import FilterChip from '../../components/ui/FilterChip/FilterChip';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader';
 import { ArrowRight, Clock, CheckCircle2 } from '../../components/icons';
 import { submissionsService } from '../../services/submissionsService';
-import { PROFESSOR_NAV_ITEMS } from '../../config/navigation';
 import './ProfessorSubmissionsPage.css';
 
 const STATUS = {
@@ -169,7 +167,6 @@ export default function ProfessorSubmissionsPage() {
         </section>
       </PageShell>
 
-      <BottomNav items={PROFESSOR_NAV_ITEMS} />
     </>
   );
 }

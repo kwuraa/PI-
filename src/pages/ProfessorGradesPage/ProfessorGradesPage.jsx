@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LoggedHeader from '../../components/layout/LoggedHeader/LoggedHeader';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Button from '../../components/ui/Button/Button';
 import Badge from '../../components/ui/Badge/Badge';
 import Select from '../../components/ui/Select/Select';
 import ScoreInput from '../../components/ui/ScoreInput/ScoreInput';
 import { ArrowLeft, Check } from '../../components/icons';
 import { classNotesService } from '../../services/classNotesService';
-import { PROFESSOR_NAV_ITEMS } from '../../config/navigation';
 import './ProfessorGradesPage.css';
 
 /** Formata número no padrão pt-BR: 8.3 → "8,3". */
@@ -223,7 +221,6 @@ export default function ProfessorGradesPage() {
         </p>
       </PageShell>
 
-      <BottomNav items={PROFESSOR_NAV_ITEMS} />
     </>
   );
 }

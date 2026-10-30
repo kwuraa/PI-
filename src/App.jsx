@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
+import MainLayout from './components/layout/MainLayout/MainLayout';
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import SignupPage from './pages/SignupPage/SignupPage';
@@ -36,6 +37,10 @@ import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
  * Mapa de rotas da aplicação.
  * As telas ainda não implementadas apontam para o PlaceholderPage,
  * mantendo a navegação completa desde a primeira entrega.
+ *
+ * A área logada fica dentro do MainLayout: a barra inferior fica
+ * persistente (não pisca entre telas) e o conteúdo de cada rota
+ * aparece com animação de entrada.
  */
 export default function App() {
   return (
@@ -46,134 +51,83 @@ export default function App() {
       <Route path="/cadastro" element={<SignupPage />} />
       <Route path="/recuperar" element={<PasswordRecoveryPage />} />
 
-      {/* Área logada — aluno */}
-      <Route
-        path="/meus-projetos"
-        element={<StudentProjectsPage />}
-      />
-      <Route
-        path="/meus-projetos/novo"
-        element={<PublishProjectPage />}
-      />
-      <Route
-        path="/meus-projetos/enviado"
-        element={<SubmissionConfirmationPage />}
-      />
-      <Route
-        path="/meus-projetos/:slug/analise"
-        element={<ProjectAnalysisPage />}
-      />
-      <Route
-        path="/meus-projetos/:slug"
-        element={<MyProjectPage />}
-      />
+      {/* Área logada — nav persistente + transição suave */}
+      <Route element={<MainLayout />}>
+        {/* Aluno */}
+        <Route path="/meus-projetos" element={<StudentProjectsPage />} />
+        <Route path="/meus-projetos/novo" element={<PublishProjectPage />} />
+        <Route path="/meus-projetos/enviado" element={<SubmissionConfirmationPage />} />
+        <Route path="/meus-projetos/:slug/analise" element={<ProjectAnalysisPage />} />
+        <Route path="/meus-projetos/:slug" element={<MyProjectPage />} />
 
-      {/* Área logada — professor/coordenador */}
-      <Route path="/painel" element={<DashboardPage />} />
-      <Route path="/painel/avaliacoes" element={<AvaliacoesPage />} />
+        {/* Professor/coordenador */}
+        <Route path="/painel" element={<DashboardPage />} />
+        <Route path="/painel/avaliacoes" element={<AvaliacoesPage />} />
+        <Route path="/professor/notas" element={<ProfessorGradesPage />} />
+        <Route path="/coordenador/notas" element={<CoordinatorGradesPage />} />
+        <Route path="/professor/revisar/:slug" element={<ReviewProjectPage />} />
+        <Route path="/professor/revisar/:slug/resultado" element={<ReviewResultPage />} />
+        <Route path="/professor/entregas" element={<ProfessorSubmissionsPage />} />
+        <Route path="/professor/entregas/:slug" element={<ProfessorDeliveryPage />} />
+        <Route path="/professor/criterios" element={<ProfessorCriteriaPage />} />
+        <Route
+          path="/professor/criterios/:id"
+          element={<PlaceholderPage title="Editar critério" />}
+        />
+        <Route path="/professor/relatorio" element={<ProfessorReportPage />} />
+        <Route path="/coordenador/grupos" element={<CoordinatorGroupsPage />} />
+        <Route
+          path="/coordenador/grupos/:id/link"
+          element={<PlaceholderPage title="Adicionar link de documentação" />}
+        />
+        <Route
+          path="/coordenador/grupos/:id"
+          element={<PlaceholderPage title="Detalhe do grupo" />}
+        />
+        <Route path="/coordenador/paritarias" element={<CoordinatorPeerReviewsPage />} />
+        <Route path="/coordenador/criterios" element={<CoordinatorCriteriaPage />} />
+        <Route
+          path="/coordenador/criterios/novo"
+          element={<PlaceholderPage title="Novo critério geral" />}
+        />
+        <Route
+          path="/coordenador/criterios/:id"
+          element={<PlaceholderPage title="Editar critério geral" />}
+        />
+        <Route path="/coordenador/desempenho" element={<CoordinatorTeacherEvaluationPage />} />
+        <Route path="/coordenador/relatorio" element={<CoordinatorConsolidatedReportPage />} />
+        <Route
+          path="/coordenador/pendencias"
+          element={<PlaceholderPage title="Pendências da coorte" />}
+        />
+        <Route
+          path="/coordenador/avaliar"
+          element={<PlaceholderPage title="Avaliar docentes" />}
+        />
+        <Route
+          path="/coordenador/entregaveis"
+          element={<PlaceholderPage title="Entregáveis pendentes" />}
+        />
 
-      {/* Destinos do painel — telas das próximas etapas */}
-      <Route
-        path="/professor/notas"
-        element={<ProfessorGradesPage />}
-      />
-      <Route
-        path="/coordenador/notas"
-        element={<CoordinatorGradesPage />}
-      />
-      <Route
-        path="/professor/revisar/:slug"
-        element={<ReviewProjectPage />}
-      />
-      <Route
-        path="/professor/revisar/:slug/resultado"
-        element={<ReviewResultPage />}
-      />
-      <Route path="/professor/entregas" element={<ProfessorSubmissionsPage />} />
-      <Route
-        path="/professor/entregas/:slug"
-        element={<ProfessorDeliveryPage />}
-      />
-      <Route
-        path="/professor/criterios"
-        element={<ProfessorCriteriaPage />}
-      />
-      <Route
-        path="/professor/criterios/:id"
-        element={<PlaceholderPage title="Editar critério" />}
-      />
-      <Route
-        path="/professor/relatorio"
-        element={<ProfessorReportPage />}
-      />
-      <Route
-        path="/coordenador/grupos"
-        element={<CoordinatorGroupsPage />}
-      />
-      <Route
-        path="/coordenador/grupos/:id/link"
-        element={<PlaceholderPage title="Adicionar link de documentação" />}
-      />
-      <Route
-        path="/coordenador/grupos/:id"
-        element={<PlaceholderPage title="Detalhe do grupo" />}
-      />
-      <Route
-        path="/coordenador/paritarias"
-        element={<CoordinatorPeerReviewsPage />}
-      />
-      <Route
-        path="/coordenador/criterios"
-        element={<CoordinatorCriteriaPage />}
-      />
-      <Route
-        path="/coordenador/criterios/novo"
-        element={<PlaceholderPage title="Novo critério geral" />}
-      />
-      <Route
-        path="/coordenador/criterios/:id"
-        element={<PlaceholderPage title="Editar critério geral" />}
-      />
-      <Route
-        path="/coordenador/desempenho"
-        element={<CoordinatorTeacherEvaluationPage />}
-      />
-      <Route
-        path="/coordenador/relatorio"
-        element={<CoordinatorConsolidatedReportPage />}
-      />
-      <Route
-        path="/coordenador/pendencias"
-        element={<PlaceholderPage title="Pendências da coorte" />}
-      />
-      <Route
-        path="/coordenador/avaliar"
-        element={<PlaceholderPage title="Avaliar docentes" />}
-      />
-      <Route
-        path="/coordenador/entregaveis"
-        element={<PlaceholderPage title="Entregáveis pendentes" />}
-      />
-      <Route path="/explorar" element={<ExplorePage />} />
-      <Route path="/projetos/:slug" element={<ProjectDetailsPage />} />
-      <Route
-        path="/projetos/:slug/publico"
-        element={<PublicProjectPage />}
-      />
-      <Route path="/salvos" element={<SavedProjectsPage />} />
-      <Route path="/perfil" element={<ProfilePage />} />
-      <Route
-        path="/perfil/alterar-senha"
-        element={<PlaceholderPage title="Alterar senha" />}
-      />
-      <Route
-        path="/perfil/privacidade"
-        element={<PlaceholderPage title="Privacidade e termos de uso" />}
-      />
-      <Route
-        path="/perfil/ajuda"
-        element={<PlaceholderPage title="Ajuda e suporte" />}
-      />
+        {/* Exploração e perfil */}
+        <Route path="/explorar" element={<ExplorePage />} />
+        <Route path="/projetos/:slug" element={<ProjectDetailsPage />} />
+        <Route path="/projetos/:slug/publico" element={<PublicProjectPage />} />
+        <Route path="/salvos" element={<SavedProjectsPage />} />
+        <Route path="/perfil" element={<ProfilePage />} />
+        <Route
+          path="/perfil/alterar-senha"
+          element={<PlaceholderPage title="Alterar senha" />}
+        />
+        <Route
+          path="/perfil/privacidade"
+          element={<PlaceholderPage title="Privacidade e termos de uso" />}
+        />
+        <Route
+          path="/perfil/ajuda"
+          element={<PlaceholderPage title="Ajuda e suporte" />}
+        />
+      </Route>
 
       {/* Qualquer outra URL volta ao início */}
       <Route path="*" element={<Navigate to="/" replace />} />

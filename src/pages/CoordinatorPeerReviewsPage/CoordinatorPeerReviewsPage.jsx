@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import LoggedHeader from '../../components/layout/LoggedHeader/LoggedHeader';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import { Info, Lock } from '../../components/icons';
 import { evaluationService } from '../../services/evaluationService';
-import { PROFESSOR_NAV_ITEMS } from '../../config/navigation';
 import './CoordinatorPeerReviewsPage.css';
 
 /**
@@ -158,7 +156,6 @@ export default function CoordinatorPeerReviewsPage() {
         </div>
       </PageShell>
 
-      <BottomNav items={PROFESSOR_NAV_ITEMS} />
     </>
   );
 }

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import TopBar from '../../components/layout/TopBar/TopBar';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import AlertCard from '../../components/ui/AlertCard/AlertCard';
@@ -10,7 +9,6 @@ import FileCard from '../../components/ui/FileCard/FileCard';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader';
 import { ExternalLink, Github, PencilLine } from '../../components/icons';
 import { studentService } from '../../services/studentService';
-import { STUDENT_NAV_ITEMS } from '../../config/navigation';
 import './MyProjectPage.css';
 
 const LINK_ICONS = {
@@ -175,7 +173,6 @@ export default function MyProjectPage() {
         <p className="my-project__footer">{data.footer}</p>
       </PageShell>
 
-      <BottomNav items={STUDENT_NAV_ITEMS} />
     </>
   );
 }

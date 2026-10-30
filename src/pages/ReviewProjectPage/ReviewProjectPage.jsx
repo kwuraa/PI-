@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import TopBar from '../../components/layout/TopBar/TopBar';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader';
@@ -12,7 +11,6 @@ import TextAreaField from '../../components/ui/TextAreaField/TextAreaField';
 import AlertCard from '../../components/ui/AlertCard/AlertCard';
 import { Check, MessageSquare } from '../../components/icons';
 import { reviewService } from '../../services/reviewService';
-import { PROFESSOR_NAV_ITEMS } from '../../config/navigation';
 import './ReviewProjectPage.css';
 
 const DECISIONS = {
@@ -194,7 +192,6 @@ export default function ReviewProjectPage() {
         </p>
       </PageShell>
 
-      <BottomNav items={PROFESSOR_NAV_ITEMS} />
     </>
   );
 }

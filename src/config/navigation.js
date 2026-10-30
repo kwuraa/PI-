@@ -32,3 +32,26 @@ export const USER_NAV_ITEMS = [
   { to: '/salvos', label: 'Salvos', icon: Bookmark },
   { to: '/perfil', label: 'Perfil', icon: User },
 ];
+
+/**
+ * Escolhe os itens da barra inferior conforme a rota atual.
+ * Usado pelo MainLayout (a nav é persistente — vive fora das páginas).
+ */
+export function getNavItems(pathname) {
+  // Telas do professor/coordenador: a aba "Painel" cobre /painel, /professor e /coordenador
+  if (
+    pathname.startsWith('/painel') ||
+    pathname.startsWith('/professor') ||
+    pathname.startsWith('/coordenador')
+  ) {
+    return PROFESSOR_NAV_ITEMS;
+  }
+
+  // Leitura pública não tem a aba "Meus projetos"
+  if (pathname.startsWith('/projetos/') && pathname.endsWith('/publico')) {
+    return USER_NAV_ITEMS;
+  }
+
+  // Área do aluno (meus projetos, explorar, salvos, perfil…)
+  return STUDENT_NAV_ITEMS;
+}

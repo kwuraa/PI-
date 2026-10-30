@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LoggedHeader from '../../components/layout/LoggedHeader/LoggedHeader';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import Select from '../../components/ui/Select/Select';
 import { ArrowLeft, BarChart3, Lock, Download } from '../../components/icons';
 import { reportService } from '../../services/reportService';
-import { PROFESSOR_NAV_ITEMS } from '../../config/navigation';
 import './ProfessorReportPage.css';
 
 /** Formata número no padrão pt-BR com 1 casa decimal: 6.7 → "6,7". */
@@ -202,7 +200,6 @@ export default function ProfessorReportPage() {
         <p className="report__footer">{data.footer}</p>
       </PageShell>
 
-      <BottomNav items={PROFESSOR_NAV_ITEMS} />
     </>
   );
 }

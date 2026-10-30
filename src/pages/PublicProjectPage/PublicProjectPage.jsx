@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import TopBar from '../../components/layout/TopBar/TopBar';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import FileCard from '../../components/ui/FileCard/FileCard';
@@ -16,7 +15,6 @@ import {
   ExternalLink,
 } from '../../components/icons';
 import { projectService } from '../../services/projectService';
-import { USER_NAV_ITEMS } from '../../config/navigation';
 import './PublicProjectPage.css';
 
 /**
@@ -201,7 +199,6 @@ export default function PublicProjectPage() {
         <p className="public__footer">{data.footer}</p>
       </PageShell>
 
-      <BottomNav items={USER_NAV_ITEMS} />
     </>
   );
 }

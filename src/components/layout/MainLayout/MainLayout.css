@@ -1,0 +1,29 @@
+/* ============================================================
+   MainLayout — área logada com nav persistente
+   ============================================================ */
+
+/* Conteúdo da rota: entra suavemente a cada navegação.
+   fill-mode "backwards" (não "both"): o transform existe DURANTE a
+   animação e é descartado depois — assim elementos position: fixed
+   dentro das telas (sheets, modais) seguem referenciando o viewport. */
+.main-layout__stage {
+  animation: main-layout-enter 240ms ease-out backwards;
+}
+
+@keyframes main-layout-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .main-layout__stage {
+    animation: none;
+  }
+}

@@ -2,13 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LoggedHeader from '../../components/layout/LoggedHeader/LoggedHeader';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import Select from '../../components/ui/Select/Select';
 import { ArrowLeft, Download, GraduationCap, Printer, TrendingUp } from '../../components/icons';
 import { reportService } from '../../services/reportService';
-import { PROFESSOR_NAV_ITEMS } from '../../config/navigation';
 import './CoordinatorConsolidatedReportPage.css';
 
 /** Formata no padrão pt-BR: 7.75 → "7,75" (2 casas) e 1.5 → "1,5" (1 casa). */
@@ -267,7 +265,6 @@ export default function CoordinatorConsolidatedReportPage() {
         <p className="consolidated__footer">{footer}</p>
       </PageShell>
 
-      <BottomNav items={PROFESSOR_NAV_ITEMS} />
     </>
   );
 }

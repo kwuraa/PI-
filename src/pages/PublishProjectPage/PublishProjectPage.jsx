@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TopBar from '../../components/layout/TopBar/TopBar';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import TextField from '../../components/ui/TextField/TextField';
@@ -14,7 +13,6 @@ import FileCard from '../../components/ui/FileCard/FileCard';
 import AlertCard from '../../components/ui/AlertCard/AlertCard';
 import { Users, Plus, Send } from '../../components/icons';
 import { studentService } from '../../services/studentService';
-import { STUDENT_NAV_ITEMS } from '../../config/navigation';
 import './PublishProjectPage.css';
 
 /** Monta o label com "*" quando o campo é obrigatório. */
@@ -230,7 +228,6 @@ export default function PublishProjectPage() {
         )}
       </PageShell>
 
-      <BottomNav items={STUDENT_NAV_ITEMS} />
     </>
   );
 }

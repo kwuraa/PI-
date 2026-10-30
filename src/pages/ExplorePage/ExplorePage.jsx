@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PageShell from '../../components/layout/PageShell/PageShell';
 import LoggedHeader from '../../components/layout/LoggedHeader/LoggedHeader';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import SearchBar from '../../components/ui/SearchBar/SearchBar';
 import FilterChip from '../../components/ui/FilterChip/FilterChip';
 import HighlightCard from '../../components/ui/HighlightCard/HighlightCard';
@@ -10,7 +9,6 @@ import ExploreProjectCard from '../../components/ui/ExploreProjectCard/ExplorePr
 import FilterSheet from '../../components/ui/FilterSheet/FilterSheet';
 import { X } from '../../components/icons';
 import { exploreService } from '../../services/exploreService';
-import { STUDENT_NAV_ITEMS } from '../../config/navigation';
 import './ExplorePage.css';
 
 /** Estado padrão do painel de filtros. */
@@ -249,7 +247,6 @@ export default function ExplorePage() {
         />
       </PageShell>
 
-      <BottomNav items={STUDENT_NAV_ITEMS} />
     </>
   );
 }

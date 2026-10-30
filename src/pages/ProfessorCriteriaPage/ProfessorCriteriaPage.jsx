@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LoggedHeader from '../../components/layout/LoggedHeader/LoggedHeader';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import AlertCard from '../../components/ui/AlertCard/AlertCard';
@@ -11,7 +10,6 @@ import TextField from '../../components/ui/TextField/TextField';
 import TextAreaField from '../../components/ui/TextAreaField/TextAreaField';
 import { ArrowLeft, Lock, PencilLine, Check, Plus } from '../../components/icons';
 import { criteriaService } from '../../services/criteriaService';
-import { PROFESSOR_NAV_ITEMS } from '../../config/navigation';
 import './ProfessorCriteriaPage.css';
 
 const requiredLabel = (field) => (field.required ? `${field.label} *` : field.label);
@@ -237,7 +235,6 @@ export default function ProfessorCriteriaPage() {
         )}
       </PageShell>
 
-      <BottomNav items={PROFESSOR_NAV_ITEMS} />
     </>
   );
 }

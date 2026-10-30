@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageShell from '../../components/layout/PageShell/PageShell';
 import LoggedHeader from '../../components/layout/LoggedHeader/LoggedHeader';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import TextField from '../../components/ui/TextField/TextField';
@@ -10,7 +9,6 @@ import Toggle from '../../components/ui/Toggle/Toggle';
 import SettingsRow from '../../components/ui/SettingsRow/SettingsRow';
 import { Lock, LogOut } from '../../components/icons';
 import { profileService } from '../../services/profileService';
-import { STUDENT_NAV_ITEMS } from '../../config/navigation';
 import './ProfilePage.css';
 
 /**
@@ -191,7 +189,6 @@ export default function ProfilePage() {
         <p className="profile__footer">{footer}</p>
       </PageShell>
 
-      <BottomNav items={STUDENT_NAV_ITEMS} />
     </>
   );
 }

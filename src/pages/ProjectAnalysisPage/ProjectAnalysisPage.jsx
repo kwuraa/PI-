@@ -2,14 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import TopBar from '../../components/layout/TopBar/TopBar';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import AlertCard from '../../components/ui/AlertCard/AlertCard';
 import Timeline from '../../components/ui/Timeline/Timeline';
 import AuthorRow from '../../components/ui/AuthorRow/AuthorRow';
 import { studentService } from '../../services/studentService';
-import { STUDENT_NAV_ITEMS } from '../../config/navigation';
 import './ProjectAnalysisPage.css';
 
 /**
@@ -116,7 +114,6 @@ export default function ProjectAnalysisPage() {
         </Button>
       </PageShell>
 
-      <BottomNav items={STUDENT_NAV_ITEMS} />
     </>
   );
 }
