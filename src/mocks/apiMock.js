@@ -1861,6 +1861,165 @@ export const coordinatorCriteriaResponse = {
   },
 };
 
+/** Gestão de grupos — coordenador (GET /api/coordinator/groups) */
+export const coordinatorGroupsResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-020',
+      name: 'Profa. Marta Campos',
+      initials: 'MC',
+      role: 'coordinator',
+    },
+    header: {
+      context: 'Espaço do coordenador',
+      badge: 'Acompanhamento dos projetos',
+      title: 'Gestão de grupos',
+      description:
+        'Acompanhe as pendências e mantenha a documentação dos grupos em dia.',
+    },
+    stats: [
+      { id: 'active', value: 4, label: 'Grupos ativos' },
+      { id: 'pending', value: 2, label: 'Grupos com pendências' },
+    ],
+    section: { title: 'Grupos do semestre', actionLabel: '2026.2' },
+    groups: [
+      {
+        id: 'grp-001',
+        status: 'draft',
+        statusLabel: 'Rascunho',
+        classMeta: 'ADS · 2º semestre',
+        title: 'EcoCampus',
+        members: 'Ana Costa, Lucas Silva + 2 alunos',
+        alert: 'Link de documentação não informado',
+        alertDescription: 'Adicione o repositório ou a pasta do projeto.',
+        docs: null,
+        action: { label: 'Adicionar link de documentação', kind: 'add' },
+      },
+      {
+        id: 'grp-002',
+        status: 'in-review',
+        statusLabel: 'Em análise',
+        classMeta: 'ADS · 2º semestre',
+        title: 'Biblioteca Conectada',
+        members: 'Marina Lima, João Alves + 2 alunos',
+        alert: '2 entregáveis pendentes',
+        alertDescription: null,
+        docs: {
+          label: 'Documentação',
+          url: 'github.com/pi2/biblioteca-conectada',
+        },
+        action: { label: 'Abrir documentação', kind: 'open' },
+        extraAction: {
+          label: 'Ver entregáveis pendentes',
+          href: '/coordenador/entregaveis',
+        },
+      },
+      {
+        id: 'grp-003',
+        status: 'published',
+        statusLabel: 'Publicado',
+        classMeta: 'ADS · 2º semestre',
+        title: 'AquaSense',
+        members: 'Beatriz Lima, Pedro Alves + 2 alunos',
+        alert: null,
+        docs: { label: 'Documentação', url: 'github.com/pi2/aquasense' },
+        action: { label: 'Abrir documentação', kind: 'open' },
+      },
+      {
+        id: 'grp-004',
+        status: 'published',
+        statusLabel: 'Publicado',
+        classMeta: 'ADS · 2º semestre',
+        title: 'Rota Acessível',
+        members: 'Luiza Santos, Gabriel Rocha + 2 alunos',
+        alert: null,
+        docs: { label: 'Documentação', url: 'github.com/pi2/rota-acessivel' },
+        action: { label: 'Abrir documentação', kind: 'open' },
+      },
+    ],
+    footer:
+      'Os links de documentação devem permitir o acesso da coordenação e dos professores orientadores.',
+  },
+};
+
+/** Relatório por turma — professor (GET /api/professor/class-report) */
+export const classReportResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-010',
+      name: 'Prof. Rafael Martins',
+      initials: 'RM',
+      role: 'professor',
+    },
+    header: {
+      context: 'Espaço do professor',
+      backLabel: 'Painel do professor',
+      backHref: '/painel',
+      title: 'Relatório por turma',
+      description:
+        'Acompanhe o desempenho e identifique pendências acadêmicas.',
+    },
+    cohort: {
+      label: 'Data de ingresso (coorte)',
+      value: '1º semestre de 2026 · 2026.1',
+      options: [
+        '1º semestre de 2026 · 2026.1',
+        '2º semestre de 2025 · 2025.2',
+      ],
+      course: 'Análise e Desenvolvimento de Sistemas',
+      meta: 'Sala A · 4 alunos · Período 2026.2',
+    },
+    summary: {
+      sectionTitle: 'Resumo da turma',
+      averageLabel: 'Média da turma · Projeto Integrador II',
+      meta: '4 alunos avaliados · Notas de 0 a 10',
+      approved: { value: 3, label: 'Aprovados', caption: '75% da turma' },
+      failed: { value: 1, label: 'Reprovado', caption: '25% da turma' },
+      helper:
+        'Aprovação: média ≥ 6,0. Média da turma calculada com as quatro médias individuais, arredondada para 1 decimal.',
+    },
+    averages: {
+      sectionTitle: 'Médias individuais',
+      students: [
+        { id: 'usr-001', name: 'Ana Costa', average: 8.3 },
+        { id: 'usr-003', name: 'Beatriz Lima', average: 7.3 },
+        { id: 'usr-004', name: 'Lucas Silva', average: 6.3 },
+        { id: 'usr-005', name: 'Pedro Alves', average: 4.7 },
+      ],
+    },
+    keySubjects: {
+      sectionTitle: 'Disciplinas CHAVE',
+      alert: {
+        countLabel: '1 aluno com travas',
+        title: '2 disciplinas CHAVE com pendências',
+        description:
+          'O mesmo aluno possui as duas pendências abaixo. As contagens por disciplina não devem ser somadas.',
+      },
+      items: [
+        {
+          id: 'key-1',
+          badge: 'CHAVE · Trava ativa',
+          title: 'Algoritmos e Lógica de Programação',
+          meta: '1º semestre · 1 aluno com pendência',
+          description: 'Impede matrícula em: Estruturas de Dados.',
+        },
+        {
+          id: 'key-2',
+          badge: 'CHAVE · Trava ativa',
+          title: 'Banco de Dados',
+          meta: '2º semestre · 1 aluno com pendência',
+          description: 'Impede matrícula em: Laboratório de Banco de Dados.',
+        },
+      ],
+    },
+    exportLabel: 'Exportar relatório',
+    footer:
+      'Dados demonstrativos · Atualizado em 06 out. 2026. Travas consideram o histórico da coorte selecionada.',
+  },
+};
+
 /** Índice de payloads por perfil usado pelo handler do dashboard */
 const dashboardByRole = {
   professor: professorDashboardResponse,
@@ -1910,4 +2069,6 @@ export const apiMock = {
     deliveryPendingBibliotecaResponse,
   'GET /api/professor/criteria': professorCriteriaResponse,
   'GET /api/coordinator/criteria': coordinatorCriteriaResponse,
+  'GET /api/coordinator/groups': coordinatorGroupsResponse,
+  'GET /api/professor/class-report': classReportResponse,
 };

@@ -22,6 +22,8 @@ import PublicProjectPage from './pages/PublicProjectPage/PublicProjectPage';
 import MyProjectPage from './pages/MyProjectPage/MyProjectPage';
 import ProfessorCriteriaPage from './pages/ProfessorCriteriaPage/ProfessorCriteriaPage';
 import CoordinatorCriteriaPage from './pages/CoordinatorCriteriaPage/CoordinatorCriteriaPage';
+import CoordinatorGroupsPage from './pages/CoordinatorGroupsPage/CoordinatorGroupsPage';
+import ProfessorReportPage from './pages/ProfessorReportPage/ProfessorReportPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -93,11 +95,19 @@ export default function App() {
       />
       <Route
         path="/professor/relatorio"
-        element={<PlaceholderPage title="Relatório por turma" />}
+        element={<ProfessorReportPage />}
       />
       <Route
         path="/coordenador/grupos"
-        element={<PlaceholderPage title="Gestão de grupos" />}
+        element={<CoordinatorGroupsPage />}
+      />
+      <Route
+        path="/coordenador/grupos/:id/link"
+        element={<PlaceholderPage title="Adicionar link de documentação" />}
+      />
+      <Route
+        path="/coordenador/grupos/:id"
+        element={<PlaceholderPage title="Detalhe do grupo" />}
       />
       <Route
         path="/coordenador/paritarias"

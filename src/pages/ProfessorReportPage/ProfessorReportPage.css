@@ -1,0 +1,327 @@
+/* ============================================================
+   ProfessorReportPage — "Relatório por turma" (professor)
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.report__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.report__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Voltar ---------- */
+.report__back {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--space-2);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+  text-decoration: none;
+}
+
+.report__back:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Introdução ---------- */
+.report__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.report__title {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.report__description {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Cartão da coorte ---------- */
+.report__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.report__card-label {
+  font-size: var(--font-size-caption);
+  color: var(--color-ink);
+}
+
+.report__card-course {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.report__card-meta {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* ---------- Seções ---------- */
+.report__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.report__heading {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+/* ---------- Resumo (card vermelho) ---------- */
+.report__summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-lg);
+}
+
+.report__summary-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.report__summary-value {
+  font-size: 44px;
+  font-weight: var(--font-weight-bold);
+  line-height: 1.1;
+  color: var(--color-white);
+}
+
+.report__summary-icon {
+  display: inline-flex;
+  color: var(--color-white);
+}
+
+.report__summary-label {
+  margin: 0;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+}
+
+.report__summary-meta {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-white);
+  opacity: 0.85;
+}
+
+/* ---------- Estatísticas ---------- */
+.report__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.report__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.report__stat-value {
+  font-size: var(--font-size-h1);
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+
+.report__stat-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+}
+
+.report__stat-label--success {
+  color: var(--color-success-text);
+}
+
+.report__stat-label--primary {
+  color: var(--color-primary-text);
+}
+
+.report__stat-caption {
+  font-size: var(--font-size-micro);
+  color: var(--color-muted);
+}
+
+.report__helper {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Médias individuais (barras) ---------- */
+.report__averages {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.report__average-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.report__average-name {
+  width: 96px;
+  flex-shrink: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-ink);
+}
+
+/* Barra de progresso nativa (<progress>) */
+.report__average-progress {
+  appearance: none;
+  flex: 1;
+  height: 8px;
+  background-color: #ece6dc;
+  border: none;
+  border-radius: var(--radius-pill);
+}
+
+.report__average-progress::-webkit-progress-bar {
+  background-color: #ece6dc;
+  border-radius: var(--radius-pill);
+}
+
+.report__average-progress::-webkit-progress-value {
+  background-color: var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+
+.report__average-progress::-moz-progress-bar {
+  background-color: var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+
+.report__average-value {
+  width: 32px;
+  text-align: right;
+  font-size: var(--font-size-caption);
+  color: var(--color-ink);
+}
+
+/* ---------- Disciplinas CHAVE ---------- */
+.report__alert {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-primary-tint);
+  border-radius: var(--radius-lg);
+}
+
+.report__alert-count {
+  font-size: var(--font-size-caption);
+  color: var(--color-primary-text);
+}
+
+.report__alert-title {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.report__alert-text {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+.report__key {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.report__key-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-1);
+}
+
+.report__key-icon {
+  display: inline-flex;
+  color: var(--color-primary-text);
+}
+
+.report__key-title {
+  margin: 0;
+  font-size: var(--font-size-body);
+  color: var(--color-ink);
+}
+
+.report__key-meta {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.report__key-text {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-ink);
+}
+
+/* ---------- Rodapé ---------- */
+.report__footer {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   Desktop (preparado — coluna central mais larga)
+   ============================================================ */
+@media (min-width: 768px) {
+  .report__intro,
+  .report__card,
+  .report__section {
+    max-width: 640px;
+  }
+}

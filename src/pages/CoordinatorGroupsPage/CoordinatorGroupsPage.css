@@ -1,0 +1,182 @@
+/* ============================================================
+   CoordinatorGroupsPage — "Gestão de grupos" (coordenador)
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.groups__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.groups__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Introdução ---------- */
+.groups__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.groups__title {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.groups__description {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Estatísticas ---------- */
+.groups__stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.groups__stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+.groups__stat-value {
+  font-size: var(--font-size-h1);
+  line-height: 1.2;
+  color: var(--color-ink);
+}
+
+.groups__stat-label {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* ---------- Seção de grupos ---------- */
+.groups__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* ---------- Cartão de grupo ---------- */
+.groups__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.groups__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-1);
+}
+
+.groups__class-meta {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.groups__card-title {
+  margin: 0;
+  font-size: var(--font-size-body);
+  color: var(--color-ink);
+}
+
+.groups__members {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* Alerta de pendência */
+.groups__alert {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-1) 0 0;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+}
+
+.groups__alert-description {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* Bloco de documentação */
+.groups__docs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-top: var(--space-1);
+}
+
+.groups__docs-label {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.groups__docs-url {
+  font-size: var(--font-size-caption);
+  color: var(--color-primary-text);
+}
+
+/* Ação com divisor superior */
+.groups__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+  text-decoration: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.groups__action:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Rodapé ---------- */
+.groups__footer {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   Desktop (preparado — coluna central mais larga)
+   ============================================================ */
+@media (min-width: 768px) {
+  .groups__intro,
+  .groups__stats,
+  .groups__section {
+    max-width: 640px;
+  }
+}
