@@ -59,21 +59,33 @@ export default function ReviewResultPage() {
 
   if (loading) {
     return (
-      <PageShell>
-        <p className="result__status" role="status">
-          Carregando resultado…
-        </p>
-      </PageShell>
+      <>
+        <div className="result__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="result__status" role="status">
+            Carregando resultado…
+          </p>
+        </PageShell>
+      </>
     );
   }
 
   if (error || !data) {
     return (
-      <PageShell>
-        <p className="result__status result__status--error" role="alert">
-          {error || 'Não foi possível carregar o resultado.'}
-        </p>
-      </PageShell>
+      <>
+        <div className="result__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="result__status result__status--error" role="alert">
+            {error || 'Não foi possível carregar o resultado.'}
+          </p>
+        </PageShell>
+      </>
     );
   }
 

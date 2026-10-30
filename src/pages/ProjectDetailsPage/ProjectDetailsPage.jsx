@@ -64,21 +64,33 @@ export default function ProjectDetailsPage() {
 
   if (loading) {
     return (
-      <PageShell>
-        <p className="project-details__status" role="status">
-          Carregando projeto…
-        </p>
-      </PageShell>
+      <>
+        <div className="project-details__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="project-details__status" role="status">
+            Carregando projeto…
+          </p>
+        </PageShell>
+      </>
     );
   }
 
   if (error || !payload) {
     return (
-      <PageShell>
-        <p className="project-details__status project-details__status--error" role="alert">
-          {error || 'Não foi possível carregar o projeto.'}
-        </p>
-      </PageShell>
+      <>
+        <div className="project-details__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="project-details__status project-details__status--error" role="alert">
+            {error || 'Não foi possível carregar o projeto.'}
+          </p>
+        </PageShell>
+      </>
     );
   }
 

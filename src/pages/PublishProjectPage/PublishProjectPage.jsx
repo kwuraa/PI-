@@ -72,21 +72,33 @@ export default function PublishProjectPage() {
 
   if (loading) {
     return (
-      <PageShell>
-        <p className="publish__status" role="status">
-          Carregando formulário…
-        </p>
-      </PageShell>
+      <>
+        <div className="publish__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="publish__status" role="status">
+            Carregando formulário…
+          </p>
+        </PageShell>
+      </>
     );
   }
 
   if (error || !form) {
     return (
-      <PageShell>
-        <p className="publish__status publish__status--error" role="alert">
-          {error || 'Não foi possível carregar o formulário.'}
-        </p>
-      </PageShell>
+      <>
+        <div className="publish__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="publish__status publish__status--error" role="alert">
+            {error || 'Não foi possível carregar o formulário.'}
+          </p>
+        </PageShell>
+      </>
     );
   }
 

@@ -52,21 +52,33 @@ export default function PublicProjectPage() {
 
   if (loading) {
     return (
-      <PageShell>
-        <p className="public__status" role="status">
-          Carregando projeto…
-        </p>
-      </PageShell>
+      <>
+        <div className="public__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="public__status" role="status">
+            Carregando projeto…
+          </p>
+        </PageShell>
+      </>
     );
   }
 
   if (error || !data) {
     return (
-      <PageShell>
-        <p className="public__status public__status--error" role="alert">
-          {error || 'Não foi possível carregar o projeto.'}
-        </p>
-      </PageShell>
+      <>
+        <div className="public__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="public__status public__status--error" role="alert">
+            {error || 'Não foi possível carregar o projeto.'}
+          </p>
+        </PageShell>
+      </>
     );
   }
 

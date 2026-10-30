@@ -51,21 +51,33 @@ export default function MyProjectPage() {
 
   if (loading) {
     return (
-      <PageShell>
-        <p className="my-project__status" role="status">
-          Carregando projeto…
-        </p>
-      </PageShell>
+      <>
+        <div className="my-project__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="my-project__status" role="status">
+            Carregando projeto…
+          </p>
+        </PageShell>
+      </>
     );
   }
 
   if (error || !data) {
     return (
-      <PageShell>
-        <p className="my-project__status my-project__status--error" role="alert">
-          {error || 'Não foi possível carregar o projeto.'}
-        </p>
-      </PageShell>
+      <>
+        <div className="my-project__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="my-project__status my-project__status--error" role="alert">
+            {error || 'Não foi possível carregar o projeto.'}
+          </p>
+        </PageShell>
+      </>
     );
   }
 

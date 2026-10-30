@@ -3,10 +3,13 @@
    ============================================================ */
 
 /* Conteúdo da rota: entra suavemente a cada navegação.
+   A animação fica no .page-shell (e NÃO no stage) para que a TopBar —
+   irmã do PageShell nas telas de detalhe — apareça sem re-animação:
+   ao trocar de tela o cabeçalho só troca de título, sem fade/slide.
    fill-mode "backwards" (não "both"): o transform existe DURANTE a
    animação e é descartado depois — assim elementos position: fixed
    dentro das telas (sheets, modais) seguem referenciando o viewport. */
-.main-layout__stage {
+.main-layout__stage .page-shell {
   animation: main-layout-enter 240ms ease-out backwards;
 }
 
@@ -23,7 +26,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .main-layout__stage {
+  .main-layout__stage .page-shell {
     animation: none;
   }
 }

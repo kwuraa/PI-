@@ -52,21 +52,33 @@ export default function ProfessorDeliveryPage() {
 
   if (loading) {
     return (
-      <PageShell>
-        <p className="delivery__status" role="status">
-          Carregando entrega…
-        </p>
-      </PageShell>
+      <>
+        <div className="delivery__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="delivery__status" role="status">
+            Carregando entrega…
+          </p>
+        </PageShell>
+      </>
     );
   }
 
   if (error || !data) {
     return (
-      <PageShell>
-        <p className="delivery__status delivery__status--error" role="alert">
-          {error || 'Não foi possível carregar a entrega.'}
-        </p>
-      </PageShell>
+      <>
+        <div className="delivery__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="delivery__status delivery__status--error" role="alert">
+            {error || 'Não foi possível carregar a entrega.'}
+          </p>
+        </PageShell>
+      </>
     );
   }
 

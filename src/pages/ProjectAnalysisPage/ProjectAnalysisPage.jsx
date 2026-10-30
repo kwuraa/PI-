@@ -45,21 +45,33 @@ export default function ProjectAnalysisPage() {
 
   if (loading) {
     return (
-      <PageShell>
-        <p className="analysis__status" role="status">
-          Carregando análise…
-        </p>
-      </PageShell>
+      <>
+        <div className="analysis__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="analysis__status" role="status">
+            Carregando análise…
+          </p>
+        </PageShell>
+      </>
     );
   }
 
   if (error || !data) {
     return (
-      <PageShell>
-        <p className="analysis__status analysis__status--error" role="alert">
-          {error || 'Não foi possível carregar a análise.'}
-        </p>
-      </PageShell>
+      <>
+        <div className="analysis__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="analysis__status analysis__status--error" role="alert">
+            {error || 'Não foi possível carregar a análise.'}
+          </p>
+        </PageShell>
+      </>
     );
   }
 

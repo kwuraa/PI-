@@ -45,21 +45,33 @@ export default function SubmissionConfirmationPage() {
 
   if (loading) {
     return (
-      <PageShell>
-        <p className="submission__status" role="status">
-          Carregando…
-        </p>
-      </PageShell>
+      <>
+        <div className="submission__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="submission__status" role="status">
+            Carregando…
+          </p>
+        </PageShell>
+      </>
     );
   }
 
   if (error || !data) {
     return (
-      <PageShell>
-        <p className="submission__status submission__status--error" role="alert">
-          {error || 'Não foi possível carregar a confirmação.'}
-        </p>
-      </PageShell>
+      <>
+        <div className="submission__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="submission__status submission__status--error" role="alert">
+            {error || 'Não foi possível carregar a confirmação.'}
+          </p>
+        </PageShell>
+      </>
     );
   }
 

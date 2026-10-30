@@ -66,21 +66,33 @@ export default function ReviewProjectPage() {
 
   if (loading) {
     return (
-      <PageShell>
-        <p className="review__status" role="status">
-          Carregando projeto para revisão…
-        </p>
-      </PageShell>
+      <>
+        <div className="review__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="review__status" role="status">
+            Carregando projeto para revisão…
+          </p>
+        </PageShell>
+      </>
     );
   }
 
   if (error || !review) {
     return (
-      <PageShell>
-        <p className="review__status review__status--error" role="alert">
-          {error || 'Não foi possível carregar o projeto.'}
-        </p>
-      </PageShell>
+      <>
+        <div className="review__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="review__status review__status--error" role="alert">
+            {error || 'Não foi possível carregar o projeto.'}
+          </p>
+        </PageShell>
+      </>
     );
   }
 
