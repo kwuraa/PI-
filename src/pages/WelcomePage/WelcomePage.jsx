@@ -49,7 +49,7 @@ export default function WelcomePage() {
           <Button fullWidth onClick={() => navigate('/acessar')}>
             Entrar no PI² <ArrowRight size={20} />
           </Button>
-          <Button variant="secondary" fullWidth onClick={() => navigate('/acessar')}>
+          <Button variant="secondary" fullWidth onClick={() => navigate('/cadastro')}>
             Criar minha conta
           </Button>
         </div>
