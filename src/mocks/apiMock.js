@@ -857,6 +857,89 @@ export const newProjectFormResponse = {
   },
 };
 
+/** Resposta de Notas da sala — professor (GET /api/professor/class-notes) */
+export const professorClassNotesResponse = {
+  status: 200,
+  data: {
+    user: { id: 'usr-010', name: 'Prof. Rafael Martins', initials: 'RM', role: 'professor' },
+    header: {
+      context: 'Espaço do professor',
+      backLabel: 'Painel do professor',
+      backHref: '/painel',
+      title: 'Notas da sala',
+      description: 'Avalie cada aluno e acompanhe a média da sala.',
+    },
+    selector: {
+      title: 'Selecionar sala',
+      semester: { label: 'Semestre', value: '2026.2', options: ['2026.2', '2026.1'] },
+      room: { label: 'Sala', value: 'ADS · A', options: ['ADS · A', 'ADS · B'] },
+      discipline: { label: 'Disciplina', value: 'Projeto Integrador II', options: ['Projeto Integrador II', 'Projeto Integrador III'] },
+      meta: 'Ingresso 2026.1 · 4 alunos matriculados',
+    },
+    formula: {
+      title: 'Como a média é calculada',
+      description:
+        'Documentação × 0,4 + Apresentação × 0,3 + Código × 0,3. Notas de 0 a 10; aprovação a partir de 6,0.',
+    },
+    criteria: [
+      { id: 'documentation', label: 'Documentação', weight: '40%', factor: 0.4 },
+      { id: 'presentation', label: 'Apresentação', weight: '30%', factor: 0.3 },
+      { id: 'code', label: 'Código', weight: '30%', factor: 0.3 },
+    ],
+    section: { title: 'Notas dos alunos' },
+    students: [
+      { id: 'usr-001', name: 'Ana Costa', ra: 'RA 202610001', scores: { documentation: 8, presentation: 9, code: 8 }, notes: 'Boa documentação e apresentação segura.' },
+      { id: 'usr-003', name: 'Beatriz Lima', ra: 'RA 202610002', scores: { documentation: 7, presentation: 8, code: 7 }, notes: 'Detalhar os resultados dos testes.' },
+      { id: 'usr-004', name: 'Lucas Silva', ra: 'RA 202610003', scores: { documentation: 6, presentation: 7, code: 6 }, notes: 'Revisar a organização do repositório.' },
+      { id: 'usr-005', name: 'Pedro Alves', ra: 'RA 202610004', scores: { documentation: 5, presentation: 4, code: 5 }, notes: 'Reforçar a apresentação e concluir os testes.' },
+    ],
+    pendingBadge: 'Pendente · alterações não salvas',
+    saveLabel: 'Salvar notas',
+    footer: 'As médias são atualizadas automaticamente. Confira os valores antes de salvar.',
+    savedFeedback: 'Notas salvas.',
+  },
+};
+
+/** Resposta de Notas da sala — coordenador (GET /api/coordinator/class-notes) */
+export const coordinatorClassNotesResponse = {
+  status: 200,
+  data: {
+    user: { id: 'usr-010', name: 'Prof. Rafael Martins', initials: 'RM', role: 'professor_coordinator' },
+    header: {
+      context: 'Coordenador e professor',
+      backLabel: 'Painel unificado',
+      backHref: '/painel',
+      badge: 'Coordenador',
+      title: 'Notas da sala',
+      description: 'Consulte e edite as notas de qualquer sala do curso.',
+    },
+    selector: {
+      editNotice: { icon: 'shield', label: 'Edição liberada para qualquer sala' },
+      semester: { label: 'Semestre', value: '2026.2', options: ['2026.2', '2026.1'] },
+      room: { label: 'Sala', value: '3º ADS · A', options: ['3º ADS · A', '3º ADS · B', '2º ADS · A'] },
+      discipline: { label: 'Disciplina', value: 'Projeto Integrador III', options: ['Projeto Integrador III', 'Projeto Integrador II'] },
+    },
+    section: {
+      averageLabel: 'Média da sala',
+      note: 'Notas de 0 a 10. Média simples dos três critérios, com pesos iguais.',
+    },
+    criteria: [
+      { id: 'documentation', label: 'Documentação' },
+      { id: 'presentation', label: 'Apresentação' },
+      { id: 'code', label: 'Código' },
+    ],
+    students: [
+      { id: 'usr-001', name: 'Ana Costa', project: 'Biblioteca Conectada', scores: { documentation: 8, presentation: 9, code: 7 }, notes: 'Melhorar a cobertura dos testes.' },
+      { id: 'usr-004', name: 'Lucas Silva', project: 'Biblioteca Conectada', scores: { documentation: 9, presentation: 8, code: 10 }, notes: 'Código organizado e bem documentado.' },
+      { id: 'usr-003', name: 'Beatriz Lima', project: 'AquaSense', scores: { documentation: 7, presentation: 6, code: 8 }, notes: 'Aprofundar a apresentação dos resultados.' },
+    ],
+    pendingBadge: 'Pendente · alterações não salvas',
+    saveLabel: 'Salvar notas',
+    footer: 'As notas e observações serão salvas na sala selecionada.',
+    savedFeedback: 'Notas salvas.',
+  },
+};
+
 /** Índice de payloads por perfil usado pelo handler do dashboard */
 const dashboardByRole = {
   professor: professorDashboardResponse,
@@ -887,4 +970,6 @@ export const apiMock = {
   // real devolverá cada projeto pelo :slug)
   'GET /api/professor/reviews/aquasense': projectReviewResponse,
   'GET /api/professor/reviews/biblioteca-conectada': projectReviewResponse,
+  'GET /api/professor/class-notes': professorClassNotesResponse,
+  'GET /api/coordinator/class-notes': coordinatorClassNotesResponse,
 };

@@ -11,6 +11,8 @@ import ProfilePage from './pages/ProfilePage/ProfilePage';
 import SavedProjectsPage from './pages/SavedProjectsPage/SavedProjectsPage';
 import ReviewProjectPage from './pages/ReviewProjectPage/ReviewProjectPage';
 import PublishProjectPage from './pages/PublishProjectPage/PublishProjectPage';
+import ProfessorGradesPage from './pages/ProfessorGradesPage/ProfessorGradesPage';
+import CoordinatorGradesPage from './pages/CoordinatorGradesPage/CoordinatorGradesPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -41,7 +43,11 @@ export default function App() {
       {/* Destinos do painel — telas das próximas etapas */}
       <Route
         path="/professor/notas"
-        element={<PlaceholderPage title="Lançar notas" />}
+        element={<ProfessorGradesPage />}
+      />
+      <Route
+        path="/coordenador/notas"
+        element={<CoordinatorGradesPage />}
       />
       <Route
         path="/professor/revisar/:slug"

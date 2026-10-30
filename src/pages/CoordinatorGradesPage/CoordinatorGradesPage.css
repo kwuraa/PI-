@@ -1,0 +1,241 @@
+/* ============================================================
+   CoordinatorGradesPage — Notas da sala (coordenador)
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.coord-grades__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.coord-grades__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Voltar ---------- */
+.coord-grades__back {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--space-2);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+  text-decoration: none;
+}
+
+.coord-grades__back:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Introdução ---------- */
+.coord-grades__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.coord-grades__title {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.coord-grades__description {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Cartão "Selecionar sala" ---------- */
+.coord-grades__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.coord-grades__notice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+}
+
+.coord-grades__selector-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+/* ---------- Seção de alunos ---------- */
+.coord-grades__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.coord-grades__section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.coord-grades__section-title {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.coord-grades__room-average {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.coord-grades__note {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Cartão de aluno ---------- */
+.coord-grades__student {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.coord-grades__student-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.coord-grades__student-identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.coord-grades__student-name {
+  font-size: var(--font-size-body);
+  color: var(--color-ink);
+}
+
+.coord-grades__student-project {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* ---------- Grade de notas (3 colunas) ---------- */
+.coord-grades__score-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.coord-grades__score-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.coord-grades__score-label {
+  font-size: var(--font-size-micro);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+}
+
+.coord-grades__score-input {
+  width: 100%;
+}
+
+/* ---------- Observações ---------- */
+.coord-grades__notes-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+}
+
+.coord-grades__notes-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.coord-grades__notes {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-6) 0 var(--space-3);
+  font-family: inherit;
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.coord-grades__notes:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-tint);
+}
+
+.coord-grades__notes-icon {
+  position: absolute;
+  right: var(--space-3);
+  display: inline-flex;
+  color: var(--color-muted);
+  pointer-events: none;
+}
+
+/* ---------- Ações ---------- */
+.coord-grades__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.coord-grades__footer {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   Desktop (preparado — coluna central mais larga)
+   ============================================================ */
+@media (min-width: 768px) {
+  .coord-grades__intro,
+  .coord-grades__card,
+  .coord-grades__section,
+  .coord-grades__actions {
+    max-width: 640px;
+  }
+}
