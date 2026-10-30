@@ -39,6 +39,23 @@ export const loginResponse = {
   },
 };
 
+/** Cadastro institucional (POST /api/auth/register) */
+export const registerResponse = {
+  status: 201,
+  data: {
+    message: 'Conta criada. Confirme o vínculo pelo e-mail institucional.',
+    nextHref: '/acessar',
+  },
+};
+
+/** Recuperação de senha (POST /api/auth/recover) */
+export const recoverResponse = {
+  status: 200,
+  data: {
+    message: 'Se o e-mail estiver cadastrado, as instruções foram enviadas.',
+  },
+};
+
 /** ============================================================
  * Painel (GET /api/dashboard?role=professor|coordinator|both)
  * O mock devolve um payload diferente por perfil — a API real
@@ -489,6 +506,51 @@ export const exploreProjectsResponse = {
         ],
       },
     ],
+    /* Estado "resultados" — aparece quando filtros são aplicados */
+    results: {
+      headline: 'Projetos de tecnologia',
+      countTemplate: '{count} projetos encontrados',
+      projects: [
+        {
+          id: 'res-001',
+          title: 'Rota Acessível: um campus para todos',
+          meta: 'Sistemas de Informação · 2026',
+          href: '/projetos/rota-acessivel',
+        },
+        {
+          id: 'res-002',
+          title: 'Agenda Acadêmica: organização e estudo',
+          meta: 'Sistemas de Informação · 2026',
+          href: '/explorar',
+        },
+      ],
+    },
+    /* Bottom sheet "Filtrar projetos" */
+    filterPanel: {
+      title: 'Filtrar projetos',
+      closeLabel: 'Fechar filtros',
+      courseLabel: 'Curso',
+      courses: [
+        { id: 'all', name: 'Todos os cursos', count: 128 },
+        { id: 'si', name: 'Sistemas de Informação', count: 8 },
+        { id: 'architecture', name: 'Arquitetura e Urbanismo', count: 18 },
+        { id: 'environmental', name: 'Engenharia Ambiental', count: 12 },
+        { id: 'administration', name: 'Administração', count: 21 },
+      ],
+      yearLabel: 'Ano',
+      years: ['Todos os anos', '2026', '2025', '2024'],
+      sortLabel: 'Ordenar por',
+      sortOptions: ['Mais recentes', 'Menos recentes', 'A – Z'],
+      typeLabel: 'Tipo de projeto',
+      types: [
+        { id: 'all', label: 'Todos' },
+        { id: 'tcc', label: 'TCC' },
+        { id: 'integrador', label: 'Projeto integrador' },
+        { id: 'extensao', label: 'Extensão' },
+      ],
+      applyTemplate: 'Mostrar {count} projetos',
+      clearLabel: 'Limpar filtros',
+    },
   },
 };
 
@@ -2387,6 +2449,8 @@ const dashboardByRole = {
  */
 export const apiMock = {
   'POST /api/auth/login': loginResponse,
+  'POST /api/auth/register': registerResponse,
+  'POST /api/auth/recover': recoverResponse,
   // O painel muda conforme o perfil: o mock lê o parâmetro ?role=
   'GET /api/dashboard': ({ query }) =>
     dashboardByRole[query.role] ?? dashboardByRole.professor,

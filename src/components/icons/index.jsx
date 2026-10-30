@@ -84,6 +84,13 @@ export const Check = (props) => (
   </svg>
 );
 
+export const X = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="M18 6 6 18" />
+    <path d="m6 6 12 12" />
+  </svg>
+);
+
 export const ClipboardCheck = (props) => (
   <svg {...baseProps} width={props.size || 24} {...props}>
     <rect x="8" y="2" width="8" height="4" rx="1" />

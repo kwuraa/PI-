@@ -117,7 +117,11 @@ export default function LoginPage() {
               Lembrar de mim
             </label>
 
-            <button type="button" className="login__link">
+            <button
+              type="button"
+              className="login__link"
+              onClick={() => navigate('/recuperar')}
+            >
               Esqueci minha senha
             </button>
           </div>
@@ -144,7 +148,14 @@ export default function LoginPage() {
         </form>
 
         <p className="login__signup">
-          Ainda não tem conta? <button type="button" className="login__link">Criar conta</button>
+          Ainda não tem conta?{' '}
+          <button
+            type="button"
+            className="login__link"
+            onClick={() => navigate('/cadastro')}
+          >
+            Criar conta
+          </button>
         </p>
       </main>
     </div>

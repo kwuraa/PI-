@@ -3,6 +3,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 
 import WelcomePage from './pages/WelcomePage/WelcomePage';
 import LoginPage from './pages/LoginPage/LoginPage';
+import SignupPage from './pages/SignupPage/SignupPage';
+import PasswordRecoveryPage from './pages/PasswordRecoveryPage/PasswordRecoveryPage';
 import DashboardPage from './pages/DashboardPage/DashboardPage';
 import StudentProjectsPage from './pages/StudentProjectsPage/StudentProjectsPage';
 import ExplorePage from './pages/ExplorePage/ExplorePage';
@@ -41,6 +43,8 @@ export default function App() {
       {/* Área pública */}
       <Route path="/" element={<WelcomePage />} />
       <Route path="/acessar" element={<LoginPage />} />
+      <Route path="/cadastro" element={<SignupPage />} />
+      <Route path="/recuperar" element={<PasswordRecoveryPage />} />
 
       {/* Área logada — aluno */}
       <Route
