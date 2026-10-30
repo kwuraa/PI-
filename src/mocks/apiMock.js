@@ -751,6 +751,112 @@ export const projectReviewResponse = {
   },
 };
 
+/** Resposta do formulário Novo projeto (GET /api/student/projects/new) */
+export const newProjectFormResponse = {
+  status: 200,
+  data: {
+    header: {
+      title: 'Novo projeto',
+      headline: 'Sua ideia merece ser compartilhada.',
+      description:
+        'Preencha os dados e envie ao seu orientador. Os campos com * são obrigatórios.',
+      draftLabel: 'Rascunho salvo às 09:38',
+    },
+    about: {
+      title: 'Sobre o projeto',
+      fields: {
+        title: {
+          label: 'Título do projeto',
+          required: true,
+          value: 'EcoCampus: gestão de resíduos',
+        },
+        course: {
+          label: 'Curso',
+          required: true,
+          value: 'Sistemas de Informação',
+          options: [
+            'Sistemas de Informação',
+            'Engenharia Ambiental',
+            'Arquitetura e Urbanismo',
+            'Análise e Desenvolvimento de Sistemas',
+          ],
+        },
+        type: {
+          label: 'Tipo de projeto',
+          required: true,
+          value: 'Projeto integrador',
+          options: ['Projeto integrador', 'TCC', 'Pesquisa', 'Extensão'],
+        },
+        description: {
+          label: 'Descrição',
+          required: true,
+          maxLength: 2000,
+          value:
+            'Plataforma para acompanhar a coleta seletiva e os pontos de descarte no campus, incentivando práticas sustentáveis na comunidade acadêmica.',
+        },
+      },
+    },
+    team: {
+      title: 'Quem participa',
+      members: {
+        label: 'Integrantes',
+        required: true,
+        value: 'Ana Costa; Lucas Silva',
+        help: 'Você é a responsável pelo envio deste projeto.',
+      },
+      addMemberLabel: 'Adicionar integrante por e-mail',
+      advisor: {
+        label: 'Orientador',
+        required: true,
+        value: 'Prof. Rafael Martins',
+        options: ['Prof. Rafael Martins', 'Profa. Marta Campos', 'Prof. Diego Alencar'],
+      },
+    },
+    files: {
+      title: 'Arquivos do projeto',
+      upload: {
+        title: 'Toque para adicionar arquivos',
+        hint: 'PDF, ZIP ou imagens · até 20 MB por arquivo',
+      },
+      items: [
+        {
+          id: 'file-001',
+          name: 'Relatório_EcoCampus.pdf',
+          kind: 'PDF',
+          size: '1,8 MB',
+          status: 'Upload concluído',
+        },
+      ],
+    },
+    visibility: {
+      title: 'Quem poderá ver?',
+      selected: 'public',
+      options: [
+        {
+          id: 'public',
+          label: 'Comunidade acadêmica',
+          description: 'Disponível para alunos e professores.',
+        },
+        {
+          id: 'restricted',
+          label: 'Somente equipe e orientador',
+          description: 'Acesso restrito aos participantes.',
+        },
+      ],
+    },
+    alert: {
+      icon: 'info',
+      title: 'A publicação passa por revisão',
+      description:
+        'Seu orientador será notificado. O projeto só ficará disponível após a aprovação.',
+    },
+    submitLabel: 'Enviar para análise',
+    draftActionLabel: 'Salvar rascunho',
+    sentFeedback: 'Projeto enviado ao orientador. Acompanhe o status em Meus projetos.',
+    draftFeedback: 'Rascunho salvo.',
+  },
+};
+
 /** Índice de payloads por perfil usado pelo handler do dashboard */
 const dashboardByRole = {
   professor: professorDashboardResponse,
@@ -768,6 +874,7 @@ export const apiMock = {
   'GET /api/dashboard': ({ query }) =>
     dashboardByRole[query.role] ?? dashboardByRole.professor,
   'GET /api/student/projects': studentProjectsResponse,
+  'GET /api/student/projects/new': newProjectFormResponse,
   'GET /api/projects/explore': exploreProjectsResponse,
   // Detalhe: mesmo payload para os slugs do feed (mock único — a API real
   // diferenciará cada projeto pelo :slug da rota)

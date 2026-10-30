@@ -10,6 +10,7 @@ import ProjectDetailsPage from './pages/ProjectDetailsPage/ProjectDetailsPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import SavedProjectsPage from './pages/SavedProjectsPage/SavedProjectsPage';
 import ReviewProjectPage from './pages/ReviewProjectPage/ReviewProjectPage';
+import PublishProjectPage from './pages/PublishProjectPage/PublishProjectPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -31,7 +32,7 @@ export default function App() {
       />
       <Route
         path="/meus-projetos/novo"
-        element={<PlaceholderPage title="Novo projeto" />}
+        element={<PublishProjectPage />}
       />
 
       {/* Área logada — professor/coordenador */}

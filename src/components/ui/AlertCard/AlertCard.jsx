@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Link2Off, AlertTriangle, ShieldCheck } from '../../icons';
+import { ArrowRight, Link2Off, AlertTriangle, ShieldCheck, Info } from '../../icons';
 import Button from '../Button/Button';
 import './AlertCard.css';
 
@@ -8,6 +8,7 @@ const ICONS = {
   'link-off': Link2Off,
   warning: AlertTriangle,
   shield: ShieldCheck,
+  info: Info,
 };
 
 /**

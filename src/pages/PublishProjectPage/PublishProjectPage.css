@@ -1,0 +1,116 @@
+/* ============================================================
+   PublishProjectPage — tela "Novo projeto" (aluno)
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.publish__topbar {
+  padding: 0 var(--page-padding);
+}
+
+.publish__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.publish__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Introdução ---------- */
+.publish__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.publish__headline {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.publish__description {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Seções ---------- */
+.publish__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.publish__heading {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.publish__help {
+  margin: calc(var(--space-2) * -1) 0 0;
+  font-size: var(--font-size-micro);
+  color: var(--color-muted);
+}
+
+.publish__add {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--space-2);
+  padding: 0;
+  font-family: inherit;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.publish__add:hover {
+  color: var(--color-primary-hover);
+}
+
+/* ---------- Listas ---------- */
+.publish__files,
+.publish__visibility {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- Ações ---------- */
+.publish__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.publish__feedback {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  text-align: center;
+  color: var(--color-success-text);
+}
+
+/* ============================================================
+   Desktop (preparado — coluna central mais larga)
+   ============================================================ */
+@media (min-width: 768px) {
+  .publish__headline,
+  .publish__section,
+  .publish__actions {
+    max-width: 640px;
+  }
+}

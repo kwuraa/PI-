@@ -1,0 +1,52 @@
+/* ============================================================
+   Select — campo de seleção (menu nativo)
+   ============================================================ */
+
+.select {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.select__label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+}
+
+.select__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.select__input {
+  appearance: none;
+  width: 100%;
+  min-height: 54px;
+  padding: 0 var(--space-6) 0 var(--space-4);
+  font-family: inherit;
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.select__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-tint);
+}
+
+.select__chevron {
+  position: absolute;
+  right: var(--space-4);
+  display: inline-flex;
+  color: var(--color-muted);
+  pointer-events: none;
+}

@@ -336,3 +336,25 @@ export const UserSearch = (props) => (
     <path d="m22 22-1.9-1.9" />
   </svg>
 );
+
+export const ChevronDown = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="m6 9 6 6 6-6" />
+  </svg>
+);
+
+export const Upload = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+    <polyline points="17 8 12 3 7 8" />
+    <line x1="12" y1="3" x2="12" y2="15" />
+  </svg>
+);
+
+export const Info = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="M12 16v-4" />
+    <path d="M12 8h.01" />
+  </svg>
+);
