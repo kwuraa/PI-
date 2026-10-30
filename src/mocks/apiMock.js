@@ -2020,6 +2020,143 @@ export const classReportResponse = {
   },
 };
 
+/** Hub "Avaliações" — abas Professores/Pares (GET /api/evaluations) */
+export const evaluationsResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-010',
+      name: 'Prof. Rafael Martins',
+      initials: 'RM',
+      role: 'professor',
+    },
+    header: {
+      context: 'Coordenador e professor',
+      backLabel: 'Painel unificado',
+      backHref: '/painel',
+      title: 'Avaliações',
+      description:
+        'Acompanhe os docentes e a avaliação entre pares em cada semestre.',
+    },
+    tabs: [
+      { id: 'professors', label: 'Professores' },
+      { id: 'peers', label: 'Pares' },
+    ],
+    semester: {
+      label: 'Semestre',
+      value: '2026.2',
+      options: ['2026.2', '2026.1'],
+    },
+    professors: {
+      sectionTitle: 'Professores',
+      countTemplate: '{done} de {total} avaliado',
+      selectedKickers: { male: 'PROFESSOR SELECIONADO', female: 'PROFESSORA SELECIONADA' },
+      teachers: [
+        {
+          id: 'usr-201',
+          initials: 'MS',
+          name: 'Mariana Souza',
+          discipline: 'Projeto Integrador III',
+          gender: 'female',
+          status: 'pending',
+          meta: null,
+          score: '8,5',
+          comment:
+            'Orienta a turma com clareza e oferece devolutivas consistentes. Pode ampliar o acompanhamento das entregas parciais.',
+        },
+        {
+          id: 'usr-202',
+          initials: 'CA',
+          name: 'Carlos Almeida',
+          discipline: 'Banco de Dados',
+          gender: 'male',
+          status: 'done',
+          meta: 'Banco de Dados · Nota 9,0',
+          score: '9,0',
+          comment: 'Aulas objetivas e avaliações coerentes com o conteúdo.',
+        },
+        {
+          id: 'usr-203',
+          initials: 'FR',
+          name: 'Fernanda Rocha',
+          discipline: 'Engenharia de Software',
+          gender: 'female',
+          status: 'pending',
+          meta: null,
+          score: '',
+          comment: '',
+        },
+      ],
+      scoreLabel: 'Nota de desempenho (0–10)',
+      scoreSuffix: '/ 10',
+      commentLabel: 'Comentário',
+      helper:
+        'Avaliação em preenchimento. O status muda para Avaliado após salvar.',
+      savedFeedback: 'Avaliação salva.',
+      saveLabel: 'Salvar avaliação',
+    },
+    peers: {
+      cycle: {
+        title: 'Ciclo de avaliação',
+        statusBadge: { label: 'Em andamento', tone: 'amber' },
+        labelTemplate: '{done} de {total} avaliaram',
+        description:
+          'Conclusões dos 4 pares participantes abaixo. Rafael não entra nesta contagem e não é alvo de autoavaliação.',
+      },
+      sectionTitle: 'Conclusões dos pares',
+      participants: [
+        {
+          id: 'usr-101',
+          initials: 'HD',
+          name: 'Helena Duarte',
+          meta: 'Concluiu em 20 out.',
+          status: 'done',
+          statusLabel: 'Avaliado',
+        },
+        {
+          id: 'usr-102',
+          initials: 'PM',
+          name: 'Paulo Mendes',
+          meta: 'Concluiu em 21 out.',
+          status: 'done',
+          statusLabel: 'Avaliado',
+        },
+        {
+          id: 'usr-103',
+          initials: 'JC',
+          name: 'Juliana Castro',
+          meta: 'Aguardando conclusão',
+          status: 'pending',
+          statusLabel: 'Pendente',
+        },
+        {
+          id: 'usr-104',
+          initials: 'AR',
+          name: 'André Ribeiro',
+          meta: 'Aguardando conclusão',
+          status: 'pending',
+          statusLabel: 'Pendente',
+        },
+      ],
+      selfCard: {
+        id: 'usr-010',
+        initials: 'RM',
+        name: 'Rafael Martins',
+        badge: 'Você (não avaliável)',
+      },
+      notice: {
+        icon: 'lock',
+        tone: 'amber',
+        title: 'Ciclo só encerra quando todos avaliarem',
+        descriptionTemplate:
+          'Faltam {pending} conclusões. O encerramento será liberado em {total} de {total}, sem autoavaliação de Rafael.',
+      },
+      closeLabel: 'Encerrar ciclo',
+      closedFeedback: 'Ciclo encerrado.',
+    },
+  },
+};
+
 /** Desempenho docente — coordenador (GET /api/coordinator/teacher-evaluation) */
 export const teacherEvaluationResponse = {
   status: 200,
@@ -2205,4 +2342,5 @@ export const apiMock = {
   'GET /api/professor/class-report': classReportResponse,
   'GET /api/coordinator/teacher-evaluation': teacherEvaluationResponse,
   'GET /api/coordinator/peer-reviews': peerReviewsResponse,
+  'GET /api/evaluations': evaluationsResponse,
 };

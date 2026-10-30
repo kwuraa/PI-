@@ -26,6 +26,7 @@ import CoordinatorGroupsPage from './pages/CoordinatorGroupsPage/CoordinatorGrou
 import ProfessorReportPage from './pages/ProfessorReportPage/ProfessorReportPage';
 import CoordinatorTeacherEvaluationPage from './pages/CoordinatorTeacherEvaluationPage/CoordinatorTeacherEvaluationPage';
 import CoordinatorPeerReviewsPage from './pages/CoordinatorPeerReviewsPage/CoordinatorPeerReviewsPage';
+import AvaliacoesPage from './pages/AvaliacoesPage/AvaliacoesPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -64,6 +65,7 @@ export default function App() {
 
       {/* Área logada — professor/coordenador */}
       <Route path="/painel" element={<DashboardPage />} />
+      <Route path="/painel/avaliacoes" element={<AvaliacoesPage />} />
 
       {/* Destinos do painel — telas das próximas etapas */}
       <Route

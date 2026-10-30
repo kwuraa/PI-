@@ -4,6 +4,12 @@ import { request } from './api';
  * Serviço de avaliações da coordenação (docente e paritária).
  */
 export const evaluationService = {
+  /** GET /api/evaluations — hub "Avaliações" (abas Professores e Pares) */
+  async getEvaluations() {
+    const response = await request('GET', '/api/evaluations');
+    return response.data;
+  },
+
   /** GET /api/coordinator/teacher-evaluation — desempenho docente */
   async getTeacherPerformance() {
     const response = await request('GET', '/api/coordinator/teacher-evaluation');
