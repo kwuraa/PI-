@@ -388,7 +388,7 @@ export const studentProjectsResponse = {
           },
           action: {
             label: 'Acompanhar análise',
-            href: '/projetos/biblioteca-conectada',
+            href: '/meus-projetos/biblioteca-conectada/analise',
           },
         },
         {
@@ -940,6 +940,633 @@ export const coordinatorClassNotesResponse = {
   },
 };
 
+/** Confirmação de envio do projeto (GET /api/student/projects/submission) */
+export const submissionConfirmationResponse = {
+  status: 200,
+  data: {
+    user: { id: 'usr-001', name: 'Ana Costa', initials: 'AC', role: 'student' },
+    header: {
+      title: 'Envio do projeto',
+      headline: 'Enviado para análise!',
+      description:
+        'Sua ideia deu mais um passo. O Prof. Rafael Martins foi notificado para revisar o projeto.',
+    },
+    project: {
+      statusBadge: 'Em análise · Não publicado',
+      title: 'EcoCampus: gestão de resíduos',
+      meta: 'Sistemas de Informação · Projeto integrador · 2026.2',
+      authors: 'Ana Costa e Lucas Silva',
+      sentLine: 'Enviado em 06 out. 2026 por Ana Costa',
+      analysisHref: '/meus-projetos/ecocampus/analise',
+    },
+    notice: {
+      icon: 'lock',
+      tone: 'primary',
+      title: 'O projeto ainda NÃO está publicado',
+      description:
+        'Por enquanto, somente a equipe e o orientador têm acesso. A comunidade acadêmica só poderá vê-lo após a aprovação.',
+    },
+    advisorSectionTitle: 'Enviado ao orientador',
+    advisor: {
+      initials: 'RM',
+      name: 'Prof. Rafael Martins',
+      role: 'Aguardando análise e parecer',
+      tone: 'primary',
+    },
+    file: {
+      id: 'file-001',
+      name: 'Relatório_EcoCampus.pdf',
+      kind: 'PDF',
+      size: '1,8 MB',
+      status: 'Enviado para análise',
+    },
+    next: {
+      title: 'E agora?',
+      description:
+        'O orientador poderá aprovar a publicação ou solicitar ajustes. Acompanhe o andamento em Meus projetos e aguarde a notificação com o parecer.',
+      primaryLabel: 'Acompanhar análise',
+      secondaryLabel: 'Voltar aos meus projetos',
+    },
+  },
+};
+
+/** Acompanhamento de análise (pendente) — Biblioteca Conectada */
+export const projectAnalysisBibliotecaResponse = {
+  status: 200,
+  data: {
+    user: { id: 'usr-001', name: 'Ana Costa', initials: 'AC', role: 'student' },
+    header: {
+      title: 'Acompanhar análise',
+      badge: 'Em análise',
+      headline: 'Biblioteca Conectada: acervo digital',
+      meta: 'Sistemas de Informação · Projeto integrador · 2026.2',
+    },
+    alert: {
+      icon: 'clock',
+      tone: 'amber',
+      title: 'Aguardando o parecer do orientador',
+      description:
+        'Seu projeto foi enviado em 05 out. 2026 e ainda está em análise. Ele não está publicado no repositório.',
+    },
+    stepsSectionTitle: 'Etapas da análise',
+    steps: [
+      {
+        icon: 'check',
+        title: 'Projeto enviado',
+        description: '05 out. 2026 · Enviado por Ana Costa ao orientador.',
+      },
+      {
+        icon: 'clock',
+        title: 'Aguardando orientador',
+        description: 'O Prof. Rafael Martins ainda não registrou um parecer.',
+      },
+      {
+        icon: 'empty',
+        title: 'Decisão da análise',
+        description: 'Próxima etapa · Aprovação ou solicitação de ajustes.',
+      },
+      {
+        icon: 'empty',
+        title: 'Publicação',
+        description: 'Disponível à comunidade somente após aprovação.',
+      },
+    ],
+    peopleSectionTitle: 'Quem acompanha',
+    people: [
+      {
+        id: 'usr-001',
+        initials: 'AC',
+        name: 'Ana Costa',
+        role: 'Autora · Responsável pelo envio',
+        tone: 'neutral',
+      },
+      {
+        id: 'usr-004',
+        initials: 'LS',
+        name: 'Lucas Silva',
+        role: 'Autor · Sistemas de Informação',
+        tone: 'neutral',
+      },
+      {
+        id: 'usr-010',
+        initials: 'RM',
+        name: 'Prof. Rafael Martins',
+        role: 'Orientador · Parecer pendente',
+        tone: 'primary',
+      },
+    ],
+    review: {
+      title: 'Nenhum parecer registrado',
+      description:
+        'Quando o orientador concluir a análise, a decisão aparecerá aqui. Você receberá uma notificação sobre a próxima etapa.',
+    },
+    backLabel: 'Voltar aos meus projetos',
+  },
+};
+
+/** Acompanhamento de análise (pendente) — EcoCampus */
+export const projectAnalysisEcoCampusResponse = {
+  status: 200,
+  data: {
+    user: { id: 'usr-001', name: 'Ana Costa', initials: 'AC', role: 'student' },
+    header: {
+      title: 'Acompanhar análise',
+      badge: 'Em análise',
+      headline: 'EcoCampus: gestão de resíduos',
+      meta: 'Sistemas de Informação · Projeto integrador · 2026.2',
+    },
+    alert: {
+      icon: 'clock',
+      tone: 'amber',
+      title: 'Aguardando o parecer do orientador',
+      description:
+        'Seu projeto foi enviado em 06 out. 2026 e ainda está em análise. Ele não está publicado no repositório.',
+    },
+    stepsSectionTitle: 'Etapas da análise',
+    steps: [
+      {
+        icon: 'check',
+        title: 'Projeto enviado',
+        description: '06 out. 2026 · Enviado por Ana Costa ao orientador.',
+      },
+      {
+        icon: 'clock',
+        title: 'Aguardando orientador',
+        description: 'O Prof. Rafael Martins ainda não registrou um parecer.',
+      },
+      {
+        icon: 'empty',
+        title: 'Decisão da análise',
+        description: 'Próxima etapa · Aprovação ou solicitação de ajustes.',
+      },
+      {
+        icon: 'empty',
+        title: 'Publicação',
+        description: 'Disponível à comunidade somente após aprovação.',
+      },
+    ],
+    peopleSectionTitle: 'Quem acompanha',
+    people: [
+      {
+        id: 'usr-001',
+        initials: 'AC',
+        name: 'Ana Costa',
+        role: 'Autora · Responsável pelo envio',
+        tone: 'neutral',
+      },
+      {
+        id: 'usr-004',
+        initials: 'LS',
+        name: 'Lucas Silva',
+        role: 'Autor · Sistemas de Informação',
+        tone: 'neutral',
+      },
+      {
+        id: 'usr-010',
+        initials: 'RM',
+        name: 'Prof. Rafael Martins',
+        role: 'Orientador · Parecer pendente',
+        tone: 'primary',
+      },
+    ],
+    review: {
+      title: 'Nenhum parecer registrado',
+      description:
+        'Quando o orientador concluir a análise, a decisão aparecerá aqui. Você receberá uma notificação sobre a próxima etapa.',
+    },
+    backLabel: 'Voltar aos meus projetos',
+  },
+};
+
+/** Resultado da revisão — aprovação (GET /api/professor/reviews/aquasense/result) */
+export const reviewResultApprovedResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-010',
+      name: 'Prof. Rafael Martins',
+      initials: 'RM',
+      role: 'professor',
+    },
+    header: {
+      title: 'Resultado da revisão',
+      destinationBadge: 'Destino da revisão · Aprovação',
+      hero: { icon: 'check', tone: 'success' },
+      headline: 'Projeto aprovado e publicado!',
+      description:
+        'Você aprovou o AquaSense. O projeto já está disponível para a comunidade acadêmica.',
+    },
+    project: {
+      heroImage: aquasenseHero,
+      statusBadge: { label: 'Publicado', tone: 'success' },
+      title: 'AquaSense: monitoramento da água',
+      meta: 'Engenharia Ambiental · Projeto integrador · 2026.2',
+      authors: 'Beatriz Lima e Pedro Alves',
+      datesLine: 'Enviado em 03 out. 2026 · Aprovado e publicado em 06 out. 2026',
+      slug: 'aquasense',
+    },
+    review: {
+      sectionTitle: 'Parecer de aprovação',
+      author: {
+        initials: 'RM',
+        name: 'Prof. Rafael Martins',
+        role: 'Orientador · 06 out. 2026',
+        tone: 'primary',
+      },
+      text: 'O projeto apresenta metodologia clara e resultados bem documentados. Os arquivos estão completos e o conteúdo contribui para as pesquisas em monitoramento ambiental. Recomendo a publicação.',
+      decisionBadge: { label: 'Decisão registrada · Aprovado', tone: 'success' },
+      items: [],
+    },
+    filesSection: {
+      title: 'Arquivos publicados',
+      items: [
+        {
+          id: 'file-001',
+          name: 'Relatório_AquaSense.pdf',
+          kind: 'PDF',
+          size: '3,2 MB',
+          version: '1',
+        },
+        {
+          id: 'file-002',
+          name: 'Dados_dos_sensores.xlsx',
+          kind: 'XLSX',
+          size: '840 KB',
+          version: '1',
+        },
+      ],
+    },
+    notice: {
+      icon: 'users',
+      tone: 'success',
+      title: 'Conhecimento compartilhado',
+      description:
+        'A equipe foi notificada da aprovação. Alunos e professores já podem consultar o projeto e os materiais publicados.',
+    },
+    actions: {
+      primary: { label: 'Ver projeto publicado', href: '/projetos/aquasense', icon: 'arrow' },
+      secondary: { label: 'Voltar ao painel', href: '/painel' },
+    },
+  },
+};
+
+/** Resultado da revisão — ajustes solicitados (GET /api/professor/reviews/biblioteca-conectada/result) */
+export const reviewResultChangesResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-010',
+      name: 'Prof. Rafael Martins',
+      initials: 'RM',
+      role: 'professor',
+    },
+    header: {
+      title: 'Resultado da revisão',
+      destinationBadge: 'Destino alternativo da revisão · Ajustes',
+      hero: { icon: 'git-branch', tone: 'amber' },
+      headline: 'Ajustes solicitados à equipe.',
+      description:
+        'Seu parecer foi enviado a Ana Costa e Lucas Silva. O projeto aguarda correções antes de uma nova análise.',
+    },
+    topNotice: {
+      icon: 'git-branch',
+      tone: 'primary',
+      title: 'Decisão alternativa à aprovação',
+      description:
+        'Neste resultado da revisão, o projeto Biblioteca Conectada NÃO foi aprovado nem publicado. Esta solicitação não acontece após a aprovação.',
+    },
+    project: {
+      heroImage: null,
+      statusBadge: { label: 'Ajustes solicitados · Não publicado', tone: 'amber' },
+      title: 'Biblioteca Conectada: acervo digital',
+      meta: 'Sistemas de Informação · Projeto integrador · 2026.2',
+      authors: 'Ana Costa e Lucas Silva',
+      datesLine: 'Enviado em 05 out. 2026 · Ajustes solicitados em 06 out. 2026',
+      slug: 'biblioteca-conectada',
+    },
+    review: {
+      sectionTitle: 'O que precisa ser revisto',
+      author: {
+        initials: 'RM',
+        name: 'Prof. Rafael Martins',
+        role: 'Orientador · 06 out. 2026',
+        tone: 'primary',
+      },
+      text: 'A proposta é relevante para a digitalização do acervo. Antes da publicação, é necessário complementar a documentação e a rastreabilidade dos dados:',
+      decisionBadge: null,
+      items: [
+        {
+          title: 'Detalhar a catalogação',
+          description:
+            'Descrever o procedimento de catalogação dos itens e indicar o padrão de metadados utilizado.',
+        },
+        {
+          title: 'Identificar as fontes',
+          description:
+            'Registrar a origem de cada acervo digitalizado e as datas de coleta dos dados.',
+        },
+        {
+          title: 'Explicitar as limitações',
+          description:
+            'Apresentar as limitações do protótipo e revisar a conclusão para distinguir os testes realizados das aplicações futuras.',
+        },
+      ],
+    },
+    filesSection: {
+      title: 'Arquivos avaliados',
+      items: [
+        {
+          id: 'file-001',
+          name: 'Relatório_BibliotecaConectada.pdf',
+          kind: 'PDF',
+          size: '2,1 MB',
+          version: '1',
+        },
+        {
+          id: 'file-002',
+          name: 'Acervo_catalogado.xlsx',
+          kind: 'XLSX',
+          size: '512 KB',
+          version: '1',
+        },
+      ],
+    },
+    bottomNotice: {
+      icon: 'clock',
+      tone: 'amber',
+      title: 'Aguardando reenvio dos autores',
+      description:
+        'A equipe deve atualizar os materiais e reenviar o projeto. Uma nova análise será necessária; a publicação continua pendente.',
+    },
+    actions: {
+      primary: { label: 'Voltar ao painel', href: '/painel' },
+      secondary: {
+        label: 'Ver histórico da revisão',
+        href: '/professor/entregas/biblioteca-conectada',
+        icon: 'history',
+      },
+    },
+  },
+};
+
+/** Trabalhos enviados — lista do professor (GET /api/professor/submissions) */
+export const professorSubmissionsResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-010',
+      name: 'Prof. Rafael Martins',
+      initials: 'RM',
+      role: 'professor',
+    },
+    header: {
+      context: 'Espaço do professor',
+      badge: 'Área do professor',
+      headline: 'Trabalhos enviados',
+      description:
+        'Acompanhe as entregas dos alunos e acesse os materiais de cada projeto.',
+    },
+    stats: [
+      { id: 'in-review', value: 2, label: 'Em análise', variant: 'primary' },
+      { id: 'published', value: 1, label: 'Publicado', variant: 'default' },
+    ],
+    searchPlaceholder: 'Buscar projeto ou aluno',
+    filters: { allLabel: 'Todas (3)', classLabel: 'Turma 2026.2' },
+    section: { title: 'Entregas dos alunos', actionLabel: '3 projetos' },
+    submissions: [
+      {
+        id: 'sub-001',
+        slug: 'aquasense',
+        status: 'in-review',
+        title: 'AquaSense: monitoramento da água',
+        authors: 'Beatriz Lima e Pedro Alves',
+        course: 'Engenharia Ambiental',
+        classLine: 'Turma 2026.2 · Projeto integrador',
+        dateLine: 'Enviado em 03 out. 2026',
+      },
+      {
+        id: 'sub-002',
+        slug: 'biblioteca-conectada',
+        status: 'in-review',
+        title: 'Biblioteca Conectada: acervo digital',
+        authors: 'Ana Costa e Lucas Silva',
+        course: 'Sistemas de Informação',
+        classLine: 'Turma 2026.2 · Projeto integrador',
+        dateLine: 'Enviado em 05 out. 2026',
+      },
+      {
+        id: 'sub-003',
+        slug: 'rota-acessivel',
+        status: 'published',
+        title: 'Rota Acessível: um campus para todos',
+        authors: 'Ana Costa e Lucas Silva',
+        course: 'Sistemas de Informação',
+        classLine: 'Turma 2026.2 · Projeto integrador',
+        dateLine: 'Aprovado em 02 out. 2026',
+      },
+    ],
+    actionLabel: 'Ver entrega',
+  },
+};
+
+/** Detalhe da entrega aprovada (GET /api/professor/submissions/rota-acessivel) */
+export const deliveryApprovedResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-010',
+      name: 'Prof. Rafael Martins',
+      initials: 'RM',
+      role: 'professor',
+    },
+    header: {
+      title: 'Detalhe da entrega',
+      badge: 'Área do professor',
+      statusLine: 'Entrega aprovada',
+    },
+    project: {
+      heroImage: rotaAcessivelHero,
+      courseBadge: 'Sistemas de Informação',
+      statusBadge: { label: 'Publicado', tone: 'success' },
+      title: 'Rota Acessível: um campus para todos',
+      meta: 'Projeto integrador · Turma 2026.2',
+      publishedLine: 'Publicado em 02 out. 2026 · 24 salvos',
+      authors: 'Ana Costa e Lucas Silva',
+      advisor: 'Orientador: Prof. Rafael Martins',
+    },
+    about: {
+      title: 'Sobre o projeto',
+      description:
+        'Uma plataforma para mapear rotas acessíveis no campus, conectando estudantes a trajetos com rampas, piso tátil e elevadores. O projeto combina pesquisa com a comunidade acadêmica e um protótipo navegável para tornar a faculdade mais inclusiva.',
+      tags: ['Acessibilidade', 'Tecnologia', 'Inclusão'],
+    },
+    materials: {
+      title: 'Materiais enviados',
+      actionLabel: '2 arquivos',
+      items: [
+        {
+          id: 'file-001',
+          name: 'Relatório_Rota_Acessível.pdf',
+          kind: 'PDF',
+          size: '2,4 MB',
+        },
+        {
+          id: 'file-002',
+          name: 'Protótipo_Rota_Acessível.zip',
+          kind: 'ZIP',
+          size: '8,1 MB',
+        },
+      ],
+    },
+    external: {
+      title: 'Projeto · versão navegável',
+      description: 'Explore as rotas acessíveis do campus',
+      url: 'rota-acessivel.example.com',
+      actionLabel: 'Acessar projeto',
+    },
+    review: {
+      pending: false,
+      title: 'Revisão concluída',
+      text: 'Aprovado em 02 out. 2026, por Prof. Rafael Martins.',
+      checks: [
+        'Dados e autoria conferidos',
+        'Arquivos completos e legíveis',
+        'Conteúdo adequado ao repositório',
+      ],
+      historyLabel: 'Ver parecer registrado',
+      historyHref: '/professor/revisar/rota-acessivel/resultado',
+    },
+    footer:
+      'Esta entrega já está publicada. A decisão e os comentários permanecem no histórico do projeto.',
+  },
+};
+
+/** Detalhe da entrega em análise — AquaSense (GET /api/professor/submissions/aquasense) */
+export const deliveryPendingResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-010',
+      name: 'Prof. Rafael Martins',
+      initials: 'RM',
+      role: 'professor',
+    },
+    header: {
+      title: 'Detalhe da entrega',
+      badge: 'Área do professor',
+      statusLine: 'Entrega em análise',
+    },
+    project: {
+      heroImage: aquasenseHero,
+      courseBadge: 'Engenharia Ambiental',
+      statusBadge: { label: 'Em análise', tone: 'amber' },
+      title: 'AquaSense: monitoramento da água',
+      meta: 'Projeto integrador · Turma 2026.2',
+      publishedLine: 'Enviado em 03 out. 2026',
+      authors: 'Beatriz Lima e Pedro Alves',
+      advisor: 'Orientador: Prof. Rafael Martins',
+    },
+    about: {
+      title: 'Sobre o projeto',
+      description:
+        'Sensores de pH, turbidez e temperatura conectados a um protótipo que acompanha a qualidade da água em tempo real, apoiando decisões sobre o uso consciente do recurso no campus.',
+      tags: ['Sensoriamento', 'Meio ambiente', 'Dados'],
+    },
+    materials: {
+      title: 'Materiais enviados',
+      actionLabel: '2 arquivos',
+      items: [
+        {
+          id: 'file-001',
+          name: 'Relatório_AquaSense.pdf',
+          kind: 'PDF',
+          size: '3,2 MB',
+        },
+        {
+          id: 'file-002',
+          name: 'Dados_dos_sensores.xlsx',
+          kind: 'XLSX',
+          size: '840 KB',
+        },
+      ],
+    },
+    external: null,
+    review: {
+      pending: true,
+      title: 'Revisão pendente',
+      text: 'A entrega ainda está em análise. Registre o parecer para decidir a publicação do projeto.',
+      checks: [],
+      actionLabel: 'Iniciar revisão',
+      actionHref: '/professor/revisar/aquasense',
+    },
+    footer:
+      'Esta entrega ainda não foi publicada. A decisão e os comentários ficarão no histórico do projeto.',
+  },
+};
+
+/** Detalhe da entrega em análise — Biblioteca Conectada (GET /api/professor/submissions/biblioteca-conectada) */
+export const deliveryPendingBibliotecaResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-010',
+      name: 'Prof. Rafael Martins',
+      initials: 'RM',
+      role: 'professor',
+    },
+    header: {
+      title: 'Detalhe da entrega',
+      badge: 'Área do professor',
+      statusLine: 'Entrega em análise',
+    },
+    project: {
+      heroImage: null,
+      courseBadge: 'Sistemas de Informação',
+      statusBadge: { label: 'Em análise', tone: 'amber' },
+      title: 'Biblioteca Conectada: acervo digital',
+      meta: 'Projeto integrador · Turma 2026.2',
+      publishedLine: 'Enviado em 05 out. 2026',
+      authors: 'Ana Costa e Lucas Silva',
+      advisor: 'Orientador: Prof. Rafael Martins',
+    },
+    about: {
+      title: 'Sobre o projeto',
+      description:
+        'Uma plataforma para digitalizar e consultar o acervo da biblioteca do campus, com busca por temas e reserva de itens direto pelo celular.',
+      tags: ['Biblioteca', 'Digitalização', 'Acesso aberto'],
+    },
+    materials: {
+      title: 'Materiais enviados',
+      actionLabel: '2 arquivos',
+      items: [
+        {
+          id: 'file-001',
+          name: 'Relatório_BibliotecaConectada.pdf',
+          kind: 'PDF',
+          size: '2,1 MB',
+        },
+        {
+          id: 'file-002',
+          name: 'Acervo_catalogado.xlsx',
+          kind: 'XLSX',
+          size: '512 KB',
+        },
+      ],
+    },
+    external: null,
+    review: {
+      pending: true,
+      title: 'Revisão pendente',
+      text: 'A entrega ainda está em análise. Registre o parecer para decidir a publicação do projeto.',
+      checks: [],
+      actionLabel: 'Iniciar revisão',
+      actionHref: '/professor/revisar/biblioteca-conectada',
+    },
+    footer:
+      'Esta entrega ainda não foi publicada. A decisão e os comentários ficarão no histórico do projeto.',
+  },
+};
+
 /** Índice de payloads por perfil usado pelo handler do dashboard */
 const dashboardByRole = {
   professor: professorDashboardResponse,
@@ -958,6 +1585,11 @@ export const apiMock = {
     dashboardByRole[query.role] ?? dashboardByRole.professor,
   'GET /api/student/projects': studentProjectsResponse,
   'GET /api/student/projects/new': newProjectFormResponse,
+  'GET /api/student/projects/submission': submissionConfirmationResponse,
+  'GET /api/student/projects/biblioteca-conectada/analysis':
+    projectAnalysisBibliotecaResponse,
+  'GET /api/student/projects/ecocampus/analysis':
+    projectAnalysisEcoCampusResponse,
   'GET /api/projects/explore': exploreProjectsResponse,
   // Detalhe: mesmo payload para os slugs do feed (mock único — a API real
   // diferenciará cada projeto pelo :slug da rota)
@@ -970,6 +1602,14 @@ export const apiMock = {
   // real devolverá cada projeto pelo :slug)
   'GET /api/professor/reviews/aquasense': projectReviewResponse,
   'GET /api/professor/reviews/biblioteca-conectada': projectReviewResponse,
+  'GET /api/professor/reviews/aquasense/result': reviewResultApprovedResponse,
+  'GET /api/professor/reviews/biblioteca-conectada/result':
+    reviewResultChangesResponse,
   'GET /api/professor/class-notes': professorClassNotesResponse,
   'GET /api/coordinator/class-notes': coordinatorClassNotesResponse,
+  'GET /api/professor/submissions': professorSubmissionsResponse,
+  'GET /api/professor/submissions/rota-acessivel': deliveryApprovedResponse,
+  'GET /api/professor/submissions/aquasense': deliveryPendingResponse,
+  'GET /api/professor/submissions/biblioteca-conectada':
+    deliveryPendingBibliotecaResponse,
 };

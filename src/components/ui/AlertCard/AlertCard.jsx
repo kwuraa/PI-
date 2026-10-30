@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Link2Off, AlertTriangle, ShieldCheck, Info } from '../../icons';
+import { ArrowRight, Link2Off, AlertTriangle, ShieldCheck, Info, Clock, Users, GitBranch, Lock } from '../../icons';
 import Button from '../Button/Button';
 import './AlertCard.css';
 
@@ -9,15 +9,21 @@ const ICONS = {
   warning: AlertTriangle,
   shield: ShieldCheck,
   info: Info,
+  clock: Clock,
+  users: Users,
+  'git-branch': GitBranch,
+  lock: Lock,
 };
 
 /**
- * Cartão de alerta: título vermelho + descrição + ação.
+ * Cartão de alerta: título + descrição + ação opcional.
+ * tone: 'primary' (vermelho) | 'amber' (atenção) | 'success' (positivo).
  * A ação pode ser botão (onClick) ou link interno (href).
  * `action.arrow: false` remove a seta (ex.: botão "Resolver" simples).
  */
 export default function AlertCard({
   icon = 'link-off',
+  tone = 'primary',
   title,
   description,
   action,
@@ -25,7 +31,7 @@ export default function AlertCard({
   const Icon = ICONS[icon] || Link2Off;
 
   return (
-    <aside className="alert-card">
+    <aside className={`alert-card alert-card--${tone}`}>
       <div className="alert-card__header">
         <span className="alert-card__icon" aria-hidden="true">
           <Icon size={20} />

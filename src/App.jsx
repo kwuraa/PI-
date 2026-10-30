@@ -13,6 +13,11 @@ import ReviewProjectPage from './pages/ReviewProjectPage/ReviewProjectPage';
 import PublishProjectPage from './pages/PublishProjectPage/PublishProjectPage';
 import ProfessorGradesPage from './pages/ProfessorGradesPage/ProfessorGradesPage';
 import CoordinatorGradesPage from './pages/CoordinatorGradesPage/CoordinatorGradesPage';
+import SubmissionConfirmationPage from './pages/SubmissionConfirmationPage/SubmissionConfirmationPage';
+import ProjectAnalysisPage from './pages/ProjectAnalysisPage/ProjectAnalysisPage';
+import ReviewResultPage from './pages/ReviewResultPage/ReviewResultPage';
+import ProfessorSubmissionsPage from './pages/ProfessorSubmissionsPage/ProfessorSubmissionsPage';
+import ProfessorDeliveryPage from './pages/ProfessorDeliveryPage/ProfessorDeliveryPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -36,6 +41,14 @@ export default function App() {
         path="/meus-projetos/novo"
         element={<PublishProjectPage />}
       />
+      <Route
+        path="/meus-projetos/enviado"
+        element={<SubmissionConfirmationPage />}
+      />
+      <Route
+        path="/meus-projetos/:slug/analise"
+        element={<ProjectAnalysisPage />}
+      />
 
       {/* Área logada — professor/coordenador */}
       <Route path="/painel" element={<DashboardPage />} />
@@ -52,6 +65,15 @@ export default function App() {
       <Route
         path="/professor/revisar/:slug"
         element={<ReviewProjectPage />}
+      />
+      <Route
+        path="/professor/revisar/:slug/resultado"
+        element={<ReviewResultPage />}
+      />
+      <Route path="/professor/entregas" element={<ProfessorSubmissionsPage />} />
+      <Route
+        path="/professor/entregas/:slug"
+        element={<ProfessorDeliveryPage />}
       />
       <Route
         path="/professor/criterios"

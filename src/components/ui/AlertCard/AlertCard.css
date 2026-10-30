@@ -1,5 +1,5 @@
 /* ============================================================
-   AlertCard — cartão de alerta (fundo rosa)
+   AlertCard — cartão de alerta com tons
    ============================================================ */
 
 .alert-card {
@@ -9,6 +9,24 @@
   padding: var(--space-4);
   background-color: var(--color-primary-tint);
   border-radius: var(--radius-lg);
+}
+
+.alert-card--amber {
+  background-color: var(--color-amber-tint);
+}
+
+.alert-card--amber .alert-card__icon,
+.alert-card--amber .alert-card__title {
+  color: var(--color-amber-text);
+}
+
+.alert-card--success {
+  background-color: var(--color-success-tint);
+}
+
+.alert-card--success .alert-card__icon,
+.alert-card--success .alert-card__title {
+  color: var(--color-success-text);
 }
 
 .alert-card__header {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import TopBar from '../../components/layout/TopBar/TopBar';
 import PageShell from '../../components/layout/PageShell/PageShell';
 import BottomNav from '../../components/layout/BottomNav/BottomNav';
@@ -27,6 +27,7 @@ const DECISIONS = {
  */
 export default function ReviewProjectPage() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [review, setReview] = useState(null);
   const [header, setHeader] = useState({ title: 'Revisar projeto' });
   const [loading, setLoading] = useState(true);
@@ -166,13 +167,23 @@ export default function ReviewProjectPage() {
         />
 
         <div className="review__actions">
-          <Button fullWidth onClick={() => setDecision('approved')}>
+          <Button
+            fullWidth
+            onClick={() => {
+              setDecision('approved');
+              // No back-end real, POST da decisão redireciona ao resultado
+              navigate(`/professor/revisar/${slug}/resultado`);
+            }}
+          >
             <Check size={18} /> {review.approveLabel}
           </Button>
           <Button
             variant="secondary"
             fullWidth
-            onClick={() => setDecision('changes')}
+            onClick={() => {
+              setDecision('changes');
+              navigate(`/professor/revisar/${slug}/resultado`);
+            }}
           >
             <MessageSquare size={18} /> {review.requestChangesLabel}
           </Button>

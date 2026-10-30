@@ -358,3 +358,35 @@ export const Info = (props) => (
     <path d="M12 8h.01" />
   </svg>
 );
+
+export const ExternalLink = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="M15 3h6v6" />
+    <path d="M10 14 21 3" />
+    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+  </svg>
+);
+
+export const CheckCircle2 = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <circle cx="12" cy="12" r="10" />
+    <path d="m9 12 2 2 4-4" />
+  </svg>
+);
+
+export const GitBranch = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <line x1="6" y1="3" x2="6" y2="15" />
+    <circle cx="18" cy="6" r="3" />
+    <circle cx="6" cy="18" r="3" />
+    <path d="M18 9a9 9 0 0 1-9 9" />
+  </svg>
+);
+
+export const History = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+    <path d="M3 3v5h5" />
+    <path d="M12 7v5l4 2" />
+  </svg>
+);

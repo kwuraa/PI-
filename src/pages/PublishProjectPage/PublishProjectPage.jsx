@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import TopBar from '../../components/layout/TopBar/TopBar';
 import PageShell from '../../components/layout/PageShell/PageShell';
 import BottomNav from '../../components/layout/BottomNav/BottomNav';
@@ -25,6 +26,8 @@ const requiredLabel = (field) => (field.required ? `${field.label} *` : field.la
  * futuro, POST /api/student/projects fará o envio ao orientador.
  */
 export default function PublishProjectPage() {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -203,7 +206,11 @@ export default function PublishProjectPage() {
         <div className="publish__actions">
           <Button
             fullWidth
-            onClick={() => setFeedback(form.sentFeedback)}
+            onClick={() => {
+              setFeedback(form.sentFeedback);
+              // No back-end real, o POST confirma e leva à tela de confirmação
+              navigate('/meus-projetos/enviado');
+            }}
           >
             <Send size={18} /> {form.submitLabel}
           </Button>
