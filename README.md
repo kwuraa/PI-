@@ -102,21 +102,25 @@ src/
 ├── main.jsx              # Ponto de entrada do React
 ├── App.jsx               # Mapa de rotas (URL → tela)
 │
-├── pages/                # 🖥 TELAS (uma pasta por tela)
+├── pages/                # 🖥 TELAS (uma pasta por tela — 30 telas)
 │   ├── WelcomePage/      # Boas-vindas
 │   ├── LoginPage/        # Acessar o PI²
+│   ├── SignupPage/       # Cadastro institucional
 │   ├── DashboardPage/    # Painel (professor / coordenador / ambos)
-│   └── PlaceholderPage/  # Genérica para telas futuras
+│   ├── ExplorePage/      # Explorar projetos + painel de filtros
+│   ├── CoordinatorConsolidatedReportPage/  # Relatório consolidado
+│   └── …                 # cada tela do design tem sua própria pasta
 │
 ├── components/           # 🧩 COMPONENTES REUTILIZÁVEIS
-│   ├── ui/               # Peças visuais (Button, TextField, StatCard…)
+│   ├── ui/               # Peças visuais (Button, TextField, FilterSheet…)
 │   ├── layout/           # Estruturas (TopBar, BottomNav, PageShell…)
 │   └── icons/            # Todos os ícones SVG em um só lugar
 │
 ├── services/             # 🔌 CAMADA DE DADOS (o "meio-termo" com a API)
 │   ├── api.js            #   Requisições (hoje: mock | amanhã: fetch)
-│   ├── authService.js    #   Login
-│   └── dashboardService.js
+│   ├── authService.js    #   Login, cadastro e recuperação de senha
+│   ├── dashboardService.js
+│   └── …                 # um serviço por domínio (notas, relatórios…)
 │
 ├── mocks/                # 🎭 DADOS FALSOS no formato da API futura
 │   └── apiMock.js
@@ -133,7 +137,9 @@ src/
    pelo respectivo componente.
 4. **As páginas nunca importam mocks diretamente** — elas chamam `services/`.
 5. **Cores, fontes e espaçamentos** vêm sempre das variáveis de
-   `styles/global.css`, nunca valores "cruos" (`#hex`, `px` soltos).
+   `styles/global.css`; valores "curos" (`#hex`) só aparecem quando o design
+   exige um tom fora da paleta (ex.: trilhas de progresso e botões
+   desabilitados).
 
 ---
 
@@ -234,13 +240,48 @@ alterado** — só a origem dos dados.
 | --- | --- | --- |
 | `/` | Boas-vindas | ✅ Implementada |
 | `/acessar` | Acessar o PI² (login) | ✅ Implementada |
-| `/meus-projetos` | Meus projetos (aluno) | ✅ Implementada |
-| `/explorar` | Explorar projetos | ✅ Implementada |
+| `/cadastro` | Cadastro institucional | ✅ Implementada |
+| `/recuperar` | Recuperação de senha | ✅ Implementada |
+| `/meus-projetos` | Meus projetos (lista do aluno) | ✅ Implementada |
+| `/meus-projetos/novo` | Publicação de projeto | ✅ Implementada |
+| `/meus-projetos/enviado` | Confirmação de envio | ✅ Implementada |
+| `/meus-projetos/:slug` | Meu projeto (visão do dono) | ✅ Implementada |
+| `/meus-projetos/:slug/analise` | Análise de projeto (biblioteca/conectada) | ✅ Implementada |
+| `/explorar` | Explorar projetos + painel de filtros (bottom sheet) | ✅ Implementada |
 | `/projetos/:slug` | Detalhes do projeto | ✅ Implementada |
+| `/projetos/:slug/publico` | Leitura pública do projeto | ✅ Implementada |
 | `/salvos` | Projetos salvos | ✅ Implementada |
 | `/perfil` | Perfil e configurações | ✅ Implementada |
+| `/perfil/alterar-senha` | Alterar senha | 🚧 Em breve (placeholder) |
+| `/perfil/privacidade` | Privacidade e termos de uso | 🚧 Em breve (placeholder) |
+| `/perfil/ajuda` | Ajuda e suporte | 🚧 Em breve (placeholder) |
 | `/painel` | Painel (professor/coordenador) | ✅ Implementada |
-| `/professor/*`, `/coordenador/*` | Telas de revisão, notas, turmas etc. | 🚧 Em breve (placeholder) |
+| `/painel/avaliacoes` | Avaliações — abas Professores e Pares | ✅ Implementada |
+| `/professor/notas` | Lançamento de notas — Notas da sala | ✅ Implementada |
+| `/professor/revisar/:slug` | Revisão de projeto pelo professor | ✅ Implementada |
+| `/professor/revisar/:slug/resultado` | Resultado da revisão (aprovado / com ajustes) | ✅ Implementada |
+| `/professor/entregas` | Trabalhos enviados | ✅ Implementada |
+| `/professor/entregas/:slug` | Detalhe da entrega (aprovada / pendente) | ✅ Implementada |
+| `/professor/criterios` | Critérios de avaliação — Meus critérios | ✅ Implementada |
+| `/professor/criterios/:id` | Editar critério | 🚧 Em breve (placeholder) |
+| `/professor/relatorio` | Relatório analítico — Relatório por turma | ✅ Implementada |
+| `/coordenador/notas` | Notas da sala (visão do coordenador) | ✅ Implementada |
+| `/coordenador/grupos` | Gestão de grupos | ✅ Implementada |
+| `/coordenador/grupos/:id` | Detalhe do grupo | 🚧 Em breve (placeholder) |
+| `/coordenador/grupos/:id/link` | Adicionar link de documentação | 🚧 Em breve (placeholder) |
+| `/coordenador/paritarias` | Avaliação paritária entre coordenadores | ✅ Implementada |
+| `/coordenador/criterios` | Critérios gerais — Critérios do curso | ✅ Implementada |
+| `/coordenador/criterios/novo` | Novo critério geral | 🚧 Em breve (placeholder) |
+| `/coordenador/criterios/:id` | Editar critério geral | 🚧 Em breve (placeholder) |
+| `/coordenador/desempenho` | Avaliação de desempenho docente | ✅ Implementada |
+| `/coordenador/relatorio` | Relatório consolidado (gráfico da coorte) | ✅ Implementada |
+| `/coordenador/pendencias` | Pendências da coorte | 🚧 Em breve (placeholder) |
+| `/coordenador/avaliar` | Avaliar docentes | 🚧 Em breve (placeholder) |
+| `/coordenador/entregaveis` | Entregáveis pendentes | 🚧 Em breve (placeholder) |
+
+> Os `placeholder`s registram o endereço de destino desde já — nenhum link
+> da interface termina em beco sem saída. Quando a tela chegar, basta trocar
+> o `element` da rota.
 
 ### Os três painéis (`/painel`)
 
