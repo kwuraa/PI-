@@ -243,6 +243,21 @@ export const Download = (props) => (
   </svg>
 );
 
+export const TrendingUp = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+    <polyline points="16 7 22 7 22 13" />
+  </svg>
+);
+
+export const Printer = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <polyline points="6 9 6 2 18 2 18 9" />
+    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+    <rect x="6" y="14" width="12" height="8" rx="1" />
+  </svg>
+);
+
 export const Send = (props) => (
   <svg {...baseProps} width={props.size || 24} {...props}>
     <path d="M22 2 11 13" />

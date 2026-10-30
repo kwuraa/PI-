@@ -2020,6 +2020,91 @@ export const classReportResponse = {
   },
 };
 
+/** Relatório consolidado do coordenador (GET /api/coordinator/report) */
+export const consolidatedReportResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-010',
+      name: 'Prof. Rafael Martins',
+      initials: 'RM',
+      role: 'professor',
+    },
+    header: {
+      context: 'Coordenador e professor',
+      backLabel: 'Painel unificado',
+      backHref: '/painel',
+      badge: 'Coordenador',
+      title: 'Relatório consolidado',
+      description: 'Uma visão da coorte, da evolução às pendências do curso.',
+    },
+    cohort: {
+      label: 'Coorte · data de ingresso',
+      value: '1º semestre de 2025 · 10/02/2025',
+      options: [
+        '1º semestre de 2025 · 10/02/2025',
+        '2º semestre de 2025 · 10/08/2025',
+      ],
+      meta: 'ADS · 24 alunos · 4 grupos · Até 2026.2',
+    },
+    stats: {
+      averageLabel: 'Média geral',
+      deltaLabel: 'Pontos desde 2025.1',
+    },
+    chart: {
+      sectionTitle: 'Evolução por semestre',
+      subtitle: 'Média da coorte · escala de 0 a 10',
+      axisTop: '10',
+      axisBottom: '0',
+      semesters: [
+        { id: '2025.1', label: '2025.1', average: 7.0 },
+        { id: '2025.2', label: '2025.2', average: 7.5 },
+        { id: '2026.1', label: '2026.1', average: 8.0 },
+        { id: '2026.2', label: '2026.2', average: 8.5 },
+      ],
+      captionTemplate:
+        'Média geral: ({values}) ÷ {count}. Os quatro semestres têm o mesmo peso.',
+    },
+    locks: {
+      title: 'Travas de disciplinas',
+      badge: 'CHAVE',
+      description: '3 alunos com progressão bloqueada por disciplinas-chave.',
+      items: [
+        { id: 'lock-1', name: 'Banco de Dados', studentsLabel: '2 alunos' },
+        {
+          id: 'lock-2',
+          name: 'Engenharia de Software',
+          studentsLabel: '1 aluno',
+        },
+      ],
+      actionLabel: 'Ver pendências da coorte',
+      actionHref: '/coordenador/pendencias',
+    },
+    boards: {
+      sectionTitle: 'Bancas e entregáveis',
+      rows: [
+        {
+          id: 'bancas',
+          title: 'Bancas',
+          badge: { label: '3 de 4 realizadas', tone: 'success' },
+          meta: '1 banca agendada · 29 out. 2026',
+        },
+        {
+          id: 'entregaveis',
+          title: 'Entregáveis',
+          badge: { label: '2 pendentes', tone: 'amber' },
+          meta: '10 de 12 recebidos · Faltam 1 relatório e 1 repositório de código.',
+        },
+      ],
+    },
+    actions: {
+      exportLabel: 'Exportar PDF',
+      printLabel: 'Imprimir',
+    },
+    footer: 'Dados consolidados em 22 out. 2026.',
+  },
+};
+
 /** Hub "Avaliações" — abas Professores/Pares (GET /api/evaluations) */
 export const evaluationsResponse = {
   status: 200,
@@ -2343,4 +2428,5 @@ export const apiMock = {
   'GET /api/coordinator/teacher-evaluation': teacherEvaluationResponse,
   'GET /api/coordinator/peer-reviews': peerReviewsResponse,
   'GET /api/evaluations': evaluationsResponse,
+  'GET /api/coordinator/report': consolidatedReportResponse,
 };

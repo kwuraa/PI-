@@ -27,6 +27,7 @@ import ProfessorReportPage from './pages/ProfessorReportPage/ProfessorReportPage
 import CoordinatorTeacherEvaluationPage from './pages/CoordinatorTeacherEvaluationPage/CoordinatorTeacherEvaluationPage';
 import CoordinatorPeerReviewsPage from './pages/CoordinatorPeerReviewsPage/CoordinatorPeerReviewsPage';
 import AvaliacoesPage from './pages/AvaliacoesPage/AvaliacoesPage';
+import CoordinatorConsolidatedReportPage from './pages/CoordinatorConsolidatedReportPage/CoordinatorConsolidatedReportPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -135,7 +136,11 @@ export default function App() {
       />
       <Route
         path="/coordenador/relatorio"
-        element={<PlaceholderPage title="Relatório consolidado" />}
+        element={<CoordinatorConsolidatedReportPage />}
+      />
+      <Route
+        path="/coordenador/pendencias"
+        element={<PlaceholderPage title="Pendências da coorte" />}
       />
       <Route
         path="/coordenador/avaliar"
