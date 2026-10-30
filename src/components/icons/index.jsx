@@ -343,6 +343,12 @@ export const ChevronDown = (props) => (
   </svg>
 );
 
+export const ChevronUp = (props) => (
+  <svg {...baseProps} width={props.size || 24} {...props}>
+    <path d="m18 15-6-6-6 6" />
+  </svg>
+);
+
 export const Upload = (props) => (
   <svg {...baseProps} width={props.size || 24} {...props}>
     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />

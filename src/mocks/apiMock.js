@@ -2020,6 +2020,138 @@ export const classReportResponse = {
   },
 };
 
+/** Desempenho docente — coordenador (GET /api/coordinator/teacher-evaluation) */
+export const teacherEvaluationResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-020',
+      name: 'Profa. Marta Campos',
+      initials: 'MC',
+      role: 'coordinator',
+    },
+    header: {
+      context: 'Espaço do coordenador',
+      badge: 'Avaliação docente',
+      title: 'Desempenho docente',
+      description:
+        'Avalie a atuação dos professores no projeto integrador do semestre.',
+    },
+    semester: {
+      label: 'Semestre vigente',
+      value: '2026.2 · 2º semestre',
+      options: ['2026.2 · 2º semestre', '2026.1 · 1º semestre'],
+    },
+    sectionTitle: 'Professores',
+    teachers: [
+      {
+        id: 'usr-010',
+        initials: 'RM',
+        name: 'Rafael Martins',
+        discipline: 'Projeto Integrador II',
+        status: 'pending',
+        score: '8,5',
+        comment:
+          'O professor acompanha as equipes com regularidade e oferece devolutivas claras. Pode ampliar os registros das orientações ao longo do semestre.',
+      },
+      {
+        id: 'usr-105',
+        initials: 'JR',
+        name: 'Juliana Ribeiro',
+        discipline: 'Engenharia de Software',
+        status: 'pending',
+        score: '',
+        comment: '',
+      },
+      {
+        id: 'usr-106',
+        initials: 'CM',
+        name: 'Carlos Mendes',
+        discipline: 'Banco de Dados',
+        status: 'done',
+        score: '7,0',
+        comment: 'Aulas bem estruturadas e avaliações coerentes com o conteúdo.',
+      },
+    ],
+    form: {
+      title: 'Sua avaliação',
+      scoreLabel: 'Nota (0–10)',
+      scoreSuffix: 'de 10',
+      commentLabel: 'Comentário obrigatório',
+      helper: 'Informe uma nota de 0 a 10 e um comentário para salvar.',
+      saveLabel: 'Salvar avaliação',
+      savedFeedback: 'Avaliação salva.',
+    },
+  },
+};
+
+/** Avaliação paritária entre coordenadores (GET /api/coordinator/peer-reviews) */
+export const peerReviewsResponse = {
+  status: 200,
+  data: {
+    user: {
+      id: 'usr-020',
+      name: 'Profa. Marta Campos',
+      initials: 'MC',
+      role: 'coordinator',
+    },
+    header: {
+      context: 'Espaço do coordenador',
+      badge: 'Avaliação paritária',
+      title: 'Entre coordenadores',
+      description:
+        'Acompanhe a participação dos pares no ciclo de avaliação vigente.',
+    },
+    cycle: {
+      title: 'Ciclo 2026.2',
+      statusBadge: { label: 'Em análise', tone: 'amber' },
+      progressLabel: '{done} de {total} coordenadores avaliaram',
+      captionTemplate: '{percent}% concluído · Faltam {pending} avaliações neste ciclo.',
+    },
+    sectionTitle: 'Coordenadores participantes',
+    participants: [
+      {
+        id: 'usr-101',
+        initials: 'AS',
+        name: 'Ana Paula Souza',
+        course: 'Análise e Desenv. de Sistemas',
+        status: 'done',
+        statusLabel: 'Avaliado',
+      },
+      {
+        id: 'usr-102',
+        initials: 'MO',
+        name: 'Marcos Oliveira',
+        course: 'Gestão Empresarial',
+        status: 'done',
+        statusLabel: 'Avaliado',
+      },
+      {
+        id: 'usr-103',
+        initials: 'RA',
+        name: 'Renata Almeida',
+        course: 'Desenvolvimento de Software',
+        status: 'pending',
+        statusLabel: 'Pendente',
+      },
+      {
+        id: 'usr-104',
+        initials: 'PS',
+        name: 'Paulo Santos',
+        course: 'Gestão da Produção Industrial',
+        status: 'pending',
+        statusLabel: 'Pendente',
+      },
+    ],
+    closeLabel: 'Encerrar ciclo',
+    closedFeedback: 'Ciclo encerrado.',
+    info: {
+      text: 'O ciclo só pode ser encerrado quando todos os coordenadores concluírem',
+      requiredTemplate: 'Obrigatório: {done}/{total} avaliações concluídas.',
+    },
+  },
+};
+
 /** Índice de payloads por perfil usado pelo handler do dashboard */
 const dashboardByRole = {
   professor: professorDashboardResponse,
@@ -2071,4 +2203,6 @@ export const apiMock = {
   'GET /api/coordinator/criteria': coordinatorCriteriaResponse,
   'GET /api/coordinator/groups': coordinatorGroupsResponse,
   'GET /api/professor/class-report': classReportResponse,
+  'GET /api/coordinator/teacher-evaluation': teacherEvaluationResponse,
+  'GET /api/coordinator/peer-reviews': peerReviewsResponse,
 };

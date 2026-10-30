@@ -1,0 +1,243 @@
+/* ============================================================
+   CoordinatorTeacherEvaluationPage — "Desempenho docente"
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.teacher-eval__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.teacher-eval__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Introdução ---------- */
+.teacher-eval__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.teacher-eval__title {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.teacher-eval__description {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Seção ---------- */
+.teacher-eval__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.teacher-eval__section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.teacher-eval__heading {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.teacher-eval__count {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+}
+
+/* ---------- Cartão do professor ---------- */
+.teacher-eval__card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.teacher-eval__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-4);
+  font-family: inherit;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.teacher-eval__identity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.teacher-eval__avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-muted);
+  background-color: var(--color-bg);
+  border-radius: var(--radius-pill);
+}
+
+.teacher-eval__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.teacher-eval__name {
+  font-size: var(--font-size-body);
+  color: var(--color-ink);
+}
+
+.teacher-eval__discipline {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.teacher-eval__header-end {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+.teacher-eval__chevron {
+  display: inline-flex;
+  color: var(--color-primary-text);
+}
+
+/* ---------- Formulário expandido ---------- */
+.teacher-eval__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: 0 var(--space-4) var(--space-4);
+}
+
+.teacher-eval__form-title {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-body);
+  color: var(--color-ink);
+}
+
+.teacher-eval__label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+}
+
+.teacher-eval__score-control {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.teacher-eval__score {
+  width: 100%;
+  min-height: 54px;
+  padding: 0 var(--space-8) 0 var(--space-4);
+  font-family: inherit;
+  font-size: var(--font-size-body);
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.teacher-eval__score:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-tint);
+}
+
+.teacher-eval__score-suffix {
+  position: absolute;
+  right: var(--space-4);
+  font-size: var(--font-size-small);
+  color: var(--color-muted);
+  pointer-events: none;
+}
+
+.teacher-eval__comment {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-family: inherit;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  resize: vertical;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.teacher-eval__comment:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-tint);
+}
+
+.teacher-eval__helper {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.teacher-eval__feedback {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  text-align: center;
+}
+
+.teacher-eval__feedback--success {
+  color: var(--color-success-text);
+}
+
+.teacher-eval__feedback--error {
+  color: var(--color-primary-text);
+}
+
+/* ============================================================
+   Desktop (preparado — coluna central mais larga)
+   ============================================================ */
+@media (min-width: 768px) {
+  .teacher-eval__intro,
+  .teacher-eval__section {
+    max-width: 640px;
+  }
+}

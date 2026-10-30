@@ -24,6 +24,8 @@ import ProfessorCriteriaPage from './pages/ProfessorCriteriaPage/ProfessorCriter
 import CoordinatorCriteriaPage from './pages/CoordinatorCriteriaPage/CoordinatorCriteriaPage';
 import CoordinatorGroupsPage from './pages/CoordinatorGroupsPage/CoordinatorGroupsPage';
 import ProfessorReportPage from './pages/ProfessorReportPage/ProfessorReportPage';
+import CoordinatorTeacherEvaluationPage from './pages/CoordinatorTeacherEvaluationPage/CoordinatorTeacherEvaluationPage';
+import CoordinatorPeerReviewsPage from './pages/CoordinatorPeerReviewsPage/CoordinatorPeerReviewsPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -111,7 +113,7 @@ export default function App() {
       />
       <Route
         path="/coordenador/paritarias"
-        element={<PlaceholderPage title="Avaliação paritária" />}
+        element={<CoordinatorPeerReviewsPage />}
       />
       <Route
         path="/coordenador/criterios"
@@ -127,7 +129,7 @@ export default function App() {
       />
       <Route
         path="/coordenador/desempenho"
-        element={<PlaceholderPage title="Desempenho docente" />}
+        element={<CoordinatorTeacherEvaluationPage />}
       />
       <Route
         path="/coordenador/relatorio"
