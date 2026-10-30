@@ -16,6 +16,12 @@ export const studentService = {
     return response.data;
   },
 
+  /** GET /api/student/projects/:slug — meu projeto (visão do autor) */
+  async getMyProject(slug) {
+    const response = await request('GET', `/api/student/projects/${slug}`);
+    return response.data;
+  },
+
   /** GET /api/student/projects/submission — confirmação após o envio */
   async getSubmissionConfirmation() {
     const response = await request('GET', '/api/student/projects/submission');

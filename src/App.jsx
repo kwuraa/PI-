@@ -18,6 +18,8 @@ import ProjectAnalysisPage from './pages/ProjectAnalysisPage/ProjectAnalysisPage
 import ReviewResultPage from './pages/ReviewResultPage/ReviewResultPage';
 import ProfessorSubmissionsPage from './pages/ProfessorSubmissionsPage/ProfessorSubmissionsPage';
 import ProfessorDeliveryPage from './pages/ProfessorDeliveryPage/ProfessorDeliveryPage';
+import PublicProjectPage from './pages/PublicProjectPage/PublicProjectPage';
+import MyProjectPage from './pages/MyProjectPage/MyProjectPage';
 import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
 
 /**
@@ -48,6 +50,10 @@ export default function App() {
       <Route
         path="/meus-projetos/:slug/analise"
         element={<ProjectAnalysisPage />}
+      />
+      <Route
+        path="/meus-projetos/:slug"
+        element={<MyProjectPage />}
       />
 
       {/* Área logada — professor/coordenador */}
@@ -113,6 +119,10 @@ export default function App() {
       />
       <Route path="/explorar" element={<ExplorePage />} />
       <Route path="/projetos/:slug" element={<ProjectDetailsPage />} />
+      <Route
+        path="/projetos/:slug/publico"
+        element={<PublicProjectPage />}
+      />
       <Route path="/salvos" element={<SavedProjectsPage />} />
       <Route path="/perfil" element={<ProfilePage />} />
       <Route

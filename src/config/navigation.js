@@ -25,3 +25,10 @@ export const PROFESSOR_NAV_ITEMS = [
   { to: '/salvos', label: 'Salvos', icon: Bookmark },
   { to: '/perfil', label: 'Perfil', icon: User },
 ];
+
+// Usuário comum (sem projetos próprios): leitura pública dos projetos
+export const USER_NAV_ITEMS = [
+  { to: '/explorar', label: 'Explorar', icon: Compass },
+  { to: '/salvos', label: 'Salvos', icon: Bookmark },
+  { to: '/perfil', label: 'Perfil', icon: User },
+];

@@ -374,7 +374,7 @@ export const studentProjectsResponse = {
             icon: 'check',
             text: 'Aprovado em 02 out. · 24 salvos',
           },
-          action: { label: 'Ver projeto', href: '/projetos/rota-acessivel' },
+          action: { label: 'Ver projeto', href: '/meus-projetos/rota-acessivel' },
         },
         {
           id: 'prj-002',
@@ -1567,6 +1567,142 @@ export const deliveryPendingBibliotecaResponse = {
   },
 };
 
+/** Leitura pública do projeto (GET /api/projects/rota-acessivel/public) */
+export const publicProjectResponse = {
+  status: 200,
+  data: {
+    header: {
+      title: 'Projeto',
+      modeBadge: 'Visualização pública',
+      readOnlyLabel: 'Somente leitura',
+    },
+    project: {
+      heroImage: rotaAcessivelHero,
+      courseBadge: 'Sistemas de Informação',
+      statusBadge: { label: 'Publicado', tone: 'success' },
+      title: 'Rota Acessível: um campus para todos',
+      meta: 'Projeto integrador · Turma 2026.2',
+      publishedLine: 'Publicado em 02 out. 2026 · 24 salvos',
+      authors: 'Ana Costa e Lucas Silva',
+      advisor: 'Orientador: Prof. Rafael Martins',
+    },
+    about: {
+      title: 'Sobre o projeto',
+      description:
+        'Uma plataforma para mapear rotas acessíveis no campus, conectando estudantes a trajetos com rampas, piso tátil e elevadores. O projeto combina pesquisa com a comunidade acadêmica e um protótipo navegável para tornar a faculdade mais inclusiva.',
+      tags: ['Acessibilidade', 'Tecnologia', 'Inclusão'],
+    },
+    document: {
+      title: 'Documento do projeto',
+      actionLabel: '1 documento',
+      file: {
+        id: 'file-001',
+        name: 'Relatório_Rota_Acessível.pdf',
+        kind: 'PDF',
+        size: '2,4 MB',
+      },
+      preview: {
+        title: 'Prévia do relatório',
+        kicker: 'Projeto integrador · 2026.2',
+        heading: 'Rota Acessível',
+        subheading: 'Um campus para todos',
+        authors: 'Ana Costa e Lucas Silva',
+        course: 'Sistemas de Informação',
+        summaryLabel: 'Resumo',
+        paragraphs: [
+          'Uma plataforma para mapear rotas acessíveis no campus, conectando estudantes a trajetos com rampas, piso tátil e elevadores.',
+          'O projeto combina pesquisa com a comunidade acadêmica e um protótipo navegável para tornar a faculdade mais inclusiva.',
+        ],
+        advisor: 'Orientador: Prof. Rafael Martins',
+      },
+      readFullLabel: 'Ler documento completo',
+    },
+    external: {
+      title: 'Projeto · versão navegável',
+      description: 'Explore as rotas acessíveis do campus',
+      url: 'rota-acessivel.example.com',
+      actionLabel: 'Acessar projeto',
+    },
+    footer: 'Conteúdo compartilhado pelos autores com a comunidade acadêmica.',
+  },
+};
+
+/** "Meu projeto" — visão do autor (GET /api/student/projects/rota-acessivel) */
+export const myProjectResponse = {
+  status: 200,
+  data: {
+    header: {
+      title: 'Meu projeto',
+      badge: 'Área do aluno · Você é autora',
+    },
+    project: {
+      heroImage: rotaAcessivelHero,
+      courseBadge: 'Sistemas de Informação',
+      statusBadge: { label: 'Publicado', tone: 'success' },
+      title: 'Rota Acessível: um campus para todos',
+      meta: 'Projeto integrador · Turma 2026.2',
+      publishedLine: 'Publicado em 02 out. 2026 · 24 salvos',
+      authors: 'Ana Costa e Lucas Silva',
+      advisor: 'Orientador: Prof. Rafael Martins',
+    },
+    about: {
+      title: 'Sobre o projeto',
+      description:
+        'Uma plataforma para mapear rotas acessíveis no campus, conectando estudantes a trajetos com rampas, piso tátil e elevadores. O projeto combina pesquisa com a comunidade acadêmica e um protótipo navegável para tornar a faculdade mais inclusiva.',
+      tags: ['Acessibilidade', 'Tecnologia', 'Inclusão'],
+    },
+    materials: {
+      title: 'Meus documentos',
+      actionLabel: '2 arquivos',
+      items: [
+        {
+          id: 'file-001',
+          name: 'Relatório_Rota_Acessível.pdf',
+          kind: 'PDF',
+          size: '2,4 MB',
+        },
+        {
+          id: 'file-002',
+          name: 'Protótipo_Rota_Acessível.zip',
+          kind: 'ZIP',
+          size: '8,1 MB',
+        },
+      ],
+    },
+    linksSectionTitle: 'Links do projeto',
+    links: [
+      {
+        id: 'link-web',
+        icon: 'external',
+        title: 'Projeto · versão navegável',
+        description: 'Explore as rotas acessíveis do campus',
+        url: 'rota-acessivel.example.com',
+        actionLabel: 'Acessar projeto',
+        variant: 'primary',
+      },
+      {
+        id: 'link-github',
+        icon: 'github',
+        title: 'GitHub · código-fonte',
+        description: 'Repositório de desenvolvimento da equipe',
+        url: 'github.com/rota-acessivel/campus',
+        actionLabel: 'Abrir repositório no GitHub',
+        variant: 'secondary',
+      },
+    ],
+    notice: {
+      icon: 'lock',
+      tone: 'primary',
+      title: 'Seus materiais, acessos diferentes',
+      description:
+        'Na visualização pública, ficam disponíveis o relatório para leitura e o link do projeto. O repositório e o ZIP não são exibidos.',
+    },
+    manageLabel: 'Gerenciar materiais e links',
+    footer:
+      'Projeto aprovado em 02 out. 2026. Acompanhe o parecer no histórico de revisão.',
+  },
+};
+
 /** Índice de payloads por perfil usado pelo handler do dashboard */
 const dashboardByRole = {
   professor: professorDashboardResponse,
@@ -1596,6 +1732,8 @@ export const apiMock = {
   'GET /api/projects/horta-viva': projectDetailsResponse,
   'GET /api/projects/rota-acessivel': projectDetailsResponse,
   'GET /api/projects/agua-em-foco': projectDetailsResponse,
+  'GET /api/projects/rota-acessivel/public': publicProjectResponse,
+  'GET /api/student/projects/rota-acessivel': myProjectResponse,
   'GET /api/profile': profileResponse,
   'GET /api/saved-projects': savedProjectsResponse,
   // Revisão: mesmo payload para os slugs em análise (mock único — a API
