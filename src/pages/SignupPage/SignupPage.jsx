@@ -23,13 +23,7 @@ const ACCESS_MODES = [
 ];
 
 /* Listas estáticas de exemplo — virão de GET /api/courses e GET /api/periods */
-const COURSES = [
-  'Sistemas de Informação',
-  'Arquitetura e Urbanismo',
-  'Engenharia Ambiental',
-  'Administração',
-  'Gestão Empresarial',
-];
+const COURSES = ['DSM · Desenvolvimento de Software'];
 const PERIODS = ['1º período', '2º período', '3º período', '4º período', '5º período', '6º período'];
 
 /**
