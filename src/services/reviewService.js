@@ -9,4 +9,13 @@ export const reviewService = {
     const response = await request('GET', `/api/professor/reviews/${slug}`);
     return response.data;
   },
+
+  /** GET /api/professor/reviews/:slug/result — resultado após a decisão */
+  async getResult(slug) {
+    const response = await request(
+      'GET',
+      `/api/professor/reviews/${slug}/result`
+    );
+    return response.data;
+  },
 };

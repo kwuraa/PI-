@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import TopBar from '../../components/layout/TopBar/TopBar';
 import PageShell from '../../components/layout/PageShell/PageShell';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader';
@@ -12,7 +11,6 @@ import TextAreaField from '../../components/ui/TextAreaField/TextAreaField';
 import AlertCard from '../../components/ui/AlertCard/AlertCard';
 import { Check, MessageSquare } from '../../components/icons';
 import { reviewService } from '../../services/reviewService';
-import { PROFESSOR_NAV_ITEMS } from '../../config/navigation';
 import './ReviewProjectPage.css';
 
 const DECISIONS = {
@@ -27,6 +25,7 @@ const DECISIONS = {
  */
 export default function ReviewProjectPage() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const [review, setReview] = useState(null);
   const [header, setHeader] = useState({ title: 'Revisar projeto' });
   const [loading, setLoading] = useState(true);
@@ -67,21 +66,33 @@ export default function ReviewProjectPage() {
 
   if (loading) {
     return (
-      <PageShell>
-        <p className="review__status" role="status">
-          Carregando projeto para revisão…
-        </p>
-      </PageShell>
+      <>
+        <div className="review__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="review__status" role="status">
+            Carregando projeto para revisão…
+          </p>
+        </PageShell>
+      </>
     );
   }
 
   if (error || !review) {
     return (
-      <PageShell>
-        <p className="review__status review__status--error" role="alert">
-          {error || 'Não foi possível carregar o projeto.'}
-        </p>
-      </PageShell>
+      <>
+        <div className="review__topbar">
+          <TopBar title="" />
+        </div>
+
+        <PageShell>
+          <p className="review__status review__status--error" role="alert">
+            {error || 'Não foi possível carregar o projeto.'}
+          </p>
+        </PageShell>
+      </>
     );
   }
 
@@ -166,13 +177,23 @@ export default function ReviewProjectPage() {
         />
 
         <div className="review__actions">
-          <Button fullWidth onClick={() => setDecision('approved')}>
+          <Button
+            fullWidth
+            onClick={() => {
+              setDecision('approved');
+              // No back-end real, POST da decisão redireciona ao resultado
+              navigate(`/professor/revisar/${slug}/resultado`);
+            }}
+          >
             <Check size={18} /> {review.approveLabel}
           </Button>
           <Button
             variant="secondary"
             fullWidth
-            onClick={() => setDecision('changes')}
+            onClick={() => {
+              setDecision('changes');
+              navigate(`/professor/revisar/${slug}/resultado`);
+            }}
           >
             <MessageSquare size={18} /> {review.requestChangesLabel}
           </Button>
@@ -183,7 +204,6 @@ export default function ReviewProjectPage() {
         </p>
       </PageShell>
 
-      <BottomNav items={PROFESSOR_NAV_ITEMS} />
     </>
   );
 }

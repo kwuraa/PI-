@@ -1,0 +1,136 @@
+/* ============================================================
+   SubmissionConfirmationPage — "Enviado para análise!"
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.submission__topbar {
+  padding: 0 var(--page-padding);
+}
+
+.submission__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.submission__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Hero ---------- */
+.submission__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.submission__hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background-color: var(--color-primary-tint);
+  border-radius: var(--radius-lg);
+  color: var(--color-primary-text);
+}
+
+.submission__headline {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.submission__description {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Cartão do projeto ---------- */
+.submission__card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.submission__title {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.submission__meta {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.submission__authors {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.submission__sent {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* ---------- Seções ---------- */
+.submission__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.submission__heading {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.submission__text {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+.submission__people {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- Ações ---------- */
+.submission__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ============================================================
+   Desktop (preparado — coluna central mais larga)
+   ============================================================ */
+@media (min-width: 768px) {
+  .submission__hero,
+  .submission__card,
+  .submission__section,
+  .submission__actions {
+    max-width: 640px;
+  }
+}

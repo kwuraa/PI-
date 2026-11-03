@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageShell from '../../components/layout/PageShell/PageShell';
 import LoggedHeader from '../../components/layout/LoggedHeader/LoggedHeader';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import Badge from '../../components/ui/Badge/Badge';
 import Button from '../../components/ui/Button/Button';
 import SearchBar from '../../components/ui/SearchBar/SearchBar';
@@ -10,7 +9,6 @@ import SectionHeader from '../../components/ui/SectionHeader/SectionHeader';
 import ExploreProjectCard from '../../components/ui/ExploreProjectCard/ExploreProjectCard';
 import { Compass } from '../../components/icons';
 import { savedProjectsService } from '../../services/savedProjectsService';
-import { STUDENT_NAV_ITEMS } from '../../config/navigation';
 import './SavedProjectsPage.css';
 
 /**
@@ -138,7 +136,6 @@ export default function SavedProjectsPage() {
         </Button>
       </PageShell>
 
-      <BottomNav items={STUDENT_NAV_ITEMS} />
     </>
   );
 }

@@ -1,0 +1,185 @@
+/* ============================================================
+   MyProjectPage — "Meu projeto" (visão do autor)
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.my-project__topbar {
+  padding: 0 var(--page-padding);
+}
+
+.my-project__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.my-project__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Introdução ---------- */
+.my-project__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+/* ---------- Capa ---------- */
+.my-project__hero-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+/* ---------- Bloco do projeto ---------- */
+.my-project__project {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.my-project__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.my-project__title {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.my-project__meta {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.my-project__authors {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.my-project__advisor {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* ---------- Seções ---------- */
+.my-project__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.my-project__heading {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.my-project__text {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+.my-project__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.my-project__tag {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+}
+
+.my-project__files {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- Cartões de link ---------- */
+.my-project__link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.my-project__link-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.my-project__link-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-primary-text);
+}
+
+.my-project__link-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.my-project__link-title {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.my-project__link-description {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.my-project__link-url {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* ---------- Rodapé ---------- */
+.my-project__footer {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   Desktop (preparado — coluna central mais larga)
+   ============================================================ */
+@media (min-width: 768px) {
+  .my-project__project,
+  .my-project__section {
+    max-width: 640px;
+  }
+}

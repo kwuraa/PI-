@@ -24,3 +24,14 @@
   font-size: var(--font-size-caption);
   color: var(--color-muted);
 }
+
+/* Variante primária (fundo vermelho, texto branco) */
+.mini-stat--primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.mini-stat--primary .mini-stat__value,
+.mini-stat--primary .mini-stat__label {
+  color: var(--color-white);
+}

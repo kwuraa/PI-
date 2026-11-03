@@ -9,6 +9,7 @@ export default function TextField({
   label,
   icon,
   error,
+  helper,
   className = '',
   id,
   ...props
@@ -42,6 +43,10 @@ export default function TextField({
         />
         {icon && <span className="textfield__icon">{icon}</span>}
       </div>
+
+      {helper && !error && (
+        <p className="textfield__helper">{helper}</p>
+      )}
 
       {error && (
         <p id={errorId} className="textfield__error" role="alert">

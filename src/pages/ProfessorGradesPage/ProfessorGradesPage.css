@@ -1,0 +1,234 @@
+/* ============================================================
+   ProfessorGradesPage — Notas da sala (professor)
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.grades__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.grades__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Voltar ---------- */
+.grades__back {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: var(--space-2);
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+  text-decoration: none;
+}
+
+.grades__back:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Introdução ---------- */
+.grades__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.grades__title {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.grades__description {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Cartão "Selecionar sala" ---------- */
+.grades__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.grades__card-title {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.grades__selector-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.grades__helper {
+  margin: 0;
+  font-size: var(--font-size-micro);
+  color: var(--color-muted);
+}
+
+/* ---------- Cartão de fórmula ---------- */
+.grades__formula {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-amber-tint);
+  border-radius: var(--radius-md);
+}
+
+.grades__formula-title {
+  font-size: var(--font-size-small);
+  color: var(--color-amber-text);
+}
+
+.grades__formula-text {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Seção de alunos ---------- */
+.grades__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.grades__section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.grades__section-title {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.grades__section-count {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+}
+
+/* ---------- Cartão de aluno ---------- */
+.grades__student {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.grades__student-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.grades__student-identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.grades__student-name {
+  font-size: var(--font-size-body);
+  color: var(--color-ink);
+}
+
+.grades__student-ra {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* Linha de nota: rótulo à esquerda + campo pequeno à direita */
+.grades__score-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.grades__score-label {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+/* ---------- Observações ---------- */
+.grades__notes-label {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+}
+
+.grades__notes {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 var(--space-3);
+  font-family: inherit;
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.grades__notes:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-tint);
+}
+
+/* ---------- Ações ---------- */
+.grades__actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.grades__footer {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   Desktop (preparado — coluna central mais larga)
+   ============================================================ */
+@media (min-width: 768px) {
+  .grades__intro,
+  .grades__card,
+  .grades__formula,
+  .grades__section,
+  .grades__actions {
+    max-width: 640px;
+  }
+}

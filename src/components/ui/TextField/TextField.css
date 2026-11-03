@@ -64,6 +64,11 @@
   flex-shrink: 0;
 }
 
+.textfield__helper {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
 .textfield__error {
   font-size: var(--font-size-caption);
   font-weight: var(--font-weight-medium);

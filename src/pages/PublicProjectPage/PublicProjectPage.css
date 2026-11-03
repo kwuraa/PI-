@@ -1,0 +1,304 @@
+/* ============================================================
+   PublicProjectPage — leitura pública do projeto
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.public__topbar {
+  padding: 0 var(--page-padding);
+}
+
+.public__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.public__status--error {
+  color: var(--color-primary-text);
+}
+
+/* Botão de salvar no TopBar */
+.public__bookmark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-ink);
+  background-color: var(--color-surface);
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+/* ---------- Cabeçalho (modo + leitura) ---------- */
+.public__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.public__read-only {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* ---------- Capa ---------- */
+.public__hero-image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+/* ---------- Bloco do projeto ---------- */
+.public__project {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.public__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.public__title {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.public__meta {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.public__authors {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.public__advisor {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* ---------- Seções ---------- */
+.public__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.public__heading {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.public__text {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+.public__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.public__tag {
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+}
+
+.public__files {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- Prévia do relatório ---------- */
+.public__preview {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.public__preview-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.public__preview-icon {
+  display: inline-flex;
+  color: var(--color-primary-text);
+}
+
+.public__preview-title {
+  flex: 1;
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.public__preview-expand {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-1);
+  color: var(--color-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Folha do documento simulado */
+.public__sheet {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin: 0 var(--space-3) var(--space-3);
+  padding: var(--space-5) var(--space-4);
+  /* Fundo bege do "visor" do documento */
+  background-color: #efe9e0;
+  border-radius: var(--radius-md);
+}
+
+.public__sheet-kicker {
+  font-size: var(--font-size-micro);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-muted);
+}
+
+.public__sheet-rule {
+  width: 36px;
+  height: 4px;
+  margin: var(--space-1) 0 var(--space-2);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+
+.public__sheet-heading {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.public__sheet-subheading {
+  font-size: var(--font-size-body);
+  color: var(--color-ink);
+}
+
+.public__sheet-line {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.public__sheet-summary {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.public__sheet-paragraph {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  color: var(--color-ink);
+}
+
+/* ---------- Cartão de link externo ---------- */
+.public__external {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.public__external-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.public__external-icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-primary-text);
+}
+
+.public__external-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.public__external-title {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.public__external-description {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.public__external-url {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* ---------- Rodapé ---------- */
+.public__footer {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   Desktop (preparado — coluna central mais larga)
+   ============================================================ */
+@media (min-width: 768px) {
+  .public__project,
+  .public__section,
+  .public__external {
+    max-width: 640px;
+  }
+}

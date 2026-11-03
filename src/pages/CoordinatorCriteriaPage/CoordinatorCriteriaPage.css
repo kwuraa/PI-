@@ -1,0 +1,137 @@
+/* ============================================================
+   CoordinatorCriteriaPage — "Critérios do curso" (coordenador)
+   Mobile first — media queries preparadas para desktop
+   ============================================================ */
+
+.coord-criteria__status {
+  margin: auto 0;
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-small);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.coord-criteria__status--error {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Introdução ---------- */
+.coord-criteria__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.coord-criteria__title {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-tight);
+  color: var(--color-ink);
+}
+
+.coord-criteria__description {
+  margin: 0;
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}
+
+/* ---------- Seção de critérios ---------- */
+.coord-criteria__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.coord-criteria__section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.coord-criteria__heading {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.coord-criteria__total {
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+}
+
+/* ---------- Cartão de critério ---------- */
+.coord-criteria__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.coord-criteria__card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-1);
+}
+
+.coord-criteria__weight {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.coord-criteria__card-title {
+  margin: 0;
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.coord-criteria__card-meta {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+/* Ação "Editar critério" com divisor superior */
+.coord-criteria__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-2);
+  padding-top: var(--space-3);
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+  text-decoration: none;
+  border-top: 1px solid var(--color-border);
+}
+
+.coord-criteria__action:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Rodapé ---------- */
+.coord-criteria__footer {
+  margin: 0;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+/* ============================================================
+   Desktop (preparado — coluna central mais larga)
+   ============================================================ */
+@media (min-width: 768px) {
+  .coord-criteria__intro,
+  .coord-criteria__section {
+    max-width: 640px;
+  }
+}

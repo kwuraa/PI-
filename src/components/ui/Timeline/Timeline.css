@@ -1,0 +1,82 @@
+/* ============================================================
+   Timeline — linha do tempo de etapas
+   ============================================================ */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: var(--space-4);
+  list-style: none;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.timeline__step {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding-bottom: var(--space-5);
+}
+
+.timeline__step:last-child {
+  padding-bottom: 0;
+}
+
+/* Conector vertical entre marcadores */
+.timeline__step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 32px;
+  bottom: 8px;
+  width: 2px;
+  background-color: var(--color-border);
+}
+
+/* ---------- Marcador ---------- */
+.timeline__marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  background-color: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  color: var(--color-muted);
+}
+
+.timeline__marker--check {
+  background-color: var(--color-success-tint);
+  border-color: transparent;
+  color: var(--color-success-text);
+}
+
+.timeline__marker--clock {
+  background-color: var(--color-amber-tint);
+  border-color: transparent;
+  color: var(--color-amber-text);
+}
+
+/* ---------- Texto ---------- */
+.timeline__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-top: var(--space-1);
+}
+
+.timeline__title {
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+}
+
+.timeline__description {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-base);
+  color: var(--color-muted);
+}

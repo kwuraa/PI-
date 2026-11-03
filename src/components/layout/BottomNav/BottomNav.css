@@ -39,11 +39,14 @@
   width: 56px;
   height: 30px;
   border-radius: var(--radius-pill);
-  transition: background-color var(--transition-fast);
+  transition:
+    background-color 200ms ease,
+    transform 200ms ease;
 }
 
 .bottom-nav__label {
   line-height: var(--line-height-snug);
+  transition: transform 200ms ease;
 }
 
 /* ---------- Item ativo ---------- */
@@ -54,6 +57,47 @@
 
 .bottom-nav__link--active .bottom-nav__icon {
   background-color: var(--color-primary-tint);
+  /* "pop" ao tocar: a pílula cresce e assenta no novo item ativo */
+  animation: bottom-nav-pop 340ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bottom-nav__link--active .bottom-nav__label {
+  animation: bottom-nav-appear 260ms ease-out;
+}
+
+@keyframes bottom-nav-pop {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.35;
+  }
+
+  60% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes bottom-nav-appear {
+  from {
+    transform: translateY(3px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-nav__link--active .bottom-nav__icon,
+  .bottom-nav__link--active .bottom-nav__label {
+    animation: none;
+  }
 }
 
 /* Preparação para desktop: barra centralizada e limitada */

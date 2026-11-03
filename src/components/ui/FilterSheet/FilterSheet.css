@@ -1,0 +1,207 @@
+/* ============================================================
+   FilterSheet — painel de filtros em bottom sheet
+   Componente de UI reutilizável (mobile first)
+   ============================================================ */
+
+.filter-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 50; /* acima do BottomNav */
+  display: flex;
+  align-items: flex-end;
+}
+
+.filter-sheet__backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(20, 17, 16, 0.45);
+}
+
+.filter-sheet__sheet {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  max-height: 88dvh;
+  padding: var(--space-3) var(--space-4) var(--space-6);
+  overflow-y: auto;
+  background-color: var(--color-surface);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  box-shadow: 0 -8px 32px rgba(20, 17, 16, 0.18);
+  animation: filter-sheet-rise 220ms ease-out;
+}
+
+@keyframes filter-sheet-rise {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Alça de arrasto */
+.filter-sheet__handle {
+  align-self: center;
+  width: 40px;
+  height: 4px;
+  margin-bottom: var(--space-1);
+  background-color: #ded8d0;
+  border-radius: var(--radius-pill);
+}
+
+/* ---------- Cabeçalho ---------- */
+.filter-sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.filter-sheet__title {
+  margin: 0;
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-snug);
+  color: var(--color-ink);
+}
+
+.filter-sheet__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-right: calc(var(--space-2) * -1);
+  color: var(--color-ink);
+  background: none;
+  border: none;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.filter-sheet__close:hover {
+  background-color: var(--color-bg);
+}
+
+/* ---------- Rótulos ---------- */
+.filter-sheet__label {
+  margin: var(--space-1) 0 0;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-ink);
+}
+
+/* ---------- Cursos (radio) ---------- */
+.filter-sheet__courses {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-sheet__course {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  padding: var(--space-3);
+  font-family: inherit;
+  font-size: var(--font-size-small);
+  color: var(--color-ink);
+  text-align: left;
+  background: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.filter-sheet__course:hover {
+  background-color: var(--color-bg);
+}
+
+.filter-sheet__course--selected,
+.filter-sheet__course--selected:hover {
+  color: var(--color-primary-text);
+  background-color: var(--color-primary-tint);
+}
+
+.filter-sheet__radio {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  color: var(--color-white);
+  border: 2px solid #c9c2b8;
+  border-radius: var(--radius-pill);
+}
+
+.filter-sheet__radio--checked {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.filter-sheet__course-name {
+  flex: 1;
+  min-width: 0;
+}
+
+.filter-sheet__course-count {
+  font-size: var(--font-size-caption);
+  color: var(--color-muted);
+}
+
+.filter-sheet__course--selected .filter-sheet__course-count {
+  color: var(--color-primary-text);
+}
+
+/* ---------- Ano + ordenação ---------- */
+.filter-sheet__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+/* ---------- Tipo de projeto ---------- */
+.filter-sheet__types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ---------- Ações ---------- */
+.filter-sheet__clear {
+  align-self: center;
+  padding: var(--space-2) var(--space-4);
+  font-family: inherit;
+  font-size: var(--font-size-caption);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-text);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.filter-sheet__clear:hover {
+  color: var(--color-primary-hover);
+}
+
+/* ============================================================
+   Desktop (preparado — sheet centralizado como cartão)
+   ============================================================ */
+@media (min-width: 768px) {
+  .filter-sheet {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .filter-sheet__sheet {
+    max-width: 480px;
+    border-radius: var(--radius-xl);
+  }
+}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import TopBar from '../../components/layout/TopBar/TopBar';
-import BottomNav from '../../components/layout/BottomNav/BottomNav';
 import PageShell from '../../components/layout/PageShell/PageShell';
 import Button from '../../components/ui/Button/Button';
 import { ArrowRight } from '../../components/icons';
@@ -32,7 +31,6 @@ export default function PlaceholderPage({ title }) {
         </PageShell>
       </div>
 
-      <BottomNav />
     </>
   );
 }
