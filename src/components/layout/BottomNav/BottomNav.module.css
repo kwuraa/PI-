@@ -1,4 +1,5 @@
-/* BottomNav — barra fixa inferior com estado ativo em pílula vermelha. */
+/* BottomNav — barra fixa inferior; a pílula do item ativo (vermelha)
+   DESLIZA entre os itens via framer-motion (layoutId). */
 .nav {
   position: fixed;
   bottom: 0;
@@ -30,20 +31,29 @@
 }
 
 .iconPill {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 28px;
   border-radius: var(--radius-pill);
-  transition: background-color var(--transition-fast);
+}
+
+/* pílula vermelha que DESLIZA entre os itens (layoutId no framer-motion) */
+.pillBg {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary-soft);
+}
+
+/* ícone fica ACIMA da pílula (ambos posicionados, ícone depois no DOM) */
+.iconPill svg {
+  position: relative;
 }
 
 .active {
   color: var(--color-primary);
   font-weight: var(--font-weight-semibold);
-}
-
-.active .iconPill {
-  background-color: var(--color-primary-soft);
 }

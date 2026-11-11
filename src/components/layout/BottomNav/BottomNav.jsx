@@ -3,9 +3,13 @@
  * Ícones: react-icons/feather (traço fino igual ao dos protótipos).
  * Os itens mudam conforme o perfil logado (aluno: Meus projetos;
  * professor/coordenador/secretaria: Painel). O destino ativo ganha
- * pílula vermelha de fundo no ícone.
+ * pílula vermelha de fundo no ícone — e ela DESLIZA entre os itens
+ * (framer-motion `layoutId`) quando o ativo muda.
+ * Obs.: a barra em si NÃO re-anima entre rotas (regra do briefing);
+ * só a pílula reage à troca de item ativo.
  */
 import { NavLink } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { FiCompass, FiGrid, FiLayers, FiLogIn, FiUser } from 'react-icons/fi';
 import styles from './BottomNav.module.css';
 
@@ -48,10 +52,21 @@ export default function BottomNav({ user }) {
             `${styles.item} ${isActive ? styles.active : ''}`
           }
         >
-          <span className={styles.iconPill}>
-            <Icon size={22} aria-hidden="true" />
-          </span>
-          <span className={styles.label}>{label}</span>
+          {({ isActive }) => (
+            <>
+              <span className={styles.iconPill}>
+                {isActive && (
+                  <motion.span
+                    className={styles.pillBg}
+                    layoutId="bottomNavPill"
+                    transition={{ type: 'spring', stiffness: 500, damping: 42 }}
+                  />
+                )}
+                <Icon size={22} aria-hidden="true" />
+              </span>
+              <span className={styles.label}>{label}</span>
+            </>
+          )}
         </NavLink>
       ))}
     </nav>
