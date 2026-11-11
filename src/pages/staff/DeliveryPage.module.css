@@ -1,0 +1,190 @@
+/* DeliveryPage — detalhe da entrega + evidências da banca. */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.summaryTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.summaryMeta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.team {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.attachButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-surface);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  transition: border-color var(--transition-fast);
+}
+
+.attachButton:hover {
+  border-color: var(--color-primary);
+}
+
+/* ------------------------------------------------ links */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.link strong {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+.link code {
+  font-size: var(--font-size-xs);
+  color: var(--color-primary);
+}
+
+/* ---------------------------------------------- arquivos */
+.files,
+.evidenceList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.file,
+.evidenceItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+}
+
+.file span,
+.evidenceItem span {
+  color: var(--color-text-muted);
+}
+
+.file strong,
+.evidenceItem strong {
+  color: var(--color-text-title);
+}
+
+.emptyEvidence {
+  padding: var(--space-3) var(--space-4);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.evidenceKind {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+  margin-top: var(--space-2);
+}
+
+/* -------------------------------------------- observações */
+.textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+  resize: vertical;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.savedNote {
+  font-size: var(--font-size-sm);
+  color: var(--color-success);
+}
+
+/* ------------------------------------------------ upload */
+.uploadOptions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.uploadHint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* ------------------------------------------------ voltar */
+.back {
+  display: block;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+  text-align: center;
+}
+
+.back:hover {
+  border-color: var(--color-border-strong);
+}

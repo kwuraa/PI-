@@ -1,0 +1,45 @@
+/* StatCard — número grande do painel. */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+}
+
+.plain .value {
+  color: var(--color-text-title);
+}
+
+.plain .label {
+  color: var(--color-text-muted);
+}
+
+.primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.primary .value,
+.primary .label,
+.primary .icon {
+  color: var(--color-text-inverse);
+}
+
+.icon {
+  display: inline-flex;
+  color: var(--color-text-title);
+}
+
+.value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.label {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}

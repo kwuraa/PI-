@@ -1,0 +1,104 @@
+/* =============================================================================
+   PI² — DESIGN TOKENS (variáveis CSS globais)
+   -----------------------------------------------------------------------------
+   Este é o ÚNICO arquivo do projeto onde cores, tipografia, espaçamentos,
+   raios de borda e sombras são definidos. Nunca escreva valores fixos
+   (hex, px de fonte, cores) dentro de componentes ou páginas: use var(--token).
+
+   Paleta oficial (briefing):
+     • Vermelho primário  #B80000   → botões, links, estados ativos
+     • Escuro             #1A1A1A   → títulos fortes / acentos
+     • Fundos             #FAFAFA (páginas) e #FFFFFF (cards/modais)
+     • Bordas             #E5E5E5 (leves) e #CCCCCC (fortes)
+     • Textos             #111111 (títulos), #333333 (corpo), #666666 (muted)
+
+   Pesos de fonte permitidos: 400, 500, 600, 700.
+   ========================================================================== */
+
+:root {
+  /* ---------------------------------------------------------------- cores */
+  --color-primary: #b80000; /* vermelho primário */
+  --color-primary-dark: #9e0000; /* hover/pressed do primário */
+  --color-primary-soft: #fdeeee; /* fundo suave vermelho (badges, alertas) */
+
+  --color-dark: #1a1a1a; /* acentos escuros */
+
+  --color-bg-page: #fafafa; /* fundo das páginas */
+  --color-bg-surface: #ffffff; /* fundo de cards, modais e inputs */
+
+  --color-border: #e5e5e5; /* borda leve (divisórias, cards) */
+  --color-border-strong: #cccccc; /* borda forte (inputs, contornos) */
+
+  --color-text-title: #111111; /* títulos */
+  --color-text-body: #333333; /* corpo de texto */
+  --color-text-muted: #666666; /* textos secundários / legendas */
+  --color-text-inverse: #ffffff; /* texto sobre fundo escuro/vermelho */
+
+  /* estados semânticos (badges e alertas) */
+  --color-success: #1f7a3d;
+  --color-success-soft: #e8f4ec;
+  --color-warning: #9a6700;
+  --color-warning-soft: #fcf3df;
+  --color-danger-soft: #fdeeee; /* alertas em fundo rosa claro */
+
+  --color-overlay: rgba(17, 17, 17, 0.45); /* fundo de modais/bottom sheets */
+
+  /* ----------------------------------------------------------- tipografia */
+  --font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
+    sans-serif;
+
+  --font-size-xs: 0.75rem; /* 12px — legendas, chips */
+  --font-size-sm: 0.875rem; /* 14px — textos de apoio */
+  --font-size-md: 1rem; /* 16px — corpo padrão */
+  --font-size-lg: 1.125rem; /* 18px — subtítulos */
+  --font-size-xl: 1.5rem; /* 24px — títulos de seção */
+  --font-size-2xl: 2rem; /* 32px — títulos de página */
+  --font-size-3xl: 2.5rem; /* 40px — títulos hero */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.15;
+  --line-height-normal: 1.5;
+
+  --letter-spacing-caps: 0.06em; /* rótulos em CAIXA ALTA */
+
+  /* ---------------------------------------------------------- espaçamento */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+  --space-8: 2rem; /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem; /* 48px */
+  --space-16: 4rem; /* 64px */
+
+  /* ------------------------------------------------------- raios e sombras */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(17, 17, 17, 0.06);
+  --shadow-md: 0 4px 16px rgba(17, 17, 17, 0.08);
+  --shadow-lg: 0 12px 32px rgba(17, 17, 17, 0.14);
+
+  /* ------------------------------------------------------------ movimento */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+
+  /* --------------------------------------------------------------- layout */
+  --content-max: 1120px; /* largura máxima no desktop */
+  --topbar-height: 56px;
+  --bottom-nav-height: 64px;
+
+  /* Breakpoints (documentados — media queries não aceitam variáveis):
+     mobile  : base (até 767px)
+     tablet  : 768px
+     desktop : 1024px */
+}

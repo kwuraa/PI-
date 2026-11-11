@@ -1,54 +1,66 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, MoreHorizontal } from '../../icons';
-import './TopBar.css';
-
 /**
- * Cabeçalho das telas públicas:
- * [voltar]      título      [ação]
- *
- * `onBack` — comportamento customizado; por padrão volta no histórico.
- * `action` — nó React do botão à direita; padrão = menu "···".
+ * PI² — Barra superior da área logada.
+ * Duas variantes:
+ *  • "brand": logo + rótulo do espaço + avatar (painéis e listas);
+ *  • "stack": botão voltar + título central + ação à direita (detalhes).
+ * O TopBar NÃO re-anima entre rotas: a animação de entrada é só do conteúdo
+ * (aplicada no MainLayout).
  */
+import { useNavigate } from 'react-router-dom';
+import { FiArrowLeft, FiMoreHorizontal } from 'react-icons/fi';
+import Logo from '../../icons/Logo.jsx';
+import styles from './TopBar.module.css';
+
 export default function TopBar({
+  variant = 'brand',
   title,
+  spaceLabel,
+  user,
+  action = null,
   onBack,
-  action,
-  showBack = true,
 }) {
   const navigate = useNavigate();
-  const handleBack = onBack || (() => navigate(-1));
+  const handleBack = onBack ?? (() => navigate(-1));
+
+  if (variant === 'stack') {
+    return (
+      <header className={styles.stack}>
+        <button
+          type="button"
+          className={styles.iconButton}
+          onClick={handleBack}
+          aria-label="Voltar"
+        >
+          <FiArrowLeft size={22} aria-hidden="true" />
+        </button>
+        <h1 className={styles.stackTitle}>{title}</h1>
+        <div className={styles.actionSlot}>
+          {action ?? (
+            <button
+              type="button"
+              className={styles.iconButton}
+              aria-label="Mais opções"
+            >
+              <FiMoreHorizontal size={22} aria-hidden="true" />
+            </button>
+          )}
+        </div>
+      </header>
+    );
+  }
 
   return (
-    <header className="topbar">
-      <div className="topbar__side">
-        {showBack && (
-          <button
-            type="button"
-            className="topbar__icon-button"
-            onClick={handleBack}
-            aria-label="Voltar"
-          >
-            <ArrowLeft size={22} />
-          </button>
-        )}
-      </div>
-
-      <h1 className="topbar__title">{title}</h1>
-
-      <div className="topbar__side topbar__side--end">
-        {action !== undefined ? (
-          action
-        ) : (
-          <button
-            type="button"
-            className="topbar__icon-button topbar__icon-button--filled"
-            aria-label="Mais opções"
-          >
-            <MoreHorizontal size={20} />
-          </button>
-        )}
-      </div>
+    <header className={styles.brand}>
+      <Logo size={44} className={styles.logo} />
+      <span className={styles.spaceLabel}>{spaceLabel}</span>
+      <button
+        type="button"
+        className={styles.avatar}
+        onClick={() => navigate('/perfil')}
+        aria-label={`Perfil de ${user?.name ?? 'usuário'}`}
+      >
+        {user?.initials ?? '—'}
+      </button>
     </header>
   );
 }

@@ -1,0 +1,41 @@
+/* Tabs — controle segmentado de abas. */
+.track {
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background-color: var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.tab {
+  position: relative;
+  flex: 1;
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.tab:hover {
+  color: var(--color-text-title);
+}
+
+/* pílula branca que DESLIZA entre as abas (layoutId no framer-motion) */
+.pill {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+/* rótulo posicionado para ficar ACIMA da pílula */
+.label {
+  position: relative;
+}
+
+.active {
+  color: var(--color-primary);
+}

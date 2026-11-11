@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
+// Configuração do Vite — build estático + dev server na porta 5173.
 export default defineConfig({
   plugins: [react()],
   server: {

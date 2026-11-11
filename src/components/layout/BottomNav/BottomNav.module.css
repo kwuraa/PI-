@@ -1,0 +1,59 @@
+/* BottomNav — barra fixa inferior; a pílula do item ativo (vermelha)
+   DESLIZA entre os itens via framer-motion (layoutId). */
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  height: calc(
+    var(--bottom-nav-height) + env(safe-area-inset-bottom)
+  );
+  padding-bottom: env(safe-area-inset-bottom);
+  background-color: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.iconPill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+}
+
+/* pílula vermelha que DESLIZA entre os itens (layoutId no framer-motion) */
+.pillBg {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary-soft);
+}
+
+/* ícone fica ACIMA da pílula (ambos posicionados, ícone depois no DOM) */
+.iconPill svg {
+  position: relative;
+}
+
+.active {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}

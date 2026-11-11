@@ -1,19 +1,17 @@
-import React from 'react';
-import './SectionHeader.css';
-
 /**
- * Cabeçalho de seção: título + ação opcional (ex.: "Ver todos").
+ * PI² — Cabeçalho de seção (título + subtítulo opcional + ação à direita).
+ * Padrão das listas dos protótipos: "Aguardando revisão", "Notificações"…
  */
-export default function SectionHeader({ title, actionLabel, onAction }) {
-  return (
-    <div className="section-header">
-      <h2 className="section-header__title">{title}</h2>
+import styles from './SectionHeader.module.css';
 
-      {actionLabel && (
-        <button type="button" className="section-header__action" onClick={onAction}>
-          {actionLabel}
-        </button>
-      )}
+export default function SectionHeader({ title, subtitle, action = null }) {
+  return (
+    <div className={styles.header}>
+      <div className={styles.texts}>
+        <h2 className={styles.title}>{title}</h2>
+        {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+      </div>
+      {action && <div className={styles.action}>{action}</div>}
     </div>
   );
 }

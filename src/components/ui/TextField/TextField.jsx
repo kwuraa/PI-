@@ -1,56 +1,50 @@
-import React, { useId } from 'react';
-import './TextField.css';
-
 /**
- * Campo de texto com label, ícone opcional à direita e estados de erro.
- * O componente é controlado: receba `value` e `onChange` da página.
+ * PI² — Campo de texto com rótulo, ícone opcional à direita e texto de apoio.
+ * Props: label, hint, icon (nó JSX à direita), locked (cadeado), required.
+ * O input herda o estilo do módulo; nenhuma cor é fixada aqui (só tokens).
+ * Ícones: react-icons/feather.
  */
+import { FiLock } from 'react-icons/fi';
+import styles from './TextField.module.css';
+
 export default function TextField({
   label,
-  icon,
-  error,
-  helper,
+  hint,
+  icon = null,
+  locked = false,
+  required = false,
   className = '',
   id,
-  ...props
+  ...inputProps
 }) {
-  const autoId = useId();
-  const fieldId = id || autoId;
-  const errorId = `${fieldId}-error`;
+  const inputId = id ?? label?.toLowerCase().replace(/\s+/g, '-');
 
   return (
-    <div className={['textfield', className].filter(Boolean).join(' ')}>
+    <div className={`${styles.field} ${className}`}>
       {label && (
-        <label className="textfield__label" htmlFor={fieldId}>
+        <label className={styles.label} htmlFor={inputId}>
           {label}
+          {required && <span className={styles.required}> *</span>}
         </label>
       )}
-
-      <div
-        className={[
-          'textfield__control',
-          error && 'textfield__control--error',
-        ]
-          .filter(Boolean)
-          .join(' ')}
-      >
+      <div className={styles.control}>
         <input
-          id={fieldId}
-          className="textfield__input"
-          aria-invalid={error ? 'true' : undefined}
-          aria-describedby={error ? errorId : undefined}
-          {...props}
+          id={inputId}
+          className={styles.input}
+          required={required}
+          readOnly={locked}
+          aria-describedby={hint ? `${inputId}-hint` : undefined}
+          {...inputProps}
         />
-        {icon && <span className="textfield__icon">{icon}</span>}
+        {(icon || locked) && (
+          <span className={styles.icon}>
+            {locked ? <FiLock size={18} aria-hidden="true" /> : icon}
+          </span>
+        )}
       </div>
-
-      {helper && !error && (
-        <p className="textfield__helper">{helper}</p>
-      )}
-
-      {error && (
-        <p id={errorId} className="textfield__error" role="alert">
-          {error}
+      {hint && (
+        <p className={styles.hint} id={`${inputId}-hint`}>
+          {hint}
         </p>
       )}
     </div>

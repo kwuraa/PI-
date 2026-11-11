@@ -1,0 +1,37 @@
+/* Avatar — círculo de iniciais. */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  font-weight: var(--font-weight-semibold);
+}
+
+.neutral {
+  background-color: var(--color-border);
+  color: var(--color-text-body);
+}
+
+.primary {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.sm {
+  width: 32px;
+  height: 32px;
+  font-size: var(--font-size-xs);
+}
+
+.md {
+  width: 40px;
+  height: 40px;
+  font-size: var(--font-size-sm);
+}
+
+.lg {
+  width: 56px;
+  height: 56px;
+  font-size: var(--font-size-lg);
+}

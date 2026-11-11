@@ -1,42 +1,37 @@
-import React, { useId } from 'react';
-import { ChevronDown } from '../../icons';
-import './Select.css';
-
 /**
- * Campo de seleção (menu nativo) com label e chevron.
- * `options`: array de strings — o valor de cada opção é o próprio texto.
- * Controlado via value/onChange.
+ * PI² — Select nativo estilizado (chevron próprio via CSS).
+ * Uso: <Select label="Período" options={[{value,label}]} … />
+ * Ícone de chevron: react-icons/feather.
  */
+import { FiChevronDown } from 'react-icons/fi';
+import styles from './Select.module.css';
+
 export default function Select({
   label,
-  options = [],
+  hint,
+  required = false,
   className = '',
   id,
-  ...props
+  children,
+  ...rest
 }) {
-  const autoId = useId();
-  const fieldId = id || autoId;
+  const selectId = id ?? label?.toLowerCase().replace(/\s+/g, '-');
 
   return (
-    <div className={['select', className].filter(Boolean).join(' ')}>
+    <div className={`${styles.field} ${className}`}>
       {label && (
-        <label className="select__label" htmlFor={fieldId}>
+        <label className={styles.label} htmlFor={selectId}>
           {label}
+          {required && <span className={styles.required}> *</span>}
         </label>
       )}
-
-      <div className="select__control">
-        <select id={fieldId} className="select__input" {...props}>
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
+      <div className={styles.control}>
+        <select id={selectId} className={styles.select} required={required} {...rest}>
+          {children}
         </select>
-        <span className="select__chevron" aria-hidden="true">
-          <ChevronDown size={20} />
-        </span>
+        <FiChevronDown className={styles.chevron} aria-hidden="true" />
       </div>
+      {hint && <p className={styles.hint}>{hint}</p>}
     </div>
   );
 }

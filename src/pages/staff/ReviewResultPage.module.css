@@ -1,0 +1,114 @@
+/* ReviewResultPage — desfecho da revisão (aprovado | ajustes). */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.summaryTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.summaryMeta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.team {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.comment {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+}
+
+.criteria {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.criterion {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-body);
+}
+
+.okIcon {
+  color: var(--color-success);
+  flex-shrink: 0;
+}
+
+.warnIcon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* ------------------------------------------------ ações */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.primaryLink {
+  display: block;
+  padding: var(--space-4);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-inverse);
+  text-align: center;
+  transition: background-color var(--transition-fast);
+}
+
+.primaryLink:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.secondaryLink {
+  display: block;
+  padding: var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+  text-align: center;
+}
+
+.secondaryLink:hover {
+  border-color: var(--color-border-strong);
+}

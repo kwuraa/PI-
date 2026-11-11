@@ -1,14 +1,14 @@
-import React from 'react';
-import './Badge.css';
-
 /**
- * Etiqueta/pílula de contexto (ex.: "Espaço do professor e coordenador").
- * tone: 'primary' (vermelho) | 'neutral' (cinza) | 'success' (verde) | 'amber' (âmbar).
+ * PI² — Badge de status (pílula colorida).
+ * tones: neutral | primary | success | warning | dark.
+ * Ex.: <Badge tone="success">Publicado</Badge>
  */
-export default function Badge({ tone = 'primary', children, className = '' }) {
-  const classes = ['badge', `badge--${tone}`, className]
-    .filter(Boolean)
-    .join(' ');
+import styles from './Badge.module.css';
 
-  return <span className={classes}>{children}</span>;
+export default function Badge({ tone = 'neutral', className = '', children }) {
+  return (
+    <span className={`${styles.badge} ${styles[tone]} ${className}`}>
+      {children}
+    </span>
+  );
 }
