@@ -4,7 +4,8 @@
  * Hero do protótipo "Boas-vindas ao PI²" + vitrine exigida pelo briefing:
  * busca por palavra-chave, filtro de semestre (1º ao 6º) e grade de cards
  * ANONIMIZADOS (LGPD: só "Equipe DSM — Xº Semestre").
- * Visitante não logado → ações levam ao login/cadastro.
+ * Visitante não logado → "Entrar no PI²" leva à tela de acesso (/acesso,
+ * hero intermediário) e "Criar minha conta" ao cadastro.
  */
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -77,7 +78,7 @@ export default function WelcomePage() {
             fullWidth
             size="lg"
             iconAfter={<FiArrowRight aria-hidden="true" />}
-            onClick={() => navigate('/login')}
+            onClick={() => navigate('/acesso')}
           >
             Entrar no PI²
           </Button>
