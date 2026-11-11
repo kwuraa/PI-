@@ -2,8 +2,9 @@
  * PI² — Shell da área logada: TopBar + conteúdo + BottomNav persistente.
  * -----------------------------------------------------------------------------
  * Regra de animação: a entrada suave acontece APENAS no <main> (stage),
- * que é remontado a cada navegação. O TopBar fica fora do stage e, por
- * isso, NÃO re-anima entre rotas. Espaço inferior reservado para a
+ * implementada com framer-motion (`motion.main`) e remontada a cada
+ * navegação via `key`. O TopBar e a BottomNav ficam fora do stage e, por
+ * isso, NÃO re-animam entre rotas. Espaço inferior reservado para a
  * BottomNav fixa.
  *
  * Props:
@@ -11,6 +12,7 @@
  *  • title / action: usados na variante 'stack'
  */
 import { Outlet, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { useAuth } from '../../../context/AuthContext.jsx';
 import BottomNav from '../BottomNav/BottomNav.jsx';
 import TopBar from '../TopBar/TopBar.jsx';
@@ -30,9 +32,15 @@ export default function MainLayout({ barVariant = 'brand', title, action }) {
         user={user}
       />
       {/* key por rota → o conteúdo re-entra suave a cada navegação */}
-      <main key={location.pathname} className={styles.stage}>
+      <motion.main
+        key={location.pathname}
+        className={styles.stage}
+        initial={{ opacity: 0, y: 8 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.25, ease: 'ease' }}
+      >
         <Outlet />
-      </main>
+      </motion.main>
       <BottomNav user={user} />
     </div>
   );

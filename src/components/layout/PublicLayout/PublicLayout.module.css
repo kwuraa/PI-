@@ -13,16 +13,5 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  animation: pageEnter var(--transition-base) ease both;
-}
-
-@keyframes pageEnter {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* entrada animada via framer-motion (motion.main) no JSX */
 }

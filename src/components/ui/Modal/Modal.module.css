@@ -1,4 +1,6 @@
-/* Modal — overlay + bottom sheet (mobile) / centralizado (desktop). */
+/* Modal — overlay + bottom sheet (mobile) / centralizado (desktop).
+   A entrada (fade do overlay + subida do painel) é animada por
+   framer-motion no JSX; aqui ficam só as regras visuais. */
 .overlay {
   position: fixed;
   inset: 0;
@@ -7,7 +9,6 @@
   align-items: flex-end;
   justify-content: center;
   background-color: var(--color-overlay);
-  animation: fadeIn var(--transition-base) ease;
 }
 
 .sheet {
@@ -19,7 +20,6 @@
   background-color: var(--color-bg-surface);
   border-radius: var(--radius-xl) var(--radius-xl) 0 0;
   box-shadow: var(--shadow-lg);
-  animation: slideUp var(--transition-base) ease;
 }
 
 .grabber {
@@ -62,26 +62,6 @@
   padding: var(--space-4) var(--space-5)
     calc(var(--space-5) + env(safe-area-inset-bottom));
   border-top: 1px solid var(--color-border);
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(24px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 /* Desktop: centraliza o painel */

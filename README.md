@@ -119,5 +119,6 @@ src/
 
 **Convenções:** JSDoc no topo de todo componente/CSS; um componente por
 arquivo (SRP); dados compartilhados vivem nos mocks ou no contexto (DRY);
-mobile-first com breakpoints 768px e 1024px; animação de entrada acontece
-apenas no conteúdo (`MainLayout`), nunca na barra superior.
+mobile-first com breakpoints 768px e 1024px; animação de entrada (framer-motion,
+`motion.div`) acontece apenas no conteúdo (`MainLayout`/`PublicLayout`), nunca
+nas barras (TopBar/BottomNav).
