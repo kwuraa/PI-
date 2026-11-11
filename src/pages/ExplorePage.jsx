@@ -112,11 +112,12 @@ export default function ExplorePage() {
       </p>
 
       <div className={styles.grid}>
-        {results.map((project) => (
+        {results.map((project, index) => (
           <ProjectCard
             key={project.id}
             project={project}
             variant={isLogged ? 'logged' : 'public'}
+            index={index}
           />
         ))}
       </div>

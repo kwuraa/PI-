@@ -3,7 +3,9 @@
  * Props: options [{ value, label }], value (id ativo | null),
  *        onChange(value), multiple (modo conjunto), clearLabel.
  * No modo múltiplo, value é um array; o chip "Todos" limpa a seleção.
+ * Micro-interação: o chip afina levemente no toque (framer-motion whileTap).
  */
+import { motion } from 'framer-motion';
 import styles from './FilterChips.module.css';
 
 function toggle(list, item) {
@@ -31,25 +33,27 @@ export default function FilterChips({
   return (
     <div className={styles.chips} role="group">
       {clearLabel !== null && clearLabel !== undefined && (
-        <button
+        <motion.button
           type="button"
           className={`${styles.chip} ${
             (multiple ? value.length === 0 : value === null) ? styles.active : ''
           }`}
           onClick={() => handleClick(null)}
+          whileTap={{ scale: 0.95 }}
         >
           {clearLabel}
-        </button>
+        </motion.button>
       )}
       {options.map((option) => (
-        <button
+        <motion.button
           key={option.value}
           type="button"
           className={`${styles.chip} ${isActive(option.value) ? styles.active : ''}`}
           onClick={() => handleClick(option.value)}
+          whileTap={{ scale: 0.95 }}
         >
           {option.label}
-        </button>
+        </motion.button>
       ))}
     </div>
   );

@@ -2,7 +2,9 @@
  * PI² — Botão (design token driven).
  * Variantes: primary (vermelho), secondary (contorno), ghost (texto).
  * Use `fullWidth` para ocupar a largura toda (padrão dos protótipos).
+ * Micro-interação: leve escala no toque (framer-motion `whileTap`).
  */
+import { motion } from 'framer-motion';
 import styles from './Button.module.css';
 
 export default function Button({
@@ -28,10 +30,16 @@ export default function Button({
     .join(' ');
 
   return (
-    <button type={type} className={classes} disabled={disabled} {...rest}>
+    <motion.button
+      type={type}
+      className={classes}
+      disabled={disabled}
+      whileTap={{ scale: 0.97 }}
+      {...rest}
+    >
       {icon}
       {children && <span>{children}</span>}
       {iconAfter}
-    </button>
+    </motion.button>
   );
 }

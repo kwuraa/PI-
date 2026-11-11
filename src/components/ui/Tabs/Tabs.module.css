@@ -8,22 +8,34 @@
 }
 
 .tab {
+  position: relative;
   flex: 1;
   padding: var(--space-3) var(--space-2);
   border-radius: var(--radius-sm);
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-muted);
-  transition: background-color var(--transition-fast),
-    color var(--transition-fast);
+  transition: color var(--transition-fast);
 }
 
 .tab:hover {
   color: var(--color-text-title);
 }
 
-.active {
+/* pílula branca que DESLIZA entre as abas (layoutId no framer-motion) */
+.pill {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-sm);
   background-color: var(--color-bg-surface);
-  color: var(--color-primary);
   box-shadow: var(--shadow-sm);
+}
+
+/* rótulo posicionado para ficar ACIMA da pílula */
+.label {
+  position: relative;
+}
+
+.active {
+  color: var(--color-primary);
 }

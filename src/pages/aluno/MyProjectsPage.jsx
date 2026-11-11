@@ -54,13 +54,14 @@ export default function MyProjectsPage() {
       <FilterChips options={FILTERS} value={filter} onChange={setFilter} />
 
       <div className={styles.grid}>
-        {visible.map((project) => {
+        {visible.map((project, index) => {
           const action = actionFor(project);
           return (
             <ProjectCard
               key={project.id}
               project={project}
               variant="mine"
+              index={index}
               action={
                 <Link to={action.to} className={styles.action}>
                   {action.label}

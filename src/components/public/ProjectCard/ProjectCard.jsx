@@ -10,10 +10,13 @@
  *
  * Sem imagens: o protótipo usa blocos de cor; aqui o "capa" é um
  * gradiente de tokens (nada de cores fixas fora de variables.css).
+ * `index` (0, 1, 2…) define o atraso do card na entrada em cascata.
  */
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { FiArrowUpRight, FiUsers } from 'react-icons/fi';
 import Badge from '../../ui/Badge/Badge.jsx';
+import { cardIn } from '../../../styles/motion.js';
 import { COURSE_SHORT, getTeam, teamDisplay } from '../../../mocks/projectsMock.js';
 import styles from './ProjectCard.module.css';
 
@@ -31,14 +34,14 @@ export function statusMeta(status) {
   }
 }
 
-export default function ProjectCard({ project, variant = 'public', action = null }) {
+export default function ProjectCard({ project, variant = 'public', action = null, index = 0 }) {
   const team = getTeam(project);
   const display = teamDisplay(project, { publicView: variant === 'public' });
   const status = statusMeta(project.status);
   const isMine = variant === 'mine';
 
   return (
-    <article className={styles.card}>
+    <motion.article className={styles.card} {...cardIn(index)}>
       <div className={styles.topRow}>
         <Badge tone={status.tone}>{status.label}</Badge>
         <span className={styles.semester}>
@@ -81,6 +84,6 @@ export default function ProjectCard({ project, variant = 'public', action = null
           <span className={styles.saves}>{project.saves} salvos</span>
         )}
       </div>
-    </article>
+    </motion.article>
   );
 }

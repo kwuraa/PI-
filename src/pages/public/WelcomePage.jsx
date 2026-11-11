@@ -6,9 +6,11 @@
  * ANONIMIZADOS (LGPD: só "Equipe DSM — Xº Semestre").
  * Visitante não logado → "Entrar no PI²" leva à tela de acesso (/acesso,
  * hero intermediário) e "Criar minha conta" ao cadastro.
+ * Movimento: hero em stagger (framer-motion) e cards da grade em cascata.
  */
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { FiArrowRight, FiUsers } from 'react-icons/fi';
 
 import Logo from '../../components/icons/Logo.jsx';
@@ -17,6 +19,7 @@ import FilterChips from '../../components/ui/FilterChips/FilterChips.jsx';
 import SearchField from '../../components/ui/SearchField/SearchField.jsx';
 import ProjectCard from '../../components/public/ProjectCard/ProjectCard.jsx';
 import { COURSE_SHORT, PROJECTS, SEMESTERS } from '../../mocks/projectsMock.js';
+import { fadeUpChild, staggerParent } from '../../styles/motion.js';
 import styles from './WelcomePage.module.css';
 
 /** Opções do chip de semestre: "1º"…"6º". */
@@ -47,23 +50,30 @@ export default function WelcomePage() {
   return (
     <div className={styles.page}>
       {/* ------------------------------------------------------- hero */}
-      <header className={styles.hero}>
-        <div className={styles.logoCard}>
+      <motion.header
+        className={styles.hero}
+        variants={staggerParent}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.div className={styles.logoCard} variants={fadeUpChild}>
           <Logo size={148} />
-        </div>
+        </motion.div>
 
-        <p className={styles.eyebrow}>Repositório acadêmico</p>
-        <h1 className={styles.headline}>
+        <motion.p className={styles.eyebrow} variants={fadeUpChild}>
+          Repositório acadêmico
+        </motion.p>
+        <motion.h1 className={styles.headline} variants={fadeUpChild}>
           Grandes ideias.
           <br />
           Conhecimento que se conecta.
-        </h1>
-        <p className={styles.lead}>
+        </motion.h1>
+        <motion.p className={styles.lead} variants={fadeUpChild}>
           Projetos de todos os cursos em um só lugar. Compartilhe descobertas e
           construa o futuro da nossa faculdade.
-        </p>
+        </motion.p>
 
-        <div className={styles.proof}>
+        <motion.div className={styles.proof} variants={fadeUpChild}>
           <span className={styles.proofIcon}>
             <FiUsers aria-hidden="true" />
           </span>
@@ -71,9 +81,9 @@ export default function WelcomePage() {
             <strong>Feito por alunos. Conectado a professores.</strong>
             <span>Da primeira ideia ao projeto publicado.</span>
           </div>
-        </div>
+        </motion.div>
 
-        <div className={styles.actions}>
+        <motion.div className={styles.actions} variants={fadeUpChild}>
           <Button
             fullWidth
             size="lg"
@@ -85,10 +95,12 @@ export default function WelcomePage() {
           <Button fullWidth size="lg" variant="secondary" onClick={() => navigate('/cadastro')}>
             Criar minha conta
           </Button>
-        </div>
+        </motion.div>
 
-        <p className={styles.hint}>Seu e-mail institucional é a porta de entrada.</p>
-      </header>
+        <motion.p className={styles.hint} variants={fadeUpChild}>
+          Seu e-mail institucional é a porta de entrada.
+        </motion.p>
+      </motion.header>
 
       {/* --------------------------------------------------- vitrine */}
       <section className={styles.vitrine} id="vitrine" aria-labelledby="vitrine-title">
@@ -116,8 +128,13 @@ export default function WelcomePage() {
         />
 
         <div className={styles.grid}>
-          {results.map((project) => (
-            <ProjectCard key={project.id} project={project} variant="public" />
+          {results.map((project, index) => (
+            <ProjectCard
+              key={project.id}
+              project={project}
+              variant="public"
+              index={index}
+            />
           ))}
         </div>
 
