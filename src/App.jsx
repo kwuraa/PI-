@@ -69,7 +69,9 @@ function RequireRole({ roles, children }) {
  */
 function StackShell({ resolveTitle, fallback = '' }) {
   const params = useParams();
-  return <MainLayout barVariant="stack" title={resolveTitle(params) ?? fallback} />;
+  // resolveTitle é opcional: rotas sem ela (ex.: /aluno/novo, /painel/meu-projeto)
+  // usam direto o fallback como título da barra empilhada.
+  return <MainLayout barVariant="stack" title={resolveTitle?.(params) ?? fallback} />;
 }
 
 /** Título da barra em /projeto/:slug — usa o título do projeto mockado. */
