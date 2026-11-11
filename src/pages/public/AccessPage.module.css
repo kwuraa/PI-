@@ -35,52 +35,6 @@
   color: var(--color-primary);
 }
 
-.headline {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-tight);
-  color: var(--color-text-title);
-}
-
-.lead {
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-muted);
-}
-
-.proof {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3);
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-}
-
-.proofIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: var(--radius-pill);
-  background-color: var(--color-primary-soft);
-  color: var(--color-primary);
-}
-
-.proof strong {
-  display: block;
-  font-size: var(--font-size-sm);
-  color: var(--color-text-title);
-}
-
-.proof span {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-}
-
 .actions {
   display: flex;
   flex-direction: column;
