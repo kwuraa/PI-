@@ -11,6 +11,16 @@
     border-color var(--transition-fast), color var(--transition-fast);
 }
 
+/* Ícone/texto vindo via `children` mora num <span>. O reset define
+   display:block nos <svg>, o que empilharia o ícone ABAIXO do texto;
+   inline-flex + gap garante que fiquem na MESMA linha. */
+.button > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
 /* tamanhos */
 .md {
   min-height: 48px;

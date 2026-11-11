@@ -56,7 +56,7 @@ const TABS = [
 /** Painel do professor: fila de revisão + orientações + atalhos. */
 function ProfessorFace({ user }) {
   const queue = getProjectsByIds(REVIEW_QUEUE_IDS);
-  const advised = getProjectsByIds(ADvised_GROUP_IDS);
+  const advised = getProjectsByIds(ADVISED_GROUP_IDS);
   return (
     <>
       <header className={styles.header}>

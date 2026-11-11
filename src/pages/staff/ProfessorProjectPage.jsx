@@ -21,7 +21,7 @@ import {
 import styles from './ProfessorProjectPage.module.css';
 
 export default function ProfessorProjectPage() {
-  const [project] = getProjectsByIds(ADvised_GROUP_IDS);
+  const [project] = getProjectsByIds(ADVISED_GROUP_IDS);
   const team = getTeam(project);
   const status = statusMeta(project.status);
 

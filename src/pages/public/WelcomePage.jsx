@@ -8,7 +8,7 @@
  */
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FiArrowRight, FiSearch, FiUsers } from 'react-icons/fi';
+import { FiArrowRight, FiUsers } from 'react-icons/fi';
 
 import Logo from '../../components/icons/Logo.jsx';
 import Button from '../../components/ui/Button/Button.jsx';
@@ -43,10 +43,6 @@ export default function WelcomePage() {
     });
   }, [published, query, semester]);
 
-  const scrollToVitrine = () => {
-    document.getElementById('vitrine')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
   return (
     <div className={styles.page}>
       {/* ------------------------------------------------------- hero */}
@@ -77,23 +73,20 @@ export default function WelcomePage() {
         </div>
 
         <div className={styles.actions}>
-          <Button fullWidth size="lg" onClick={() => navigate('/login')}>
+          <Button
+            fullWidth
+            size="lg"
+            iconAfter={<FiArrowRight aria-hidden="true" />}
+            onClick={() => navigate('/login')}
+          >
             Entrar no PI²
-            <FiArrowRight aria-hidden="true" />
           </Button>
-          <Button fullWidth size="lg" variant="secondary" onClick={scrollToVitrine}>
-            <FiSearch aria-hidden="true" />
-            Ver projetos
+          <Button fullWidth size="lg" variant="secondary" onClick={() => navigate('/cadastro')}>
+            Criar minha conta
           </Button>
         </div>
 
-        <p className={styles.hint}>Seu e-mail institucional é sua porta de entrada.</p>
-        <p className={styles.signup}>
-          Ainda não tem conta?{' '}
-          <button type="button" className={styles.signupLink} onClick={() => navigate('/cadastro')}>
-            Criar minha conta
-          </button>
-        </p>
+        <p className={styles.hint}>Seu e-mail institucional é a porta de entrada.</p>
       </header>
 
       {/* --------------------------------------------------- vitrine */}

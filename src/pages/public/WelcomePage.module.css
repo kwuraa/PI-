@@ -89,17 +89,6 @@
   text-align: center;
 }
 
-.signup {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-  text-align: center;
-}
-
-.signupLink {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
-}
-
 /* -------------------------------------------------------- vitrine */
 .vitrine {
   display: flex;
