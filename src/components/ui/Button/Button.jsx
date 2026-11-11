@@ -1,31 +1,37 @@
-import React from 'react';
-import './Button.css';
-
 /**
- * Botão genérico.
- * variant: 'primary' (vermelho) | 'secondary' (contorno) | 'ghost' (texto)
- * fullWidth: ocupa 100% da largura do container
+ * PI² — Botão (design token driven).
+ * Variantes: primary (vermelho), secondary (contorno), ghost (texto).
+ * Use `fullWidth` para ocupar a largura toda (padrão dos protótipos).
  */
+import styles from './Button.module.css';
+
 export default function Button({
   variant = 'primary',
+  size = 'md',
   fullWidth = false,
-  type = 'button',
+  icon = null,
+  iconAfter = null,
   className = '',
+  type = 'button',
+  disabled = false,
   children,
-  ...props
+  ...rest
 }) {
   const classes = [
-    'button',
-    `button--${variant}`,
-    fullWidth && 'button--full',
+    styles.button,
+    styles[variant],
+    styles[size],
+    fullWidth ? styles.fullWidth : '',
     className,
   ]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <button type={type} className={classes} {...props}>
-      {children}
+    <button type={type} className={classes} disabled={disabled} {...rest}>
+      {icon}
+      {children && <span>{children}</span>}
+      {iconAfter}
     </button>
   );
 }

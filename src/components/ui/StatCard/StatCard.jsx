@@ -1,33 +1,16 @@
-import React from 'react';
-import { ClipboardCheck, Users } from '../../icons';
-import './StatCard.css';
-
-const ICONS = {
-  review: ClipboardCheck,
-  advising: Users,
-};
-
 /**
- * Cartão de estatística do painel (número grande + legenda).
- * variant: 'primary' (fundo vermelho) | 'default' (fundo claro).
+ * PI² — Cartão de estatística (número grande + rótulo + ícone).
+ * tone: 'primary' (fundo vermelho, destaque dos protótipos) | 'plain'.
+ * Usado nos painéis (2 aguardando revisão · 4 grupos ativos…).
  */
-export default function StatCard({
-  icon = 'review',
-  value,
-  label,
-  variant = 'default',
-}) {
-  const Icon = ICONS[icon] || ClipboardCheck;
+import styles from './StatCard.module.css';
 
+export default function StatCard({ value, label, icon = null, tone = 'plain', as: Tag = 'div' }) {
   return (
-    <article className={`stat-card stat-card--${variant}`}>
-      <span className="stat-card__icon" aria-hidden="true">
-        <Icon size={22} />
-      </span>
-      <div className="stat-card__body">
-        <strong className="stat-card__value">{value}</strong>
-        <span className="stat-card__label">{label}</span>
-      </div>
-    </article>
+    <Tag className={`${styles.card} ${styles[tone]}`}>
+      {icon && <span className={styles.icon}>{icon}</span>}
+      <strong className={styles.value}>{value}</strong>
+      <span className={styles.label}>{label}</span>
+    </Tag>
   );
 }

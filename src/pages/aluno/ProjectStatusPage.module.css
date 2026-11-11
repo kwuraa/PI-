@@ -1,0 +1,172 @@
+/* ProjectStatusPage — banner de envio + linha do tempo da análise. */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* --------------------------------------------------- resumo */
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.summaryTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.summaryMeta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.description {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------- blocos */
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ------------------------------------------------ timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  gap: var(--space-3);
+  padding-bottom: var(--space-5);
+}
+
+/* linha vertical entre etapas */
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 32px;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-border);
+}
+
+.step.done:not(:last-child)::before {
+  background-color: var(--color-primary);
+}
+
+.stepIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-surface);
+  border: 2px solid var(--color-border-strong);
+  color: var(--color-text-muted);
+  z-index: 1;
+}
+
+.done .stepIcon {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.current .stepIcon {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-primary-soft);
+}
+
+.stepBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-top: var(--space-1);
+}
+
+.stepTitle {
+  font-size: var(--font-size-md);
+  color: var(--color-text-title);
+}
+
+.todo .stepTitle {
+  color: var(--color-text-muted);
+}
+
+.stepMeta {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------- watcherrs */
+.watchers {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.watcher {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.watcherTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.watcherTexts strong {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+.watcherTexts span {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------- voltar */
+.backLink {
+  display: block;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+  text-align: center;
+  transition: border-color var(--transition-fast);
+}
+
+.backLink:hover {
+  border-color: var(--color-border-strong);
+}

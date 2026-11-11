@@ -1,136 +1,245 @@
-import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+/**
+ * PI² — Roteamento da aplicação (React Router v6).
+ * -----------------------------------------------------------------------------
+ * Estrutura:
+ *  • PublicLayout → telas públicas/autenticadas sem BottomNav
+ *    (boas-vindas, login, cadastro, recuperação de senha);
+ *  • MainLayout   → área do sistema com TopBar + BottomNav persistentes;
+ *  • StackShell   → variantes de barra superior empilhada (detalhes), que
+ *    resolvem o título a partir dos parâmetros da rota.
+ *
+ * Regras RBAC (useAuth):
+ *  • /aluno*            → apenas 'aluno';
+ *  • /painel*           → 'professor' | 'coordenador';
+ *  • /painel/grupos     → 'coordenador';
+ *  • /secretaria/cursos → 'secretaria';
+ *  • /perfil            → qualquer usuário logado (visitante vê o convite).
+ */
+import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 
-import MainLayout from './components/layout/MainLayout/MainLayout';
-import WelcomePage from './pages/WelcomePage/WelcomePage';
-import LoginPage from './pages/LoginPage/LoginPage';
-import SignupPage from './pages/SignupPage/SignupPage';
-import PasswordRecoveryPage from './pages/PasswordRecoveryPage/PasswordRecoveryPage';
-import DashboardPage from './pages/DashboardPage/DashboardPage';
-import StudentProjectsPage from './pages/StudentProjectsPage/StudentProjectsPage';
-import ExplorePage from './pages/ExplorePage/ExplorePage';
-import ProjectDetailsPage from './pages/ProjectDetailsPage/ProjectDetailsPage';
-import ProfilePage from './pages/ProfilePage/ProfilePage';
-import SavedProjectsPage from './pages/SavedProjectsPage/SavedProjectsPage';
-import ReviewProjectPage from './pages/ReviewProjectPage/ReviewProjectPage';
-import PublishProjectPage from './pages/PublishProjectPage/PublishProjectPage';
-import ProfessorGradesPage from './pages/ProfessorGradesPage/ProfessorGradesPage';
-import CoordinatorGradesPage from './pages/CoordinatorGradesPage/CoordinatorGradesPage';
-import SubmissionConfirmationPage from './pages/SubmissionConfirmationPage/SubmissionConfirmationPage';
-import ProjectAnalysisPage from './pages/ProjectAnalysisPage/ProjectAnalysisPage';
-import ReviewResultPage from './pages/ReviewResultPage/ReviewResultPage';
-import ProfessorSubmissionsPage from './pages/ProfessorSubmissionsPage/ProfessorSubmissionsPage';
-import ProfessorDeliveryPage from './pages/ProfessorDeliveryPage/ProfessorDeliveryPage';
-import PublicProjectPage from './pages/PublicProjectPage/PublicProjectPage';
-import MyProjectPage from './pages/MyProjectPage/MyProjectPage';
-import ProfessorCriteriaPage from './pages/ProfessorCriteriaPage/ProfessorCriteriaPage';
-import CoordinatorCriteriaPage from './pages/CoordinatorCriteriaPage/CoordinatorCriteriaPage';
-import CoordinatorGroupsPage from './pages/CoordinatorGroupsPage/CoordinatorGroupsPage';
-import ProfessorReportPage from './pages/ProfessorReportPage/ProfessorReportPage';
-import CoordinatorTeacherEvaluationPage from './pages/CoordinatorTeacherEvaluationPage/CoordinatorTeacherEvaluationPage';
-import CoordinatorPeerReviewsPage from './pages/CoordinatorPeerReviewsPage/CoordinatorPeerReviewsPage';
-import AvaliacoesPage from './pages/AvaliacoesPage/AvaliacoesPage';
-import CoordinatorConsolidatedReportPage from './pages/CoordinatorConsolidatedReportPage/CoordinatorConsolidatedReportPage';
-import PlaceholderPage from './pages/PlaceholderPage/PlaceholderPage';
+import MainLayout from './components/layout/MainLayout/MainLayout.jsx';
+import PublicLayout from './components/layout/PublicLayout/PublicLayout.jsx';
+import { useAuth } from './context/AuthContext.jsx';
+import { getProjectBySlug } from './mocks/projectsMock.js';
+
+import WelcomePage from './pages/public/WelcomePage.jsx';
+import LoginPage from './pages/public/LoginPage.jsx';
+import SignupPage from './pages/public/SignupPage.jsx';
+import RecoveryPage from './pages/public/RecoveryPage.jsx';
+import ExplorePage from './pages/ExplorePage.jsx';
+import ProjectPage from './pages/ProjectPage.jsx';
+import ProfilePage from './pages/ProfilePage.jsx';
+import NotFoundPage from './pages/NotFoundPage.jsx';
+import MyProjectsPage from './pages/aluno/MyProjectsPage.jsx';
+import NewProjectPage from './pages/aluno/NewProjectPage.jsx';
+import ProjectStatusPage from './pages/aluno/ProjectStatusPage.jsx';
+import StaffPanelPage from './pages/staff/StaffPanelPage.jsx';
+import ReviewPage from './pages/staff/ReviewPage.jsx';
+import ReviewResultPage from './pages/staff/ReviewResultPage.jsx';
+import DeliveryPage from './pages/staff/DeliveryPage.jsx';
+import EvolutionPage from './pages/staff/EvolutionPage.jsx';
+import GroupsPage from './pages/staff/GroupsPage.jsx';
+import ProfessorProjectPage from './pages/staff/ProfessorProjectPage.jsx';
+import CoursesPage from './pages/secretary/CoursesPage.jsx';
 
 /**
- * Mapa de rotas da aplicação.
- * As telas ainda não implementadas apontam para o PlaceholderPage,
- * mantendo a navegação completa desde a primeira entrega.
- *
- * A área logada fica dentro do MainLayout: a barra inferior fica
- * persistente (não pisca entre telas) e o conteúdo de cada rota
- * aparece com animação de entrada.
+ * Guarda de rotas: exige login e, opcionalmente, um dos roles indicados.
+ * Sem login → /login (guardando o destino para voltar depois).
+ * Com login, mas sem o role → destino seguro do perfil (/painel ou /aluno).
  */
+function RequireRole({ roles, children }) {
+  const { user, isRole } = useAuth();
+  const location = useLocation();
+
+  if (!user) {
+    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
+  }
+  if (roles && !roles.some(isRole)) {
+    const home = isRole('aluno') ? '/aluno' : '/painel';
+    return <Navigate to={home} replace />;
+  }
+  return children;
+}
+
+/**
+ * Barra superior empilhada (voltar + título).
+ * `resolveTitle(params)` monta o título com os parâmetros da rota
+ * (ex.: título real do projeto em /projeto/:slug).
+ */
+function StackShell({ resolveTitle, fallback = '' }) {
+  const params = useParams();
+  return <MainLayout barVariant="stack" title={resolveTitle(params) ?? fallback} />;
+}
+
+/** Título da barra em /projeto/:slug — usa o título do projeto mockado. */
+const projectTitle = ({ slug }) => getProjectBySlug(slug)?.title ?? 'Projeto';
+
 export default function App() {
   return (
     <Routes>
-      {/* Área pública */}
-      <Route path="/" element={<WelcomePage />} />
-      <Route path="/acessar" element={<LoginPage />} />
-      <Route path="/cadastro" element={<SignupPage />} />
-      <Route path="/recuperar" element={<PasswordRecoveryPage />} />
+      {/* ---------------------------------------------- telas públicas */}
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<WelcomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/cadastro" element={<SignupPage />} />
+        <Route path="/recuperar-senha" element={<RecoveryPage />} />
+      </Route>
 
-      {/* Área logada — nav persistente + transição suave */}
+      {/* ----------------------------------- barra brand (logo + espaço) */}
       <Route element={<MainLayout />}>
-        {/* Aluno */}
-        <Route path="/meus-projetos" element={<StudentProjectsPage />} />
-        <Route path="/meus-projetos/novo" element={<PublishProjectPage />} />
-        <Route path="/meus-projetos/enviado" element={<SubmissionConfirmationPage />} />
-        <Route path="/meus-projetos/:slug/analise" element={<ProjectAnalysisPage />} />
-        <Route path="/meus-projetos/:slug" element={<MyProjectPage />} />
-
-        {/* Professor/coordenador */}
-        <Route path="/painel" element={<DashboardPage />} />
-        <Route path="/painel/avaliacoes" element={<AvaliacoesPage />} />
-        <Route path="/professor/notas" element={<ProfessorGradesPage />} />
-        <Route path="/coordenador/notas" element={<CoordinatorGradesPage />} />
-        <Route path="/professor/revisar/:slug" element={<ReviewProjectPage />} />
-        <Route path="/professor/revisar/:slug/resultado" element={<ReviewResultPage />} />
-        <Route path="/professor/entregas" element={<ProfessorSubmissionsPage />} />
-        <Route path="/professor/entregas/:slug" element={<ProfessorDeliveryPage />} />
-        <Route path="/professor/criterios" element={<ProfessorCriteriaPage />} />
-        <Route
-          path="/professor/criterios/:id"
-          element={<PlaceholderPage title="Editar critério" />}
-        />
-        <Route path="/professor/relatorio" element={<ProfessorReportPage />} />
-        <Route path="/coordenador/grupos" element={<CoordinatorGroupsPage />} />
-        <Route
-          path="/coordenador/grupos/:id/link"
-          element={<PlaceholderPage title="Adicionar link de documentação" />}
-        />
-        <Route
-          path="/coordenador/grupos/:id"
-          element={<PlaceholderPage title="Detalhe do grupo" />}
-        />
-        <Route path="/coordenador/paritarias" element={<CoordinatorPeerReviewsPage />} />
-        <Route path="/coordenador/criterios" element={<CoordinatorCriteriaPage />} />
-        <Route
-          path="/coordenador/criterios/novo"
-          element={<PlaceholderPage title="Novo critério geral" />}
-        />
-        <Route
-          path="/coordenador/criterios/:id"
-          element={<PlaceholderPage title="Editar critério geral" />}
-        />
-        <Route path="/coordenador/desempenho" element={<CoordinatorTeacherEvaluationPage />} />
-        <Route path="/coordenador/relatorio" element={<CoordinatorConsolidatedReportPage />} />
-        <Route
-          path="/coordenador/pendencias"
-          element={<PlaceholderPage title="Pendências da coorte" />}
-        />
-        <Route
-          path="/coordenador/avaliar"
-          element={<PlaceholderPage title="Avaliar docentes" />}
-        />
-        <Route
-          path="/coordenador/entregaveis"
-          element={<PlaceholderPage title="Entregáveis pendentes" />}
-        />
-
-        {/* Exploração e perfil */}
         <Route path="/explorar" element={<ExplorePage />} />
-        <Route path="/projetos/:slug" element={<ProjectDetailsPage />} />
-        <Route path="/projetos/:slug/publico" element={<PublicProjectPage />} />
-        <Route path="/salvos" element={<SavedProjectsPage />} />
-        <Route path="/perfil" element={<ProfilePage />} />
         <Route
-          path="/perfil/alterar-senha"
-          element={<PlaceholderPage title="Alterar senha" />}
+          path="/perfil"
+          element={
+            <RequireRole>
+              <ProfilePage />
+            </RequireRole>
+          }
+        />
+
+        {/* aluno */}
+        <Route
+          path="/aluno"
+          element={
+            <RequireRole roles={['aluno']}>
+              <MyProjectsPage />
+            </RequireRole>
+          }
+        />
+
+        {/* professor / coordenador */}
+        <Route
+          path="/painel"
+          element={
+            <RequireRole roles={['professor', 'coordenador']}>
+              <StaffPanelPage />
+            </RequireRole>
+          }
         />
         <Route
-          path="/perfil/privacidade"
-          element={<PlaceholderPage title="Privacidade e termos de uso" />}
+          path="/painel/evolucao"
+          element={
+            <RequireRole roles={['professor', 'coordenador']}>
+              <EvolutionPage />
+            </RequireRole>
+          }
         />
         <Route
-          path="/perfil/ajuda"
-          element={<PlaceholderPage title="Ajuda e suporte" />}
+          path="/painel/grupos"
+          element={
+            <RequireRole roles={['coordenador']}>
+              <GroupsPage />
+            </RequireRole>
+          }
+        />
+
+        {/* secretaria */}
+        <Route
+          path="/secretaria/cursos"
+          element={
+            <RequireRole roles={['secretaria']}>
+              <CoursesPage />
+            </RequireRole>
+          }
         />
       </Route>
 
-      {/* Qualquer outra URL volta ao início */}
-      <Route path="*" element={<Navigate to="/" replace />} />
+      {/* ---------------------------- barra empilhada (detalhes/fluxos) */}
+      <Route
+        path="/projeto/:slug"
+        element={<StackShell resolveTitle={projectTitle} fallback="Projeto" />}
+      >
+        {/* Aberto a visitantes: a página decide entre leitura pública
+            (LGPD, sem nomes) e visão completa do usuário logado. */}
+        <Route index element={<ProjectPage />} />
+      </Route>
+
+      <Route
+        path="/aluno/novo"
+        element={<StackShell fallback="Novo projeto" />}
+      >
+        <Route
+          index
+          element={
+            <RequireRole roles={['aluno']}>
+              <NewProjectPage />
+            </RequireRole>
+          }
+        />
+      </Route>
+
+      <Route
+        path="/aluno/status/:slug"
+        element={<StackShell resolveTitle={projectTitle} fallback="Acompanhar análise" />}
+      >
+        <Route
+          index
+          element={
+            <RequireRole roles={['aluno']}>
+              <ProjectStatusPage />
+            </RequireRole>
+          }
+        />
+      </Route>
+
+      <Route
+        path="/painel/revisar/:slug"
+        element={<StackShell fallback="Revisão do projeto" />}
+      >
+        <Route
+          index
+          element={
+            <RequireRole roles={['professor']}>
+              <ReviewPage />
+            </RequireRole>
+          }
+        />
+      </Route>
+
+      <Route
+        path="/painel/resultado/:slug"
+        element={<StackShell fallback="Resultado da análise" />}
+      >
+        <Route
+          index
+          element={
+            <RequireRole roles={['professor']}>
+              <ReviewResultPage />
+            </RequireRole>
+          }
+        />
+      </Route>
+
+      <Route
+        path="/painel/entrega/:slug"
+        element={<StackShell fallback="Detalhe da entrega" />}
+      >
+        <Route
+          index
+          element={
+            <RequireRole roles={['professor', 'coordenador']}>
+              <DeliveryPage />
+            </RequireRole>
+          }
+        />
+      </Route>
+
+      <Route
+        path="/painel/meu-projeto"
+        element={<StackShell fallback="Meu projeto e materiais" />}
+      >
+        <Route
+          index
+          element={
+            <RequireRole roles={['professor']}>
+              <ProfessorProjectPage />
+            </RequireRole>
+          }
+        />
+      </Route>
+
+      {/* ------------------------------------------- fallback / 404 */}
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }

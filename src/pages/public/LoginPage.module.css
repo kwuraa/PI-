@@ -1,0 +1,159 @@
+/* LoginPage — chaveamento de perfis + formulário de acesso. */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-4) var(--space-4) var(--space-10);
+}
+
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-title);
+  transition: background-color var(--transition-fast);
+}
+
+.back:hover {
+  background-color: var(--color-border);
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.subtitle {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------- perfis */
+.profiles {
+  border: 0;
+  padding: 0;
+}
+
+.profilesLabel {
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.profileCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+  transition: border-color var(--transition-fast),
+    background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.profileCard:hover {
+  border-color: var(--color-border-strong);
+}
+
+.profileActive {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+/* --------------------------------------------------- form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.formRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.remember {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-body);
+}
+
+.remember input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-primary);
+}
+
+.forgot {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+/* --------------------------------------------------- info */
+.info {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-danger-soft);
+  border: 1px solid var(--color-primary-soft);
+  border-radius: var(--radius-lg);
+}
+
+.infoIcon {
+  display: inline-flex;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.info strong {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+.info p {
+  margin-top: var(--space-1);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.signup {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.signup a {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}

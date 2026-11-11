@@ -1,0 +1,102 @@
+/* NewProjectPage — formulário de publicação (3 links, sem PDF). */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: var(--space-4);
+}
+
+/* -------------------------------------------------- textarea */
+.textareaField,
+.techsField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.textareaLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+}
+
+.textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+  resize: vertical;
+  transition: border-color var(--transition-fast);
+}
+
+.textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+/* ----------------------------------------------------- links */
+.linksBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.linksTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.linksHint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------- ações */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.actions > * {
+  flex: 1;
+}
+
+/* Desktop: botões lado a lado */
+@media (min-width: 768px) {
+  .actions {
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+
+  .actions > * {
+    flex: 0 0 auto;
+    min-width: 200px;
+  }
+}

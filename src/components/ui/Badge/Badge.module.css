@@ -1,0 +1,36 @@
+/* Badge — pílula de status. */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+}
+
+.neutral {
+  background-color: var(--color-border);
+  color: var(--color-text-body);
+}
+
+.primary {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.success {
+  background-color: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.warning {
+  background-color: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+
+.dark {
+  background-color: var(--color-dark);
+  color: var(--color-text-inverse);
+}

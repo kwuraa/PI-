@@ -1,0 +1,67 @@
+/* SearchField — busca + botão de filtros. */
+.wrap {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+.icon {
+  position: absolute;
+  left: var(--space-4);
+  color: var(--color-text-muted);
+  pointer-events: none;
+}
+
+.input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 var(--space-4) 0 var(--space-10);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-md);
+  color: var(--color-text-body);
+  transition: border-color var(--transition-fast);
+}
+
+.input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.input::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+.filterButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-title);
+  transition: border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.filterButton:hover {
+  border-color: var(--color-border-strong);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}

@@ -1,36 +1,38 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { PencilLine, Users, MessageSquare, FileText, ArrowRight } from '../../icons';
-import './ListRow.css';
-
-const ICONS = {
-  pencil: PencilLine,
-  users: Users,
-  message: MessageSquare,
-  file: FileText,
-};
-
 /**
- * Linha de lista do painel: [ícone] [número] [rótulo] → seta.
- * Se `href` for informado, a linha inteira vira um link.
- * tone: 'neutral' (bege) | 'amber' (âmbar) — cor do quadro do ícone.
+ * PI² — Linha de lista com ícone, título, selo opcional e seta.
+ * Padrão das listas de atalhos, configurações e áreas de ação.
+ * Props: icon, title, hint, badge (JSX — ex.: <Badge/>), to (link) | onClick.
  */
-export default function ListRow({ icon = 'pencil', value, label, href = '#', tone = 'neutral' }) {
-  const Icon = ICONS[icon] || PencilLine;
+import { Link } from 'react-router-dom';
+import { FiChevronRight } from 'react-icons/fi';
+import styles from './ListRow.module.css';
+
+export default function ListRow({ icon = null, title, hint, badge = null, to, onClick }) {
+  const inner = (
+    <>
+      {icon && <span className={styles.icon}>{icon}</span>}
+      <span className={styles.texts}>
+        <span className={styles.title}>{title}</span>
+        {hint && <span className={styles.hint}>{hint}</span>}
+        {badge && <span className={styles.badgeSlot}>{badge}</span>}
+      </span>
+      <FiChevronRight className={styles.chevron} aria-hidden="true" />
+    </>
+  );
+
+  const classes = `${styles.row} ${to || onClick ? styles.interactive : ''}`;
+
+  if (to) {
+    return (
+      <Link to={to} className={classes}>
+        {inner}
+      </Link>
+    );
+  }
 
   return (
-    <Link to={href} className="list-row">
-      <span
-        className={`list-row__icon list-row__icon--${tone}`}
-        aria-hidden="true"
-      >
-        <Icon size={18} />
-      </span>
-      <strong className="list-row__value">{value}</strong>
-      <span className="list-row__label">{label}</span>
-      <span className="list-row__arrow" aria-hidden="true">
-        <ArrowRight size={18} />
-      </span>
-    </Link>
+    <button type="button" className={classes} onClick={onClick}>
+      {inner}
+    </button>
   );
 }

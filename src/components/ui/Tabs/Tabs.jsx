@@ -1,27 +1,20 @@
-import React from 'react';
-import './Tabs.css';
-
 /**
- * Controle segmentado (tabs) do painel.
- * `items`: [{ id, label }] — controlado pela página via activeId/onChange.
+ * PI² — Abas em controle segmentado ("Painel unificado | Atalhos").
+ * Props: items [{ id, label }], value, onChange.
+ * O item ativo vira pílula branca sobre o trilho cinza (protótipos).
  */
-export default function Tabs({ items, activeId, onChange, className = '' }) {
-  const classes = ['tabs', className].filter(Boolean).join(' ');
+import styles from './Tabs.module.css';
 
+export default function Tabs({ items, value, onChange, ariaLabel = 'Seções' }) {
   return (
-    <div className={classes} role="tablist">
+    <div className={styles.track} role="tablist" aria-label={ariaLabel}>
       {items.map((item) => (
         <button
           key={item.id}
           type="button"
           role="tab"
-          aria-selected={item.id === activeId}
-          className={[
-            'tabs__item',
-            item.id === activeId && 'tabs__item--active',
-          ]
-            .filter(Boolean)
-            .join(' ')}
+          aria-selected={value === item.id}
+          className={`${styles.tab} ${value === item.id ? styles.active : ''}`}
           onClick={() => onChange(item.id)}
         >
           {item.label}

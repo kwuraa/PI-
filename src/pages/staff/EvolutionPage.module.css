@@ -1,0 +1,185 @@
+/* EvolutionPage — relatório de histórico e evolução do grupo. */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-body);
+}
+
+.updated {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ------------------------------------------------ timeline */
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  position: relative;
+  display: flex;
+  gap: var(--space-3);
+  padding-bottom: var(--space-5);
+}
+
+.step:not(:last-child)::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 34px;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-border);
+}
+
+.stepIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-surface);
+  border: 2px solid var(--color-border-strong);
+  color: var(--color-text-muted);
+  z-index: 1;
+}
+
+.stepDone {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+.stepPending {
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+.stepBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-top: var(--space-1);
+  min-width: 0;
+}
+
+.stepTag {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.stepTitle {
+  font-size: var(--font-size-md);
+  color: var(--color-text-title);
+}
+
+.stepSummary {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+}
+
+.stepEvidence {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.stepEvidence svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* ---------------------------------------- qualitativa */
+.qualitative {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.qualCard {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.qualIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.qualTitle {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.qualSummary {
+  margin-top: var(--space-1);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+}
+
+.qualEvidence {
+  margin-top: var(--space-2);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------ voltar */
+.back {
+  display: block;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+  text-align: center;
+}
+
+.back:hover {
+  border-color: var(--color-border-strong);
+}

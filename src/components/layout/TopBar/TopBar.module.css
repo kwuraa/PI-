@@ -1,0 +1,82 @@
+/* TopBar — variante brand (painel) e stack (detalhe). */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-bg-page);
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.spaceLabel {
+  flex: 1;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-border);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-body);
+  transition: box-shadow var(--transition-fast);
+}
+
+.avatar:hover {
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+/* ---- variante stack ---- */
+.stack {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--topbar-height);
+  padding: var(--space-2) var(--space-3);
+  background-color: var(--color-bg-page);
+  border-bottom: 1px solid transparent;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-title);
+  transition: background-color var(--transition-fast);
+}
+
+.iconButton:hover {
+  background-color: var(--color-border);
+}
+
+.stackTitle {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  color: var(--color-text-title);
+}
+
+.actionSlot {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,60 @@
+/* Callout — bloco de alerta/estado. */
+.callout {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-bg-surface);
+}
+
+.danger {
+  background-color: var(--color-danger-soft);
+  border-color: var(--color-primary-soft);
+}
+
+.danger .title,
+.danger .icon {
+  color: var(--color-primary);
+}
+
+.success {
+  background-color: var(--color-success-soft);
+  border-color: var(--color-success-soft);
+}
+
+.success .title,
+.success .icon {
+  color: var(--color-success);
+}
+
+.icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.text {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.action {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}

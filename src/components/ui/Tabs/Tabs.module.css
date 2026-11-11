@@ -1,0 +1,29 @@
+/* Tabs — controle segmentado de abas. */
+.track {
+  display: flex;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  background-color: var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.tab {
+  flex: 1;
+  padding: var(--space-3) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+  transition: background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.tab:hover {
+  color: var(--color-text-title);
+}
+
+.active {
+  background-color: var(--color-bg-surface);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}

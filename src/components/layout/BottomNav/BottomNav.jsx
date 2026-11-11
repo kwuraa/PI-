@@ -1,54 +1,59 @@
-import React from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
-import { Compass, LayoutGrid, Bookmark, User } from '../../icons';
-import './BottomNav.css';
-
 /**
- * Navegação inferior fixa (mobile).
- * Recebe os itens por prop para que cada perfil (aluno/professor)
- * monte sua própria barra sem duplicar componente.
- * `match` (opcional): prefixos extra que mantêm o item ativo
- * (ex.: as telas de /professor/ pertencem à aba "Painel").
+ * PI² — Navegação inferior persistente (3 destinos).
+ * Ícones: react-icons/feather (traço fino igual ao dos protótipos).
+ * Os itens mudam conforme o perfil logado (aluno: Meus projetos;
+ * professor/coordenador/secretaria: Painel). O destino ativo ganha
+ * pílula vermelha de fundo no ícone.
  */
-const DEFAULT_ITEMS = [
-  { to: '/explorar', label: 'Explorar', icon: Compass },
-  { to: '/painel', label: 'Painel', icon: LayoutGrid },
-  { to: '/salvos', label: 'Salvos', icon: Bookmark },
-  { to: '/perfil', label: 'Perfil', icon: User },
+import { NavLink } from 'react-router-dom';
+import { FiCompass, FiGrid, FiLayers, FiLogIn, FiUser } from 'react-icons/fi';
+import styles from './BottomNav.module.css';
+
+const GUEST_ITEMS = [
+  { to: '/explorar', Icon: FiCompass, label: 'Explorar' },
+  { to: '/login', Icon: FiLogIn, label: 'Entrar' },
+  { to: '/perfil', Icon: FiUser, label: 'Perfil' },
 ];
 
-export default function BottomNav({ items = DEFAULT_ITEMS }) {
-  const { pathname } = useLocation();
+const ALUNO_ITEMS = [
+  { to: '/explorar', Icon: FiCompass, label: 'Explorar' },
+  { to: '/aluno', Icon: FiLayers, label: 'Meus projetos' },
+  { to: '/perfil', Icon: FiUser, label: 'Perfil' },
+];
+
+const EQUIPE_ITEMS = [
+  { to: '/explorar', Icon: FiCompass, label: 'Explorar' },
+  { to: '/painel', Icon: FiGrid, label: 'Painel' },
+  { to: '/perfil', Icon: FiUser, label: 'Perfil' },
+];
+
+/** Escolhe a barra conforme os roles do usuário (ou visitante). */
+export function itemsFor(user) {
+  if (!user) return GUEST_ITEMS;
+  if (user.roles.includes('aluno')) return ALUNO_ITEMS;
+  return EQUIPE_ITEMS;
+}
+
+export default function BottomNav({ user }) {
+  const items = itemsFor(user);
 
   return (
-    <nav className="bottom-nav" aria-label="Navegação principal">
-      <ul className="bottom-nav__list">
-        {items.map((item) => {
-          const { to, label, icon: Icon, match } = item;
-
-          return (
-            <li key={to} className="bottom-nav__item">
-              <NavLink
-                to={to}
-                className={({ isActive }) => {
-                  const active =
-                    isActive ||
-                    Boolean(match?.some((prefix) => pathname.startsWith(prefix)));
-
-                  return ['bottom-nav__link', active && 'bottom-nav__link--active']
-                    .filter(Boolean)
-                    .join(' ');
-                }}
-              >
-                <span className="bottom-nav__icon" aria-hidden="true">
-                  <Icon size={22} />
-                </span>
-                <span className="bottom-nav__label">{label}</span>
-              </NavLink>
-            </li>
-          );
-        })}
-      </ul>
+    <nav className={styles.nav} aria-label="Navegação principal">
+      {items.map(({ to, Icon, label }) => (
+        <NavLink
+          key={to}
+          to={to}
+          end={to === '/aluno' || to === '/painel'}
+          className={({ isActive }) =>
+            `${styles.item} ${isActive ? styles.active : ''}`
+          }
+        >
+          <span className={styles.iconPill}>
+            <Icon size={22} aria-hidden="true" />
+          </span>
+          <span className={styles.label}>{label}</span>
+        </NavLink>
+      ))}
     </nav>
   );
 }
