@@ -8,6 +8,7 @@
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FiX } from 'react-icons/fi';
+import { EASE } from '../../../styles/motion.js';
 import styles from './Modal.module.css';
 
 export default function Modal({ open, onClose, title, children, footer }) {
@@ -29,7 +30,7 @@ export default function Modal({ open, onClose, title, children, footer }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.2 } }}
-          transition={{ duration: 0.25, ease: 'ease' }}
+          transition={{ duration: 0.25, ease: EASE }}
         >
           <motion.div
             className={styles.sheet}
@@ -40,7 +41,7 @@ export default function Modal({ open, onClose, title, children, footer }) {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 24, transition: { duration: 0.2 } }}
-            transition={{ duration: 0.25, ease: 'ease' }}
+            transition={{ duration: 0.25, ease: EASE }}
           >
             <div className={styles.grabber} />
             <header className={styles.header}>

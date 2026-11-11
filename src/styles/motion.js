@@ -10,11 +10,18 @@
  * e posição, sempre com duração espelhando --transition-base (250ms ease).
  */
 
+/**
+ * Curva CSS `ease` = cubic-bezier(0.25, 0.1, 0.25, 1).
+ * O framer-motion NÃO aceita a string 'ease' (só 'easeIn'/'easeOut'/…);
+ * usamos a tupla para reproduzir exatamente a curva do CSS.
+ */
+export const EASE = [0.25, 0.1, 0.25, 1];
+
 /** Entrada/saída de cada tela no stage (AnimatePresence mode="wait"). */
 export const pageVariants = {
   initial: { opacity: 0, y: 8 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.25, ease: 'ease' } },
-  exit: { opacity: 0, y: -6, transition: { duration: 0.15, ease: 'ease' } },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.25, ease: EASE } },
+  exit: { opacity: 0, y: -6, transition: { duration: 0.15, ease: EASE } },
 };
 
 /** Container: os filhos entram em sequência (stagger). */
@@ -26,7 +33,7 @@ export const staggerParent = {
 /** Filho do stagger: fade + subida suave. */
 export const fadeUpChild = {
   hidden: { opacity: 0, y: 12 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: 'ease' } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE } },
 };
 
 /** Props de um card em grade: atraso progressivo pelo índice (teto 0.4s). */
@@ -38,7 +45,7 @@ export const cardIn = (index = 0) => ({
     transition: {
       duration: 0.35,
       delay: Math.min(index * 0.06, 0.4),
-      ease: 'ease',
+      ease: EASE,
     },
   },
 });
