@@ -1,4 +1,6 @@
-/* PublicLayout — shell enxuto das telas públicas. */
+/* PublicLayout — shell enxuto das telas públicas.
+   Mobile: coluna estreita (480px); ≥768px: largura total (as próprias
+   páginas definem sua largura útil — a vitrine usa --content-max). */
 .shell {
   min-height: 100dvh;
   display: flex;
@@ -14,4 +16,11 @@
   display: flex;
   flex-direction: column;
   /* entrada animada via framer-motion (motion.main) no JSX */
+}
+
+@media (min-width: 768px) {
+  .stage {
+    max-width: var(--content-max);
+    padding-inline: var(--space-6);
+  }
 }

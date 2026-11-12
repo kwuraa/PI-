@@ -1,9 +1,18 @@
-/* MainLayout — shell com stage animado (framer-motion) e espaço p/ BottomNav. */
+/* MainLayout — shell com SideNav (desktop) e stage animado (framer-motion).
+   Espaço inferior reservado para a BottomNav fixa (só mobile/tablet). */
 .shell {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   background-color: var(--color-bg-page);
+}
+
+/* Coluna principal: TopBar + stage + BottomNav (a SideNav fica ao lado). */
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .stage {
@@ -16,10 +25,13 @@
   /* entrada animada via framer-motion (motion.main) no JSX */
 }
 
-/* Desktop: mais respiro nas laterais */
+/* Desktop: sidebar lateral, mais respiro e sem espaço da BottomNav */
 @media (min-width: 1024px) {
+  .shell {
+    flex-direction: row;
+  }
+
   .stage {
-    padding-left: var(--space-8);
-    padding-right: var(--space-8);
+    padding: var(--space-6) var(--space-8) var(--space-12);
   }
 }

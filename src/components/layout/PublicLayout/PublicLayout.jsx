@@ -1,6 +1,6 @@
 /**
  * PI² — Shell das telas públicas/autenticadas sem BottomNav
- * (boas-vindas, acesso, login, cadastro, recuperação de senha).
+ * (boas-vindas, login, cadastro, recuperação de senha).
  * Animação (framer-motion): o stage entra com fade + subida e SAÍ antes da
  * próxima tela entrar (AnimatePresence mode="wait"). O `key` por rota +
  * `useOutlet()` garantem que quem anima a saída é a tela ANTIGA; o shell

@@ -1,9 +1,16 @@
-/* WelcomePage — hero da vitrine + grade pública de projetos. */
+/* WelcomePage — hero da vitrine + grade pública de projetos.
+   Desktop (≥1024px): cabeçalho de marca, hero em 2 colunas e rodapé
+   em 3 partes — igual ao protótipo "Boas-vindas — Vitrine pública". */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-10);
   padding: var(--space-6) var(--space-4) var(--space-10);
+}
+
+/* ------------------------------------------------- cabeçalho (desktop) */
+.brandBar {
+  display: none;
 }
 
 /* ------------------------------------------------------------ hero */
@@ -78,8 +85,8 @@
 }
 
 .actions {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--space-3);
 }
 
@@ -131,9 +138,105 @@
 
 /* ---------------------------------------------------------- footer */
 .footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
   padding-top: var(--space-6);
   border-top: 1px solid var(--color-border);
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
   text-align: center;
+}
+
+/* links do rodapé: só no desktop (mobile fica só a assinatura) */
+.footerLinks,
+.footerAdmin {
+  display: none;
+}
+
+/* ------------------------------------------------------- desktop */
+@media (min-width: 768px) {
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+
+  .footerLinks {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .footerLinks a {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .footerAdmin {
+    display: inline-flex;
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+@media (min-width: 1024px) {
+  .brandBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brandBarLabel {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-caps);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  /* hero em 2 colunas: título à esquerda, texto + CTAs à direita */
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    column-gap: var(--space-10);
+    align-items: start;
+  }
+
+  .logoCard {
+    display: none; /* no desktop o logo vive no brandBar */
+  }
+
+  .eyebrow {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .headline {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .lead {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .proof {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .actions {
+    grid-column: 2;
+    grid-row: 3;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hint {
+    grid-column: 2;
+    grid-row: 4;
+    text-align: left;
+  }
 }

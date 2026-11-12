@@ -23,7 +23,6 @@ import { useAuth } from './context/AuthContext.jsx';
 import { getProjectBySlug } from './mocks/projectsMock.js';
 
 import WelcomePage from './pages/public/WelcomePage.jsx';
-import AccessPage from './pages/public/AccessPage.jsx';
 import LoginPage from './pages/public/LoginPage.jsx';
 import SignupPage from './pages/public/SignupPage.jsx';
 import RecoveryPage from './pages/public/RecoveryPage.jsx';
@@ -83,8 +82,6 @@ export default function App() {
       {/* ---------------------------------------------- telas públicas */}
       <Route element={<PublicLayout />}>
         <Route path="/" element={<WelcomePage />} />
-        {/* Tela intermediária boas-vindas → login (hero de acesso). */}
-        <Route path="/acesso" element={<AccessPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastro" element={<SignupPage />} />
         <Route path="/recuperar-senha" element={<RecoveryPage />} />

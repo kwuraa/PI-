@@ -1,4 +1,6 @@
-/* TopBar — variante brand (painel) e stack (detalhe). */
+/* TopBar — variante brand (painel) e stack (detalhe).
+   No desktop (≥1024px) a brand ganha título da marca, chip do semestre e
+   bloco nome/papel — igual aos protótipos desktop. */
 .brand {
   display: flex;
   align-items: center;
@@ -11,14 +13,55 @@
   flex-shrink: 0;
 }
 
-.spaceLabel {
+/* Bloco de texto: centralizado no mobile (só o espaço aparece),
+   alinhado à esquerda no desktop (marca + espaço). */
+.brandBlock {
   flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brandTitle {
+  display: none; /* título da marca: só no desktop */
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-title);
+}
+
+.spaceLabel {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--letter-spacing-caps);
   text-transform: uppercase;
   color: var(--color-text-muted);
-  text-align: center;
+}
+
+/* chip do período letivo: só no desktop */
+.semester {
+  display: none;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-page);
+  border: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+.user {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.user:hover {
+  opacity: 0.85;
 }
 
 .avatar {
@@ -37,6 +80,63 @@
 
 .avatar:hover {
   box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+/* nome + papel + chevron: só no desktop */
+.userBlock,
+.chevron {
+  display: none;
+}
+
+.userName {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+  text-align: left;
+}
+
+.userRole {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: left;
+}
+
+/* ------------------------------------------------------- desktop */
+@media (min-width: 1024px) {
+  .brand {
+    gap: var(--space-4);
+    min-height: 72px;
+    padding: var(--space-3) var(--space-6);
+    background-color: var(--color-bg-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .brandBlock {
+    align-items: flex-start;
+  }
+
+  .brandTitle {
+    display: block;
+  }
+
+  .semester {
+    display: inline-flex;
+  }
+
+  .userBlock {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chevron {
+    display: block;
+    color: var(--color-text-muted);
+  }
+
+  .avatar {
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
 }
 
 /* ---- variante stack ---- */

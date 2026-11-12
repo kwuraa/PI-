@@ -4,12 +4,12 @@
  * Hero do protótipo "Boas-vindas ao PI²" + vitrine exigida pelo briefing:
  * busca por palavra-chave, filtro de semestre (1º ao 6º) e grade de cards
  * ANONIMIZADOS (LGPD: só "Equipe DSM — Xº Semestre").
- * Visitante não logado → "Entrar no PI²" leva à tela de acesso (/acesso,
- * hero intermediário) e "Criar minha conta" ao cadastro.
+ * Visitante não logado → "Entrar no PI²" vai direto ao login (/login) e
+ * "Criar minha conta" ao cadastro.
  * Movimento: hero em stagger (framer-motion) e cards da grade em cascata.
  */
 import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiArrowRight, FiUsers } from 'react-icons/fi';
 
@@ -49,6 +49,12 @@ export default function WelcomePage() {
 
   return (
     <div className={styles.page}>
+      {/* cabeçalho da vitrine — só aparece no desktop (≥1024px) */}
+      <div className={styles.brandBar}>
+        <Logo size={56} />
+        <span className={styles.brandBarLabel}>Conhecimento conectado</span>
+      </div>
+
       {/* ------------------------------------------------------- hero */}
       <motion.header
         className={styles.hero}
@@ -88,7 +94,7 @@ export default function WelcomePage() {
             fullWidth
             size="lg"
             iconAfter={<FiArrowRight aria-hidden="true" />}
-            onClick={() => navigate('/acesso')}
+            onClick={() => navigate('/login')}
           >
             Entrar no PI²
           </Button>
@@ -145,7 +151,19 @@ export default function WelcomePage() {
         )}
       </section>
 
-      <footer className={styles.footer}>PI² · Ideias que multiplicam conhecimento</footer>
+      <footer className={styles.footer}>
+        <span className={styles.footerSlogan}>
+          PI² · Ideias que multiplicam conhecimento
+        </span>
+        <nav className={styles.footerLinks} aria-label="Links institucionais">
+          <a href="#instituicao">Instituição</a>
+          <a href="#termos">Termos de uso</a>
+          <a href="#privacidade">Privacidade</a>
+        </nav>
+        <Link className={styles.footerAdmin} to="/login">
+          Login administrativo
+        </Link>
+      </footer>
     </div>
   );
 }

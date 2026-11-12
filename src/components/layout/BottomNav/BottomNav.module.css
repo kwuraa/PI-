@@ -1,5 +1,6 @@
 /* BottomNav — barra fixa inferior; a pílula do item ativo (vermelha)
-   DESLIZA entre os itens via framer-motion (layoutId). */
+   DESLIZA entre os itens via framer-motion (layoutId).
+   No desktop (≥1024px) ela dá lugar à SideNav lateral. */
 .nav {
   position: fixed;
   bottom: 0;
@@ -56,4 +57,11 @@
 .active {
   color: var(--color-primary);
   font-weight: var(--font-weight-semibold);
+}
+
+/* Desktop: a SideNav lateral substitui a barra inferior */
+@media (min-width: 1024px) {
+  .nav {
+    display: none;
+  }
 }
