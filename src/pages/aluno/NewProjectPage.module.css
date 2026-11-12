@@ -1,4 +1,6 @@
-/* NewProjectPage — formulário de publicação (3 links, sem PDF). */
+/* NewProjectPage — formulário de publicação (3 links, sem PDF).
+   Desktop (≥1024px): 2 colunas — formulário à esquerda, materiais +
+   visibilidade + ações à direita (protótipo "Publicação de projeto"). */
 .page {
   display: flex;
   flex-direction: column;
@@ -9,6 +11,36 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
+}
+
+.mainCol,
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+/* ------------------------------------------------------ cards */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.cardTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.cardHint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
 }
 
 .row {
@@ -55,48 +87,107 @@
   box-shadow: 0 0 0 3px var(--color-primary-soft);
 }
 
-/* ----------------------------------------------------- links */
-.linksBlock {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  padding: var(--space-4);
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+.counter {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: right;
 }
 
-.linksTitle {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
+/* ------------------------------------------- visibilidade */
+.visField {
+  margin: 0;
+}
+
+.visOption {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.visOption:hover {
+  border-color: var(--color-border-strong);
+}
+
+.visOption input {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--color-primary);
+}
+
+.visActive {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-soft);
+}
+
+.visText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.visText strong {
+  font-size: var(--font-size-sm);
   color: var(--color-text-title);
 }
 
-.linksHint {
+.visActive .visText strong {
+  color: var(--color-primary);
+}
+
+.visText span {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
 }
 
+/* ------------------------------------------------- aviso */
+.info {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-danger-soft);
+  border: 1px solid var(--color-primary-soft);
+  border-radius: var(--radius-lg);
+}
+
+.info svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-primary);
+}
+
+.infoText {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+}
+
+.infoText strong {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
 /* --------------------------------------------------- ações */
 .actions {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: var(--space-3);
 }
 
-.actions > * {
-  flex: 1;
-}
-
-/* Desktop: botões lado a lado */
-@media (min-width: 768px) {
-  .actions {
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-
-  .actions > * {
-    flex: 0 0 auto;
-    min-width: 200px;
+/* --------------------------------------------------- desktop */
+@media (min-width: 1024px) {
+  .form {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--space-5);
+    align-items: start;
   }
 }

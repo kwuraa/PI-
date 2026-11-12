@@ -52,6 +52,92 @@
   color: var(--color-text-muted);
 }
 
+/* sininho de notificações: só no desktop */
+.bellWrap {
+  display: none;
+  position: relative;
+}
+
+.bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-body);
+  transition: background-color var(--transition-fast);
+}
+
+.bell:hover {
+  background-color: var(--color-bg-page);
+}
+
+.bellDot {
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-bg-surface);
+}
+
+.bellPop {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  right: 0;
+  z-index: 70;
+  width: 300px;
+  padding: var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.bellTitle {
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+}
+
+.bellList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bellItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.bellItem:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.bellText {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+}
+
+.bellWhen {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
 .user {
   display: inline-flex;
   align-items: center;
@@ -124,6 +210,10 @@
 
   .semester {
     display: inline-flex;
+  }
+
+  .bellWrap {
+    display: block;
   }
 
   .userBlock {

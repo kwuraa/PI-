@@ -13,6 +13,7 @@ import {
   FiArrowRight,
   FiClipboard,
   FiFileText,
+  FiFolder,
   FiSliders,
   FiTrendingUp,
   FiUsers,
@@ -169,6 +170,12 @@ function ProfessorFace({ user }) {
             title="Meu projeto e materiais"
             hint="Arquivos e links de apoio das orientações"
             to="/painel/meu-projeto"
+          />
+          <ListRow
+            icon={<FiFolder aria-hidden="true" />}
+            title="Trabalhos enviados"
+            hint="Entregas dos alunos para acompanhar"
+            to="/painel/entregas"
           />
         </div>
       </section>
