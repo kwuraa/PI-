@@ -1,9 +1,19 @@
-/* MainLayout — shell com stage animado (framer-motion) e espaço p/ BottomNav. */
+/* MainLayout — TopBar de fora a fora no topo; abaixo, SideNav (desktop) +
+   stage animado (framer-motion) com breadcrumb e rodapé interno.
+   Espaço inferior reservado p/ BottomNav (só mobile/tablet). */
 .shell {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   background-color: var(--color-bg-page);
+}
+
+/* Corpo sob a barra: SideNav + conteúdo (mobile: só conteúdo, em coluna) */
+.body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .stage {
@@ -16,10 +26,39 @@
   /* entrada animada via framer-motion (motion.main) no JSX */
 }
 
-/* Desktop: mais respiro nas laterais */
-@media (min-width: 1024px) {
+/* Rodapé interno das telas logadas (só desktop, como nos protótipos) */
+.footer {
+  display: none;
+}
+
+/* Tablet: mais respiro lateral */
+@media (min-width: 768px) {
   .stage {
-    padding-left: var(--space-8);
-    padding-right: var(--space-8);
+    padding-left: var(--space-6);
+    padding-right: var(--space-6);
+  }
+}
+
+/* Desktop: linha com a sidebar à esquerda, mais respiro e sem BottomNav */
+@media (min-width: 1024px) {
+  .body {
+    flex-direction: row;
+  }
+
+  .stage {
+    padding: var(--space-6) var(--space-8) var(--space-12);
+  }
+
+  .footer {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-top: var(--space-8);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .footerLinks {
+    color: var(--color-text-muted);
   }
 }

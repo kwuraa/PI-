@@ -110,7 +110,7 @@ src/
 │   ├── ui/             # kit genérico: Button, Card, Modal, Badge, Select,
 │   │                   # TextField, Avatar, Tabs, Callout, StatCard,
 │   │                   # ListRow, SectionHeader, FilterChips, SearchField
-│   ├── layout/         # TopBar, BottomNav, MainLayout, PublicLayout
+│   ├── layout/         # TopBar, BottomNav, SideNav (desktop), MainLayout, PublicLayout
 │   ├── public/         # ProjectCard (variantes pública/logada/minha)
 │   └── icons/          # Logo oficial (SVG da marca)
 └── pages/              # uma pasta por área: public/, aluno/, staff/,

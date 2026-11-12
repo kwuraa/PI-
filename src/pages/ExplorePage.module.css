@@ -66,3 +66,127 @@
 .sheetFooter > * {
   flex: 1;
 }
+
+/* ------------------------- layout 2 colunas (painel + resultados) */
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+/* o painel de filtros é exclusivo do desktop; no mobile os filtros
+   continuam no bottom sheet acionado pelo botão da busca */
+.panel {
+  display: none;
+}
+
+.panelTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.clearPanel {
+  align-self: flex-start;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  transition: color var(--transition-fast);
+}
+
+.clearPanel:hover {
+  color: var(--color-text-title);
+}
+
+/* lista de rádio com contagem (Semestre) */
+.radioList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.radioRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-body);
+  text-align: left;
+  transition: background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.radioRow:hover {
+  background-color: var(--color-bg-page);
+}
+
+.radioDot {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  transition: background-color var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.radioCount {
+  margin-left: auto;
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.radioActive {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.radioActive:hover {
+  background-color: var(--color-primary-soft);
+}
+
+.radioActive .radioDot {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.radioActive .radioCount {
+  color: var(--color-primary);
+}
+
+/* Desktop: painel fixo à esquerda, resultados à direita */
+@media (min-width: 1024px) {
+  .layout {
+    display: grid;
+    grid-template-columns: 300px minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .panel {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-4));
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding: var(--space-5);
+    background-color: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+  }
+
+  /* no desktop os semestres viram as linhas de rádio do painel */
+  .chipsRow {
+    display: none;
+  }
+}

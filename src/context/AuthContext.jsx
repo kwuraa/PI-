@@ -5,6 +5,10 @@
  * O perfil escolhido na tela de login define os roles, e as rotas protegidas
  * consultam useAuth() para decidir quem pode ver o quê.
  *
+ * Sessão persistida: o par (usuário, roles ativos) fica salvo em
+ * localStorage — atualizar a página NÃO desloga mais (id do usuário +
+ * roles; o objeto em si é reidratado dos mocks).
+ *
  * Espaço ativo (troca de perfis): um usuário com mais de um role (ex.:
  * professor que também coordena) pode atuar em um espaço por vez —
  * `activeRoles` define o que vale AGORA (cabeçalho, guardas e painel).
@@ -12,7 +16,7 @@
  * Uso em qualquer componente:
  *   const { user, activeRoles, isRole, login, logout, switchSpace } = useAuth();
  */
-import { createContext, useCallback, useContext, useMemo, useState } from 'react';
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import {
   MOCK_USERS,
   spaceLabelFor,
@@ -21,9 +25,44 @@ import {
 
 const AuthContext = createContext(null);
 
+/** Chave da sessão persistida no navegador (mock de "permanência"). */
+const SESSION_KEY = 'pi2.session';
+
+/** Lê a sessão salva e a reidrata com os mocks (id + roles válidos). */
+function loadSession() {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+    const { userId, roles } = JSON.parse(raw);
+    const found = MOCK_USERS.find((u) => u.id === userId);
+    if (!found || !Array.isArray(roles)) return null;
+    const validRoles = roles.filter((r) => found.roles.includes(r));
+    return validRoles.length > 0 ? { user: found, roles: validRoles } : null;
+  } catch {
+    return null; /* localStorage indisponível (modo privado, etc.) */
+  }
+}
+
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [activeRoles, setActiveRoles] = useState(null);
+  const [session] = useState(loadSession);
+  const [user, setUser] = useState(session?.user ?? null);
+  const [activeRoles, setActiveRoles] = useState(session?.roles ?? null);
+
+  /* Persiste a sessão a cada troca (login, logout ou troca de espaço). */
+  useEffect(() => {
+    try {
+      if (user && activeRoles) {
+        localStorage.setItem(
+          SESSION_KEY,
+          JSON.stringify({ userId: user.id, roles: activeRoles })
+        );
+      } else {
+        localStorage.removeItem(SESSION_KEY);
+      }
+    } catch {
+      /* falha de armazenamento não pode quebrar o app */
+    }
+  }, [user, activeRoles]);
 
   /**
    * Faz login com o perfil do role escolhido.

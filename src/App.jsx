@@ -23,18 +23,19 @@ import { useAuth } from './context/AuthContext.jsx';
 import { getProjectBySlug } from './mocks/projectsMock.js';
 
 import WelcomePage from './pages/public/WelcomePage.jsx';
-import AccessPage from './pages/public/AccessPage.jsx';
 import LoginPage from './pages/public/LoginPage.jsx';
 import SignupPage from './pages/public/SignupPage.jsx';
 import RecoveryPage from './pages/public/RecoveryPage.jsx';
 import ExplorePage from './pages/ExplorePage.jsx';
 import ProjectPage from './pages/ProjectPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
+import HelpPage from './pages/HelpPage.jsx';
 import NotFoundPage from './pages/NotFoundPage.jsx';
 import MyProjectsPage from './pages/aluno/MyProjectsPage.jsx';
 import NewProjectPage from './pages/aluno/NewProjectPage.jsx';
 import ProjectStatusPage from './pages/aluno/ProjectStatusPage.jsx';
 import StaffPanelPage from './pages/staff/StaffPanelPage.jsx';
+import DeliveriesPage from './pages/staff/DeliveriesPage.jsx';
 import ReviewPage from './pages/staff/ReviewPage.jsx';
 import ReviewResultPage from './pages/staff/ReviewResultPage.jsx';
 import DeliveryPage from './pages/staff/DeliveryPage.jsx';
@@ -83,8 +84,6 @@ export default function App() {
       {/* ---------------------------------------------- telas públicas */}
       <Route element={<PublicLayout />}>
         <Route path="/" element={<WelcomePage />} />
-        {/* Tela intermediária boas-vindas → login (hero de acesso). */}
-        <Route path="/acesso" element={<AccessPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastro" element={<SignupPage />} />
         <Route path="/recuperar-senha" element={<RecoveryPage />} />
@@ -102,6 +101,9 @@ export default function App() {
           }
         />
 
+        {/* ajuda e suporte (aberta a visitantes e logados) */}
+        <Route path="/ajuda" element={<HelpPage />} />
+
         {/* aluno */}
         <Route
           path="/aluno"
@@ -118,6 +120,14 @@ export default function App() {
           element={
             <RequireRole roles={['professor', 'coordenador']}>
               <StaffPanelPage />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/painel/entregas"
+          element={
+            <RequireRole roles={['professor', 'coordenador']}>
+              <DeliveriesPage />
             </RequireRole>
           }
         />

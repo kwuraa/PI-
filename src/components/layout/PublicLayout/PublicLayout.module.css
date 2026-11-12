@@ -1,4 +1,7 @@
-/* PublicLayout — shell enxuto das telas públicas. */
+/* PublicLayout — shell enxuto das telas públicas.
+   Mobile: coluna estreita (480px); ≥768px: largura total (as próprias
+   páginas definem sua largura útil — a vitrine usa --content-max) e
+   aparecem o cabeçalho/rodapé das telas de auth. */
 .shell {
   min-height: 100dvh;
   display: flex;
@@ -14,4 +17,66 @@
   display: flex;
   flex-direction: column;
   /* entrada animada via framer-motion (motion.main) no JSX */
+}
+
+/* cabeçalho/rodapé das telas de auth: só no desktop (mobile já tem
+   o próprio topo de cada página) */
+.header,
+.footer {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .stage {
+    max-width: var(--content-max);
+    padding-inline: var(--space-6);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-6);
+    background-color: var(--color-bg-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .headerBrand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .headerLabel {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: var(--letter-spacing-caps);
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .headerHelp {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .headerHelp:hover {
+    color: var(--color-primary);
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-6);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  .footerLinks {
+    color: var(--color-text-muted);
+  }
 }

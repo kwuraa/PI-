@@ -1,4 +1,6 @@
-/* TopBar — variante brand (painel) e stack (detalhe). */
+/* TopBar — variante brand (painel) e stack (detalhe).
+   No desktop (≥1024px) a brand ganha título da marca, chip do semestre e
+   bloco nome/papel — igual aos protótipos desktop. */
 .brand {
   display: flex;
   align-items: center;
@@ -11,14 +13,141 @@
   flex-shrink: 0;
 }
 
-.spaceLabel {
+/* Bloco de texto: centralizado no mobile (só o espaço aparece),
+   alinhado à esquerda no desktop (marca + espaço). */
+.brandBlock {
   flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brandTitle {
+  display: none; /* título da marca: só no desktop */
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-caps);
+  text-transform: uppercase;
+  color: var(--color-text-title);
+}
+
+.spaceLabel {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--letter-spacing-caps);
   text-transform: uppercase;
   color: var(--color-text-muted);
-  text-align: center;
+}
+
+/* chip do período letivo: só no desktop */
+.semester {
+  display: none;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-bg-page);
+  border: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+/* sininho de notificações: só no desktop */
+.bellWrap {
+  display: none;
+  position: relative;
+}
+
+.bell {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-body);
+  transition: background-color var(--transition-fast);
+}
+
+.bell:hover {
+  background-color: var(--color-bg-page);
+}
+
+.bellDot {
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-bg-surface);
+}
+
+.bellPop {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  right: 0;
+  z-index: 70;
+  width: 300px;
+  padding: var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+.bellTitle {
+  margin-bottom: var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+}
+
+.bellList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bellItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.bellItem:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.bellText {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+}
+
+.bellWhen {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.user {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.user:hover {
+  opacity: 0.85;
 }
 
 .avatar {
@@ -37,6 +166,70 @@
 
 .avatar:hover {
   box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+/* nome + papel + chevron: só no desktop */
+.userBlock,
+.chevron {
+  display: none;
+}
+
+.userName {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+  text-align: left;
+}
+
+.userRole {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: left;
+}
+
+/* ------------------------------------------------------- desktop */
+@media (min-width: 1024px) {
+  .brand {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    gap: var(--space-4);
+    min-height: var(--header-height);
+    padding: var(--space-3) var(--space-6);
+    background-color: var(--color-bg-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .brandBlock {
+    align-items: flex-start;
+  }
+
+  .brandTitle {
+    display: block;
+  }
+
+  .semester {
+    display: inline-flex;
+  }
+
+  .bellWrap {
+    display: block;
+  }
+
+  .userBlock {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chevron {
+    display: block;
+    color: var(--color-text-muted);
+  }
+
+  .avatar {
+    background-color: var(--color-primary-soft);
+    color: var(--color-primary);
+  }
 }
 
 /* ---- variante stack ---- */
@@ -79,4 +272,13 @@
 .actionSlot {
   display: flex;
   justify-content: flex-end;
+}
+
+/* Desktop: a barra empilhada acompanha a altura do cabeçalho (sticky) */
+@media (min-width: 1024px) {
+  .stack {
+    min-height: var(--header-height);
+    padding-inline: var(--space-6);
+    background-color: var(--color-bg-surface);
+  }
 }
