@@ -27,23 +27,24 @@ export default function MainLayout({ barVariant = 'brand', title, action }) {
 
   return (
     <div className={styles.shell}>
-      <SideNav user={user} />
-      <div className={styles.main}>
-        <TopBar
-          variant={barVariant}
-          title={title}
-          action={action}
-          spaceLabel={spaceLabel}
-          user={user}
-        />
+      {/* barra de fora a fora no topo (acima da SideNav no desktop) */}
+      <TopBar
+        variant={barVariant}
+        title={title}
+        action={action}
+        spaceLabel={spaceLabel}
+        user={user}
+      />
+      <div className={styles.body}>
+        <SideNav user={user} />
         <AnimatePresence mode="wait">
           {/* key por rota → a tela sai suave e a próxima entra sem reanimar as barras */}
           <motion.main key={location.pathname} className={styles.stage} {...pageVariants}>
             {outlet}
           </motion.main>
         </AnimatePresence>
-        <BottomNav user={user} />
       </div>
+      <BottomNav user={user} />
     </div>
   );
 }

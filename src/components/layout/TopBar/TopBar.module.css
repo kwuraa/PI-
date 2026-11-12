@@ -104,8 +104,11 @@
 /* ------------------------------------------------------- desktop */
 @media (min-width: 1024px) {
   .brand {
+    position: sticky;
+    top: 0;
+    z-index: 50;
     gap: var(--space-4);
-    min-height: 72px;
+    min-height: var(--header-height);
     padding: var(--space-3) var(--space-6);
     background-color: var(--color-bg-surface);
     border-bottom: 1px solid var(--color-border);
@@ -179,4 +182,13 @@
 .actionSlot {
   display: flex;
   justify-content: flex-end;
+}
+
+/* Desktop: a barra empilhada acompanha a altura do cabeçalho (sticky) */
+@media (min-width: 1024px) {
+  .stack {
+    min-height: var(--header-height);
+    padding-inline: var(--space-6);
+    background-color: var(--color-bg-surface);
+  }
 }

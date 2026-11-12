@@ -94,6 +94,7 @@
 
   /* --------------------------------------------------------------- layout */
   --content-max: 1120px; /* largura máxima no desktop */
+  --header-height: 72px; /* altura do TopBar no desktop (acima da SideNav) */
   --topbar-height: 56px;
   --bottom-nav-height: 64px;
 

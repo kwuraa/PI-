@@ -6,14 +6,14 @@
 @media (min-width: 1024px) {
   .side {
     position: sticky;
-    top: 0;
+    top: var(--header-height); /* prende abaixo do TopBar (que é sticky) */
     align-self: flex-start;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: var(--space-8);
     width: 224px;
-    height: 100dvh;
+    height: calc(100dvh - var(--header-height));
     flex-shrink: 0;
     padding: var(--space-6) var(--space-3);
     background-color: var(--color-bg-surface);
