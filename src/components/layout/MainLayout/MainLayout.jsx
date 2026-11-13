@@ -42,6 +42,18 @@ const SECTIONS = [
 const CRUMB_TITLES = {
   '/explorar': 'Explorar projetos',
   '/aluno': 'Minhas ideias em ação.',
+  '/painel/relatorio-consolidado': 'Relatório consolidado',
+};
+
+/**
+ * 2ª linha do breadcrumb para rotas cuja seção própria não é "/painel"
+ * (mockup 06: "PI² / Relatório consolidado / Relatório consolidado").
+ */
+const SECTION_OVERRIDES = {
+  '/painel/relatorio-consolidado': {
+    label: 'Relatório consolidado',
+    to: '/painel/relatorio-consolidado',
+  },
 };
 
 /** Saudação do painel — MESMO texto do h1 do StaffPanelPage por face. */
@@ -63,7 +75,9 @@ export default function MainLayout({ barVariant = 'brand', title, action }) {
   /** Breadcrumb: PI² / seção da rota / título conversacional (como no mockup). */
   const crumbs = useMemo(() => {
     const list = [{ label: 'PI²', to: '/' }];
-    const section = SECTIONS.find((s) => location.pathname.startsWith(s.prefix));
+    const section =
+      SECTION_OVERRIDES[location.pathname] ??
+      SECTIONS.find((s) => location.pathname.startsWith(s.prefix));
     if (section) list.push({ label: section.label, to: section.to });
     const third =
       CRUMB_TITLES[location.pathname] ??

@@ -209,7 +209,7 @@ function CoordinatorFace() {
               danger
               plain
               title="Relatório consolidado de evolução"
-              to="/painel/evolucao"
+              to="/painel/relatorio-consolidado"
             />
             <ListRow danger plain title="Gestão de grupos" to="/painel/grupos" />
           </div>
@@ -326,6 +326,12 @@ function UnifiedFace({ user }) {
           <section className={styles.block}>
             <h2 className={styles.blockTitle}>Coordenador</h2>
             <div className={styles.rows}>
+              <ListRow
+                icon={<FiFileText aria-hidden="true" />}
+                title="Relatório consolidado"
+                badge={<Badge tone="neutral">Coordenador</Badge>}
+                to="/painel/relatorio-consolidado"
+              />
               <ListRow
                 icon={<FiSliders aria-hidden="true" />}
                 title="Gestão de grupos"

@@ -1,0 +1,396 @@
+/* RelatorioConsolidadoPage — relatórios consolidados (mockups 06 e 08). */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ------------------------------------------------------- cabeçalho */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.headerTexts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-title);
+}
+
+.lead {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.headerActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+/* ------------------------------------------------------ controles */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.semesterField {
+  width: 100%;
+  max-width: 360px;
+}
+
+/* ------------------------------------------------------- métricas */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: var(--space-4);
+}
+
+/* ------------------------------------------- colunas principal/lateral */
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+}
+
+.sideColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ------------------------------------------------------------ cards */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.cardTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.cardSubtitle {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.cardText {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* legenda em pé de card ("Indicadores parciais…", "Média geral: …") */
+.cardNote {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.cardAction {
+  display: flex;
+}
+
+/* ------------------------------------- acompanhamento (barra) */
+.progressList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.progressRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.progressTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.progressLabel {
+  font-size: var(--font-size-md);
+  color: var(--color-text-body);
+}
+
+.progressValue {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+  white-space: nowrap;
+}
+
+.progressTrack {
+  display: block;
+  height: 8px;
+  overflow: hidden;
+  background-color: var(--color-border);
+  border-radius: var(--radius-pill);
+}
+
+.progressFill {
+  display: block;
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+
+/* larguras das barras (classes prontas — style inline é proibido) */
+.fill75 {
+  width: 75%;
+}
+
+.fill33 {
+  width: 33%;
+}
+
+/* ------------------------------------- projetos por status */
+.countList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.countRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.countValue {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+/* ------------------------------------- card da coorte (seletor) */
+/* definido depois de .card para sobrescrever o gap na linha desktop */
+.filterCard {
+  gap: var(--space-4);
+}
+
+.filterField {
+  width: 100%;
+  max-width: 530px;
+}
+
+.filterMeta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------- gráfico de evolução */
+.chartArea {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+  height: 220px;
+}
+
+.chartCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  height: 100%;
+}
+
+.chartValue {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.chartBar {
+  width: 100%;
+  background-color: var(--color-primary-soft);
+  border-radius: var(--radius-sm);
+}
+
+/* semestre corrente em vermelho (última barra do mockup) */
+.chartBarHighlight {
+  background-color: var(--color-primary);
+}
+
+/* alturas das barras (escala 0 a 10 — classes prontas, sem style inline) */
+.h70 {
+  height: 70%;
+}
+
+.h75 {
+  height: 75%;
+}
+
+.h80 {
+  height: 80%;
+}
+
+.h85 {
+  height: 85%;
+}
+
+.chartAxis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.chartTick {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* ------------------------------------- travas de disciplinas */
+.lockList {
+  display: flex;
+  flex-direction: column;
+}
+
+.lockRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.lockRow:last-child {
+  border-bottom: 0;
+}
+
+.lockTexts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.lockName {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+.lockCount {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.lockIcon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+/* ------------------------------------- banca e entregáveis */
+.detailBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+
+.detailLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.detailText {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------- rodapé da tela */
+.footnote {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------- tablet (≥768px) */
+@media (min-width: 768px) {
+  /* cabeçalho: textos à esquerda, ações alinhadas à direita */
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+
+  .headerActions {
+    width: auto;
+    flex-shrink: 0;
+    justify-content: flex-end;
+  }
+
+  /* duas métricas por linha (faces de 2 e de 4 StatCards) */
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* relatório: coluna principal + coluna lateral */
+  .columns {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .sideColumn {
+    gap: var(--space-6);
+  }
+
+  /* coorte: seletor e resumo na mesma linha */
+  .filterCard {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-8);
+  }
+
+  .filterMeta {
+    flex: 1;
+  }
+
+  .chartArea {
+    height: 260px;
+  }
+}
+
+/* ------------------------------------------- desktop (≥1024px) */
+@media (min-width: 1024px) {
+  /* face do semestre: as 4 métricas em uma única linha (mockup 06) */
+  .statsWide {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

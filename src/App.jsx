@@ -12,6 +12,8 @@
  *  • /aluno*            → apenas 'aluno';
  *  • /painel*           → 'professor' | 'coordenador';
  *  • /painel/grupos     → 'coordenador';
+ *  • /painel/relatorio-consolidado → 'coordenador' (face da coorte quando o
+ *    papel é coordenador + professor);
  *  • /secretaria/cursos → 'secretaria';
  *  • /perfil            → qualquer usuário logado (visitante vê o convite).
  */
@@ -41,6 +43,7 @@ import ReviewResultPage from './pages/staff/ReviewResultPage.jsx';
 import DeliveryPage from './pages/staff/DeliveryPage.jsx';
 import EvolutionPage from './pages/staff/EvolutionPage.jsx';
 import GroupsPage from './pages/staff/GroupsPage.jsx';
+import RelatorioConsolidadoPage from './pages/staff/RelatorioConsolidadoPage.jsx';
 import ProfessorProjectPage from './pages/staff/ProfessorProjectPage.jsx';
 import CoursesPage from './pages/secretary/CoursesPage.jsx';
 
@@ -144,6 +147,15 @@ export default function App() {
           element={
             <RequireRole roles={['coordenador']}>
               <GroupsPage />
+            </RequireRole>
+          }
+        />
+        {/* relatório consolidado (duas faces: semestre 06 / coorte 08) */}
+        <Route
+          path="/painel/relatorio-consolidado"
+          element={
+            <RequireRole roles={['coordenador']}>
+              <RelatorioConsolidadoPage />
             </RequireRole>
           }
         />
