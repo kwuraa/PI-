@@ -2,6 +2,9 @@
  * PI² — Card de projeto (vitrine, explorar e "meus projetos").
  * -----------------------------------------------------------------------------
  * Variantes:
+ *  • 'vitrine' → vitrine pública da Welcome: SEM status/tecnologias/salvos;
+ *               pílula "DSM — Xº Semestre" no topo e crédito
+ *               "Desenvolvido por: …" num rodapé próprio (mockup 01).
  *  • 'public' → LGPD: equipe ANONIMIZADA ("Equipe DSM — Xº Semestre");
  *               usada em telas visitantes e na vitrine pública.
  *  • 'logged' → nomes completos do time + orientador (área logada).
@@ -36,9 +39,30 @@ export function statusMeta(status) {
 
 export default function ProjectCard({ project, variant = 'public', action = null, index = 0 }) {
   const team = getTeam(project);
-  const display = teamDisplay(project, { publicView: variant === 'public' });
+  const display = teamDisplay(project, { publicView: variant === 'public' || variant === 'vitrine' });
   const status = statusMeta(project.status);
   const isMine = variant === 'mine';
+
+  /* Variante vitrine (Welcome): pílula do semestre + crédito da equipe. */
+  if (variant === 'vitrine') {
+    return (
+      <motion.article className={styles.card} {...cardIn(index)}>
+        <span className={styles.pill}>
+          {COURSE_SHORT} — {project.semester}º Semestre
+        </span>
+
+        <h3 className={styles.title}>
+          <Link to={`/projeto/${project.slug}`} className={styles.titleLink}>
+            {project.title}
+          </Link>
+        </h3>
+
+        <p className={styles.description}>{project.description}</p>
+
+        <p className={styles.credit}>Desenvolvido por: {display.primary}</p>
+      </motion.article>
+    );
+  }
 
   return (
     <motion.article className={styles.card} {...cardIn(index)}>

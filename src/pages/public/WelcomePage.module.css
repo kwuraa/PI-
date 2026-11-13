@@ -1,6 +1,7 @@
 /* WelcomePage — hero da vitrine + grade pública de projetos.
-   Desktop (≥1024px): cabeçalho de marca, hero em 2 colunas e rodapé
-   em 3 partes — igual ao protótipo "Boas-vindas — Vitrine pública". */
+   Desktop (≥1024px): cabeçalho de marca, hero em 2 colunas, filtros
+   rotulados em 2 colunas e rodapé em 3 partes — igual ao protótipo
+   "Boas-vindas — Vitrine pública da comunidade". */
 .page {
   display: flex;
   flex-direction: column;
@@ -51,49 +52,80 @@
   color: var(--color-text-muted);
 }
 
-.proof {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3);
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-}
-
-.proofIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: var(--radius-pill);
-  background-color: var(--color-primary-soft);
-  color: var(--color-primary);
-}
-
-.proof strong {
-  display: block;
-  font-size: var(--font-size-sm);
-  color: var(--color-text-title);
-}
-
-.proof span {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-}
-
 .actions {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-3);
 }
 
-.hint {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-  text-align: center;
+/* ------------------------------------------- filtros + banner + grade */
+.showcase {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.filtersRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.filterField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.filterLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+}
+
+/* banner LGPD (mockup: faixa rosa com escudo) */
+.lgpd {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-primary-soft);
+  border-radius: var(--radius-lg);
+}
+
+.lgpdIcon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-primary);
+}
+
+.lgpdTexts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.lgpdTexts strong {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+.lgpdTexts p {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
 }
 
 /* -------------------------------------------------------- vitrine */
@@ -102,23 +134,6 @@
   flex-direction: column;
   gap: var(--space-4);
   scroll-margin-top: var(--space-4);
-}
-
-.vitrineHeader {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.vitrineTitle {
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-title);
-}
-
-.vitrineSubtitle {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
 }
 
 .grid {
@@ -176,8 +191,15 @@
 
   .footerAdmin {
     display: inline-flex;
-    color: var(--color-primary);
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-muted);
     font-weight: var(--font-weight-medium);
+    transition: color var(--transition-fast);
+  }
+
+  .footerAdmin:hover {
+    color: var(--color-text-title);
   }
 }
 
@@ -223,20 +245,17 @@
     grid-row: 1;
   }
 
-  .proof {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
   .actions {
     grid-column: 2;
-    grid-row: 3;
+    grid-row: 2;
     grid-template-columns: 1fr 1fr;
   }
 
-  .hint {
-    grid-column: 2;
-    grid-row: 4;
-    text-align: left;
+  /* filtros: busca à esquerda, chips do semestre à direita (mockup) */
+  .filtersRow {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--space-6);
+    align-items: end;
   }
 }
