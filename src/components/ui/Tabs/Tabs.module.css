@@ -2,6 +2,7 @@
 .track {
   display: flex;
   gap: var(--space-1);
+  width: fit-content;
   padding: var(--space-1);
   background-color: var(--color-border);
   border-radius: var(--radius-md);

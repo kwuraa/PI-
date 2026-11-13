@@ -3,8 +3,9 @@
  * -----------------------------------------------------------------------------
  * Um único ponto de entrada que escolhe a face conforme o espaço ativo:
  *  • só 'professor'   → Painel do professor (fila de revisão + orientações);
- *  • só 'coordenador' → Painel do coordenador (grupos + pendências);
- *  • os dois (unido)  → Painel unificado com abas "Painel unificado | Atalhos".
+ *  • só 'coordenador' → Painel do coordenador (métricas + alerta + áreas);
+ *  • os dois (unido)  → Painel unificado com abas "Painel unificado | Atalhos"
+ *                       (a aba Atalhos tem h1 próprio, como no mockup 07).
  * Os números vêm dos mocks (fila de revisão, grupos, entregáveis) — nada fixo.
  */
 import { useState } from 'react';
@@ -12,8 +13,10 @@ import { Link } from 'react-router-dom';
 import {
   FiArrowRight,
   FiClipboard,
+  FiClock,
   FiFileText,
   FiFolder,
+  FiLink2,
   FiSliders,
   FiTrendingUp,
   FiUsers,
@@ -31,7 +34,6 @@ import { useAuth } from '../../context/AuthContext.jsx';
 import {
   ADVISED_GROUP_IDS,
   GROUPS,
-  PROJECTS,
   REVIEW_QUEUE_IDS,
   getProjectsByIds,
   getTeam,
@@ -58,103 +60,81 @@ const TABS = [
 function ProfessorFace({ user }) {
   const queue = getProjectsByIds(REVIEW_QUEUE_IDS);
   const advised = getProjectsByIds(ADVISED_GROUP_IDS);
+  const who = user?.displayName ?? user?.name ?? '';
   return (
     <>
       <header className={styles.header}>
         <Badge tone="primary">Área do professor</Badge>
-        <h1 className={styles.greeting}>
-          Olá, {user.displayName ?? user.name}. Vamos transformar ideias em
-          realidade?
-        </h1>
+        <h1 className={styles.greeting}>Olá, {who}. Vamos orientar ideias?</h1>
         <p className={styles.lead}>
-          Suas orientações e os próximos passos dos seus grupos, no mesmo lugar.
+          Seu olhar transforma projetos em conhecimento compartilhado.
         </p>
       </header>
 
       <div className={styles.stats}>
-        <StatCard
-          tone="primary"
-          value={METRICS.reviewQueue}
-          label="Aguardando revisão"
-          icon={<FiClipboard aria-hidden="true" />}
-        />
-        <StatCard
-          value={METRICS.advised}
-          label="Projetos sob orientação"
-          icon={<FiUsers aria-hidden="true" />}
-        />
+        <StatCard tone="primary" value={METRICS.reviewQueue} label="Aguardando revisão" />
+        <StatCard value={METRICS.advised} label="Projetos sob orientação" />
       </div>
 
-      {METRICS.pendingGroup && (
-        <Callout
-          icon={<FiFileText size={22} aria-hidden="true" />}
-          title="Projeto sem link de documentação"
-          action={
-            <Link to={`/painel/entrega/${queue[0]?.slug ?? 'aquasense'}`}>
-              <Button fullWidth>Resolver</Button>
-            </Link>
-          }
-        >
-          {METRICS.pendingGroup.name} · {METRICS.pendingGroup.semesterLabel}.{' '}
-          {METRICS.pendingGroup.pendingHint}
-        </Callout>
-      )}
-
-      <section className={styles.block}>
-        <SectionHeader
-          title="Aguardando revisão"
-          action={<span className={styles.count}>{queue.length} projetos</span>}
-        />
-        <div className={styles.cardList}>
-          {queue.map((project) => {
-            const status = statusMeta(project.status);
-            const members = getTeam(project)?.members.join(' e ') ?? '';
-            return (
-              <article key={project.id} className={styles.reviewCard}>
-                <div className={styles.reviewTop}>
-                  <Badge tone={status.tone}>{status.label}</Badge>
-                  <span className={styles.reviewMeta}>
+      <div className={styles.split}>
+        <section className={styles.block}>
+          <h2 className={styles.blockTitle}>
+            Aguardando revisão · {queue.length} projetos
+          </h2>
+          <div className={`${styles.cardList} ${styles.cardListCols}`}>
+            {queue.map((project) => {
+              const status = statusMeta(project.status);
+              const members = getTeam(project)?.members.join(' e ') ?? '';
+              return (
+                <article key={project.id} className={styles.reviewCard}>
+                  <div className={styles.reviewTop}>
+                    <Badge tone={status.tone}>{status.label}</Badge>
+                    <FiClock className={styles.reviewClock} aria-hidden="true" />
+                  </div>
+                  <h3 className={styles.reviewTitle}>{project.title}</h3>
+                  <p className={styles.reviewTeam}>{members}</p>
+                  <p className={styles.reviewMeta}>
                     Enviado em {project.submittedAt}
-                  </span>
-                </div>
-                <h3 className={styles.reviewTitle}>{project.title}</h3>
-                <p className={styles.reviewTeam}>{members}</p>
-                <Link to={`/painel/revisar/${project.slug}`} className={styles.reviewAction}>
-                  Revisar projeto
-                  <FiArrowRight aria-hidden="true" />
-                </Link>
-              </article>
-            );
-          })}
-        </div>
-      </section>
+                  </p>
+                  <Link
+                    to={`/painel/revisar/${project.slug}`}
+                    className={styles.reviewAction}
+                  >
+                    Revisar projeto
+                    <FiArrowRight aria-hidden="true" />
+                  </Link>
+                </article>
+              );
+            })}
+          </div>
+        </section>
 
-      <section className={styles.block}>
-        <SectionHeader
-          title="Minhas orientações"
-          action={<span className={styles.count}>{advised.length} projetos</span>}
-        />
-        <div className={styles.cardList}>
-          {advised.map((project) => {
-            const status = statusMeta(project.status);
-            return (
-              <Link
-                key={project.id}
-                to={`/projeto/${project.slug}`}
-                className={styles.advisedCard}
-              >
-                <Badge tone={status.tone}>{status.label}</Badge>
-                <strong>{project.title}</strong>
-                <span>
-                  {project.publishedAt
-                    ? `Aprovado em ${project.publishedAt}`
-                    : `Enviado em ${project.submittedAt}`}
-                </span>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
+        <section className={styles.block}>
+          <h2 className={styles.blockTitle}>Minhas orientações</h2>
+          <div className={styles.cardList}>
+            {advised.map((project) => {
+              const status = statusMeta(project.status);
+              const members = getTeam(project)?.members.join(' e ') ?? '';
+              return (
+                <Link
+                  key={project.id}
+                  to={`/projeto/${project.slug}`}
+                  className={styles.advisedCard}
+                >
+                  <strong>{project.title}</strong>
+                  <Badge tone={status.tone}>{status.label}</Badge>
+                  <span>
+                    {members}
+                    {project.publishedAt
+                      ? ` · Aprovado em ${project.publishedAt}`
+                      : ` · Enviado em ${project.submittedAt}`}
+                  </span>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      </div>
 
       <section className={styles.block}>
         <SectionHeader title="Atalhos" />
@@ -183,14 +163,14 @@ function ProfessorFace({ user }) {
   );
 }
 
-/** Painel do coordenador: métricas do curso + áreas de gestão. */
-function CoordinatorFace({ user }) {
+/** Painel do coordenador: métricas do curso + alerta + áreas de gestão. */
+function CoordinatorFace() {
   return (
     <>
       <header className={styles.header}>
         <Badge tone="primary">Área do coordenador</Badge>
         <h1 className={styles.greeting}>
-          Olá, {user.displayName ?? user.name}. Vamos acompanhar o PI?
+          Olá, coordenador(a). Vamos acompanhar o PI?
         </h1>
         <p className={styles.lead}>
           Acompanhe os grupos DSM, suas entregas e a evolução ao longo dos
@@ -199,53 +179,42 @@ function CoordinatorFace({ user }) {
       </header>
 
       <div className={styles.stats}>
-        <StatCard
-          tone="primary"
-          value={METRICS.activeGroups}
-          label="Grupos ativos"
-          icon={<FiUsers aria-hidden="true" />}
-        />
-        <StatCard
-          value={METRICS.pendingDeliveries}
-          label="Entregáveis pendentes"
-          icon={<FiClipboard aria-hidden="true" />}
-        />
+        <StatCard tone="primary" value={METRICS.activeGroups} label="Grupos ativos" />
+        <StatCard value={METRICS.pendingDeliveries} label="Entregáveis pendentes" />
       </div>
 
-      {METRICS.pendingGroup && (
-        <Callout
-          icon={<FiFileText size={22} aria-hidden="true" />}
-          title="Grupo sem link de documentação"
-          action={
-            <Link to="/painel/grupos">
-              <Button fullWidth>Resolver</Button>
-            </Link>
-          }
-        >
-          {METRICS.pendingGroup.name} · {METRICS.pendingGroup.semesterLabel}.{' '}
-          {METRICS.pendingGroup.pendingHint}
-        </Callout>
-      )}
+      {/* alerta + áreas em 2 colunas no desktop (mockup 06) */}
+      <div className={styles.splitCoordinator}>
+        {METRICS.pendingGroup && (
+          <Callout
+            stacked
+            title="Grupo sem link de documentação"
+            action={
+              <Link to="/painel/grupos">
+                <Button>Resolver</Button>
+              </Link>
+            }
+          >
+            {METRICS.pendingGroup.name} · {METRICS.pendingGroup.semesterLabel}
+          </Callout>
+        )}
 
-      <section className={styles.block}>
-        <SectionHeader title="Áreas da coordenação" />
-        <div className={styles.rows}>
-          <ListRow
-            icon={<FiUsers aria-hidden="true" />}
-            title="Gestão de grupos"
-            hint="Pendências, documentação e evolução por grupo"
-            badge={<Badge tone="neutral">Coordenador</Badge>}
-            to="/painel/grupos"
+        <section className={styles.sideCard}>
+          <SectionHeader
+            title="Áreas da coordenação"
+            subtitle="Gerencie os grupos e acompanhe a evolução consolidada do DSM."
           />
-          <ListRow
-            icon={<FiTrendingUp aria-hidden="true" />}
-            title="Relatório consolidado de evolução"
-            hint="Histórico qualitativo dos grupos do DSM"
-            badge={<Badge tone="neutral">Coordenador</Badge>}
-            to="/painel/evolucao"
-          />
-        </div>
-      </section>
+          <div className={styles.rowsPlain}>
+            <ListRow
+              danger
+              plain
+              title="Relatório consolidado de evolução"
+              to="/painel/evolucao"
+            />
+            <ListRow danger plain title="Gestão de grupos" to="/painel/grupos" />
+          </div>
+        </section>
+      </div>
     </>
   );
 }
@@ -253,75 +222,97 @@ function CoordinatorFace({ user }) {
 /** Face unificada (professor + coordenador) com abas. */
 function UnifiedFace({ user }) {
   const [tab, setTab] = useState('painel');
+  const who = user?.displayName ?? user?.name ?? '';
+  /** "prof. Rafael" → "Prof. Rafael" (lead da aba Atalhos). */
+  const whoCap = who.charAt(0).toUpperCase() + who.slice(1);
 
   return (
     <>
       <header className={styles.header}>
         <Badge tone="primary">Espaço do professor e coordenador</Badge>
-        <h1 className={styles.greeting}>
-          Olá, {user.displayName ?? user.name}. Você orienta e coordena.
-        </h1>
-        <p className={styles.lead}>
-          Suas orientações e a gestão do curso, no mesmo lugar.
-        </p>
+        {tab === 'atalhos' ? (
+          <>
+            <h1 className={styles.greeting}>Atalhos</h1>
+            <p className={styles.lead}>
+              {whoCap}, suas ações para orientar e coordenar, reunidas aqui.
+            </p>
+          </>
+        ) : (
+          <>
+            <h1 className={styles.greeting}>
+              Olá, {who}. Você orienta e coordena.
+            </h1>
+            <p className={styles.lead}>
+              Suas orientações e a gestão do curso, no mesmo lugar.
+            </p>
+          </>
+        )}
       </header>
 
       <Tabs items={TABS} value={tab} onChange={setTab} />
 
       {tab === 'painel' ? (
         <>
-          <section className={styles.block}>
-            <SectionHeader title="Como professor" />
-            <div className={styles.stats}>
-              <StatCard
-                tone="primary"
-                value={METRICS.reviewQueue}
-                label="Aguardando revisão"
-                icon={<FiClipboard aria-hidden="true" />}
-              />
-              <StatCard
-                value={METRICS.advised}
-                label="Projetos sob orientação"
-                icon={<FiUsers aria-hidden="true" />}
-              />
-            </div>
-          </section>
+          {/* seções professor/coordenador lado a lado (mockup 07) */}
+          <div className={styles.splitTwo}>
+            <section className={styles.block}>
+              <h2 className={styles.blockTitle}>Como professor</h2>
+              <div className={styles.stats}>
+                <StatCard
+                  tone="primary"
+                  value={METRICS.reviewQueue}
+                  label="Aguardando revisão"
+                />
+                <StatCard
+                  value={METRICS.advised}
+                  label="Projetos sob orientação"
+                />
+              </div>
+            </section>
 
-          <section className={styles.block}>
-            <SectionHeader title="Como coordenador" />
-            <div className={styles.stats}>
-              <StatCard
-                value={METRICS.activeGroups}
-                label="Grupos ativos"
-                icon={<FiUsers aria-hidden="true" />}
-              />
-              <StatCard
-                value={METRICS.pendingDeliveries}
-                label="Entregáveis pendentes"
-                icon={<FiFileText aria-hidden="true" />}
-              />
-            </div>
-          </section>
+            <section className={styles.block}>
+              <h2 className={styles.blockTitle}>Como coordenador</h2>
+              {/* card único com as 2 métricas em linhas inline (mockup 07) */}
+              <div className={styles.combinedCard}>
+                <div className={styles.combinedRow}>
+                  <span className={styles.combinedLabel}>
+                    {METRICS.activeGroups} Grupos ativos
+                  </span>
+                  <FiUsers className={styles.combinedIcon} aria-hidden="true" />
+                </div>
+                <div className={styles.combinedRow}>
+                  <span className={styles.combinedLabel}>
+                    {METRICS.pendingDeliveries} Entregáveis pendentes
+                  </span>
+                  <FiFileText
+                    className={`${styles.combinedIcon} ${styles.combinedIconAlt}`}
+                    aria-hidden="true"
+                  />
+                </div>
+              </div>
+            </section>
+          </div>
 
           {METRICS.pendingGroup && (
             <Callout
-              icon={<FiFileText size={22} aria-hidden="true" />}
+              icon={<FiLink2 size={22} aria-hidden="true" />}
               title="Grupo sem link de documentação"
               action={
                 <Link to="/painel/grupos">
-                  <Button fullWidth>Resolver</Button>
+                  <Button icon={<FiArrowRight aria-hidden="true" />}>
+                    Resolver
+                  </Button>
                 </Link>
               }
             >
-              {METRICS.pendingGroup.name} · {METRICS.pendingGroup.semesterLabel}.{' '}
-              {METRICS.pendingGroup.pendingHint}
+              Confira o grupo e regularize o link para acompanhar as entregas.
             </Callout>
           )}
         </>
       ) : (
-        <>
+        <div className={styles.splitTwo}>
           <section className={styles.block}>
-            <SectionHeader title="Professor" />
+            <h2 className={styles.blockTitle}>Professor</h2>
             <div className={styles.rows}>
               <ListRow
                 icon={<FiTrendingUp aria-hidden="true" />}
@@ -333,7 +324,7 @@ function UnifiedFace({ user }) {
           </section>
 
           <section className={styles.block}>
-            <SectionHeader title="Coordenador" />
+            <h2 className={styles.blockTitle}>Coordenador</h2>
             <div className={styles.rows}>
               <ListRow
                 icon={<FiSliders aria-hidden="true" />}
@@ -343,7 +334,7 @@ function UnifiedFace({ user }) {
               />
             </div>
           </section>
-        </>
+        </div>
       )}
     </>
   );
@@ -358,5 +349,5 @@ export default function StaffPanelPage() {
 
   if (isProfessor && isCoordinator) return <UnifiedFace user={user} />;
   if (isProfessor) return <ProfessorFace user={user} />;
-  return <CoordinatorFace user={user} />;
+  return <CoordinatorFace />;
 }

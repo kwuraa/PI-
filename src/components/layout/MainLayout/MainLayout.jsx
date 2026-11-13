@@ -50,8 +50,8 @@ function painelTitleFor(user, isRole) {
   const professor = isRole('professor');
   const coordenador = isRole('coordenador');
   if (professor && coordenador) return `Olá, ${who}. Você orienta e coordena.`;
-  if (professor) return `Olá, ${who}. Vamos transformar ideias em realidade?`;
-  if (coordenador) return `Olá, ${who}. Vamos acompanhar o PI?`;
+  if (professor) return `Olá, ${who}. Vamos orientar ideias?`;
+  if (coordenador) return 'Olá, coordenador(a). Vamos acompanhar o PI?';
   return null;
 }
 
