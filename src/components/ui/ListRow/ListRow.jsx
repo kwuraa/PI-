@@ -4,12 +4,27 @@
  * Props: icon, title, hint, badge (JSX — ex.: <Badge/>), to (link) | onClick,
  * danger (título em vermelho, linhas da coordenação),
  * plain (sem borda própria + divisor, para uso dentro de um card).
+ * Variante ADITIVA (não altera o comportamento padrão das demais telas):
+ *  • trailingIcon (JSX) — ícone simples à DIREITA, sem chevron e sem chip
+ *    à esquerda, como as linhas de "Conta e privacidade" do mockup 02
+ *    (perfil). Quando presente, o prop `icon` (esquerda) é ignorado e a
+ *    seta vermelha não é renderizada; `danger`/`plain` continuam valendo.
  */
 import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 import styles from './ListRow.module.css';
 
-export default function ListRow({ icon = null, title, hint, badge = null, to, onClick, danger = false, plain = false }) {
+export default function ListRow({
+  icon = null,
+  title,
+  hint,
+  badge = null,
+  to,
+  onClick,
+  danger = false,
+  plain = false,
+  trailingIcon = null,
+}) {
   const classes = [
     styles.row,
     to || onClick ? styles.interactive : '',
@@ -21,13 +36,19 @@ export default function ListRow({ icon = null, title, hint, badge = null, to, on
 
   const inner = (
     <>
-      {icon && <span className={styles.icon}>{icon}</span>}
+      {!trailingIcon && icon && <span className={styles.icon}>{icon}</span>}
       <span className={styles.texts}>
         <span className={styles.title}>{title}</span>
         {hint && <span className={styles.hint}>{hint}</span>}
         {badge && <span className={styles.badgeSlot}>{badge}</span>}
       </span>
-      <FiArrowRight className={styles.chevron} aria-hidden="true" />
+      {trailingIcon ? (
+        <span className={styles.trailingIcon} aria-hidden="true">
+          {trailingIcon}
+        </span>
+      ) : (
+        <FiArrowRight className={styles.chevron} aria-hidden="true" />
+      )}
     </>
   );
 
