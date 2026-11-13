@@ -42,6 +42,7 @@ const SECTIONS = [
 const CRUMB_TITLES = {
   '/explorar': 'Explorar projetos',
   '/aluno': 'Minhas ideias em ação.',
+  '/perfil': 'Meu perfil',
   '/painel/relatorio-consolidado': 'Relatório consolidado',
 };
 
