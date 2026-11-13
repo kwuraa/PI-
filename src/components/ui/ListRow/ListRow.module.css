@@ -55,9 +55,36 @@
 .badgeSlot {
   display: inline-flex;
   margin-top: var(--space-1);
+  /* selos de papel (PROFESSOR / COORDENADOR) em caixa alta, como no mockup */
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-caps);
+}
+
+/* linha vermelha (título) — áreas da coordenação */
+.dangerTitle .title {
+  color: var(--color-primary);
+}
+
+/* variante "plain": sem borda própria, com divisor entre linhas */
+.plain {
+  padding: var(--space-4) 0;
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+}
+
+.plain:last-child {
+  border-bottom: 0;
+}
+
+.plain.interactive:hover {
+  border-color: transparent;
+  border-bottom-color: var(--color-border-strong);
+  box-shadow: none;
 }
 
 .chevron {
   flex-shrink: 0;
-  color: var(--color-text-muted);
+  color: var(--color-primary);
 }

@@ -28,6 +28,19 @@
   color: var(--color-text-inverse);
 }
 
+/* borda vermelha, conteúdo escuro (mockup "Gestão de grupos") */
+.accent {
+  border-color: var(--color-primary);
+}
+
+.accent .value {
+  color: var(--color-text-title);
+}
+
+.accent .label {
+  color: var(--color-text-muted);
+}
+
 .icon {
   display: inline-flex;
   color: var(--color-text-title);

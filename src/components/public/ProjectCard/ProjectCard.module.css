@@ -29,6 +29,25 @@
   color: var(--color-text-muted);
 }
 
+/* pílula da variante vitrine ("DSM — 4º Semestre", mockup 01) */
+.pill {
+  align-self: flex-start;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+/* crédito da equipe com divisor (variante vitrine) */
+.credit {
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
 .title {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-bold);

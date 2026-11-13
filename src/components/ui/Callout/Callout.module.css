@@ -1,6 +1,7 @@
 /* Callout — bloco de alerta/estado. */
 .callout {
   display: flex;
+  align-items: center;
   gap: var(--space-3);
   padding: var(--space-4);
   border: 1px solid var(--color-border);
@@ -13,7 +14,6 @@
   border-color: var(--color-primary-soft);
 }
 
-.danger .title,
 .danger .icon {
   color: var(--color-primary);
 }
@@ -38,6 +38,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  flex: 1;
   min-width: 0;
 }
 
@@ -57,4 +58,15 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+/* variante empilhada: action abaixo do texto (painel do coordenador) */
+.stacked {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.stacked .body {
+  flex: none;
 }

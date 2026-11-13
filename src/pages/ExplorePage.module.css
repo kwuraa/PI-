@@ -1,26 +1,167 @@
-/* ExplorePage — busca, chips de semestre, grade e sheet de filtros. */
+/* ExplorePage — busca, painel de filtros, pílulas ativas e grade.
+   Estados: padrão (banner + seções) e resultados (painel + pílulas + grade). */
 .page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* -------------------------------------------------- cabeçalho */
+.pageHeader {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
 }
 
-.chipsRow {
-  overflow-x: auto;
+.pageTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
 }
 
-.count {
+.pageSubtitle {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------- estado padrão (sem busca/filtros) */
+/* busca + botão "Filtrar projetos": empilhados no mobile, lado a lado ≥768px */
+.searchRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.searchRow > *:first-child {
+  flex: 1 1 100%;
+  min-width: 0;
+}
+
+.searchRow > button {
+  flex: 1 1 100%;
+}
+
+/* pílulas: escopo do estado padrão (DSM · semestre · Filtrar) e,
+   nos resultados, os filtros ativos removíveis acima da grade */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.banner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3);
+  gap: var(--space-5);
+  padding: var(--space-6);
+  background-color: var(--color-primary-soft);
+  border-radius: var(--radius-lg);
+}
+
+.bannerTexts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.bannerEyebrow {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-caps);
+  color: var(--color-primary);
+}
+
+.bannerTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-title);
+}
+
+.bannerMeta {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
 }
 
-.clear {
+/* bloco de cor/token no lugar da foto (imagens: item 16) */
+.bannerArt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  background-color: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  color: var(--color-primary);
+}
+
+.bannerArt svg {
+  width: 36px;
+  height: 36px;
+}
+
+/* seções "Em destaque" e "Novas descobertas" */
+.sections {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.sectionLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
   color: var(--color-primary);
+  transition: color var(--transition-fast);
+}
+
+.sectionLink:hover {
+  color: var(--color-primary-dark);
+}
+
+.sectionCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: var(--space-4);
+}
+
+/* tablet: busca e "Filtrar projetos" lado a lado (como no mockup) */
+@media (min-width: 768px) {
+  .searchRow {
+    flex-wrap: nowrap;
+  }
+
+  .searchRow > *:first-child {
+    flex: 1 1 auto;
+  }
+
+  .searchRow > button {
+    flex: 0 0 auto;
+  }
 }
 
 .grid {
@@ -105,6 +246,48 @@
   color: var(--color-text-title);
 }
 
+/* botão "Mostrar N projetos" do painel (mockup) */
+.showButton {
+  align-self: flex-start;
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-inverse);
+  transition: background-color var(--transition-fast);
+}
+
+.showButton:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* pílulas dos filtros ativos (ver .pills acima — mesmas classes) */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-bg-page);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-body);
+  transition: border-color var(--transition-fast);
+}
+
+.pill:hover {
+  border-color: var(--color-border-strong);
+}
+
+.pillPrimary {
+  background-color: var(--color-primary-soft);
+  border-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
 /* lista de rádio com contagem (Semestre) */
 .radioList {
   display: flex;
@@ -173,6 +356,11 @@
     align-items: start;
   }
 
+  /* estado padrão: "Em destaque" (1/3) + "Novas descobertas" (2/3) */
+  .sections {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  }
+
   .panel {
     position: sticky;
     top: calc(var(--header-height) + var(--space-4));
@@ -185,8 +373,5 @@
     border-radius: var(--radius-lg);
   }
 
-  /* no desktop os semestres viram as linhas de rádio do painel */
-  .chipsRow {
-    display: none;
-  }
+  /* no desktop o painel assume o papel dos chips de semestre */
 }

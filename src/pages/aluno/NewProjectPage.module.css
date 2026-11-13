@@ -1,12 +1,50 @@
 /* NewProjectPage — formulário de publicação (3 links, sem PDF).
-   Desktop (≥1024px): 2 colunas — formulário à esquerda, materiais +
-   visibilidade + ações à direita (protótipo "Publicação de projeto"). */
+   Protótipo "Publicação de projeto" (mockup 03). Desktop (≥1024px): 2
+   colunas — formulário à esquerda, materiais + visibilidade + ações à
+   direita. */
 .page {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-6);
 }
 
+/* ------------------------------------------------------- hero */
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.heroTexts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.heroTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-title);
+}
+
+.heroLead {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.draftChip {
+  align-self: flex-start;
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-body);
+}
+
+/* ------------------------------------------------------- form */
 .form {
   display: flex;
   flex-direction: column;
@@ -26,7 +64,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-  padding: var(--space-5);
+  padding: var(--space-6);
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -38,11 +76,6 @@
   color: var(--color-text-title);
 }
 
-.cardHint {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-}
-
 .row {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
@@ -50,8 +83,7 @@
 }
 
 /* -------------------------------------------------- textarea */
-.textareaField,
-.techsField {
+.textareaField {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
@@ -77,10 +109,6 @@
   transition: border-color var(--transition-fast);
 }
 
-.textarea::placeholder {
-  color: var(--color-text-muted);
-}
-
 .textarea:focus {
   outline: none;
   border-color: var(--color-primary);
@@ -90,7 +118,23 @@
 .counter {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
-  text-align: right;
+}
+
+/* --------------------------------------------- integrantes */
+.addMember {
+  align-self: flex-start;
+  padding: 0;
+  background: none;
+  border: 0;
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.addMember:hover {
+  text-decoration: underline;
 }
 
 /* ------------------------------------------- visibilidade */
@@ -177,13 +221,35 @@
 
 /* --------------------------------------------------- ações */
 .actions {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: var(--space-3);
 }
 
-/* --------------------------------------------------- desktop */
+/* ------------------------------------------------- desktop */
+@media (min-width: 768px) {
+  .hero {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .heroTexts {
+    flex: 1;
+  }
+}
+
 @media (min-width: 1024px) {
+  .heroTitle {
+    font-size: var(--font-size-3xl);
+  }
+
+  .heroLead {
+    font-size: var(--font-size-lg);
+  }
+
   .form {
     display: grid;
     grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);

@@ -6,24 +6,25 @@
  * a senha NÃO é validada (protótipo). Após entrar, redireciona para o
  * espaço do perfil (ou para a rota que originou o acesso).
  */
-import { useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   FiArrowLeft,
   FiArrowRight,
+  FiCheckCircle,
+  FiCircle,
   FiFolder,
   FiBookOpen,
   FiMonitor,
   FiShield,
   FiSliders,
-} from 'react-icons/fi';
+} from "react-icons/fi";
 
-import Logo from '../../components/icons/Logo.jsx';
-import Button from '../../components/ui/Button/Button.jsx';
-import TextField from '../../components/ui/TextField/TextField.jsx';
-import { useAuth } from '../../context/AuthContext.jsx';
-import { LOGIN_PROFILES, MOCK_USERS } from '../../mocks/usersMock.js';
-import styles from './LoginPage.module.css';
+import Button from "../../components/ui/Button/Button.jsx";
+import TextField from "../../components/ui/TextField/TextField.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
+import { LOGIN_PROFILES, MOCK_USERS } from "../../mocks/usersMock.js";
+import styles from "./LoginPage.module.css";
 
 /** Ícone de cada perfil de acesso (react-icons/feather). */
 const PROFILE_ICONS = {
@@ -35,10 +36,10 @@ const PROFILE_ICONS = {
 
 /** Para onde cada perfil vai ao entrar. */
 const HOME_BY_ROLE = {
-  aluno: '/aluno',
-  professor: '/painel',
-  coordenador: '/painel',
-  secretaria: '/secretaria/cursos',
+  aluno: "/aluno",
+  professor: "/painel",
+  coordenador: "/painel",
+  secretaria: "/secretaria/cursos",
 };
 
 export default function LoginPage() {
@@ -46,7 +47,7 @@ export default function LoginPage() {
   const location = useLocation();
   const { login } = useAuth();
 
-  const [role, setRole] = useState('aluno');
+  const [role, setRole] = useState("aluno");
 
   /** Usuário do role — prefere perfil dedicado (evita multiperfil trocado). */
   const userForRole = (r) =>
@@ -67,7 +68,7 @@ export default function LoginPage() {
   const handleSubmit = (event) => {
     event.preventDefault();
     login(role);
-    const from = location.state?.from ?? HOME_BY_ROLE[role] ?? '/explorar';
+    const from = location.state?.from ?? HOME_BY_ROLE[role] ?? "/explorar";
     navigate(from, { replace: true });
   };
 
@@ -77,22 +78,24 @@ export default function LoginPage() {
         <button
           type="button"
           className={styles.back}
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
           aria-label="Voltar para a boas-vindas"
         >
-          <FiArrowLeft size={22} aria-hidden="true" />
+          <FiArrowLeft size={20} aria-hidden="true" />
+          <span className={styles.backLabel}>Acessar o PI²</span>
         </button>
-        <Logo size={40} />
       </div>
 
-      <h1 className={styles.title}>Acesso ao sistema</h1>
+      <h1 className={styles.title}>Bom ter você aqui.</h1>
       <p className={styles.subtitle}>
-        Escolha como você acessa o PI² e entre com sua conta institucional.
+        Entre com sua conta institucional para continuar suas ideias.
       </p>
 
       {/* -------------------------------------- cards de perfil */}
       <fieldset className={styles.profiles}>
-        <legend className={styles.profilesLabel}>Como você acessa o PI²?</legend>
+        <legend className={styles.profilesLabel}>
+          Como você acessa o PI²?
+        </legend>
         <div className={styles.profileGrid}>
           {LOGIN_PROFILES.map((profile) => {
             const Icon = PROFILE_ICONS[profile.icon];
@@ -101,10 +104,13 @@ export default function LoginPage() {
               <button
                 key={profile.role}
                 type="button"
-                className={`${styles.profileCard} ${active ? styles.profileActive : ''}`}
+                className={`${styles.profileCard} ${active ? styles.profileActive : ""}`}
                 aria-pressed={active}
                 onClick={() => handleSelect(profile.role)}
               >
+                <span className={styles.profileMark} aria-hidden="true">
+                  {active ? <FiCheckCircle size={18} /> : <FiCircle size={18} />}
+                </span>
                 <Icon size={22} aria-hidden="true" />
                 <span>{profile.label}</span>
               </button>
@@ -129,7 +135,6 @@ export default function LoginPage() {
           required
           defaultValue="pi2demo"
           autoComplete="current-password"
-          hint="Protótipo: a senha não é validada."
         />
 
         <div className={styles.formRow}>
@@ -142,7 +147,12 @@ export default function LoginPage() {
           </Link>
         </div>
 
-        <Button type="submit" size="lg" fullWidth iconAfter={<FiArrowRight aria-hidden="true" />}>
+        <Button
+          type="submit"
+          size="lg"
+          fullWidth
+          iconAfter={<FiArrowRight aria-hidden="true" />}
+        >
           Entrar como {role}
         </Button>
       </form>
@@ -154,8 +164,8 @@ export default function LoginPage() {
         <div>
           <strong>Um espaço para toda a faculdade</strong>
           <p>
-            Alunos publicam e descobrem projetos. Professores orientam, revisam e
-            aprovam. Coordenadores acompanham a evolução dos grupos.
+            Alunos publicam e descobrem projetos. Professores orientam, revisam
+            e aprovam.
           </p>
         </div>
       </div>

@@ -35,19 +35,58 @@ const SECTIONS = [
   { prefix: '/ajuda', label: 'Ajuda e suporte', to: '/ajuda' },
 ];
 
+/**
+ * 3ª linha conversacional do breadcrumb (rota exata) — nos protótipos ela
+ * repete o título da página ("PI² / Meus projetos / Minhas ideias em ação.").
+ */
+const CRUMB_TITLES = {
+  '/explorar': 'Explorar projetos',
+  '/aluno': 'Minhas ideias em ação.',
+  '/perfil': 'Meu perfil',
+  '/painel/relatorio-consolidado': 'Relatório consolidado',
+};
+
+/**
+ * 2ª linha do breadcrumb para rotas cuja seção própria não é "/painel"
+ * (mockup 06: "PI² / Relatório consolidado / Relatório consolidado").
+ */
+const SECTION_OVERRIDES = {
+  '/painel/relatorio-consolidado': {
+    label: 'Relatório consolidado',
+    to: '/painel/relatorio-consolidado',
+  },
+};
+
+/** Saudação do painel — MESMO texto do h1 do StaffPanelPage por face. */
+function painelTitleFor(user, isRole) {
+  const who = user?.displayName ?? user?.name ?? '';
+  const professor = isRole('professor');
+  const coordenador = isRole('coordenador');
+  if (professor && coordenador) return `Olá, ${who}. Você orienta e coordena.`;
+  if (professor) return `Olá, ${who}. Vamos orientar ideias?`;
+  if (coordenador) return 'Olá, coordenador(a). Vamos acompanhar o PI?';
+  return null;
+}
+
 export default function MainLayout({ barVariant = 'brand', title, action }) {
-  const { user, spaceLabel } = useAuth();
+  const { user, spaceLabel, isRole } = useAuth();
   const location = useLocation();
   const outlet = useOutlet();
 
-  /** Breadcrumb: PI² / seção da rota / (título, quando há barra empilhada). */
+  /** Breadcrumb: PI² / seção da rota / título conversacional (como no mockup). */
   const crumbs = useMemo(() => {
     const list = [{ label: 'PI²', to: '/' }];
-    const section = SECTIONS.find((s) => location.pathname.startsWith(s.prefix));
+    const section =
+      SECTION_OVERRIDES[location.pathname] ??
+      SECTIONS.find((s) => location.pathname.startsWith(s.prefix));
     if (section) list.push({ label: section.label, to: section.to });
-    if (barVariant === 'stack' && title) list.push({ label: title });
+    const third =
+      CRUMB_TITLES[location.pathname] ??
+      (location.pathname === '/painel' ? painelTitleFor(user, isRole) : null) ??
+      (barVariant === 'stack' && title ? title : null);
+    if (third) list.push({ label: third });
     return list;
-  }, [location.pathname, barVariant, title]);
+  }, [location.pathname, barVariant, title, user, isRole]);
 
   return (
     <div className={styles.shell}>

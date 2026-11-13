@@ -1,47 +1,67 @@
 /**
  * PI² — Publicação de projeto (rota "/aluno/novo").
  * -----------------------------------------------------------------------------
- * Briefing: a entrega do aluno é feita APENAS com 3 links
- * (GitHub, Live Preview e Documentação/Portfólio) — sem upload de PDF e
- * sem notas numéricas. Ao enviar, o projeto entra em "análise" e o aluno
- * é levado ao acompanhamento.
- * Desktop (≥1024px): formulário em 2 colunas — "Sobre o projeto" e
- * "Quem participa" à esquerda; materiais, visibilidade e ações à direita
- * (protótipo "Publicação de projeto").
+ * Protótipo "Publicação de projeto" (mockup 03 · desktop). Briefing: a entrega
+ * do aluno é feita APENAS com 3 links (GitHub, Live Preview e Documentação /
+ * Portfólio) — sem upload de PDF e sem notas numéricas. Ao enviar, o projeto
+ * entra em "análise" e o aluno é levado à confirmação "Enviado para análise!".
+ *
+ * O formulário abre com o rascunho EcoCampus ("Rascunho salvo às 09:38"),
+ * como no protótipo. Desktop (≥1024px): 2 colunas — "Sobre o projeto" e
+ * "Quem participa" à esquerda; materiais, visibilidade e ações à direita.
  */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiInfo, FiSend } from 'react-icons/fi';
 
 import Button from '../../components/ui/Button/Button.jsx';
-import FilterChips from '../../components/ui/FilterChips/FilterChips.jsx';
-import SectionHeader from '../../components/ui/SectionHeader/SectionHeader.jsx';
 import Select from '../../components/ui/Select/Select.jsx';
 import TextField from '../../components/ui/TextField/TextField.jsx';
-import { COURSE, SEMESTERS, TECHNOLOGIES } from '../../mocks/projectsMock.js';
+import { COURSE_SHORT, getProjectBySlug, getTeam } from '../../mocks/projectsMock.js';
 import styles from './NewProjectPage.module.css';
 
-const TECH_OPTIONS = TECHNOLOGIES.map((tech) => ({ value: tech, label: tech }));
+/** Rascunho em edição (protótipo: EcoCampus — ver mockup "Publicação"). */
+const DRAFT = getProjectBySlug('ecocampus');
+const DRAFT_TEAM = getTeam(DRAFT);
+
+/** Hora do rascunho salvo exibida no chip do cabeçalho (copy do mockup). */
+const DRAFT_SAVED_AT = 'Rascunho salvo às 09:38';
 
 export default function NewProjectPage() {
   const navigate = useNavigate();
-  const [techs, setTechs] = useState([]);
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState(DRAFT?.title ?? '');
+  const [members, setMembers] = useState(DRAFT_TEAM?.members.join('; ') ?? '');
+  const [description, setDescription] = useState(DRAFT?.description ?? '');
   const [visibility, setVisibility] = useState('comunidade');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Protótipo: envio simulado → acompanha a análise do projeto em análise.
-    navigate('/aluno/status/biblioteca-conectada?enviado=1');
+    // Protótipo: envio simulado → confirmação de envio do projeto em análise.
+    navigate(`/aluno/status/${DRAFT?.slug ?? 'ecocampus'}?enviado=1`);
+  };
+
+  /** Adiciona mais um slot de integrante ("+ Adicionar… por e-mail"). */
+  const handleAddMember = () => {
+    setMembers((current) =>
+      current.trim() && !current.trim().endsWith(';')
+        ? `${current.trim()}; `
+        : current
+    );
   };
 
   return (
     <div className={styles.page}>
-      <SectionHeader
-        title="Novo projeto integrador"
-        subtitle={`Entrega do ${COURSE}. Envie os links da sua equipe para análise pelo orientador.`}
-      />
+      {/* ------------------------------------------------------- hero */}
+      <header className={styles.hero}>
+        <div className={styles.heroTexts}>
+          <h1 className={styles.heroTitle}>Sua ideia merece ser compartilhada.</h1>
+          <p className={styles.heroLead}>
+            Preencha os dados e envie ao seu orientador. Os campos com * são
+            obrigatórios.
+          </p>
+        </div>
+        <span className={styles.draftChip}>{DRAFT_SAVED_AT}</span>
+      </header>
 
       <form className={styles.form} onSubmit={handleSubmit}>
         {/* --------------------------------------- coluna principal */}
@@ -54,19 +74,14 @@ export default function NewProjectPage() {
               required
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="Ex.: Rota Acessível: um campus para todos"
             />
 
             <div className={styles.row}>
-              <Select label="Tipo" defaultValue="pi" required>
-                <option value="pi">Projeto integrador</option>
+              <Select label="Curso" defaultValue="dsm" required>
+                <option value="dsm">{COURSE_SHORT}</option>
               </Select>
-              <Select label="Semestre" required defaultValue={2}>
-                {SEMESTERS.map((n) => (
-                  <option key={n} value={n}>
-                    {n}º semestre
-                  </option>
-                ))}
+              <Select label="Tipo de projeto" defaultValue="pi" required>
+                <option value="pi">Projeto integrador</option>
               </Select>
             </div>
 
@@ -79,23 +94,11 @@ export default function NewProjectPage() {
                 maxLength={2000}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Conte o problema, a solução e o público do projeto…"
               />
               <span className={styles.counter}>
                 {description.length} / 2.000 caracteres
               </span>
             </label>
-
-            <div className={styles.techsField}>
-              <span className={styles.textareaLabel}>Tecnologias</span>
-              <FilterChips
-                options={TECH_OPTIONS}
-                value={techs}
-                onChange={setTechs}
-                multiple
-                clearLabel="Nenhuma"
-              />
-            </div>
           </section>
 
           <section className={styles.card}>
@@ -103,9 +106,17 @@ export default function NewProjectPage() {
             <TextField
               label="Integrantes"
               required
-              placeholder="Ex.: Ana Costa; Lucas Silva"
+              value={members}
+              onChange={(e) => setMembers(e.target.value)}
               hint="Você é a responsável pelo envio deste projeto."
             />
+            <button
+              type="button"
+              className={styles.addMember}
+              onClick={handleAddMember}
+            >
+              + Adicionar integrante por e-mail
+            </button>
             <Select label="Orientador" required defaultValue="rafael">
               <option value="rafael">Prof. Rafael Martins</option>
               <option value="marta">Profa. Marta Campos</option>
@@ -117,33 +128,24 @@ export default function NewProjectPage() {
         <aside className={styles.aside}>
           <section className={styles.card}>
             <h2 className={styles.cardTitle}>Materiais e submissão</h2>
-            <p className={styles.cardHint}>
-              A entrega é feita somente por links — não envie arquivos PDF.
-            </p>
 
             <TextField
               label="Repositório GitHub"
               type="url"
-              required
               inputMode="url"
-              placeholder="https://github.com/equipe/projeto"
-              hint="Código-fonte versionado da equipe."
+              placeholder="https://github.com/eco-campus"
             />
             <TextField
-              label="Live Preview"
+              label="Live Preview / Deploy"
               type="url"
-              required
               inputMode="url"
-              placeholder="https://projeto.vercel.app"
-              hint="Versão navegável do projeto."
+              placeholder="https://ecocampus.app"
             />
             <TextField
               label="Documentação / Portfólio"
               type="url"
-              required
               inputMode="url"
-              placeholder="https://notion.com/equipe/documentacao"
-              hint="Relatório, processo e decisões de projeto."
+              placeholder="https://eco-campus.vercel.app"
             />
           </section>
 

@@ -33,50 +33,11 @@
 }
 
 /* ---------------------------------------------------- estatísticas */
+/* cartões compartilhados (StatCard) — o grid é da página */
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: var(--space-4);
-}
-
-.stat {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-5);
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  transition: box-shadow var(--transition-fast);
-}
-
-.stat:hover {
-  box-shadow: var(--shadow-sm);
-}
-
-/* Primeiro card: fundo vermelho com texto invertido (destaque). */
-.statHighlight {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-}
-
-.statHighlight .statValue,
-.statHighlight .statLabel {
-  color: var(--color-text-inverse);
-}
-
-.statValue {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-title);
-}
-
-.statLabel {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-muted);
 }
 
 /* ------------------------------------------- busca e chips de filtro */
@@ -115,6 +76,11 @@
   justify-content: space-between;
   gap: var(--space-2);
   width: 100%;
+}
+
+.cardClock {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
 }
 
 .cardTitle {

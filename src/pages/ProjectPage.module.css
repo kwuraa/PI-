@@ -1,4 +1,6 @@
-/* ProjectPage — detalhes do projeto (público ou logado). */
+/* ProjectPage — detalhes do projeto (público ou logado).
+   Mobile-first em 1 coluna; no desktop (≥1024px) vira um grid de 2 colunas:
+   conteúdo à esquerda e resumo sticky (~350px) à direita (mockup 02). */
 .page {
   display: flex;
   flex-direction: column;
@@ -6,16 +8,20 @@
 }
 
 /* ------------------------------------------------------- topo */
-.badges {
+.header {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
   flex-wrap: wrap;
-  gap: var(--space-2);
 }
 
-.meta {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+.headerTexts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+  min-width: 0;
 }
 
 .title {
@@ -23,6 +29,46 @@
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
   color: var(--color-text-title);
+}
+
+.meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------- 2 colunas */
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.pills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* --------------------------------------------- card "Sobre" */
+.aboutCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
 }
 
 .description {
@@ -56,7 +102,7 @@
 .teamCard {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
 }
 
 .members {
@@ -65,109 +111,43 @@
   gap: var(--space-3);
 }
 
-.member {
+.person {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-body);
 }
 
-.advisor {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-}
-
-.publicTeam {
+.personTexts {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
-}
-
-.publicTeam strong {
-  font-size: var(--font-size-md);
-  color: var(--color-text-title);
-}
-
-.publicTeam span {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-}
-
-/* ----------------------------------------------------- blocos */
-.block {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-.linkCard {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-4);
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  transition: border-color var(--transition-fast),
-    box-shadow var(--transition-fast);
-}
-
-.linkCard:hover {
-  border-color: var(--color-border-strong);
-  box-shadow: var(--shadow-sm);
-}
-
-.linkIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: var(--radius-md);
-  background-color: var(--color-primary-soft);
-  color: var(--color-primary);
-}
-
-.linkTexts {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  flex: 1;
+  gap: 2px;
   min-width: 0;
 }
 
-.linkTexts strong {
+.personTexts strong {
   font-size: var(--font-size-sm);
   color: var(--color-text-title);
 }
 
-.linkTexts span {
+.personTexts span {
   font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-}
-
-.linkLabel {
-  font-size: var(--font-size-xs);
-  color: var(--color-primary);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.linkArrow {
-  flex-shrink: 0;
   color: var(--color-text-muted);
 }
 
 /* --------------------------------------------------- arquivos */
+.filesCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.filesCount {
+  align-self: flex-start;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
 .files {
   display: flex;
   flex-direction: column;
@@ -178,10 +158,21 @@
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  background-color: var(--color-bg-surface);
+  padding: var(--space-3);
+  background-color: var(--color-bg-page);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
+}
+
+.fileIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary-soft);
   color: var(--color-primary);
 }
 
@@ -189,6 +180,7 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+  flex: 1;
   min-width: 0;
 }
 
@@ -205,6 +197,27 @@
   color: var(--color-text-muted);
 }
 
+.fileDownload {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background-color: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.fileDownload:hover {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
 /* ---------------------------------------------------- parecer */
 .criteria {
   display: flex;
@@ -215,6 +228,12 @@
 }
 
 /* ------------------------------------------------- comentários */
+.commentsCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
 .comments {
   display: flex;
   flex-direction: column;
@@ -292,4 +311,23 @@
   flex-direction: column;
   gap: var(--space-3);
   padding-top: var(--space-2);
+}
+
+/* --------------------------------------------------- desktop */
+@media (min-width: 1024px) {
+  .title {
+    font-size: var(--font-size-3xl);
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 350px;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .side {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-4));
+  }
 }
