@@ -40,7 +40,7 @@ const SECTIONS = [
  * repete o título da página ("PI² / Meus projetos / Minhas ideias em ação.").
  */
 const CRUMB_TITLES = {
-  '/explorar': 'Ideias de todos. Inspiração para você.',
+  '/explorar': 'Explorar projetos',
   '/aluno': 'Minhas ideias em ação.',
 };
 

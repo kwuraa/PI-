@@ -9,7 +9,7 @@
  * (LGPD); usuários logados veem a visão completa.
  */
 import { useMemo, useState } from 'react';
-import { FiSliders } from 'react-icons/fi';
+import { FiSliders, FiX } from 'react-icons/fi';
 
 import Button from '../components/ui/Button/Button.jsx';
 import FilterChips from '../components/ui/FilterChips/FilterChips.jsx';
@@ -99,18 +99,43 @@ export default function ExplorePage() {
     setQuery('');
   };
 
-  const hasFilters =
-    semesters.length > 0 || techs.length > 0 || statuses.length > 0 || query !== '';
+  /** Rótulo do campo de ordenação (mockup: "8 projetos encontrados · Mais recentes"). */
+  const sortLabel = SORT_OPTIONS.find((option) => option.value === sort)?.label ?? 'Mais recentes';
+
+  /** Filtros ativos como pílulas removíveis acima da grade (mockup). */
+  const activePills = [
+    ...semesters.map((n) => ({
+      key: `sem-${n}`,
+      label: `${COURSE_SHORT} · ${n}º semestre`,
+      primary: true,
+      clear: () => setSemesters((prev) => prev.filter((v) => v !== n)),
+    })),
+    ...techs.map((tech) => ({
+      key: `tech-${tech}`,
+      label: tech,
+      primary: false,
+      clear: () => setTechs((prev) => prev.filter((v) => v !== tech)),
+    })),
+    ...statuses.map((status) => ({
+      key: `st-${status}`,
+      label: STATUS_OPTIONS.find((option) => option.value === status)?.label ?? status,
+      primary: false,
+      clear: () => setStatuses((prev) => prev.filter((v) => v !== status)),
+    })),
+  ];
+
+  /** Botão "Mostrar N projetos": rola até a grade de resultados. */
+  const scrollToResults = () => {
+    document.getElementById('resultados')?.scrollIntoView({ block: 'start' });
+  };
 
   return (
     <div className={styles.page}>
       <SectionHeader
-        title="Explorar projetos"
-        subtitle={
-          isLogged
-            ? 'Busque, filtre e descubra o que está sendo construído no DSM.'
-            : 'Projetos publicados do DSM. A equipe aparece de forma anônima (LGPD).'
-        }
+        title={query.trim() ? `Projetos de ${query.trim()}` : 'Explorar projetos'}
+        subtitle={`${results.length} projeto${results.length === 1 ? '' : 's'} encontrado${
+          results.length === 1 ? '' : 's'
+        } · ${sortLabel}`}
       />
 
       <div className={styles.layout}>
@@ -181,6 +206,9 @@ export default function ExplorePage() {
             </section>
           )}
 
+          <button type="button" className={styles.showButton} onClick={scrollToResults}>
+            Mostrar {results.length} projeto{results.length === 1 ? '' : 's'}
+          </button>
           <button type="button" className={styles.clearPanel} onClick={clearFilters}>
             Limpar filtros
           </button>
@@ -195,26 +223,24 @@ export default function ExplorePage() {
             onFilterClick={() => setFiltersOpen(true)}
           />
 
-          <div className={styles.chipsRow}>
-            <FilterChips
-              options={SEMESTER_OPTIONS}
-              value={semesters.length === 1 ? semesters[0] : null}
-              onChange={(v) => setSemesters(v === null ? [] : [v])}
-              clearLabel="Todos os semestres"
-            />
-          </div>
+          {activePills.length > 0 && (
+            <div className={styles.pills}>
+              {activePills.map((pill) => (
+                <button
+                  key={pill.key}
+                  type="button"
+                  className={`${styles.pill} ${pill.primary ? styles.pillPrimary : ''}`}
+                  onClick={pill.clear}
+                  aria-label={`Remover filtro ${pill.label}`}
+                >
+                  {pill.label}
+                  <FiX size={14} aria-hidden="true" />
+                </button>
+              ))}
+            </div>
+          )}
 
-          <p className={styles.count} aria-live="polite">
-            {results.length} projeto{results.length === 1 ? '' : 's'} encontrado
-            {results.length === 1 ? '' : 's'}
-            {hasFilters && (
-              <button type="button" className={styles.clear} onClick={clearFilters}>
-                Limpar filtros
-              </button>
-            )}
-          </p>
-
-          <div className={styles.grid}>
+          <div className={styles.grid} id="resultados">
             {sorted.map((project, index) => (
               <ProjectCard
                 key={project.id}

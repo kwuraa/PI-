@@ -1,26 +1,8 @@
-/* ExplorePage — busca, chips de semestre, grade e sheet de filtros. */
+/* ExplorePage — busca, painel de filtros, pílulas ativas e grade. */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
-}
-
-.chipsRow {
-  overflow-x: auto;
-}
-
-.count {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-3);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-}
-
-.clear {
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
 }
 
 .grid {
@@ -105,6 +87,53 @@
   color: var(--color-text-title);
 }
 
+/* botão "Mostrar N projetos" do painel (mockup) */
+.showButton {
+  align-self: flex-start;
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-primary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-inverse);
+  transition: background-color var(--transition-fast);
+}
+
+.showButton:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* pílulas dos filtros ativos acima da grade */
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  background-color: var(--color-bg-page);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-body);
+  transition: border-color var(--transition-fast);
+}
+
+.pill:hover {
+  border-color: var(--color-border-strong);
+}
+
+.pillPrimary {
+  background-color: var(--color-primary-soft);
+  border-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
 /* lista de rádio com contagem (Semestre) */
 .radioList {
   display: flex;
@@ -185,8 +214,5 @@
     border-radius: var(--radius-lg);
   }
 
-  /* no desktop os semestres viram as linhas de rádio do painel */
-  .chipsRow {
-    display: none;
-  }
+  /* no desktop o painel assume o papel dos chips de semestre */
 }
