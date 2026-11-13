@@ -17,7 +17,14 @@
  *  • /secretaria/cursos → 'secretaria';
  *  • /perfil            → qualquer usuário logado (visitante vê o convite).
  */
-import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useParams,
+  useSearchParams,
+} from 'react-router-dom';
 
 import MainLayout from './components/layout/MainLayout/MainLayout.jsx';
 import PublicLayout from './components/layout/PublicLayout/PublicLayout.jsx';
@@ -68,18 +75,29 @@ function RequireRole({ roles, children }) {
 
 /**
  * Barra superior empilhada (voltar + título).
- * `resolveTitle(params)` monta o título com os parâmetros da rota
- * (ex.: título real do projeto em /projeto/:slug).
+ * `resolveTitle(params, search)` monta o título com os parâmetros da rota e
+ * da query string (ex.: título real do projeto em /projeto/:slug; em
+ * /aluno/status/:slug, "Enviado para análise!" quando ?enviado=1).
  */
 function StackShell({ resolveTitle, fallback = '' }) {
   const params = useParams();
+  const [search] = useSearchParams();
   // resolveTitle é opcional: rotas sem ela (ex.: /aluno/novo, /painel/meu-projeto)
   // usam direto o fallback como título da barra empilhada.
-  return <MainLayout barVariant="stack" title={resolveTitle?.(params) ?? fallback} />;
+  return (
+    <MainLayout barVariant="stack" title={resolveTitle?.(params, search) ?? fallback} />
+  );
 }
 
 /** Título da barra em /projeto/:slug — usa o título do projeto mockado. */
 const projectTitle = ({ slug }) => getProjectBySlug(slug)?.title ?? 'Projeto';
+
+/**
+ * Título/breadcrumb de /aluno/status/:slug (mockups 03): após o envio a
+ * trilha é "Enviado para análise!"; no acompanhamento, "Acompanhar análise".
+ */
+const statusTitle = (params, search) =>
+  search.get('enviado') === '1' ? 'Enviado para análise!' : 'Acompanhar análise';
 
 export default function App() {
   return (
@@ -197,7 +215,12 @@ export default function App() {
 
       <Route
         path="/aluno/status/:slug"
-        element={<StackShell resolveTitle={projectTitle} fallback="Acompanhar análise" />}
+        element={
+          <StackShell
+            resolveTitle={statusTitle}
+            fallback="Acompanhar análise"
+          />
+        }
       >
         <Route
           index

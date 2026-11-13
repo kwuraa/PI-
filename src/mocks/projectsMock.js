@@ -70,7 +70,9 @@ export const TEAMS = {
   'team-ecocampus': {
     id: 'team-ecocampus',
     publicLabel: 'Equipe DSM — 2º Semestre',
-    members: ['Ana Costa', 'Lucas Silva', 'Rui Mota', 'Bia Farias'],
+    // Dupla autora do rascunho EcoCampus — mesmos nomes dos protótipos
+    // 03 (formulário "Integrantes" e card "Enviado para análise!").
+    members: ['Ana Costa', 'Lucas Silva'],
     advisor: 'Prof. Rafael Martins',
     advisorInitials: 'RM',
     semester: 2,
@@ -204,7 +206,10 @@ export const PROJECTS = [
     year: 2026,
     semester: 2,
     teamId: 'team-ecocampus',
-    status: 'em-analise',
+    // Rascunho (mockup 03 "Meus projetos": card EcoCampus = Rascunho);
+    // ao enviar pelo /aluno/novo ele passa a "em-analise" (ver
+    // ProjectStatusPage com ?enviado=1).
+    status: 'rascunho',
     featured: false,
     saves: 7,
     highlights: ['Sustentabilidade', 'Campus', 'Gestão'],

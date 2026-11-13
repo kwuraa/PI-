@@ -1,53 +1,279 @@
-/* ProjectStatusPage — banner de envio + linha do tempo da análise. */
+/* ProjectStatusPage — protótipos 03 "Enviado para análise!" (?enviado=1) e
+   "Análise de Biblioteca Conectada" (padrão). Mobile-first: coluna única;
+   ≥1024px: 2 colunas (7fr / 5fr) como no desktop do mockup. */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
-/* --------------------------------------------------- resumo */
-.summary {
+/* --------------------------------------------------------- hero */
+.hero {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.heroIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--space-5);
+  background-color: var(--color-primary-soft);
+  border-radius: var(--radius-xl);
+  color: var(--color-primary);
+}
+
+.heroTexts {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  align-items: flex-start;
+  gap: var(--space-3);
+  min-width: 0;
 }
 
-.summaryTop {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-2);
+.heroTitle {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-title);
 }
 
-.summaryMeta {
-  font-size: var(--font-size-xs);
+.heroLead {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
   color: var(--color-text-muted);
 }
 
-.title {
-  font-size: var(--font-size-xl);
+/* ------------------------------------------------------ layout */
+.split {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.mainCol,
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+/* Card genérico: título + conteúdo com espaçamento do protótipo. */
+.blockCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.blockTitle {
+  font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-title);
 }
 
-.description {
+.asideText {
   font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
   color: var(--color-text-muted);
 }
 
-/* -------------------------------------------------- blocos */
-.block {
+.asideActions {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--space-3);
 }
 
-/* ------------------------------------------------ timeline */
-.timeline {
+.asideAction {
+  display: flex;
+}
+
+/* ------------------------------------- "Enviado para análise!" */
+.sentCard {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.sentTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-title);
+}
+
+.sentMeta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.sentTeam {
+  font-size: var(--font-size-md);
+  color: var(--color-text-body);
+}
+
+.sentWhen {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.lockBox {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-danger-soft);
+  border-radius: var(--radius-lg);
+}
+
+.lockBox svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-primary);
+}
+
+.lockBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.lockTitle {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.lockText {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+}
+
+/* linha "Prof. Rafael Martins · Aguardando análise e parecer" */
+.advisorRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.advisorTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.advisorTexts strong {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+.advisorTexts span {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* arquivo enviado (Relatório_EcoCampus.pdf) */
+.fileRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.fileIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--space-2);
+  background-color: var(--color-primary-soft);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+}
+
+.fileTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.fileTexts strong {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+.fileTexts span {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.fileDownload {
+  display: inline-flex;
+  margin-left: auto;
+  padding: var(--space-1);
+  background: none;
+  border: 0;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.fileDownload:hover {
+  color: var(--color-text-title);
+}
+
+/* --------------------------- banner "Aguardando o parecer" */
+.waitBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-warning-soft);
+  border-radius: var(--radius-lg);
+}
+
+.waitBanner svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-warning);
+}
+
+.bannerBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.bannerTitle {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.bannerText {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+}
+
+/* -------------------------------------- etapas da análise */
+.steps {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  list-style: none;
 }
 
 .step {
@@ -57,19 +283,19 @@
   padding-bottom: var(--space-5);
 }
 
+.step:last-child {
+  padding-bottom: 0;
+}
+
 /* linha vertical entre etapas */
 .step:not(:last-child)::before {
   content: '';
   position: absolute;
   left: 15px;
-  top: 32px;
-  bottom: 0;
+  top: 36px;
+  bottom: 4px;
   width: 2px;
   background-color: var(--color-border);
-}
-
-.step.done:not(:last-child)::before {
-  background-color: var(--color-primary);
 }
 
 .stepIcon {
@@ -86,16 +312,17 @@
   z-index: 1;
 }
 
+/* concluída: círculo verde suave (mockup "Análise de Biblioteca") */
 .done .stepIcon {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-text-inverse);
+  background-color: var(--color-success-soft);
+  border-color: var(--color-success-soft);
+  color: var(--color-success);
 }
 
+/* etapa atual: contorno âmbar */
 .current .stepIcon {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  box-shadow: 0 0 0 4px var(--color-primary-soft);
+  border-color: var(--color-warning);
+  color: var(--color-warning);
 }
 
 .stepBody {
@@ -107,6 +334,7 @@
 
 .stepTitle {
   font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text-title);
 }
 
@@ -120,31 +348,32 @@
   color: var(--color-text-muted);
 }
 
-/* -------------------------------------------- watcherrs */
+/* ------------------------------------------ quem acompanha */
 .watchers {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .watcher {
   display: flex;
   align-items: center;
   gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
 }
 
 .watcherTexts {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
 .watcherTexts strong {
   font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text-title);
 }
 
@@ -153,20 +382,19 @@
   color: var(--color-text-muted);
 }
 
-/* -------------------------------------------------- voltar */
-.backLink {
-  display: block;
-  padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-bg-surface);
-  font-size: var(--font-size-md);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-title);
-  text-align: center;
-  transition: border-color var(--transition-fast);
-}
+/* -------------------------------------------------- desktop */
+@media (min-width: 1024px) {
+  .heroTitle {
+    font-size: var(--font-size-3xl);
+  }
 
-.backLink:hover {
-  border-color: var(--color-border-strong);
+  .heroLead {
+    font-size: var(--font-size-lg);
+  }
+
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: start;
+  }
 }
