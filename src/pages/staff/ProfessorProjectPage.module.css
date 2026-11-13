@@ -1,9 +1,11 @@
 /**
  * ProfessorProjectPage — meu projeto e materiais (mockup 09).
  * -----------------------------------------------------------------------------
- * Mobile-first: topo com badge + ação, depois a grade que no desktop (≥1024)
- * vira duas colunas (≈1.6fr / 1fr) — identidade/documentos à esquerda e
- * "Links do projeto" à direita. Só design tokens de variables.css.
+ * Mobile-first: topo com badge + ação, cabeçalho da seção "Projetos sob
+ * orientação" e UM BLOCO POR PROJETO. Cada bloco usa a mesma grade que no
+ * desktop (≥1024) vira duas colunas (≈1.6fr / 1fr) — identidade/documentos à
+ * esquerda e "Links do projeto" sticky à direita. Entre os blocos, uma
+ * divisória leve. Só design tokens de variables.css.
  */
 .page {
   display: flex;
@@ -37,6 +39,52 @@
   font-size: var(--font-size-md);
   line-height: var(--line-height-normal);
   color: var(--color-text-muted);
+}
+
+/* ------------------------------------------- seção de projetos */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-title);
+}
+
+.sectionHint {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* lista de blocos: um por projeto, separados por divisória leve */
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  min-width: 0;
+}
+
+.project {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.project + .project {
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
 }
 
 /* ------------------------------------------------- grade */
@@ -94,6 +142,26 @@
   color: var(--color-text-muted);
 }
 
+/* ------------------------------------------ ação do bloco */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+/* remove o estilo de âncora do wrapper do botão */
+.actionLink {
+  text-decoration: none;
+}
+
+.actionHint {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
 /* -------------------------------------------------- cards */
 .card {
   display: flex;
@@ -145,8 +213,15 @@
   border-radius: var(--radius-md);
 }
 
+/* ladrilho do arquivo (mockup 09): bloco de token, sem imagem */
 .fileIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  padding: var(--space-2);
+  background-color: var(--color-primary-soft);
+  border-radius: var(--radius-md);
   color: var(--color-primary);
 }
 
@@ -216,11 +291,17 @@
 
 /* ------------------------------------------- desktop (≥1024) */
 @media (min-width: 1024px) {
+  /* conteúdo + lateral sticky por bloco (2 colunas) */
   .grid {
     display: grid;
     grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
     gap: var(--space-6);
     align-items: start;
+  }
+
+  .side {
+    position: sticky;
+    top: calc(var(--header-height) + var(--space-4));
   }
 
   .title {
