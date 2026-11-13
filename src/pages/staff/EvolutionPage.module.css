@@ -1,26 +1,62 @@
-/* EvolutionPage — relatório de histórico e evolução do grupo. */
+/**
+ * EvolutionPage — relatório de histórico e evolução do grupo (mockup 05).
+ * -----------------------------------------------------------------------------
+ * Mobile-first: bloco único empilhado; a partir de 1024px "Histórico por
+ * semestre" e "Evolução qualitativa" ficam lado a lado (≈1.6fr / 1fr), como
+ * no desktop do protótipo. Só design tokens — nenhuma cor fixa.
+ */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
+/* ------------------------------------------------- topo */
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  align-self: flex-start;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.backLink:hover {
+  text-decoration: underline;
+}
+
 .head {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   gap: var(--space-2);
 }
 
 .title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-normal);
   color: var(--color-text-title);
 }
 
-.meta {
+.lead {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------- grupo selecionado */
+.selector {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.groupMeta {
   font-size: var(--font-size-sm);
-  color: var(--color-text-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
 }
 
 .updated {
@@ -28,102 +64,70 @@
   color: var(--color-text-muted);
 }
 
-.block {
+/* ------------------------------------------------ grade */
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.column {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-}
-
-/* ------------------------------------------------ timeline */
-.timeline {
-  display: flex;
-  flex-direction: column;
-}
-
-.step {
-  position: relative;
-  display: flex;
-  gap: var(--space-3);
-  padding-bottom: var(--space-5);
-}
-
-.step:not(:last-child)::before {
-  content: '';
-  position: absolute;
-  left: 15px;
-  top: 34px;
-  bottom: 0;
-  width: 2px;
-  background-color: var(--color-border);
-}
-
-.stepIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
-  border-radius: var(--radius-pill);
-  background-color: var(--color-bg-surface);
-  border: 2px solid var(--color-border-strong);
-  color: var(--color-text-muted);
-  z-index: 1;
-}
-
-.stepDone {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-text-inverse);
-}
-
-.stepPending {
-  border-color: var(--color-warning);
-  color: var(--color-warning);
-}
-
-.stepBody {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding-top: var(--space-1);
   min-width: 0;
 }
 
-.stepTag {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  letter-spacing: var(--letter-spacing-caps);
-  text-transform: uppercase;
+/* ---------------------------------------- histórico (timeline) */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.stepCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.stepTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.stepLock {
+  flex-shrink: 0;
   color: var(--color-primary);
 }
 
 .stepTitle {
   font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-text-title);
 }
 
 .stepSummary {
   font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
-  color: var(--color-text-body);
-}
-
-.stepEvidence {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--space-2);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-normal);
   color: var(--color-text-muted);
 }
 
-.stepEvidence svg {
-  flex-shrink: 0;
-  margin-top: 2px;
+.stepEvidence {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
 }
 
-/* ---------------------------------------- qualitativa */
+.exportRow {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: var(--space-1);
+}
+
+/* ---------------------------------------- evolução qualitativa */
 .qualitative {
   display: flex;
   flex-direction: column;
@@ -132,19 +136,8 @@
 
 .qualCard {
   display: flex;
-  gap: var(--space-3);
-}
-
-.qualIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  flex-shrink: 0;
-  border-radius: var(--radius-md);
-  background-color: var(--color-primary-soft);
-  color: var(--color-primary);
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
 .qualTitle {
@@ -154,32 +147,26 @@
 }
 
 .qualSummary {
-  margin-top: var(--space-1);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.qualEvidence {
   font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
   color: var(--color-text-body);
 }
 
-.qualEvidence {
-  margin-top: var(--space-2);
-  font-size: var(--font-size-xs);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-muted);
-}
+/* ------------------------------------------- desktop (≥1024) */
+@media (min-width: 1024px) {
+  .title {
+    font-size: var(--font-size-3xl);
+  }
 
-/* ------------------------------------------------ voltar */
-.back {
-  display: block;
-  padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-bg-surface);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-title);
-  text-align: center;
-}
-
-.back:hover {
-  border-color: var(--color-border-strong);
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    align-items: start;
+  }
 }

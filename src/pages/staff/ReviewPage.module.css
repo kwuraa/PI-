@@ -1,79 +1,87 @@
-/* ReviewPage — revisão qualitativa do projeto. */
+/**
+ * ReviewPage — revisão do projeto pelo professor (mockup 04).
+ * -----------------------------------------------------------------------------
+ * Mobile-first: coluna principal + coluna lateral empilhadas; a partir de
+ * 1024px elas viram duas colunas (≈1.6fr / 1fr) como no desktop do protótipo.
+ * Só design tokens de src/styles/variables.css — nenhuma cor fixa.
+ */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
-.summary {
+.main,
+.side {
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-5);
+  min-width: 0;
 }
 
-.summaryTop {
+/* ------------------------------------------- linha de situação */
+.statusRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
 }
 
-.summaryMeta {
+.statusDate {
   font-size: var(--font-size-xs);
   color: var(--color-text-muted);
 }
 
+/* --------------------------------------------------- identidade */
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .title {
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-normal);
   color: var(--color-text-title);
 }
 
-.description {
+.meta {
   font-size: var(--font-size-sm);
-  line-height: var(--line-height-normal);
   color: var(--color-text-muted);
 }
 
 .team {
   font-size: var(--font-size-sm);
-  color: var(--color-text-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
 }
 
+.advisor {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------------ blocos */
 .block {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
-/* ------------------------------------------------ links */
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
+.description {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
 }
 
-.link {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-3) var(--space-4);
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-}
-
-.link strong {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-title);
-}
-
-.link code {
+/* ------------------------------------------- materiais/enviados */
+.fileCount {
   font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
   color: var(--color-primary);
 }
 
-/* ---------------------------------------------- arquivos */
 .files {
   display: flex;
   flex-direction: column;
@@ -88,64 +96,110 @@
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: border-color var(--transition-fast);
+}
+
+a.file:hover {
+  border-color: var(--color-border-strong);
+}
+
+.fileIcon {
+  flex-shrink: 0;
   color: var(--color-primary);
 }
 
-.file span {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+.fileText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
 }
 
-.file strong {
+.fileText strong {
+  font-size: var(--font-size-sm);
   color: var(--color-text-title);
 }
 
-/* ---------------------------------------------- critérios */
+.fileText small {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.fileDownload {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------ coluna lateral */
+.sideCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sideTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+/* ------------------------------------------------- critérios */
 .criteria {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.criterion {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-body);
+  cursor: pointer;
+}
+
+/* checkbox nativo escondido: o ícone quadrado faz o papel visual */
+.criterion input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+}
+
+.criterionIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--color-border-strong);
+}
+
+.criterion input:checked + .criterionIcon {
+  color: var(--color-primary);
+}
+
+.criterion input:focus-visible + .criterionIcon {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* -------------------------------------------------- parecer */
+.parecer {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
 
-.criterion {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+.textareaLabel {
   font-size: var(--font-size-sm);
-  color: var(--color-text-body);
-  cursor: pointer;
-  transition: border-color var(--transition-fast),
-    background-color var(--transition-fast);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
 }
 
-.criterion input {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  accent-color: var(--color-primary);
-}
-
-.criterionDone {
-  border-color: var(--color-success);
-  background-color: var(--color-success-soft);
-  color: var(--color-success);
-  font-weight: var(--font-weight-medium);
-}
-
-.criterionIcon {
-  margin-left: auto;
-}
-
-.progress {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-}
-
-/* ----------------------------------------------- parecer */
 .textarea {
   width: 100%;
   padding: var(--space-3) var(--space-4);
@@ -153,7 +207,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-family: inherit;
-  font-size: var(--font-size-md);
+  font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
   color: var(--color-text-body);
   resize: vertical;
@@ -166,41 +220,35 @@
   box-shadow: 0 0 0 3px var(--color-primary-soft);
 }
 
-.validation {
+.textareaHint {
   font-size: var(--font-size-xs);
-  color: var(--color-warning);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
 }
 
-/* ------------------------------------------------ decisão */
+/* ------------------------------------------------- decisões */
 .decisions {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
-.decisions > * {
-  flex: 1;
-}
-
-@media (min-width: 768px) {
-  .decisions {
-    flex-direction: row;
-    justify-content: flex-end;
-  }
-}
-
-.back {
-  display: block;
-  padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-bg-surface);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-title);
+.decisionNote {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
   text-align: center;
 }
 
-.back:hover {
-  border-color: var(--color-border-strong);
+/* ------------------------------------------- desktop (≥1024) */
+@media (min-width: 1024px) {
+  .page {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .title {
+    font-size: var(--font-size-3xl);
+  }
 }

@@ -1,38 +1,67 @@
 /**
  * PI² — Revisão do projeto pelo professor (rota "/painel/revisar/:slug").
  * -----------------------------------------------------------------------------
- * Fluxo do professor: ler a entrega (links + arquivos), marcar os critérios
- * QUALITATIVOS (sem notas numéricas), escrever o parecer e decidir:
- *  • "Aprovar e publicado" → /painel/resultado/:slug
- *  • "Solicitar ajustes"   → /painel/resultado/:slug?decisao=ajustes
+ * Tela em DUAS colunas no desktop (mockup 04 · "Revisão de projeto pelo
+ * professor"), empilhada no mobile:
+ *  • coluna principal — badge de situação ("Aguardando seu parecer") + data
+ *    do envio, título, metadados da turma, equipe e orientador, seção
+ *    "Resumo do projeto" e seção "Materiais enviados" (arquivos da entrega +
+ *    atalho "Link do Projeto", com a contagem à direita);
+ *  • coluna lateral — card "Critérios de revisão" (checklist marcável),
+ *    bloco "Seu parecer" (rótulo + textarea + instrução), callout
+ *    "Você decide a próxima etapa" e as decisões "Aprovar e publicar" /
+ *    "Solicitar ajustes" com a nota de notificação da equipe.
+ * Estados iniciais reproduzem o mockup: critérios já conferidos e parecer de
+ * exemplo preenchido — desmarcar um critério volta a bloquear a aprovação.
+ * Imagens do projeto: FORA DE ESCOPO (item 16 adiado).
+ * Decisões continuam indo para /painel/resultado/:slug (fluxo inalterado).
  */
 import { useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { FiCheckCircle, FiFileText } from 'react-icons/fi';
+import { useNavigate, useParams } from 'react-router-dom';
+import {
+  FiCheck,
+  FiCheckSquare,
+  FiDownload,
+  FiFileText,
+  FiMessageSquare,
+  FiShield,
+  FiSquare,
+} from 'react-icons/fi';
 
 import Badge from '../../components/ui/Badge/Badge.jsx';
 import Button from '../../components/ui/Button/Button.jsx';
+import Callout from '../../components/ui/Callout/Callout.jsx';
 import Card from '../../components/ui/Card/Card.jsx';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader.jsx';
 import { statusMeta } from '../../components/public/ProjectCard/ProjectCard.jsx';
-import { getProjectBySlug, getTeam } from '../../mocks/projectsMock.js';
+import { COURSE_SHORT, getProjectBySlug, getTeam } from '../../mocks/projectsMock.js';
 import styles from './ReviewPage.module.css';
 
-/** Critérios qualitativos da revisão (checklist — nada de notas). */
+/** Turma canônica do semestre corrente (mesmo rótulo dos protótipos). */
+const TURMA = '2026.2';
+
+/**
+ * Checklist QUALITATIVO da revisão (sem notas numéricas) — os três itens
+ * exatos do mockup; em projetos já revisados eles aparecem em project.review.
+ */
 const CRITERIA = [
   'Dados e autoria conferidos',
   'Arquivos completos e legíveis',
-  'Links da entrega acessíveis',
-  'Conteúdo adequado ao repositório acadêmico',
+  'Conteúdo adequado ao repositório',
 ];
+
+/** Parecer de exemplo do mockup (estado inicial preenchido do textarea). */
+const EXAMPLE_COMMENT =
+  'O projeto apresenta metodologia clara e resultados bem documentados. Os arquivos estão completos e o conteúdo contribui para as pesquisas em monitoramento ambiental. Recomendo a publicação.';
 
 export default function ReviewPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const project = getProjectBySlug(slug);
 
-  const [checked, setChecked] = useState([]);
-  const [comment, setComment] = useState('');
+  // Estado inicial igual ao mockup: critérios conferidos + parecer de exemplo.
+  const [checked, setChecked] = useState(CRITERIA);
+  const [comment, setComment] = useState(EXAMPLE_COMMENT);
 
   if (!project) {
     return (
@@ -49,6 +78,12 @@ export default function ReviewPage() {
   const allChecked = checked.length === CRITERIA.length;
   const canApprove = allChecked && comment.trim().length > 0;
 
+  /** Situação exibida no badge (mockup: "Aguardando seu parecer"). */
+  const situation =
+    project.status === 'em-analise'
+      ? { label: 'Aguardando seu parecer', tone: 'warning' }
+      : status;
+
   const toggleCriterion = (item) =>
     setChecked((prev) =>
       prev.includes(item) ? prev.filter((c) => c !== item) : [...prev, item]
@@ -59,118 +94,154 @@ export default function ReviewPage() {
 
   return (
     <div className={styles.page}>
-      {/* ---------------------------------------------- resumo */}
-      <Card padding="md" className={styles.summary}>
-        <div className={styles.summaryTop}>
-          <Badge tone={status.tone}>{status.label}</Badge>
-          <span className={styles.summaryMeta}>Enviado em {project.submittedAt}</span>
+      {/* ------------------------------------- coluna principal */}
+      <div className={styles.main}>
+        <div className={styles.statusRow}>
+          <Badge tone={situation.tone}>{situation.label}</Badge>
+          <span className={styles.statusDate}>{project.submittedAt}</span>
         </div>
-        <h1 className={styles.title}>{project.title}</h1>
-        <p className={styles.description}>{project.description}</p>
-        <p className={styles.team}>
-          Equipe: {team?.members.join(' e ')} · Orientador(a): {team?.advisor}
-        </p>
-      </Card>
 
-      {/* ----------------------------------------- entrega */}
-      <section className={styles.block}>
-        <SectionHeader title="Links da entrega" />
-        <div className={styles.links}>
-          {Object.entries(project.links).map(([key, link]) => (
-            <a
-              key={key}
-              className={styles.link}
-              href={`https://${link.label}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <strong>{link.title}</strong>
-              <code>{link.label}</code>
-            </a>
-          ))}
+        <div className={styles.identity}>
+          <h1 className={styles.title}>{project.title}</h1>
+          <p className={styles.meta}>
+            {COURSE_SHORT} · {project.type} · {TURMA}
+          </p>
+          <p className={styles.team}>{team?.members.join(' e ')}</p>
+          <p className={styles.advisor}>Orientador: {team?.advisor}</p>
         </div>
-      </section>
 
-      <section className={styles.block}>
-        <SectionHeader title="Arquivos entregues" />
-        <ul className={styles.files}>
-          {project.files.map((file) => (
-            <li key={file.id} className={styles.file}>
-              <FiFileText aria-hidden="true" />
-              <span>
-                <strong>{file.name}</strong> · {file.kind} · {file.size} · {file.version}
+        <section className={styles.block}>
+          <SectionHeader title="Resumo do projeto" />
+          <p className={styles.description}>{project.description}</p>
+        </section>
+
+        <section className={styles.block}>
+          <SectionHeader
+            title="Materiais enviados"
+            action={
+              <span className={styles.fileCount}>
+                {project.files.length} arquivos
               </span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {/* -------------------------------------- critérios */}
-      <section className={styles.block}>
-        <SectionHeader
-          title="Critérios de análise"
-          subtitle="Checklist qualitativo — sem notas numéricas."
-        />
-        <ul className={styles.criteria}>
-          {CRITERIA.map((item) => {
-            const done = checked.includes(item);
-            return (
-              <li key={item}>
-                <label className={`${styles.criterion} ${done ? styles.criterionDone : ''}`}>
-                  <input
-                    type="checkbox"
-                    checked={done}
-                    onChange={() => toggleCriterion(item)}
-                  />
-                  <span>{item}</span>
-                  {done && <FiCheckCircle className={styles.criterionIcon} aria-hidden="true" />}
-                </label>
+            }
+          />
+          <ul className={styles.files}>
+            {project.files.map((file) => (
+              <li key={file.id} className={styles.file}>
+                <FiFileText className={styles.fileIcon} aria-hidden="true" />
+                <span className={styles.fileText}>
+                  <strong>{file.name}</strong>
+                  <small>
+                    {file.kind} · {file.size} · {file.version}
+                  </small>
+                </span>
+                <FiDownload className={styles.fileDownload} aria-hidden="true" />
               </li>
-            );
-          })}
-        </ul>
-        <p className={styles.progress}>
-          {checked.length} de {CRITERIA.length} critérios conferidos
-        </p>
-      </section>
-
-      {/* ---------------------------------------- parecer */}
-      <section className={styles.block}>
-        <SectionHeader title="Parecer do orientador" />
-        <textarea
-          className={styles.textarea}
-          rows={5}
-          value={comment}
-          onChange={(e) => setComment(e.target.value)}
-          placeholder="Descreva os pontos fortes, ajustes necessários e a decisão sobre o projeto…"
-        />
-        {!allChecked && (
-          <p className={styles.validation}>Marque todos os critérios para decidir.</p>
-        )}
-      </section>
-
-      {/* ---------------------------------------- decisão */}
-      <div className={styles.decisions}>
-        <Button
-          size="lg"
-          disabled={!canApprove}
-          onClick={() => go('')}
-        >
-          Aprovar e publicar
-        </Button>
-        <Button
-          size="lg"
-          variant="secondary"
-          disabled={!comment.trim()}
-          onClick={() => go('?decisao=ajustes')}
-        >
-          Solicitar ajustes
-        </Button>
+            ))}
+            {project.links.live && (
+              <li>
+                <a
+                  className={styles.file}
+                  href={`https://${project.links.live.label}`}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <FiFileText className={styles.fileIcon} aria-hidden="true" />
+                  <span className={styles.fileText}>
+                    <strong>Link do Projeto</strong>
+                  </span>
+                  <FiDownload
+                    className={styles.fileDownload}
+                    aria-hidden="true"
+                  />
+                </a>
+              </li>
+            )}
+          </ul>
+        </section>
       </div>
 
-      <Link to="/painel" className={styles.back}>
-        Voltar ao painel
-      </Link>
+      {/* --------------------------------------- coluna lateral */}
+      <aside className={styles.side}>
+        <Card padding="md" className={styles.sideCard}>
+          <h2 className={styles.sideTitle}>Critérios de revisão</h2>
+          <ul className={styles.criteria}>
+            {CRITERIA.map((item) => {
+              const done = checked.includes(item);
+              return (
+                <li key={item}>
+                  <label className={styles.criterion}>
+                    <input
+                      type="checkbox"
+                      checked={done}
+                      onChange={() => toggleCriterion(item)}
+                    />
+                    <span className={styles.criterionIcon} aria-hidden="true">
+                      {done ? (
+                        <FiCheckSquare size={18} />
+                      ) : (
+                        <FiSquare size={18} />
+                      )}
+                    </span>
+                    <span>{item}</span>
+                  </label>
+                </li>
+              );
+            })}
+          </ul>
+        </Card>
+
+        <section className={styles.parecer}>
+          <h2 className={styles.sideTitle}>Seu parecer</h2>
+          <label className={styles.textareaLabel} htmlFor="parecer">
+            Comentário para a equipe *
+          </label>
+          <textarea
+            id="parecer"
+            className={styles.textarea}
+            rows={6}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <p className={styles.textareaHint}>
+            Este parecer será enviado aos autores e ficará no histórico do
+            projeto.
+          </p>
+        </section>
+
+        <Callout
+          tone="danger"
+          icon={<FiShield size={22} aria-hidden="true" />}
+          title="Você decide a próxima etapa"
+        >
+          Ao aprovar, o projeto será publicado para a comunidade acadêmica. Se
+          solicitar ajustes, informe o que precisa ser revisado.
+        </Callout>
+
+        <div className={styles.decisions}>
+          <Button
+            size="lg"
+            fullWidth
+            icon={<FiCheck aria-hidden="true" />}
+            disabled={!canApprove}
+            onClick={() => go('')}
+          >
+            Aprovar e publicar
+          </Button>
+          <Button
+            size="lg"
+            variant="secondary"
+            fullWidth
+            icon={<FiMessageSquare aria-hidden="true" />}
+            disabled={!comment.trim()}
+            onClick={() => go('?decisao=ajustes')}
+          >
+            Solicitar ajustes
+          </Button>
+          <p className={styles.decisionNote}>
+            A equipe será notificada sobre sua decisão.
+          </p>
+        </div>
+      </aside>
     </div>
   );
 }

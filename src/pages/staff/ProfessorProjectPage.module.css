@@ -1,30 +1,108 @@
-/* ProfessorProjectPage — projeto sob orientação + materiais. */
+/**
+ * ProfessorProjectPage — meu projeto e materiais (mockup 09).
+ * -----------------------------------------------------------------------------
+ * Mobile-first: topo com badge + ação, depois a grade que no desktop (≥1024)
+ * vira duas colunas (≈1.6fr / 1fr) — identidade/documentos à esquerda e
+ * "Links do projeto" à direita. Só design tokens de variables.css.
+ */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
-.summary {
+/* -------------------------------------------------- topo */
+.head {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
 
-.summaryTop {
+.headTop {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-2);
-}
-
-.summaryMeta {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  gap: var(--space-3);
+  flex-wrap: wrap;
 }
 
 .title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-title);
+}
+
+.lead {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------- grade */
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  min-width: 0;
+}
+
+.main,
+.side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+/* ------------------------------------------------ identidade */
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.badgesRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.projectTitle {
   font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-title);
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.team {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+}
+
+.advisor {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------- cards */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.cardTitle {
+  font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   color: var(--color-text-title);
 }
@@ -32,21 +110,16 @@
 .description {
   font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
-  color: var(--color-text-muted);
-}
-
-.team {
-  font-size: var(--font-size-sm);
   color: var(--color-text-body);
 }
 
-.techs {
+.tags {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
 }
 
-.tech {
+.tag {
   padding: var(--space-1) var(--space-3);
   background-color: var(--color-bg-page);
   border: 1px solid var(--color-border);
@@ -55,40 +128,7 @@
   color: var(--color-text-body);
 }
 
-.block {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-}
-
-/* ------------------------------------------------ links */
-.links {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-}
-
-.link {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-  padding: var(--space-3) var(--space-4);
-  background-color: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-}
-
-.link strong {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-title);
-}
-
-.link code {
-  font-size: var(--font-size-xs);
-  color: var(--color-primary);
-}
-
-/* ---------------------------------------------- arquivos */
+/* ------------------------------------------ documentos */
 .files {
   display: flex;
   flex-direction: column;
@@ -100,41 +140,90 @@
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-3) var(--space-4);
-  background-color: var(--color-bg-surface);
+  background-color: var(--color-bg-page);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  color: var(--color-primary);
-  font-size: var(--font-size-sm);
 }
 
-.file span {
+.fileIcon {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.fileText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.fileText strong {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+.fileText small {
+  font-size: var(--font-size-xs);
   color: var(--color-text-muted);
 }
 
-.file strong {
+.fileDownload {
+  margin-left: auto;
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+/* ---------------------------------------- coluna de links */
+.sideTitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
   color: var(--color-text-title);
 }
 
-/* ------------------------------------------------ rows */
-.rows {
+.linkCard {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
+  gap: var(--space-2);
 }
 
-/* ----------------------------------------------- voltar */
-.back {
-  display: block;
-  padding: var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background-color: var(--color-bg-surface);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
+.linkTitle {
+  font-size: var(--font-size-md);
   color: var(--color-text-title);
-  text-align: center;
 }
 
-.back:hover {
-  border-color: var(--color-border-strong);
+.linkHint {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.linkLabel {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* remove o estilo de âncora do wrapper do botão */
+.linkAnchor {
+  display: block;
+  margin-top: var(--space-2);
+  text-decoration: none;
+}
+
+.approvalNote {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------- desktop (≥1024) */
+@media (min-width: 1024px) {
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .title {
+    font-size: var(--font-size-3xl);
+  }
 }

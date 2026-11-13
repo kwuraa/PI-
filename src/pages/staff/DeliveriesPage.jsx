@@ -2,18 +2,20 @@
  * PI² — Trabalhos enviados do professor (rota "/painel/entregas").
  * -----------------------------------------------------------------------------
  * Visão do professor sobre as entregas dos alunos: cartões de estatística
- * (em análise x publicado), busca por projeto/aluno, filtro de situação e
- * grade de cards com link para a entrega completa (/painel/entrega/:slug).
- * Fonte única: PROJECTS em projectsMock.js — nada de números fixos.
+ * compartilhados (StatCard — "Em análise" em destaque vermelho x "Publicado"),
+ * busca por projeto/aluno, chips de turma/situação e grade de cards com o
+ * relógio de status, link para a entrega completa (/painel/entrega/:slug) e
+ * estado vazio. Fonte única: PROJECTS em projectsMock.js — nada fixo.
  */
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { FiArrowRight } from 'react-icons/fi';
+import { FiArrowRight, FiClock } from 'react-icons/fi';
 
 import Badge from '../../components/ui/Badge/Badge.jsx';
 import FilterChips from '../../components/ui/FilterChips/FilterChips.jsx';
 import SearchField from '../../components/ui/SearchField/SearchField.jsx';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader.jsx';
+import StatCard from '../../components/ui/StatCard/StatCard.jsx';
 import { statusMeta } from '../../components/public/ProjectCard/ProjectCard.jsx';
 import { COURSE_SHORT, PROJECTS, teamDisplay } from '../../mocks/projectsMock.js';
 import styles from './DeliveriesPage.module.css';
@@ -60,14 +62,8 @@ export default function DeliveriesPage() {
 
       {/* ---------------------------------------- estatísticas */}
       <div className={styles.stats}>
-        <div className={`${styles.stat} ${styles.statHighlight}`}>
-          <strong className={styles.statValue}>{pendingCount}</strong>
-          <span className={styles.statLabel}>Em análise</span>
-        </div>
-        <div className={`${styles.stat} ${styles.statPlain}`}>
-          <strong className={styles.statValue}>{publishedCount}</strong>
-          <span className={styles.statLabel}>Publicado</span>
-        </div>
+        <StatCard tone="primary" value={pendingCount} label="Em análise" />
+        <StatCard value={publishedCount} label="Publicado" />
       </div>
 
       {/* ------------------------------------------------ busca + filtros */}
@@ -96,6 +92,7 @@ export default function DeliveriesPage() {
             <article key={project.id} className={styles.card}>
               <div className={styles.cardTop}>
                 <Badge tone={meta.tone}>{meta.label}</Badge>
+                <FiClock className={styles.cardClock} aria-hidden="true" />
               </div>
 
               <h3 className={styles.cardTitle}>{project.title}</h3>
