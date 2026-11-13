@@ -1,4 +1,5 @@
-/* RecoveryPage — recuperação de senha por e-mail institucional. */
+/* RecoveryPage — recuperação de senha (mockup desktop: sem card wrapper,
+   barra superior com título centralizado, tile de chave e card "Como funciona"). */
 .page {
   display: flex;
   flex-direction: column;
@@ -6,38 +7,68 @@
   padding: var(--space-4) var(--space-4) var(--space-10);
 }
 
-/* Desktop: o formulário vira um card centralizado (protótipo "Recuperação de senha") */
+/* Desktop: só centraliza — sem card wrapper (mockup 01 · Recuperação) */
 @media (min-width: 768px) {
   .page {
     max-width: 640px;
     margin-inline: auto;
-    padding: var(--space-8);
-    background-color: var(--color-bg-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    margin-block: var(--space-8) var(--space-10);
+    padding: var(--space-4) var(--space-6) var(--space-10);
   }
 }
 
-.topRow {
+/* ------------------------------------------------- barra superior */
+.topBar {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: var(--space-3);
 }
 
-.back {
+.back,
+.more {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 44px;
   height: 44px;
+  flex-shrink: 0;
   border-radius: var(--radius-pill);
+  background-color: var(--color-border);
   color: var(--color-text-title);
   transition: background-color var(--transition-fast);
 }
 
 .back:hover {
-  background-color: var(--color-border);
+  background-color: var(--color-border-strong);
+}
+
+.more:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.topTitle {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+}
+
+/* ------------------------------------------------- cabeçalho */
+.keyTile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
 .title {
@@ -58,13 +89,85 @@
   gap: var(--space-4);
 }
 
-.backLink {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
-  text-align: center;
+/* ------------------------------------------------- "Como funciona" */
+.howto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
 }
 
-.backLink a {
-  font-weight: var(--font-weight-semibold);
+.howtoTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.stepNum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary-soft);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
   color: var(--color-primary);
+}
+
+.stepBody strong {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+.stepBody p {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------- alerta de spam */
+.spam {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-primary-soft);
+  border-radius: var(--radius-lg);
+}
+
+.spam svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-primary);
+}
+
+.spam strong {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+.spam p {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
 }

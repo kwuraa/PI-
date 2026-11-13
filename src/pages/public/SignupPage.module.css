@@ -1,4 +1,5 @@
-/* SignupPage — cadastro institucional (curso travado no DSM). */
+/* SignupPage — cadastro institucional (mockup desktop: sem card wrapper,
+   conteúdo centralizado com máx. 800px, seções "Seus dados"/"Crie sua senha"). */
 .page {
   display: flex;
   flex-direction: column;
@@ -6,16 +7,12 @@
   padding: var(--space-4) var(--space-4) var(--space-10);
 }
 
-/* Desktop: o formulário vira um card centralizado (protótipo "Cadastro institucional") */
+/* Desktop: só centraliza — sem card wrapper (mockup 01 · Cadastro) */
 @media (min-width: 768px) {
   .page {
-    max-width: 640px;
+    max-width: 800px;
     margin-inline: auto;
-    padding: var(--space-8);
-    background-color: var(--color-bg-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    margin-block: var(--space-8) var(--space-10);
+    padding: var(--space-6) var(--space-6) var(--space-10);
   }
 }
 
@@ -40,6 +37,12 @@
   background-color: var(--color-border);
 }
 
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .title {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
@@ -56,6 +59,81 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+}
+
+/* ------------------------------------------ cards de perfil */
+.profileGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.groupLabel {
+  padding: 0;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+.profileCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  text-align: left;
+  transition: border-color var(--transition-fast),
+    background-color var(--transition-fast);
+}
+
+.profileTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-text-body);
+}
+
+.profileName {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+}
+
+.profileActive {
+  background-color: var(--color-primary-soft);
+  border-color: var(--color-primary);
+}
+
+.profileActive .profileTop,
+.profileActive .profileName {
+  color: var(--color-primary);
+}
+
+/* ------------------------------------------ seções do formulário */
+.sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.row3,
+.row2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
 }
 
 .agree {
@@ -75,13 +153,90 @@
   accent-color: var(--color-primary);
 }
 
+.agree a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: inherit;
+}
+
+/* ------------------------------------------ aviso de vínculo */
+.vinculo {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background-color: var(--color-primary-soft);
+  border-radius: var(--radius-lg);
+}
+
+.vinculo svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--color-primary);
+}
+
+.vinculo strong {
+  display: block;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+.vinculo p {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+}
+
 .login {
   font-size: var(--font-size-sm);
-  color: var(--color-text-muted);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
   text-align: center;
 }
 
 .login a {
   font-weight: var(--font-weight-semibold);
   color: var(--color-primary);
+}
+
+/* ------------------------------------------ rodapé */
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.footerLinks a {
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.footerLinks a:hover {
+  color: var(--color-text-title);
+}
+
+/* ------------------------------------------ desktop */
+@media (min-width: 768px) {
+  .profileGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .row3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .row2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
 }
