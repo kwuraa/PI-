@@ -17,7 +17,12 @@ import { FiInfo, FiSend } from 'react-icons/fi';
 import Button from '../../components/ui/Button/Button.jsx';
 import Select from '../../components/ui/Select/Select.jsx';
 import TextField from '../../components/ui/TextField/TextField.jsx';
-import { COURSE_SHORT, getProjectBySlug, getTeam } from '../../mocks/projectsMock.js';
+import {
+  COURSE_SHORT,
+  getProjectBySlug,
+  getTeam,
+  updateProjectStatus,
+} from '../../mocks/projectsMock.js';
 import styles from './NewProjectPage.module.css';
 
 /** Rascunho em edição (protótipo: EcoCampus — ver mockup "Publicação"). */
@@ -36,8 +41,21 @@ export default function NewProjectPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // Mock em memória: o rascunho passa a "em-analise" ANTES da navegação,
+    // para que "Meus projetos" (card, linha de status e contadores) e a
+    // tela de status já reflitam o envio (ver updateProjectStatus no mock).
+    updateProjectStatus(DRAFT?.slug ?? 'ecocampus', 'em-analise');
     // Protótipo: envio simulado → confirmação de envio do projeto em análise.
     navigate(`/aluno/status/${DRAFT?.slug ?? 'ecocampus'}?enviado=1`);
+  };
+
+  /**
+   * "Salvar rascunho": mantém o projeto como rascunho (nada muda nos
+   * contadores) e devolve o aluno à lista "Meus projetos".
+   */
+  const handleSaveDraft = () => {
+    updateProjectStatus(DRAFT?.slug ?? 'ecocampus', 'rascunho');
+    navigate('/aluno');
   };
 
   /** Adiciona mais um slot de integrante ("+ Adicionar… por e-mail"). */
@@ -207,7 +225,7 @@ export default function NewProjectPage() {
               variant="secondary"
               size="lg"
               type="button"
-              onClick={() => navigate('/aluno')}
+              onClick={handleSaveDraft}
             >
               Salvar rascunho
             </Button>

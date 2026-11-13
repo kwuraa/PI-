@@ -207,8 +207,9 @@ export const PROJECTS = [
     semester: 2,
     teamId: 'team-ecocampus',
     // Rascunho (mockup 03 "Meus projetos": card EcoCampus = Rascunho);
-    // ao enviar pelo /aluno/novo ele passa a "em-analise" (ver
-    // ProjectStatusPage com ?enviado=1).
+    // ao enviar pelo /aluno/novo a página chama
+    // updateProjectStatus('ecocampus', 'em-analise') e o card, os
+    // contadores e a tela de status passam a mostrar "Em análise".
     status: 'rascunho',
     featured: false,
     saves: 7,
@@ -457,6 +458,32 @@ export function getTeam(project) {
 
 export function getProjectsByIds(ids) {
   return ids.map(getProjectById).filter(Boolean);
+}
+
+/**
+ * Atualiza o status de um projeto — MOCK EM MEMÓRIA, sem backend.
+ * -----------------------------------------------------------------------------
+ * O objeto é mutado no próprio array PROJECTS, e getProjectBySlug /
+ * getProjectsByIds / getProjectById devolvem exatamente os MESMOS objetos
+ * (não cópias): por isso a alteração aparece na hora em "Meus projetos",
+ * nos contadores (Publicado / Em análise / Rascunho) e na tela de status.
+ *
+ * Como não existe persistência, o status volta ao valor original do mock
+ * assim que a página é recarregada (F5) — é um comportamento esperado do
+ * protótipo estático.
+ *
+ * @param {string} slug - Slug do projeto, ex.: 'ecocampus'.
+ * @param {'rascunho'|'em-analise'|'publicado'|'ajustes'} status - Novo status.
+ * @returns {boolean} true se o projeto foi encontrado e atualizado.
+ *
+ * @example
+ * updateProjectStatus('ecocampus', 'em-analise'); // após "Enviar para análise"
+ */
+export function updateProjectStatus(slug, status) {
+  const project = getProjectBySlug(slug);
+  if (!project) return false;
+  project.status = status;
+  return true;
 }
 
 /**
