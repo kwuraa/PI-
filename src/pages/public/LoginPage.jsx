@@ -3,7 +3,9 @@
  * -----------------------------------------------------------------------------
  * Chaveamento de perfis SIMULADO: escolher um card (Aluno, Professor,
  * Coordenador) preenche o e-mail e define o papel do login —
- * a senha NÃO é validada (protótipo). Após entrar, redireciona para o
+ * a senha NÃO é validada (protótipo). Ao selecionar, o card reage com uma
+ * animação de pop + check (keyframes no CSS do componente, com guarda de
+ * prefers-reduced-motion). Após entrar, redireciona para o
  * espaço do perfil (ou para a rota que originou o acesso).
  */
 import { useState } from "react";
