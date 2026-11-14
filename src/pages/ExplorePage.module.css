@@ -1,5 +1,5 @@
-/* ExplorePage — busca, painel de filtros, pílulas ativas e grade.
-   Estados: padrão (banner + seções) e resultados (painel + pílulas + grade). */
+/* ExplorePage — busca, caixa de filtros, pílulas ativas e grade.
+   Estados: padrão (banner + seções) e resultados (pílulas + grade). */
 .page {
   display: flex;
   flex-direction: column;
@@ -41,7 +41,7 @@
   flex: 1 1 100%;
 }
 
-/* pílulas: escopo do estado padrão (DSM · semestre · Filtrar) e,
+/* pílulas: escopo fixo do estado padrão (DSM · faixa de semestres) e,
    nos resultados, os filtros ativos removíveis acima da grade */
 .pills {
   display: flex;
@@ -179,7 +179,8 @@
   text-align: center;
 }
 
-/* --------------------------------------------- bottom sheet */
+/* -------------------------- caixa de filtros (dialogo no desktop,
+   bottom sheet no mobile — mesma superfície nos dois estados) */
 .sheetBody {
   display: flex;
   flex-direction: column;
@@ -208,58 +209,12 @@
   flex: 1;
 }
 
-/* ------------------------- layout 2 colunas (painel + resultados) */
-.layout {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-5);
-}
-
+/* ------------------------- resultados (busca + pílulas + grade) */
 .content {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
   min-width: 0;
-}
-
-/* o painel de filtros é exclusivo do desktop; no mobile os filtros
-   continuam no bottom sheet acionado pelo botão da busca */
-.panel {
-  display: none;
-}
-
-.panelTitle {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-title);
-}
-
-.clearPanel {
-  align-self: flex-start;
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
-  transition: color var(--transition-fast);
-}
-
-.clearPanel:hover {
-  color: var(--color-text-title);
-}
-
-/* botão "Mostrar N projetos" do painel (mockup) */
-.showButton {
-  align-self: flex-start;
-  padding: var(--space-3) var(--space-5);
-  background-color: var(--color-primary);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-inverse);
-  transition: background-color var(--transition-fast);
-}
-
-.showButton:hover {
-  background-color: var(--color-primary-dark);
 }
 
 /* pílulas dos filtros ativos (ver .pills acima — mesmas classes) */
@@ -288,90 +243,9 @@
   color: var(--color-primary);
 }
 
-/* lista de rádio com contagem (Semestre) */
-.radioList {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.radioRow {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-sm);
-  color: var(--color-text-body);
-  text-align: left;
-  transition: background-color var(--transition-fast),
-    color var(--transition-fast);
-}
-
-.radioRow:hover {
-  background-color: var(--color-bg-page);
-}
-
-.radioDot {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  border: 1.5px solid var(--color-border-strong);
-  border-radius: var(--radius-pill);
-  transition: background-color var(--transition-fast),
-    border-color var(--transition-fast);
-}
-
-.radioCount {
-  margin-left: auto;
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-}
-
-.radioActive {
-  background-color: var(--color-primary-soft);
-  color: var(--color-primary);
-  font-weight: var(--font-weight-semibold);
-}
-
-.radioActive:hover {
-  background-color: var(--color-primary-soft);
-}
-
-.radioActive .radioDot {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-}
-
-.radioActive .radioCount {
-  color: var(--color-primary);
-}
-
-/* Desktop: painel fixo à esquerda, resultados à direita */
+/* Desktop: "Em destaque" (1/3) + "Novas descobertas" (2/3) */
 @media (min-width: 1024px) {
-  .layout {
-    display: grid;
-    grid-template-columns: 300px minmax(0, 1fr);
-    gap: var(--space-6);
-    align-items: start;
-  }
-
-  /* estado padrão: "Em destaque" (1/3) + "Novas descobertas" (2/3) */
   .sections {
     grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
   }
-
-  .panel {
-    position: sticky;
-    top: calc(var(--header-height) + var(--space-4));
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-5);
-    padding: var(--space-5);
-    background-color: var(--color-bg-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
-  }
-
-  /* no desktop o painel assume o papel dos chips de semestre */
 }
