@@ -95,7 +95,13 @@
   font-weight: var(--font-weight-semibold);
   color: var(--color-text-title);
   transition: border-color var(--transition-fast),
-    background-color var(--transition-fast), color var(--transition-fast);
+    background-color var(--transition-fast), color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+/* feedback de toque: card recua levemente enquanto está pressionado */
+.profileCard:active {
+  transform: scale(0.98);
 }
 
 /* indicador de seleção (círculo → check) no topo à direita do card */
@@ -120,6 +126,56 @@
   border-color: var(--color-primary);
   background-color: var(--color-primary-soft);
   color: var(--color-primary);
+}
+
+/* ------------------------------------------ animação de seleção
+   Ao escolher Aluno / Professor / Coordenador o card "pulsa" (scale
+   sutil) e o check entra com overshoot — os keyframes rodam UMA vez a
+   cada troca de perfil, pois o navegador só os dispara quando a classe
+   .profileActive passa a valer para o elemento. Sem JS extra. */
+@keyframes profileSelect {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.035);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes markPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.profileActive {
+  transform-origin: center;
+  animation: profileSelect var(--transition-base);
+}
+
+.profileActive .profileMark {
+  animation: markPop var(--transition-base);
+}
+
+/* acessibilidade: quem pede menos movimento recebe a seleção sem pop */
+@media (prefers-reduced-motion: reduce) {
+  .profileCard:active,
+  .profileActive,
+  .profileActive .profileMark {
+    animation: none;
+    transform: none;
+  }
 }
 
 /* --------------------------------------------------- form */

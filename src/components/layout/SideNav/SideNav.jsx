@@ -3,14 +3,18 @@
  * -----------------------------------------------------------------------------
  * Versão vertical da BottomNav: reutiliza os MESMOS destinos (`itemsFor`),
  * com pílula vermelha no item ativo. Professores/coordenadores ganham o
- * grupo "Área acadêmica" (Histórico e evolução do grupo e Trabalhos
- * enviados); a coordenação ganha também o grupo "Coordenação"
+ * grupo "Área acadêmica" (Histórico e evolução do grupo, Meu projeto e
+ * materiais e Trabalhos enviados — os atalhos que antes ficavam no painel
+ * do professor); a coordenação ganha também o grupo "Coordenação"
  * (Relatório consolidado + Gestão de grupos) e o rodapé traz Ajuda e suporte
  * + assinatura. Abaixo de 1024px ela fica oculta (a BottomNav assume o
- * lugar); ela NÃO re-anima entre rotas (regra do briefing).
+ * lugar); ela NÃO re-anima entre rotas (regra do briefing) — exceto a
+ * pílula do item ativo, que dá uma animação de entrada (deslize) quando
+ * o item muda, com guarda de prefers-reduced-motion.
  */
 import { NavLink, Link } from 'react-router-dom';
 import {
+  FiClipboard,
   FiFileText,
   FiFolder,
   FiSliders,
@@ -86,6 +90,12 @@ export default function SideNav({ user }) {
                 <FiTrendingUp size={20} aria-hidden="true" />
               </span>
               Histórico e evolução do grupo
+            </NavLink>
+            <NavLink to="/painel/meu-projeto" className={groupItemClass}>
+              <span className={styles.icon}>
+                <FiClipboard size={20} aria-hidden="true" />
+              </span>
+              Meu projeto e materiais
             </NavLink>
             <NavLink to="/painel/entregas" className={groupItemClass}>
               <span className={styles.icon}>

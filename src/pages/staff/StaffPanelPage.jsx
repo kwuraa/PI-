@@ -12,10 +12,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FiArrowRight,
-  FiClipboard,
   FiClock,
   FiFileText,
-  FiFolder,
   FiLink2,
   FiSliders,
   FiTrendingUp,
@@ -57,7 +55,8 @@ const TABS = [
 
 /* ===================================================== faces do painel */
 
-/** Painel do professor: fila de revisão + orientações + atalhos. */
+/** Painel do professor: fila de revisão + orientações (os atalhos que
+ *  existiam aqui passaram para o grupo "Área acadêmica" da SideNav). */
 function ProfessorFace({ user }) {
   const queue = getProjectsByIds(REVIEW_QUEUE_IDS);
   // ADVISED_GROUP_IDS guarda ids de EQUIPE (team-*), não de projeto — por isso
@@ -116,54 +115,31 @@ function ProfessorFace({ user }) {
 
         <section className={styles.block}>
           <h2 className={styles.blockTitle}>Minhas orientações</h2>
-          <div className={styles.cardList}>
-            {advised.map((project) => {
-              const status = statusMeta(project.status);
-              const members = getTeam(project)?.members.join(' e ') ?? '';
-              return (
-                <Link
-                  key={project.id}
-                  to={`/projeto/${project.slug}`}
-                  className={styles.advisedCard}
-                >
-                  <strong>{project.title}</strong>
-                  <Badge tone={status.tone}>{status.label}</Badge>
-                  <span>
-                    {members}
-                    {project.publishedAt
-                      ? ` · Aprovado em ${project.publishedAt}`
-                      : ` · Enviado em ${project.submittedAt}`}
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
+          {/* mockup 04: card-resumo da PRIMEIRA orientação + "Ver todas" —
+              a lista completa (3 projetos) fica em /painel/meu-projeto. */}
+          {advised[0] ? (
+            <div className={styles.advisedCard}>
+              <strong className={styles.advisedTitle}>
+                <Link to={`/projeto/${advised[0].slug}`}>{advised[0].title}</Link>
+              </strong>
+              <Badge tone={statusMeta(advised[0].status).tone}>
+                {statusMeta(advised[0].status).label}
+              </Badge>
+              <span>
+                {getTeam(advised[0])?.members.join(' e ') ?? ''}
+                {advised[0].publishedAt
+                  ? ` · Aprovado em ${advised[0].publishedAt}`
+                  : ` · Enviado em ${advised[0].submittedAt}`}
+              </span>
+              <Link to="/painel/meu-projeto" className={styles.verTodas}>
+                Ver todas ({advised.length})
+              </Link>
+            </div>
+          ) : (
+            <p className={styles.reviewMeta}>Nenhuma orientação no momento.</p>
+          )}
         </section>
       </div>
-
-      <section className={styles.block}>
-        <SectionHeader title="Atalhos" />
-        <div className={styles.rows}>
-          <ListRow
-            icon={<FiTrendingUp aria-hidden="true" />}
-            title="Histórico e evolução do grupo"
-            hint="Timeline qualitativa por semestre"
-            to="/painel/evolucao"
-          />
-          <ListRow
-            icon={<FiClipboard aria-hidden="true" />}
-            title="Meu projeto e materiais"
-            hint="Arquivos e links de apoio das orientações"
-            to="/painel/meu-projeto"
-          />
-          <ListRow
-            icon={<FiFolder aria-hidden="true" />}
-            title="Trabalhos enviados"
-            hint="Entregas dos alunos para acompanhar"
-            to="/painel/entregas"
-          />
-        </div>
-      </section>
     </>
   );
 }
@@ -358,7 +334,17 @@ export default function StaffPanelPage() {
   const isProfessor = isRole('professor');
   const isCoordinator = isRole('coordenador');
 
-  if (isProfessor && isCoordinator) return <UnifiedFace user={user} />;
-  if (isProfessor) return <ProfessorFace user={user} />;
-  return <CoordinatorFace />;
+  const face =
+    isProfessor && isCoordinator ? (
+      <UnifiedFace user={user} />
+    ) : isProfessor ? (
+      <ProfessorFace user={user} />
+    ) : (
+      <CoordinatorFace />
+    );
+
+  // As faces devolvem fragmento; o `.page` é quem envolve o conteúdo e
+  // aplica o respiro vertical (header → métricas → colunas). Sem esse
+  // wrapper, as seções colam umas nas outras direto no stage.
+  return <div className={styles.page}>{face}</div>;
 }

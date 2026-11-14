@@ -8,6 +8,8 @@
  * e "Crie sua senha"
  * (senha + confirmação), consentimento com links, botão "Criar conta de
  * <perfil>", aviso "Confirme seu vínculo institucional!" e rodapé.
+ * Ao selecionar um card de perfil a escolha reage com a MESMA animação
+ * do login (pop + check, keyframes com reduced-motion).
  * Sem card wrapper: conteúdo centralizado com máx. 800px.
  * Após criar a conta, o usuário é levado ao login.
  */
@@ -98,11 +100,14 @@ export default function SignupPage() {
                 >
                   <span className={styles.profileTop}>
                     <Icon size={20} aria-hidden="true" />
-                    {active ? (
-                      <FiCheckCircle size={18} aria-hidden="true" />
-                    ) : (
-                      <FiCircle size={18} aria-hidden="true" />
-                    )}
+                    {/* wrapper do check: recebe o pop da seleção */}
+                    <span className={styles.profileCheck}>
+                      {active ? (
+                        <FiCheckCircle size={18} aria-hidden="true" />
+                      ) : (
+                        <FiCircle size={18} aria-hidden="true" />
+                      )}
+                    </span>
                   </span>
                   <span className={styles.profileName}>{item.label}</span>
                 </button>

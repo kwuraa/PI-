@@ -7,16 +7,26 @@
  *  • "stack": botão voltar + título central + ação à direita (detalhes).
  * O TopBar NÃO re-anima entre rotas: a animação de entrada é só do conteúdo
  * (aplicada no MainLayout).
+ * Caixinhas do topo: o bloco do usuário abre o menu de perfil (espaço ativo,
+ * Meu perfil, ajuda e sair) e o "..." da variante "stack" abre as ações da
+ * página — as duas (e o sininho) ficam mutuamente exclusivas e fecham ao
+ * clicar fora.
  */
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   FiArrowLeft,
   FiBell,
+  FiCheck,
   FiChevronDown,
+  FiHelpCircle,
+  FiLink2,
+  FiLogOut,
   FiMoreHorizontal,
+  FiUser,
 } from 'react-icons/fi';
 import Logo from '../../icons/Logo.jsx';
+import { useAuth } from '../../../context/AuthContext.jsx';
 import { LOGIN_PROFILES } from '../../../mocks/usersMock.js';
 import styles from './TopBar.module.css';
 
@@ -52,20 +62,47 @@ export default function TopBar({
 }) {
   const navigate = useNavigate();
   const handleBack = onBack ?? (() => navigate(-1));
+  const { activeRoles, spaceOptions, logout, switchSpace } = useAuth();
 
-  /* Sininho: abre/fecha o painel de notificações (fecha ao clicar fora). */
-  const [bellOpen, setBellOpen] = useState(false);
+  /* Caixinhas do topo (sininho, perfil e "..."): só uma aberta por vez,
+     fechando ao clicar fora — o sininho já funcionava assim; agora o
+     bloco do usuário e o "..." compartilham o mesmo estado. */
+  const [openPop, setOpenPop] = useState(null); // 'bell' | 'user' | 'more'
   const bellRef = useRef(null);
+  const userRef = useRef(null);
+  const moreRef = useRef(null);
   useEffect(() => {
-    if (!bellOpen) return undefined;
+    if (!openPop) return undefined;
+    const ref = { bell: bellRef, user: userRef, more: moreRef }[openPop];
     const handleOutside = (event) => {
-      if (bellRef.current && !bellRef.current.contains(event.target)) {
-        setBellOpen(false);
+      if (ref.current && !ref.current.contains(event.target)) {
+        setOpenPop(null);
       }
     };
     document.addEventListener('mousedown', handleOutside);
     return () => document.removeEventListener('mousedown', handleOutside);
-  }, [bellOpen]);
+  }, [openPop]);
+
+  /* "Copiar link": 2s de feedback enquanto a caixinha continua aberta. */
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    if (!copied) return undefined;
+    const id = setTimeout(() => setCopied(false), 2000);
+    return () => clearTimeout(id);
+  }, [copied]);
+
+  /** Copia a URL atual e deixa o item mostrar "Link copiado!". */
+  const handleCopyLink = () => {
+    navigator.clipboard?.writeText(window.location.href);
+    setCopied(true);
+  };
+
+  /** Sair da conta: encerra a sessão simulada e volta para a home. */
+  const handleLogout = () => {
+    logout();
+    setOpenPop(null);
+    navigate('/', { replace: true });
+  };
 
   if (variant === 'stack') {
     return (
@@ -81,13 +118,65 @@ export default function TopBar({
         <h1 className={styles.stackTitle}>{title}</h1>
         <div className={styles.actionSlot}>
           {action ?? (
-            <button
-              type="button"
-              className={styles.iconButton}
-              aria-label="Mais opções"
-            >
-              <FiMoreHorizontal size={22} aria-hidden="true" />
-            </button>
+            <div className={styles.moreWrap} ref={moreRef}>
+              <button
+                type="button"
+                className={styles.iconButton}
+                aria-label="Mais opções"
+                aria-haspopup="menu"
+                aria-expanded={openPop === 'more'}
+                onClick={() => setOpenPop((pop) => (pop === 'more' ? null : 'more'))}
+              >
+                <FiMoreHorizontal size={22} aria-hidden="true" />
+              </button>
+              {openPop === 'more' && (
+                <div className={styles.morePop} role="menu">
+                  <button
+                    type="button"
+                    className={styles.popItem}
+                    role="menuitem"
+                    onClick={() => {
+                      setOpenPop(null);
+                      navigate('/perfil');
+                    }}
+                  >
+                    <FiUser aria-hidden="true" />
+                    Meu perfil
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.popItem}
+                    role="menuitem"
+                    onClick={handleCopyLink}
+                  >
+                    <FiLink2 aria-hidden="true" />
+                    {copied ? 'Link copiado!' : 'Copiar link'}
+                  </button>
+                  <button
+                    type="button"
+                    className={styles.popItem}
+                    role="menuitem"
+                    onClick={() => {
+                      setOpenPop(null);
+                      navigate('/ajuda');
+                    }}
+                  >
+                    <FiHelpCircle aria-hidden="true" />
+                    Ajuda e suporte
+                  </button>
+                  <span className={styles.popDivider} aria-hidden="true" />
+                  <button
+                    type="button"
+                    className={`${styles.popItem} ${styles.popDanger}`}
+                    role="menuitem"
+                    onClick={handleLogout}
+                  >
+                    <FiLogOut aria-hidden="true" />
+                    Sair da conta
+                  </button>
+                </div>
+              )}
+            </div>
           )}
         </div>
       </header>
@@ -111,14 +200,14 @@ export default function TopBar({
         <button
           type="button"
           className={styles.bell}
-          onClick={() => setBellOpen((open) => !open)}
+          onClick={() => setOpenPop((pop) => (pop === 'bell' ? null : 'bell'))}
           aria-label="Notificações"
-          aria-expanded={bellOpen}
+          aria-expanded={openPop === 'bell'}
         >
           <FiBell size={20} aria-hidden="true" />
           <span className={styles.bellDot} aria-hidden="true" />
         </button>
-        {bellOpen && (
+        {openPop === 'bell' && (
           <div className={styles.bellPop}>
             <p className={styles.bellTitle}>Notificações</p>
             <ul className={styles.bellList}>
@@ -132,19 +221,87 @@ export default function TopBar({
           </div>
         )}
       </div>
-      <button
-        type="button"
-        className={styles.user}
-        onClick={() => navigate('/perfil')}
-        aria-label={`Perfil de ${user?.name ?? 'usuário'}`}
-      >
-        <span className={styles.avatar}>{user?.initials ?? '—'}</span>
-        <span className={styles.userBlock}>
-          <strong className={styles.userName}>{user?.name ?? ''}</strong>
-          <span className={styles.userRole}>{roleLabelFor(user)}</span>
-        </span>
-        <FiChevronDown className={styles.chevron} size={20} aria-hidden="true" />
-      </button>
+      <div className={styles.userWrap} ref={userRef}>
+        <button
+          type="button"
+          className={styles.user}
+          aria-haspopup="menu"
+          aria-expanded={openPop === 'user'}
+          aria-label={`Menu de ${user?.name ?? 'usuário'}`}
+          onClick={() => setOpenPop((pop) => (pop === 'user' ? null : 'user'))}
+        >
+          <span className={styles.avatar}>{user?.initials ?? '—'}</span>
+          <span className={styles.userBlock}>
+            <strong className={styles.userName}>{user?.name ?? ''}</strong>
+            <span className={styles.userRole}>{roleLabelFor(user)}</span>
+          </span>
+          <FiChevronDown className={styles.chevron} size={20} aria-hidden="true" />
+        </button>
+        {openPop === 'user' && (
+          <div className={styles.userPop} role="menu">
+            {/* multiperfil: troca o espaço ativo (mesmo seletor do login) */}
+            {spaceOptions && (
+              <>
+                <p className={styles.popSection}>Espaço</p>
+                {spaceOptions.map((option) => {
+                  const isActive =
+                    option.roles.join(',') === (activeRoles ?? []).join(',');
+                  return (
+                    <button
+                      key={option.roles.join('-')}
+                      type="button"
+                      role="menuitem"
+                      className={isActive ? styles.popItemActive : styles.popItem}
+                      onClick={() => {
+                        switchSpace(option.roles);
+                        setOpenPop(null);
+                      }}
+                    >
+                      {option.label}
+                      {isActive && <FiCheck aria-hidden="true" />}
+                    </button>
+                  );
+                })}
+                <span className={styles.popDivider} aria-hidden="true" />
+              </>
+            )}
+            <button
+              type="button"
+              className={styles.popItem}
+              role="menuitem"
+              onClick={() => {
+                setOpenPop(null);
+                navigate('/perfil');
+              }}
+            >
+              <FiUser aria-hidden="true" />
+              Meu perfil
+            </button>
+            <button
+              type="button"
+              className={styles.popItem}
+              role="menuitem"
+              onClick={() => {
+                setOpenPop(null);
+                navigate('/ajuda');
+              }}
+            >
+              <FiHelpCircle aria-hidden="true" />
+              Ajuda e suporte
+            </button>
+            <span className={styles.popDivider} aria-hidden="true" />
+            <button
+              type="button"
+              className={`${styles.popItem} ${styles.popDanger}`}
+              role="menuitem"
+              onClick={handleLogout}
+            >
+              <FiLogOut aria-hidden="true" />
+              Sair da conta
+            </button>
+          </div>
+        )}
+      </div>
     </header>
   );
 }
