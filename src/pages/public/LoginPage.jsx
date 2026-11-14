@@ -2,7 +2,7 @@
  * PI² — Acesso à conta (rota "/login").
  * -----------------------------------------------------------------------------
  * Chaveamento de perfis SIMULADO: escolher um card (Aluno, Professor,
- * Coordenador, Secretaria) preenche o e-mail e define o papel do login —
+ * Coordenador) preenche o e-mail e define o papel do login —
  * a senha NÃO é validada (protótipo). Após entrar, redireciona para o
  * espaço do perfil (ou para a rota que originou o acesso).
  */
@@ -13,7 +13,6 @@ import {
   FiArrowRight,
   FiCheckCircle,
   FiCircle,
-  FiFolder,
   FiBookOpen,
   FiMonitor,
   FiShield,
@@ -31,7 +30,6 @@ const PROFILE_ICONS = {
   graduation: FiBookOpen,
   monitor: FiMonitor,
   sliders: FiSliders,
-  folder: FiFolder,
 };
 
 /** Para onde cada perfil vai ao entrar. */

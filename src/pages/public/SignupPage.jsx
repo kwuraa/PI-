@@ -3,7 +3,9 @@
  * -----------------------------------------------------------------------------
  * Mockup desktop "Cadastro institucional": título "Suas ideias começam aqui.",
  * cards de perfil ("Como você participa da faculdade?"), seções "Seus dados"
- * (nome, e-mail, matrícula, curso travado no DSM, período) e "Crie sua senha"
+ * (nome, e-mail e — somente no perfil Aluno — matrícula, curso travado no
+ * DSM e período; professor e coordenação não preenchem dados de estudante)
+ * e "Crie sua senha"
  * (senha + confirmação), consentimento com links, botão "Criar conta de
  * <perfil>", aviso "Confirme seu vínculo institucional!" e rodapé.
  * Sem card wrapper: conteúdo centralizado com máx. 800px.
@@ -17,7 +19,6 @@ import {
   FiBookOpen,
   FiCheckCircle,
   FiCircle,
-  FiFolder,
   FiMail,
   FiMonitor,
   FiShield,
@@ -38,7 +39,6 @@ const PROFILE_ICONS = {
   graduation: FiBookOpen,
   monitor: FiMonitor,
   sliders: FiSliders,
-  folder: FiFolder,
 };
 
 export default function SignupPage() {
@@ -130,19 +130,23 @@ export default function SignupPage() {
           icon={<FiMail size={18} aria-hidden="true" />}
         />
 
-        <div className={styles.row3}>
-          <TextField label="Matrícula" required placeholder="202610248" />
-          {/* Curso travado no DSM — não pode ser alterado no cadastro. */}
-          <TextField label="Curso" value={COURSE} locked readOnly />
-          <Select label="Período" required defaultValue="4">
-            <option value="1">1º período</option>
-            <option value="2">2º período</option>
-            <option value="3">3º período</option>
-            <option value="4">4º período</option>
-            <option value="5">5º período</option>
-            <option value="6">6º período</option>
-          </Select>
-        </div>
+        {/* Dados de ESTUDANTE (matrícula, curso travado e período): aparecem
+            apenas no perfil Aluno — professor e coordenação não os preenchem. */}
+        {profile === 'aluno' && (
+          <div className={styles.row3}>
+            <TextField label="Matrícula" required placeholder="202610248" />
+            {/* Curso travado no DSM — não pode ser alterado no cadastro. */}
+            <TextField label="Curso" value={COURSE} locked readOnly />
+            <Select label="Período" required defaultValue="4">
+              <option value="1">1º período</option>
+              <option value="2">2º período</option>
+              <option value="3">3º período</option>
+              <option value="4">4º período</option>
+              <option value="5">5º período</option>
+              <option value="6">6º período</option>
+            </Select>
+          </div>
+        )}
 
         <h2 className={styles.sectionTitle}>Crie sua senha</h2>
 

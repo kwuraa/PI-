@@ -68,8 +68,17 @@
 
 .profileGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* mobile: 3 botões empilhados; no desktop (media logo abaixo) os 3
+     perfis ficam lado a lado, do mesmo tamanho, como no mockup
+     "Acesso à conta" — sem célula vazia na grade. */
+  grid-template-columns: 1fr;
   gap: var(--space-3);
+}
+
+@media (min-width: 768px) {
+  .profileGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
 .profileCard {
