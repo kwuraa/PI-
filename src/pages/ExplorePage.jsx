@@ -12,8 +12,10 @@
  *    (desktop ≥1024px), pílulas removíveis e grade. No mobile os filtros
  *    abrem em bottom sheet acionado pelo ícone da busca ou pelo "Filtrar".
  * Visitantes veem apenas projetos PUBLICADOS e com equipe anonimizada
- * (LGPD); logados veem os nomes da equipe (variant `logged`). As fotos dos
- * cards ficam para o item 16 — no banner usamos um bloco de cor/token.
+ * (LGPD); logados veem os nomes da equipe (variant `logged`). Três projetos
+ * de exemplo trazem foto de capa no card (imagem pública local em /img);
+ * os demais seguem sem capa. No banner de descoberta usamos um bloco de
+ * cor/token.
  */
 import { useMemo, useState } from 'react';
 import { FiArrowDown, FiSliders, FiStar, FiX } from 'react-icons/fi';

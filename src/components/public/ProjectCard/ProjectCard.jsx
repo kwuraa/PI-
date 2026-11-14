@@ -11,9 +11,11 @@
  *  • 'mine'   → cartão do aluno com status e ação principal
  *               (Acompanhar análise / Ver projeto).
  *
- * Sem imagens: o protótipo usa blocos de cor; aqui o "capa" é um
- * gradiente de tokens (nada de cores fixas fora de variables.css).
- * `index` (0, 1, 2…) define o atraso do card na entrada em cascata.
+ * CAPA: projetos de exemplo podem trazer foto de capa — imagens públicas
+ * baixadas localmente para `public/img` e servidas como `/img/…` (nada de
+ * hotlink). Os demais seguem SEM capa: o card continua só com o conteúdo,
+ * exatamente como antes. `index` (0, 1, 2…) define o atraso do card na
+ * entrada em cascata.
  */
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -53,10 +55,21 @@ export default function ProjectCard({ project, variant = 'public', action = null
     ? `${styles.titleLink} ${styles.stretch}`
     : styles.titleLink;
 
+  /**
+   * Capa opcional — sempre o PRIMEIRO elemento do card (em qualquer
+   * variante). Só renderiza quando o mock traz `image`; sem `image` o JSX
+   * não muda e o card permanece como o de hoje.
+   */
+  const cover = project.image ? (
+    <img src={project.image} alt="" loading="lazy" className={styles.cover} />
+  ) : null;
+
   /* Variante vitrine (Welcome): pílula do semestre + crédito da equipe. */
   if (variant === 'vitrine') {
     return (
       <motion.article className={styles.card} {...cardIn(index)}>
+        {cover}
+
         <span className={styles.pill}>
           {COURSE_SHORT} — {project.semester}º Semestre
         </span>
@@ -76,6 +89,8 @@ export default function ProjectCard({ project, variant = 'public', action = null
 
   return (
     <motion.article className={styles.card} {...cardIn(index)}>
+      {cover}
+
       <div className={styles.topRow}>
         <Badge tone={status.tone}>{status.label}</Badge>
         <span className={styles.semester}>

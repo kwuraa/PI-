@@ -117,7 +117,7 @@ export const PROJECTS = [
       'Uma plataforma para mapear rotas acessíveis no campus, conectando estudantes a trajetos com rampas, piso tátil e elevadores. O projeto combina pesquisa com a comunidade acadêmica e um protótipo navegável para tornar a faculdade mais inclusiva.',
     publishedAt: '02 out. 2026',
     submittedAt: '30 set. 2026',
-    image: 'rota-acessivel-hero.jpg',
+    image: '/img/rota-acessivel.jpg',
     files: [
       { id: 'file-rota-1', name: 'Relatório_Rota_Acessível.pdf', kind: 'PDF', size: '2,4 MB', version: 'Versão 2' },
       { id: 'file-rota-2', name: 'Protótipo_Rota_Acessível.zip', kind: 'ZIP', size: '8,1 MB', version: 'Versão 1' },
@@ -156,7 +156,7 @@ export const PROJECTS = [
       'Portal que conecta o acervo físico da biblioteca a reservas, recomendações e histórico de leitura dos estudantes do DSM, com busca por palavra-chave e devolução simplificada.',
     publishedAt: null,
     submittedAt: '05 out. 2026',
-    image: 'biblioteca-hero.jpg',
+    image: null, /* sem foto — card sem capa */
     files: [
       { id: 'file-biblio-1', name: 'Relatório_Biblioteca_Conectada.pdf', kind: 'PDF', size: '1,8 MB', version: 'Versão 1' },
     ],
@@ -185,7 +185,7 @@ export const PROJECTS = [
       'Sistema de baixo custo para monitorar a qualidade da água com sensores de pH e turbidez. Os dados são reunidos em um painel para apoiar ações de educação ambiental e a identificação de alterações em reservatórios da região.',
     publishedAt: null,
     submittedAt: '03 out. 2026',
-    image: 'aquasense-hero.jpg',
+    image: null, /* sem foto — card sem capa */
     files: [
       { id: 'file-aqua-1', name: 'Relatório_AquaSense.pdf', kind: 'PDF', size: '3,2 MB', version: 'Versão 1' },
       { id: 'file-aqua-2', name: 'Dados_dos_sensores.xlsx', kind: 'XLSX', size: '840 KB', version: 'Versão 1' },
@@ -219,7 +219,7 @@ export const PROJECTS = [
       'Plataforma para acompanhar a coleta seletiva e os pontos de descarte no campus, incentivando práticas sustentáveis na comunidade acadêmica.',
     publishedAt: null,
     submittedAt: '06 out. 2026',
-    image: 'ecocampus-hero.jpg',
+    image: null, /* sem foto — card sem capa */
     files: [
       { id: 'file-eco-1', name: 'Relatório_EcoCampus.pdf', kind: 'PDF', size: '1,8 MB', version: 'Versão 1' },
     ],
@@ -248,7 +248,7 @@ export const PROJECTS = [
       'Aplicação que organiza mutirões de cultivo, calendário de rega e colheitas compartilhadas da horta comunitária do campus, com painel aberto para toda a comunidade acadêmica.',
     publishedAt: '28 set. 2026',
     submittedAt: '26 set. 2026',
-    image: 'horta-viva.jpg',
+    image: '/img/horta-viva.jpg',
     files: [
       { id: 'file-horta-1', name: 'Relatório_Horta_Viva.pdf', kind: 'PDF', size: '2,1 MB', version: 'Versão 2' },
     ],
@@ -284,7 +284,7 @@ export const PROJECTS = [
       'Painel educativo que cruza dados públicos de qualidade da água por bairro com conteúdo explicativo para aulas de educação ambiental no campus.',
     publishedAt: '15 set. 2026',
     submittedAt: '12 set. 2026',
-    image: 'agua-em-foco.jpg',
+    image: '/img/agua-em-foco.jpg',
     files: [
       { id: 'file-agua-1', name: 'Relatório_Água_em_Foco.pdf', kind: 'PDF', size: '2,9 MB', version: 'Versão 1' },
     ],

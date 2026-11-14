@@ -5,6 +5,8 @@
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-4);
+  /* recorta a foto de capa nos cantos arredondados do cartão */
+  overflow: hidden;
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -15,6 +17,26 @@
 .card:hover {
   border-color: var(--color-border-strong);
   box-shadow: var(--shadow-md);
+}
+
+/* Foto de capa (só projetos com `image`): sangra para as laterais usando
+   margens negativas iguais ao padding de .card, ocupa o topo do cartão e
+   herda o arredondamento superior do card (o overflow:hidden do .card
+   garante o recorte exato). Sem hex: só tokens. */
+.cover {
+  display: block;
+  width: calc(100% + var(--space-4) * 2);
+  height: 140px;
+  margin: calc(-1 * var(--space-4)) calc(-1 * var(--space-4)) 0;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+@media (min-width: 768px) {
+  .cover {
+    height: 160px;
+  }
 }
 
 .topRow {

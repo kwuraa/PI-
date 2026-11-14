@@ -13,6 +13,9 @@
  *
  * LAYOUT (mockup desktop 02):
  *  • topo → h1 + linha de meta (tipo · ano.semestre · publicação · salvos);
+ *  • capa → quando o projeto tem `image` (imagem pública local em /img) um
+ *    banner da foto abre a coluna ESQUERDA logo abaixo do topo — exatamente
+ *    como no mockup 02; projetos sem `image` seguem sem banner;
  *  • mobile → tudo empilhado em 1 coluna;
  *  • desktop ≥1024px → grid de 2 colunas: coluna ESQUERDA larga (cards
  *    "Sobre o projeto" e "Comentários", parecer e ações) e coluna DIREITA
@@ -126,6 +129,20 @@ export default function ProjectPage() {
       <div className={styles.layout}>
         {/* ================================== coluna esquerda (conteúdo) */}
         <div className={styles.main}>
+          {/* ------------------------------------------------- capa
+              (mockup 02): presente SOMENTE quando o projeto tem `image`.
+              Fica aqui — e não acima do grid — porque o mockup mostra o
+              banner ocupando só a coluna esquerda, com as pílulas da
+              coluna direita alinhadas ao topo dele. */}
+          {project.image && (
+            <img
+              src={project.image}
+              alt=""
+              loading="lazy"
+              className={styles.cover}
+            />
+          )}
+
           {/* ------------------------------------------------- sobre */}
           <Card padding="md" className={styles.aboutCard}>
             <SectionHeader title="Sobre o projeto" />

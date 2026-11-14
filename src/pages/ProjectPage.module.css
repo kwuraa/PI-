@@ -36,6 +36,23 @@
   color: var(--color-text-muted);
 }
 
+/* Banner da foto de capa (mockup 02) — só quando project.image existe.
+   Altura fixa com corte cover; nos cantos usa o mesmo raio do card. */
+.cover {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: var(--radius-lg);
+}
+
+@media (min-width: 768px) {
+  .cover {
+    height: 220px;
+  }
+}
+
 /* ------------------------------------------------- 2 colunas */
 .layout {
   display: flex;
