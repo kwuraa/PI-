@@ -1,9 +1,11 @@
 /* StaffPanel — painéis do professor, coordenador e unificado.
-   Espaçamento entre seções segue o respiro do mockup 04 (≈32px). */
+   `.page` envolve as faces (que devolvem fragmento) e é quem dá o respiro
+   vertical entre header → métricas → colunas, aproveitando a altura da
+   tela do desktop (mockup 04). */
 .page {
   display: flex;
   flex-direction: column;
-  gap: var(--space-8);
+  gap: var(--space-10);
 }
 
 .header {
@@ -27,10 +29,11 @@
 }
 
 /* ---------------------------------------------------- métricas */
+/* gap 20px: respiro entre os dois cards como no mockup 04 (antes colavam) */
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
-  gap: var(--space-3);
+  gap: var(--space-5);
 }
 
 /* ------------------------------------------------------- blocos */

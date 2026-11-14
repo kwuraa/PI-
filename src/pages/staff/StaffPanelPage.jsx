@@ -334,7 +334,17 @@ export default function StaffPanelPage() {
   const isProfessor = isRole('professor');
   const isCoordinator = isRole('coordenador');
 
-  if (isProfessor && isCoordinator) return <UnifiedFace user={user} />;
-  if (isProfessor) return <ProfessorFace user={user} />;
-  return <CoordinatorFace />;
+  const face =
+    isProfessor && isCoordinator ? (
+      <UnifiedFace user={user} />
+    ) : isProfessor ? (
+      <ProfessorFace user={user} />
+    ) : (
+      <CoordinatorFace />
+    );
+
+  // As faces devolvem fragmento; o `.page` é quem envolve o conteúdo e
+  // aplica o respiro vertical (header → métricas → colunas). Sem esse
+  // wrapper, as seções colam umas nas outras direto no stage.
+  return <div className={styles.page}>{face}</div>;
 }
