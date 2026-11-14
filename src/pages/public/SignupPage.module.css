@@ -96,7 +96,12 @@
   border-radius: var(--radius-lg);
   text-align: left;
   transition: border-color var(--transition-fast),
-    background-color var(--transition-fast);
+    background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+/* feedback de toque: card recua levemente enquanto está pressionado */
+.profileCard:active {
+  transform: scale(0.98);
 }
 
 .profileTop {
@@ -120,6 +125,59 @@
 .profileActive .profileTop,
 .profileActive .profileName {
   color: var(--color-primary);
+}
+
+/* área do check (inline-flex para o transform do pop funcionar) */
+.profileCheck {
+  display: inline-flex;
+}
+
+/* ------------------------------------------ animação de seleção
+   Mesma coreografia do login: o card escolhido "pulma" e o check entra
+   com overshoot — keyframes rodam uma vez a cada troca de perfil. */
+@keyframes profileSelect {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.035);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes markPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.profileActive {
+  transform-origin: center;
+  animation: profileSelect var(--transition-base);
+}
+
+.profileActive .profileCheck {
+  animation: markPop var(--transition-base);
+}
+
+/* acessibilidade: quem pede menos movimento recebe a seleção sem pop */
+@media (prefers-reduced-motion: reduce) {
+  .profileCard:active,
+  .profileActive,
+  .profileActive .profileCheck {
+    animation: none;
+    transform: none;
+  }
 }
 
 /* ------------------------------------------ seções do formulário */

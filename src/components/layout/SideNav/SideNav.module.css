@@ -75,6 +75,37 @@
   font-weight: var(--font-weight-semibold);
 }
 
+/* ------------------------------------------ animação da pílula
+   A pílula do item ativo "entra" deslizando da esquerda com um leve
+   overshoot quando a classe .active passa a valer (troca de rota do
+   NavLink ou primeira montagem) — os keyframes rodam uma única vez por
+   ativação; a nav em si continua sem re-animar entre rotas. */
+@keyframes pillIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateX(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.active {
+  animation: pillIn var(--transition-base);
+}
+
+/* acessibilidade: menos movimento = pílula apenas aparece, sem deslize */
+@media (prefers-reduced-motion: reduce) {
+  .active {
+    animation: none;
+  }
+}
+
 .active:hover,
 .active:hover .icon {
   background-color: var(--color-primary-soft);
