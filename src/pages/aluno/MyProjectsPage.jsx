@@ -102,6 +102,10 @@ function statusLineFor(project) {
 }
 
 export default function MyProjectsPage() {
+  // Relido a cada render (a rota /aluno remonta ao voltar do envio):
+  // getProjectsByIds devolve os mesmos objetos do mock, então o status
+  // gravado por updateProjectStatus já aparece aqui — badge, linha de
+  // status e contadores Publicado / Em análise / Rascunho.
   const projects = getProjectsByIds(MY_PROJECT_IDS);
   const [filter, setFilter] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);

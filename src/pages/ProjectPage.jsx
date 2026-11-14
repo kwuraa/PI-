@@ -2,14 +2,20 @@
  * PI² — Detalhes do projeto (rota "/projeto/:slug").
  * -----------------------------------------------------------------------------
  * Duas leituras na mesma tela:
- *  • VISITANTE → "leitura pública": equipe ANONIMIZADA (LGPD), arquivos e
- *    formulário de comentários reservados, convite para entrar no sistema;
+ *  • VISITANTE → "leitura pública": equipe ANONIMIZADA (LGPD) e SEM dados
+ *    sensíveis: sem parecer (nome do orientador e texto interno), sem
+ *    lista de comentários (nomes de autores) e sem arquivos — apenas o
+ *    convite para entrar no sistema;
  *  • LOGADO → visão completa: nomes da equipe, arquivos, parecer e comentários.
  * O dono do projeto (aluno) encontra o atalho "Acompanhar análise".
+ * Regra de comentários: só quem tem cadastro (aluno, professor etc.)
+ * comenta — o público geral não precisa de acesso à área de comentários.
  *
  * LAYOUT (mockup desktop 02):
- *  • topo → h1 + linha de meta (tipo · ano.semestre · publicação · salvos)
- *          + botão "Projeto salvo / Salvar projeto" (estado LOCAL, sem backend);
+ *  • topo → h1 + linha de meta (tipo · ano.semestre · publicação · salvos);
+ *  • capa → quando o projeto tem `image` (imagem pública local em /img) um
+ *    banner da foto abre a coluna ESQUERDA logo abaixo do topo — exatamente
+ *    como no mockup 02; projetos sem `image` seguem sem banner;
  *  • mobile → tudo empilhado em 1 coluna;
  *  • desktop ≥1024px → grid de 2 colunas: coluna ESQUERDA larga (cards
  *    "Sobre o projeto" e "Comentários", parecer e ações) e coluna DIREITA
@@ -20,7 +26,6 @@ import { useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   FiAlertTriangle,
-  FiBookmark,
   FiCheckCircle,
   FiDownload,
   FiFileText,
@@ -65,12 +70,6 @@ export default function ProjectPage() {
     () => [...(project?.comments ?? []), ...extraComments],
     [project, extraComments]
   );
-
-  /**
-   * "Projeto salvo" × "Salvar projeto": alternância LOCAL de rótulo
-   * (não há backend; o clique apenas reflete o estado na interface).
-   */
-  const [saved, setSaved] = useState(true);
 
   if (!project) {
     return (
@@ -125,19 +124,25 @@ export default function ProjectPage() {
           <h1 className={styles.title}>{project.title}</h1>
           <p className={styles.meta}>{metaLine}</p>
         </div>
-        <Button
-          variant="secondary"
-          icon={<FiBookmark aria-hidden="true" />}
-          aria-pressed={saved}
-          onClick={() => setSaved((prev) => !prev)}
-        >
-          {saved ? 'Projeto salvo' : 'Salvar projeto'}
-        </Button>
       </header>
 
       <div className={styles.layout}>
         {/* ================================== coluna esquerda (conteúdo) */}
         <div className={styles.main}>
+          {/* ------------------------------------------------- capa
+              (mockup 02): presente SOMENTE quando o projeto tem `image`.
+              Fica aqui — e não acima do grid — porque o mockup mostra o
+              banner ocupando só a coluna esquerda, com as pílulas da
+              coluna direita alinhadas ao topo dele. */}
+          {project.image && (
+            <img
+              src={project.image}
+              alt=""
+              loading="lazy"
+              className={styles.cover}
+            />
+          )}
+
           {/* ------------------------------------------------- sobre */}
           <Card padding="md" className={styles.aboutCard}>
             <SectionHeader title="Sobre o projeto" />
@@ -156,8 +161,10 @@ export default function ProjectPage() {
             </ul>
           </Card>
 
-          {/* ------------------------------------------------- parecer */}
-          {project.review && (
+          {/* ------------------------------------------------- parecer
+              (conteúdo interno: nome do orientador e texto da revisão —
+              visível SOMENTE para quem está logado, LGPD) */}
+          {isLogged && project.review && (
             <Callout
               tone="success"
               icon={<FiCheckCircle size={22} aria-hidden="true" />}
@@ -180,30 +187,35 @@ export default function ProjectPage() {
               }`}
             />
 
-            {comments.length === 0 && (
+            {/* Lista de comentários RESERVADA a quem está logado (os autores
+                podem ter nome real — LGPD); o visitante vê só a contagem e
+                o convite de acesso. */}
+            {isLogged && comments.length === 0 && (
               <p className={styles.emptyComments}>
                 Seja o primeiro a comentar este projeto.
               </p>
             )}
 
-            <ul className={styles.comments}>
-              {comments.map((item) => (
-                <li key={item.id} className={styles.comment}>
-                  <Avatar
-                    initials={item.initials ?? '·'}
-                    tone={item.team ? 'primary' : 'neutral'}
-                    size="sm"
-                  />
-                  <div className={styles.commentBody}>
-                    <p className={styles.commentHead}>
-                      <strong>{item.author}</strong>
-                      <span>{item.when}</span>
-                    </p>
-                    <p className={styles.commentText}>{item.text}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            {isLogged && (
+              <ul className={styles.comments}>
+                {comments.map((item) => (
+                  <li key={item.id} className={styles.comment}>
+                    <Avatar
+                      initials={item.initials ?? '·'}
+                      tone={item.team ? 'primary' : 'neutral'}
+                      size="sm"
+                    />
+                    <div className={styles.commentBody}>
+                      <p className={styles.commentHead}>
+                        <strong>{item.author}</strong>
+                        <span>{item.when}</span>
+                      </p>
+                      <p className={styles.commentText}>{item.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
 
             {isLogged ? (
               <form className={styles.commentForm} onSubmit={handleComment}>
@@ -228,7 +240,7 @@ export default function ProjectPage() {
                 title="Entre para comentar"
               >
                 <Link to="/login">Acesse com sua conta institucional</Link> para
-                comentar, salvar projetos e acompanhar novidades.
+                comentar e acompanhar novidades.
               </Callout>
             )}
           </Card>

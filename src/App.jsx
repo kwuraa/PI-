@@ -4,9 +4,13 @@
  * Estrutura:
  *  • PublicLayout → telas públicas/autenticadas sem BottomNav
  *    (boas-vindas, login, cadastro, recuperação de senha);
- *  • MainLayout   → área do sistema com TopBar + BottomNav persistentes;
+ *  • MainLayout   → área do sistema com TopBar + BottomNav persistentes.
+ *    Recebe também os fluxos do aluno (/aluno/novo e /aluno/status/:slug):
+ *    nos mockups 03 eles abrem com a barra BRAND (logo + espaço do aluno) e
+ *    o breadcrumb "PI² / Meus projetos / …", não a barra empilhada;
  *  • StackShell   → variantes de barra superior empilhada (detalhes), que
- *    resolvem o título a partir dos parâmetros da rota.
+ *    resolvem o título a partir dos parâmetros da rota (/projeto/:slug e
+ *    as rotas /painel/* de detalhe).
  *
  * Regras RBAC (useAuth):
  *  • /aluno*            → apenas 'aluno';
@@ -76,14 +80,16 @@ function RequireRole({ roles, children }) {
 /**
  * Barra superior empilhada (voltar + título).
  * `resolveTitle(params, search)` monta o título com os parâmetros da rota e
- * da query string (ex.: título real do projeto em /projeto/:slug; em
- * /aluno/status/:slug, "Enviado para análise!" quando ?enviado=1).
+ * da query string (ex.: título real do projeto em /projeto/:slug).
+ * Observação: /aluno/novo e /aluno/status/:slug NÃO passam mais por aqui —
+ * nos mockups 03 eles usam a barra brand (MainLayout), que monta a 3ª linha
+ * do breadcrumb com useSearchParams.
  */
 function StackShell({ resolveTitle, fallback = '' }) {
   const params = useParams();
   const [search] = useSearchParams();
-  // resolveTitle é opcional: rotas sem ela (ex.: /aluno/novo, /painel/meu-projeto)
-  // usam direto o fallback como título da barra empilhada.
+  // resolveTitle é opcional: rotas sem ela (ex.: /painel/meu-projeto,
+  // /painel/revisar/:slug) usam direto o fallback como título da barra.
   return (
     <MainLayout barVariant="stack" title={resolveTitle?.(params, search) ?? fallback} />
   );
@@ -91,13 +97,6 @@ function StackShell({ resolveTitle, fallback = '' }) {
 
 /** Título da barra em /projeto/:slug — usa o título do projeto mockado. */
 const projectTitle = ({ slug }) => getProjectBySlug(slug)?.title ?? 'Projeto';
-
-/**
- * Título/breadcrumb de /aluno/status/:slug (mockups 03): após o envio a
- * trilha é "Enviado para análise!"; no acompanhamento, "Acompanhar análise".
- */
-const statusTitle = (params, search) =>
-  search.get('enviado') === '1' ? 'Enviado para análise!' : 'Acompanhar análise';
 
 export default function App() {
   return (
@@ -125,12 +124,29 @@ export default function App() {
         {/* ajuda e suporte (aberta a visitantes e logados) */}
         <Route path="/ajuda" element={<HelpPage />} />
 
-        {/* aluno */}
+        {/* aluno — barra brand + breadcrumb "PI² / Meus projetos / …"
+            (mockups 03: "Novo projeto" e "Enviado para análise!") */}
         <Route
           path="/aluno"
           element={
             <RequireRole roles={['aluno']}>
               <MyProjectsPage />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/aluno/novo"
+          element={
+            <RequireRole roles={['aluno']}>
+              <NewProjectPage />
+            </RequireRole>
+          }
+        />
+        <Route
+          path="/aluno/status/:slug"
+          element={
+            <RequireRole roles={['aluno']}>
+              <ProjectStatusPage />
             </RequireRole>
           }
         />
@@ -200,41 +216,8 @@ export default function App() {
       </Route>
 
       <Route
-        path="/aluno/novo"
-        element={<StackShell fallback="Novo projeto" />}
-      >
-        <Route
-          index
-          element={
-            <RequireRole roles={['aluno']}>
-              <NewProjectPage />
-            </RequireRole>
-          }
-        />
-      </Route>
-
-      <Route
-        path="/aluno/status/:slug"
-        element={
-          <StackShell
-            resolveTitle={statusTitle}
-            fallback="Acompanhar análise"
-          />
-        }
-      >
-        <Route
-          index
-          element={
-            <RequireRole roles={['aluno']}>
-              <ProjectStatusPage />
-            </RequireRole>
-          }
-        />
-      </Route>
-
-      <Route
         path="/painel/revisar/:slug"
-        element={<StackShell fallback="Revisão do projeto" />}
+        element={<StackShell fallback="Revisar projeto" />}
       >
         <Route
           index

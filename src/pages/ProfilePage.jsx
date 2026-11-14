@@ -7,7 +7,10 @@
  *    o card "Dados institucionais" (e-mail e curso travados, com texto de
  *    apoio); à direita os cards "Notificações" e "Conta e privacidade" e o
  *    botão "Sair da conta" (largura própria, como no mockup);
- *  • no mobile tudo se empilha na mesma ordem do protótipo.
+ *  • no mobile tudo se empilha na mesma ordem do protótipo;
+ *  • o card "Conta e privacidade" usa a variante `trailingIcon` do ListRow:
+ *    título à esquerda e ícone simples à DIREITA (sem chip, sem chevron),
+ *    como no mockup 02.
  * Extras do sistema:
  *  • seletor de ESPAÇO ATIVO (troca de perfis simulada) para usuários
  *    multiperfil (ex.: professor que também coordena);
@@ -177,17 +180,22 @@ export default function ProfilePage() {
           <Card padding="lg" className={styles.block}>
             <SectionHeader title="Conta e privacidade" />
             <div className={styles.rows}>
-              <ListRow plain danger icon={<FiKey aria-hidden="true" />} title="Alterar senha" />
               <ListRow
                 plain
                 danger
-                icon={<FiShield aria-hidden="true" />}
+                trailingIcon={<FiKey aria-hidden="true" />}
+                title="Alterar senha"
+              />
+              <ListRow
+                plain
+                danger
+                trailingIcon={<FiShield aria-hidden="true" />}
                 title="Privacidade e termos de uso"
               />
               <ListRow
                 plain
                 danger
-                icon={<FiHelpCircle aria-hidden="true" />}
+                trailingIcon={<FiHelpCircle aria-hidden="true" />}
                 title="Ajuda e suporte"
                 to="/ajuda"
               />

@@ -34,6 +34,7 @@ import { useAuth } from '../../context/AuthContext.jsx';
 import {
   ADVISED_GROUP_IDS,
   GROUPS,
+  PROJECTS,
   REVIEW_QUEUE_IDS,
   getProjectsByIds,
   getTeam,
@@ -59,7 +60,11 @@ const TABS = [
 /** Painel do professor: fila de revisão + orientações + atalhos. */
 function ProfessorFace({ user }) {
   const queue = getProjectsByIds(REVIEW_QUEUE_IDS);
-  const advised = getProjectsByIds(ADVISED_GROUP_IDS);
+  // ADVISED_GROUP_IDS guarda ids de EQUIPE (team-*), não de projeto — por isso
+  // o filtro é em PROJECTS por `teamId` (getProjectsByIds devolveria []).
+  const advised = PROJECTS.filter((project) =>
+    ADVISED_GROUP_IDS.includes(project.teamId),
+  );
   const who = user?.displayName ?? user?.name ?? '';
   return (
     <>

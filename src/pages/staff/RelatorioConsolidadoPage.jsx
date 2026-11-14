@@ -22,6 +22,9 @@
  * como constantes locais documentadas.
  * Observação de regra: as barras usam classes de largura/altura prontas no
  * CSS Module, porque o projeto proíbe estilo inline nos elementos JSX.
+ * Exportação: "Exportar relatório em PDF", "Exportar PDF" e "Imprimir" chamam
+ * window.print() — diálogo nativo do navegador com opção "Salvar como PDF";
+ * é SIMULAÇÃO, não há geração real de PDF (ver JSDoc de handlePrint).
  */
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiDownload, FiLock, FiPrinter } from 'react-icons/fi';
@@ -110,6 +113,19 @@ const COHORT_LOCKS = [
 /* ========================================================= cabeçalho */
 
 /**
+ * Exporta/imprime o relatório abrindo o diálogo NATIVO de impressão do
+ * navegador (o usuário pode escolher "Salvar como PDF" na impressora).
+ * SIMULAÇÃO: NÃO há geração real de arquivo PDF neste projeto — nada é
+ * calculado nem enviado ao servidor; o PDF sai do motor de impressão do
+ * próprio navegador, a partir do CSS da página. Vale para os botões
+ * "Exportar relatório em PDF" (face 06), "Exportar PDF" e "Imprimir"
+ * (face 08).
+ */
+function handlePrint() {
+  window.print();
+}
+
+/**
  * Cabeçalho padrão das duas faces: badge + h1 "Relatório consolidado" +
  * lead à esquerda e ações (exportar/imprimir) à direita no desktop.
  */
@@ -136,7 +152,7 @@ function SemesterReport() {
         badge="Indicadores do semestre"
         lead="Uma visão geral dos projetos e do acompanhamento acadêmico."
         actions={
-          <Button icon={<FiDownload aria-hidden="true" />}>
+          <Button icon={<FiDownload aria-hidden="true" />} onClick={handlePrint}>
             Exportar relatório em PDF
           </Button>
         }
@@ -219,8 +235,14 @@ function CohortReport() {
         lead="Uma visão da coorte, da evolução às pendências do curso."
         actions={
           <>
-            <Button icon={<FiDownload aria-hidden="true" />}>Exportar PDF</Button>
-            <Button variant="secondary" icon={<FiPrinter aria-hidden="true" />}>
+            <Button icon={<FiDownload aria-hidden="true" />} onClick={handlePrint}>
+              Exportar PDF
+            </Button>
+            <Button
+              variant="secondary"
+              icon={<FiPrinter aria-hidden="true" />}
+              onClick={handlePrint}
+            >
               Imprimir
             </Button>
           </>

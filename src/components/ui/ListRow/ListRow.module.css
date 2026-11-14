@@ -88,3 +88,12 @@
   flex-shrink: 0;
   color: var(--color-primary);
 }
+
+/* ícone simples à direita (sem chip de fundo e sem seta) —
+   variante "Conta e privacidade" do perfil (mockup 02) */
+.trailingIcon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-primary);
+}

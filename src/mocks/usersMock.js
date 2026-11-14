@@ -56,12 +56,11 @@ export const MOCK_USERS = [
   },
 ];
 
-/** Opções exibidas nos cards de chaveamento do login. */
+/** Opções exibidas nos cards de chaveamento do login (Aluno, Professor, Coordenação). */
 export const LOGIN_PROFILES = [
   { role: 'aluno', label: 'Aluno', icon: 'graduation' },
   { role: 'professor', label: 'Professor', icon: 'monitor' },
   { role: 'coordenador', label: 'Coordenador', icon: 'sliders' },
-  { role: 'secretaria', label: 'Secretaria', icon: 'folder' },
 ];
 
 /** Rótulo do espaço exibido no cabeçalho conforme os roles do usuário. */

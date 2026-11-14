@@ -47,7 +47,11 @@
 }
 
 .value {
-  font-size: var(--font-size-2xl);
+  /* maior que o padrão das telas (mockup 06 ≈ 48px): usa o maior token
+     de tipografia existente em variables.css (--font-size-3xl = 40px);
+     os valores são curtos (4 · 16 · 8,2 · 75%), então não há overflow
+     nem nos cards estreitos do mobile */
+  font-size: var(--font-size-3xl);
   font-weight: var(--font-weight-bold);
   line-height: var(--line-height-tight);
 }

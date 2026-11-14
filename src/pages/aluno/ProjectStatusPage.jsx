@@ -53,8 +53,8 @@ export default function ProjectStatusPage() {
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const justSent = searchParams.get('enviado') === '1';
-  // "enviado agora" também chega via state (clique em "Acompanhar análise"
-  // logo após o envio), já que o mock mantém o projeto como rascunho.
+  // "enviado agora" também pode chegar via state (clique em "Acompanhar
+  // análise"); o fluxo principal, porém, já grava o status no mock.
   const sentInFlow = location.state?.enviado === true;
   const project = getProjectBySlug(slug);
 
@@ -70,8 +70,8 @@ export default function ProjectStatusPage() {
 
   const team = getTeam(project);
   const display = teamDisplay(project);
-  // Logo após o envio o projeto já está "em análise" (mesmo que o mock
-  // ainda o tenha como rascunho — o aluno acabou de clicar em enviar).
+  // O envio grava 'em-analise' no mock (updateProjectStatus), então esta
+  // página lê o status atualizado ao ser aberta sem ?enviado=1 também.
   const inAnalysis = justSent || sentInFlow || project.status === 'em-analise';
   const status = statusMeta(inAnalysis ? 'em-analise' : project.status);
   const author = team?.members?.[0] ?? '';
