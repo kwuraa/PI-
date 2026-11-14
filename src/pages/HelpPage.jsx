@@ -82,7 +82,7 @@ export default function HelpPage() {
               <FiChevronDown className={styles.faqChevron} aria-hidden="true" />
             </summary>
             <p className={styles.faqAnswer}>
-              Escolha o seu perfil (aluno, professor, coordenador ou secretaria)
+              Escolha o seu perfil (aluno, professor ou coordenador)
               na tela de acesso e entre com o e-mail institucional. O protótipo
               não valida senha.
             </p>

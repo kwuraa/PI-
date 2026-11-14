@@ -12,8 +12,7 @@
  * comenta — o público geral não precisa de acesso à área de comentários.
  *
  * LAYOUT (mockup desktop 02):
- *  • topo → h1 + linha de meta (tipo · ano.semestre · publicação · salvos)
- *          + botão "Projeto salvo / Salvar projeto" (estado LOCAL, sem backend);
+ *  • topo → h1 + linha de meta (tipo · ano.semestre · publicação · salvos);
  *  • mobile → tudo empilhado em 1 coluna;
  *  • desktop ≥1024px → grid de 2 colunas: coluna ESQUERDA larga (cards
  *    "Sobre o projeto" e "Comentários", parecer e ações) e coluna DIREITA
@@ -24,7 +23,6 @@ import { useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   FiAlertTriangle,
-  FiBookmark,
   FiCheckCircle,
   FiDownload,
   FiFileText,
@@ -69,12 +67,6 @@ export default function ProjectPage() {
     () => [...(project?.comments ?? []), ...extraComments],
     [project, extraComments]
   );
-
-  /**
-   * "Projeto salvo" × "Salvar projeto": alternância LOCAL de rótulo
-   * (não há backend; o clique apenas reflete o estado na interface).
-   */
-  const [saved, setSaved] = useState(true);
 
   if (!project) {
     return (
@@ -129,14 +121,6 @@ export default function ProjectPage() {
           <h1 className={styles.title}>{project.title}</h1>
           <p className={styles.meta}>{metaLine}</p>
         </div>
-        <Button
-          variant="secondary"
-          icon={<FiBookmark aria-hidden="true" />}
-          aria-pressed={isLogged && saved}
-          onClick={() => (isLogged ? setSaved((prev) => !prev) : navigate('/login'))}
-        >
-          {isLogged && saved ? 'Projeto salvo' : 'Salvar projeto'}
-        </Button>
       </header>
 
       <div className={styles.layout}>
@@ -239,7 +223,7 @@ export default function ProjectPage() {
                 title="Entre para comentar"
               >
                 <Link to="/login">Acesse com sua conta institucional</Link> para
-                comentar, salvar projetos e acompanhar novidades.
+                comentar e acompanhar novidades.
               </Callout>
             )}
           </Card>

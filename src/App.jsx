@@ -15,7 +15,6 @@
  * Regras RBAC (useAuth):
  *  • /aluno*            → apenas 'aluno';
  *  • /painel*           → 'professor' | 'coordenador';
- *  • /painel/criterios  → 'professor' (créditos da disciplina);
  *  • /painel/grupos     → 'coordenador';
  *  • /painel/relatorio-consolidado → 'coordenador' (face da coorte quando o
  *    papel é coordenador + professor);
@@ -49,7 +48,6 @@ import MyProjectsPage from './pages/aluno/MyProjectsPage.jsx';
 import NewProjectPage from './pages/aluno/NewProjectPage.jsx';
 import ProjectStatusPage from './pages/aluno/ProjectStatusPage.jsx';
 import StaffPanelPage from './pages/staff/StaffPanelPage.jsx';
-import CriteriosPage from './pages/staff/CriteriosPage.jsx';
 import DeliveriesPage from './pages/staff/DeliveriesPage.jsx';
 import ReviewPage from './pages/staff/ReviewPage.jsx';
 import ReviewResultPage from './pages/staff/ReviewResultPage.jsx';
@@ -159,15 +157,6 @@ export default function App() {
           element={
             <RequireRole roles={['professor', 'coordenador']}>
               <StaffPanelPage />
-            </RequireRole>
-          }
-        />
-        {/* professor — critérios de avaliação da disciplina (mockup 05) */}
-        <Route
-          path="/painel/criterios"
-          element={
-            <RequireRole roles={['professor']}>
-              <CriteriosPage />
             </RequireRole>
           }
         />

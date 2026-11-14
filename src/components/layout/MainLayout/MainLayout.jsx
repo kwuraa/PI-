@@ -14,9 +14,8 @@
  *
  * Breadcrumb da variante 'brand': além das rotas fixas, ele cobre os fluxos
  * do aluno — /aluno/novo → "Novo projeto" e /aluno/status/:slug →
- * "Enviado para análise!" (com ?enviado=1) ou "Acompanhar análise" — e a
- * tela de critérios (/painel/criterios → "Meus critérios"), conforme os
- * mockups 03 e 05.
+ * "Enviado para análise!" (com ?enviado=1) ou "Acompanhar análise",
+ * conforme o mockup 03.
  */
 import { useMemo } from 'react';
 import { useLocation, useOutlet, useSearchParams } from 'react-router-dom';
@@ -51,20 +50,14 @@ const CRUMB_TITLES = {
   '/aluno': 'Minhas ideias em ação.',
   '/aluno/novo': 'Novo projeto',
   '/perfil': 'Meu perfil',
-  '/painel/criterios': 'Meus critérios',
   '/painel/relatorio-consolidado': 'Relatório consolidado',
 };
 
 /**
  * 2ª linha do breadcrumb para rotas cuja seção própria não é "/painel"
- * (mockup 06: "PI² / Relatório consolidado / Relatório consolidado";
- * mockup 05: "PI² / Meus critérios / Meus critérios").
+ * (mockup 06: "PI² / Relatório consolidado / Relatório consolidado").
  */
 const SECTION_OVERRIDES = {
-  '/painel/criterios': {
-    label: 'Meus critérios',
-    to: '/painel/criterios',
-  },
   '/painel/relatorio-consolidado': {
     label: 'Relatório consolidado',
     to: '/painel/relatorio-consolidado',

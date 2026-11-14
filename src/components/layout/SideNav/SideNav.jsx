@@ -3,15 +3,14 @@
  * -----------------------------------------------------------------------------
  * Versão vertical da BottomNav: reutiliza os MESMOS destinos (`itemsFor`),
  * com pílula vermelha no item ativo. Professores/coordenadores ganham o
- * grupo "Área acadêmica" (Meus critérios, Histórico e evolução do grupo e
- * Trabalhos enviados); a coordenação ganha também o grupo "Coordenação"
+ * grupo "Área acadêmica" (Histórico e evolução do grupo e Trabalhos
+ * enviados); a coordenação ganha também o grupo "Coordenação"
  * (Relatório consolidado + Gestão de grupos) e o rodapé traz Ajuda e suporte
  * + assinatura. Abaixo de 1024px ela fica oculta (a BottomNav assume o
  * lugar); ela NÃO re-anima entre rotas (regra do briefing).
  */
 import { NavLink, Link } from 'react-router-dom';
 import {
-  FiCheckSquare,
   FiFileText,
   FiFolder,
   FiSliders,
@@ -34,9 +33,6 @@ export default function SideNav({ user }) {
   const items = itemsFor(user);
   const isStaff = Boolean(user) && (isRole('professor') || isRole('coordenador'));
   const isCoord = Boolean(user) && isRole('coordenador');
-  // /painel/criterios é exclusiva do professor (RBAC do App.jsx): o link só
-  // aparece para quem consegue abri-la — coordenação pura seria redirecionada.
-  const isProfessor = Boolean(user) && isRole('professor');
 
   return (
     <aside className={styles.side} aria-label="Navegação lateral">
@@ -85,14 +81,6 @@ export default function SideNav({ user }) {
         {isStaff && (
           <div className={styles.group}>
             <p className={styles.groupLabel}>Área acadêmica</p>
-            {isProfessor && (
-              <NavLink to="/painel/criterios" className={groupItemClass}>
-                <span className={styles.icon}>
-                  <FiCheckSquare size={20} aria-hidden="true" />
-                </span>
-                Meus critérios
-              </NavLink>
-            )}
             <NavLink to="/painel/evolucao" className={groupItemClass}>
               <span className={styles.icon}>
                 <FiTrendingUp size={20} aria-hidden="true" />
