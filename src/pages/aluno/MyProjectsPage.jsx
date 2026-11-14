@@ -8,7 +8,9 @@
  *  3. seção "Seus projetos" com o seletor "Todos (N)";
  *  4. grade de cartões — badge de status, título, meta do curso/período,
  *     linha do status (aprovação / envio / última edição) e ação principal
- *     (Ver projeto · Acompanhar análise · Continuar edição).
+ *     (Ver projeto · Acompanhar análise · Continuar edição). O "..." do
+ *     topo do cartão abre uma caixinha com a ação de status, "Ver projeto"
+ *     e "Copiar link" (fecha ao clicar fora, como o seletor "Todos").
  *
  * O cartão é montado aqui (e não com <ProjectCard>) porque o protótipo usa
  * uma estrutura própria: sem descrição/tecnologias, com linha de status e
@@ -110,18 +112,41 @@ export default function MyProjectsPage() {
   const [filter, setFilter] = useState(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  /* Menu "..." do cartão: só um cartão com caixinha aberta por vez. */
+  const [openCardId, setOpenCardId] = useState(null);
+  const cardRef = useRef(null);
+  /* Feedback do "Copiar link" (2s, enquanto a caixinha segue aberta). */
+  const [copiedSlug, setCopiedSlug] = useState(null);
 
-  /* Fecha o menu "Todos (N)" ao clicar fora dele. */
+  /* Fecha os menus ("Todos (N)" e "..." do cartão) ao clicar fora. */
   useEffect(() => {
-    if (!menuOpen) return undefined;
+    if (!menuOpen && !openCardId) return undefined;
     const handleOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (menuOpen && menuRef.current && !menuRef.current.contains(event.target)) {
         setMenuOpen(false);
+      }
+      if (openCardId && cardRef.current && !cardRef.current.contains(event.target)) {
+        setOpenCardId(null);
       }
     };
     document.addEventListener('mousedown', handleOutside);
     return () => document.removeEventListener('mousedown', handleOutside);
-  }, [menuOpen]);
+  }, [menuOpen, openCardId]);
+
+  /* Zera o aviso "Link copiado!" depois de 2s. */
+  useEffect(() => {
+    if (!copiedSlug) return undefined;
+    const id = setTimeout(() => setCopiedSlug(null), 2000);
+    return () => clearTimeout(id);
+  }, [copiedSlug]);
+
+  /** Copia o link público do projeto e mostra o feedback no item. */
+  const handleCopyLink = (project) => {
+    navigator.clipboard?.writeText(
+      `${window.location.origin}/projeto/${project.slug}`,
+    );
+    setCopiedSlug(project.slug);
+  };
 
   const visible =
     filter === null ? projects : projects.filter((p) => p.status === filter);
@@ -209,13 +234,60 @@ export default function MyProjectsPage() {
             <article key={project.id} className={styles.card}>
               <div className={styles.cardTop}>
                 <Badge tone={status.tone}>{status.label}</Badge>
-                <button
-                  type="button"
-                  className={styles.cardMenu}
-                  aria-label={`Mais opções de ${project.title}`}
+                <div
+                  className={styles.cardMenuWrap}
+                  ref={openCardId === project.id ? cardRef : undefined}
                 >
-                  <FiMoreHorizontal aria-hidden="true" />
-                </button>
+                  <button
+                    type="button"
+                    className={styles.cardMenu}
+                    aria-label={`Mais opções de ${project.title}`}
+                    aria-haspopup="true"
+                    aria-expanded={openCardId === project.id}
+                    onClick={() =>
+                      setOpenCardId((id) => (id === project.id ? null : project.id))
+                    }
+                  >
+                    <FiMoreHorizontal aria-hidden="true" />
+                  </button>
+                  {openCardId === project.id && (
+                    <ul className={styles.cardPop}>
+                      <li>
+                        <Link
+                          to={action.to}
+                          className={styles.cardPopItem}
+                          onClick={() => setOpenCardId(null)}
+                        >
+                          {action.label}
+                        </Link>
+                      </li>
+                      {/* "Ver projeto" separado quando a ação principal é outra
+                          (ex.: "Continuar edição" leva a /aluno/novo) */}
+                      {action.to !== `/projeto/${project.slug}` && (
+                        <li>
+                          <Link
+                            to={`/projeto/${project.slug}`}
+                            className={styles.cardPopItem}
+                            onClick={() => setOpenCardId(null)}
+                          >
+                            Ver projeto
+                          </Link>
+                        </li>
+                      )}
+                      <li>
+                        <button
+                          type="button"
+                          className={styles.cardPopItem}
+                          onClick={() => handleCopyLink(project)}
+                        >
+                          {copiedSlug === project.slug
+                            ? 'Link copiado!'
+                            : 'Copiar link'}
+                        </button>
+                      </li>
+                    </ul>
+                  )}
+                </div>
               </div>
 
               <h3 className={styles.cardTitle}>
