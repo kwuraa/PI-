@@ -43,6 +43,16 @@ export default function ProjectCard({ project, variant = 'public', action = null
   const status = statusMeta(project.status);
   const isMine = variant === 'mine';
 
+  /**
+   * Clique esticado: em qualquer ponto do card o visitante navega para o
+   * projeto (resolve cards "sem função" na vitrine/explorar sem login).
+   * Exceções: variante 'mine' e cards com `action` própria (destino próprio).
+   */
+  const stretch = variant !== 'mine' && action == null;
+  const titleClassName = stretch
+    ? `${styles.titleLink} ${styles.stretch}`
+    : styles.titleLink;
+
   /* Variante vitrine (Welcome): pílula do semestre + crédito da equipe. */
   if (variant === 'vitrine') {
     return (
@@ -52,7 +62,7 @@ export default function ProjectCard({ project, variant = 'public', action = null
         </span>
 
         <h3 className={styles.title}>
-          <Link to={`/projeto/${project.slug}`} className={styles.titleLink}>
+          <Link to={`/projeto/${project.slug}`} className={titleClassName}>
             {project.title}
           </Link>
         </h3>
@@ -74,7 +84,7 @@ export default function ProjectCard({ project, variant = 'public', action = null
       </div>
 
       <h3 className={styles.title}>
-        <Link to={`/projeto/${project.slug}`} className={styles.titleLink}>
+        <Link to={`/projeto/${project.slug}`} className={titleClassName}>
           {project.title}
         </Link>
       </h3>

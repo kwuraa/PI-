@@ -2,10 +2,14 @@
  * PI² — Detalhes do projeto (rota "/projeto/:slug").
  * -----------------------------------------------------------------------------
  * Duas leituras na mesma tela:
- *  • VISITANTE → "leitura pública": equipe ANONIMIZADA (LGPD), arquivos e
- *    formulário de comentários reservados, convite para entrar no sistema;
+ *  • VISITANTE → "leitura pública": equipe ANONIMIZADA (LGPD) e SEM dados
+ *    sensíveis: sem parecer (nome do orientador e texto interno), sem
+ *    lista de comentários (nomes de autores) e sem arquivos — apenas o
+ *    convite para entrar no sistema;
  *  • LOGADO → visão completa: nomes da equipe, arquivos, parecer e comentários.
  * O dono do projeto (aluno) encontra o atalho "Acompanhar análise".
+ * Regra de comentários: só quem tem cadastro (aluno, professor etc.)
+ * comenta — o público geral não precisa de acesso à área de comentários.
  *
  * LAYOUT (mockup desktop 02):
  *  • topo → h1 + linha de meta (tipo · ano.semestre · publicação · salvos)
@@ -128,10 +132,10 @@ export default function ProjectPage() {
         <Button
           variant="secondary"
           icon={<FiBookmark aria-hidden="true" />}
-          aria-pressed={saved}
-          onClick={() => setSaved((prev) => !prev)}
+          aria-pressed={isLogged && saved}
+          onClick={() => (isLogged ? setSaved((prev) => !prev) : navigate('/login'))}
         >
-          {saved ? 'Projeto salvo' : 'Salvar projeto'}
+          {isLogged && saved ? 'Projeto salvo' : 'Salvar projeto'}
         </Button>
       </header>
 
@@ -156,8 +160,10 @@ export default function ProjectPage() {
             </ul>
           </Card>
 
-          {/* ------------------------------------------------- parecer */}
-          {project.review && (
+          {/* ------------------------------------------------- parecer
+              (conteúdo interno: nome do orientador e texto da revisão —
+              visível SOMENTE para quem está logado, LGPD) */}
+          {isLogged && project.review && (
             <Callout
               tone="success"
               icon={<FiCheckCircle size={22} aria-hidden="true" />}
@@ -180,30 +186,35 @@ export default function ProjectPage() {
               }`}
             />
 
-            {comments.length === 0 && (
+            {/* Lista de comentários RESERVADA a quem está logado (os autores
+                podem ter nome real — LGPD); o visitante vê só a contagem e
+                o convite de acesso. */}
+            {isLogged && comments.length === 0 && (
               <p className={styles.emptyComments}>
                 Seja o primeiro a comentar este projeto.
               </p>
             )}
 
-            <ul className={styles.comments}>
-              {comments.map((item) => (
-                <li key={item.id} className={styles.comment}>
-                  <Avatar
-                    initials={item.initials ?? '·'}
-                    tone={item.team ? 'primary' : 'neutral'}
-                    size="sm"
-                  />
-                  <div className={styles.commentBody}>
-                    <p className={styles.commentHead}>
-                      <strong>{item.author}</strong>
-                      <span>{item.when}</span>
-                    </p>
-                    <p className={styles.commentText}>{item.text}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            {isLogged && (
+              <ul className={styles.comments}>
+                {comments.map((item) => (
+                  <li key={item.id} className={styles.comment}>
+                    <Avatar
+                      initials={item.initials ?? '·'}
+                      tone={item.team ? 'primary' : 'neutral'}
+                      size="sm"
+                    />
+                    <div className={styles.commentBody}>
+                      <p className={styles.commentHead}>
+                        <strong>{item.author}</strong>
+                        <span>{item.when}</span>
+                      </p>
+                      <p className={styles.commentText}>{item.text}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
 
             {isLogged ? (
               <form className={styles.commentForm} onSubmit={handleComment}>

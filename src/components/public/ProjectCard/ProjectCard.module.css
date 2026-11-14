@@ -1,5 +1,6 @@
 /* ProjectCard — cartão de projeto da vitrine / explorar / meus projetos. */
 .card {
+  position: relative; /* ancora o link "esticado" (.stretch) do título */
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
@@ -56,6 +57,14 @@
 
 .titleLink {
   color: var(--color-text-title);
+}
+
+/* Link "esticado": o clique em QUALQUER ponto do card (não só no título)
+   navega para o projeto — resolve o card "sem função" da vitrine pública */
+.stretch::after {
+  content: '';
+  position: absolute;
+  inset: 0;
 }
 
 .titleLink:hover {
