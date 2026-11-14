@@ -36,6 +36,30 @@
   gap: var(--space-5);
 }
 
+/* envolve o StatCard para as métricas virarem link/botão clicável —
+   o cartão em si continua o mesmo componente de sempre */
+.statLink {
+  display: block;
+  min-width: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  border-radius: var(--radius-lg); /* mesmo raio do StatCard */
+  transition: box-shadow var(--transition-fast);
+}
+
+.statLink:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.statLink:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
 /* ------------------------------------------------------- blocos */
 /* respiro título → cards igual ao mockup 04 (o título não "gruda" na
    métrica de cima nem nos cards de baixo) */
