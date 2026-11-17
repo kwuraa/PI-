@@ -56,7 +56,9 @@ const TABS = [
 /* ===================================================== faces do painel */
 
 /** Painel do professor: fila de revisão + orientações (os atalhos que
- *  existiam aqui passaram para o grupo "Área acadêmica" da SideNav). */
+ *  existiam aqui passaram para o grupo "Área acadêmica" da SideNav) e
+ *  métricas clicáveis — revisão abre o próximo projeto da fila, a de
+ *  orientações rola até a seção "Minhas orientações". */
 function ProfessorFace({ user }) {
   const queue = getProjectsByIds(REVIEW_QUEUE_IDS);
   // ADVISED_GROUP_IDS guarda ids de EQUIPE (team-*), não de projeto — por isso
@@ -65,6 +67,15 @@ function ProfessorFace({ user }) {
     ADVISED_GROUP_IDS.includes(project.teamId),
   );
   const who = user?.displayName ?? user?.name ?? '';
+
+  /** Rola a página até a seção "Minhas orientações" (respeita reduced-motion). */
+  const scrollToAdvised = () => {
+    const target = document.getElementById('minhas-orientacoes');
+    if (!target) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+  };
+
   return (
     <>
       <header className={styles.header}>
@@ -75,9 +86,27 @@ function ProfessorFace({ user }) {
         </p>
       </header>
 
+      {/* métricas viram botões (pedido): revisão → PRÓXIMO projeto da
+          fila; orientações → rolagem até a seção "Minhas orientações" */}
       <div className={styles.stats}>
-        <StatCard tone="primary" value={METRICS.reviewQueue} label="Aguardando revisão" />
-        <StatCard value={METRICS.advised} label="Projetos sob orientação" />
+        {queue[0] ? (
+          <Link to={`/painel/revisar/${queue[0].slug}`} className={styles.statLink}>
+            <StatCard
+              tone="primary"
+              value={METRICS.reviewQueue}
+              label="Aguardando revisão"
+            />
+          </Link>
+        ) : (
+          <StatCard
+            tone="primary"
+            value={METRICS.reviewQueue}
+            label="Aguardando revisão"
+          />
+        )}
+        <button type="button" className={styles.statLink} onClick={scrollToAdvised}>
+          <StatCard value={METRICS.advised} label="Projetos sob orientação" />
+        </button>
       </div>
 
       <div className={styles.split}>
@@ -113,7 +142,7 @@ function ProfessorFace({ user }) {
           </div>
         </section>
 
-        <section className={styles.block}>
+        <section className={styles.block} id="minhas-orientacoes">
           <h2 className={styles.blockTitle}>Minhas orientações</h2>
           {/* mockup 04: card-resumo da PRIMEIRA orientação + "Ver todas" —
               a lista completa (3 projetos) fica em /painel/meu-projeto. */}
