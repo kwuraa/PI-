@@ -4,14 +4,14 @@
  * DOIS estados de tela, condicionais ao estado da busca/filtros:
  *  • PADRÃO (sem busca e sem filtros ativos) → protótipo "Explorar projetos":
  *    h1 "Ideias de todos. Inspiração para você." + saudação, campo de busca e
- *    botão "Filtrar projetos", pílulas de escopo (DSM · faixa de semestres),
+ *    botão "Filtrar projetos", pílula de escopo (DSM),
  *    banner "CONHECIMENTO SEM FRONTEIRAS" e as seções "Em destaque"
  *    e "Novas descobertas" com cards;
  *  • RESULTADOS (busca e/ou filtros ativos, ou "Ver todos") → contagem de
  *    resultados, pílulas removíveis e grade.
  * FILTROS COM UMA ÚNICA SUPERFÍCIE: nos dois estados o mesmo botão
  * "Filtrar projetos" abre a mesma caixa de filtros (Modal) com chips de
- * Semestre, Tecnologia, Ordenar por e Status — sem painel lateral nem
+ * Semestre, Ordenar por e Status — sem tecnologia, sem painel lateral nem
  * atalhos duplicados. Visitantes veem apenas projetos PUBLICADOS e com
  * equipe anonimizada (LGPD); logados veem os nomes da equipe (variant
  * `logged`). Três projetos de exemplo trazem foto de capa no card
@@ -27,15 +27,9 @@ import Modal from '../components/ui/Modal/Modal.jsx';
 import SearchField from '../components/ui/SearchField/SearchField.jsx';
 import ProjectCard from '../components/public/ProjectCard/ProjectCard.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
-import {
-  COURSE_SHORT,
-  PROJECTS,
-  SEMESTERS,
-  TECHNOLOGIES,
-} from '../mocks/projectsMock.js';
+import { COURSE_SHORT, PROJECTS, SEMESTERS } from '../mocks/projectsMock.js';
 import styles from './ExplorePage.module.css';
 
-const TECH_OPTIONS = TECHNOLOGIES.map((tech) => ({ value: tech, label: tech }));
 const STATUS_OPTIONS = [
   { value: 'rascunho', label: 'Rascunho' },
   { value: 'em-analise', label: 'Em análise' },
@@ -43,12 +37,8 @@ const STATUS_OPTIONS = [
 ];
 const SORT_OPTIONS = [
   { value: 'recentes', label: 'Mais recentes' },
-  { value: 'salvos', label: 'Mais salvos' },
   { value: 'az', label: 'Título (A–Z)' },
 ];
-
-/** Faixa de semestres do curso (pílula de escopo do estado padrão). */
-const SEMESTER_RANGE = `${SEMESTERS[0]}º ao ${SEMESTERS[SEMESTERS.length - 1]}º semestre`;
 
 export default function ExplorePage() {
   const { user } = useAuth();
@@ -56,7 +46,6 @@ export default function ExplorePage() {
 
   const [query, setQuery] = useState('');
   const [semesters, setSemesters] = useState([]);
-  const [techs, setTechs] = useState([]);
   const [statuses, setStatuses] = useState([]);
   const [sort, setSort] = useState('recentes');
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -79,13 +68,11 @@ export default function ExplorePage() {
         project.technologies.some((tech) => tech.toLowerCase().includes(q));
       const matchesSemester =
         semesters.length === 0 || semesters.includes(project.semester);
-      const matchesTech =
-        techs.length === 0 || project.technologies.some((t) => techs.includes(t));
       const matchesStatus =
         statuses.length === 0 || statuses.includes(project.status);
-      return matchesQuery && matchesSemester && matchesTech && matchesStatus;
+      return matchesQuery && matchesSemester && matchesStatus;
     });
-  }, [visibleProjects, query, semesters, techs, statuses]);
+  }, [visibleProjects, query, semesters, statuses]);
 
   /** Contagem de projetos visíveis por semestre (rótulos das chips de semestre). */
   const semesterCounts = useMemo(() => {
@@ -109,7 +96,6 @@ export default function ExplorePage() {
   /** Resultados reordenados conforme a caixa de filtros ("Ordenar por"). */
   const sorted = useMemo(() => {
     const list = [...results];
-    if (sort === 'salvos') list.sort((a, b) => (b.saves ?? 0) - (a.saves ?? 0));
     if (sort === 'az') list.sort((a, b) => a.title.localeCompare(b.title, 'pt-BR'));
     return list;
   }, [results, sort]);
@@ -143,13 +129,12 @@ export default function ExplorePage() {
 
   /** Busca digitada ou filtros escolhidos (sem "Ver todos"). */
   const hasQuery = query.trim().length > 0;
-  const hasFilters = semesters.length > 0 || techs.length > 0 || statuses.length > 0;
+  const hasFilters = semesters.length > 0 || statuses.length > 0;
   /** Estado de resultados ligado: busca, filtros ativos ou navegação explícita. */
   const showResults = hasQuery || hasFilters || browsing;
 
   const clearFilters = () => {
     setSemesters([]);
-    setTechs([]);
     setStatuses([]);
     setQuery('');
     setBrowsing(false);
@@ -168,12 +153,6 @@ export default function ExplorePage() {
       label: `${COURSE_SHORT} · ${n}º semestre`,
       primary: true,
       clear: () => setSemesters((prev) => prev.filter((v) => v !== n)),
-    })),
-    ...techs.map((tech) => ({
-      key: `tech-${tech}`,
-      label: tech,
-      primary: false,
-      clear: () => setTechs((prev) => prev.filter((v) => v !== tech)),
     })),
     ...statuses.map((status) => ({
       key: `st-${status}`,
@@ -276,7 +255,6 @@ export default function ExplorePage() {
           {/* escopo fixo (só informativo): filtros apenas pelo botão acima */}
           <div className={styles.pills}>
             <span className={`${styles.pill} ${styles.pillPrimary}`}>{COURSE_SHORT}</span>
-            <span className={styles.pill}>{SEMESTER_RANGE}</span>
           </div>
 
           {/* banner de descoberta (foto fora de escopo → bloco de cor/token) */}
@@ -367,17 +345,6 @@ export default function ExplorePage() {
               onChange={setSemesters}
               multiple
               clearLabel="Todos"
-            />
-          </section>
-
-          <section className={styles.filterGroup}>
-            <h3 className={styles.filterTitle}>Tecnologia</h3>
-            <FilterChips
-              options={TECH_OPTIONS}
-              value={techs}
-              onChange={setTechs}
-              multiple
-              clearLabel="Todas"
             />
           </section>
 
