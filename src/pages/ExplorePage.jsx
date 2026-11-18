@@ -10,12 +10,13 @@
  *  • RESULTADOS (busca e/ou filtros ativos, ou "Ver todos") → contagem de
  *    resultados, pílulas removíveis e grade.
  * FILTROS COM UMA ÚNICA SUPERFÍCIE: nos dois estados o mesmo botão
- * "Filtrar projetos" abre a mesma caixa de filtros (Modal) com chips de
- * Semestre, Ordenar por e Status — sem tecnologia, sem painel lateral nem
- * atalhos duplicados. Visitantes veem apenas projetos PUBLICADOS e com
- * equipe anonimizada (LGPD); logados veem os nomes da equipe (variant
- * `logged`). Três projetos de exemplo trazem foto de capa no card
- * (imagem pública local em /img); os demais seguem sem capa. No banner de
+ * "Filtrar projetos" abre o MESMO painel de filtros (Popover âncorado na
+ * linha de busca — ele DESCE de baixo da busca, sem overlay cobrindo a
+ * página) com chips de Semestre, Ordenar por e Status — sem tecnologia, sem
+ * painel lateral nem atalhos duplicados. Visitantes veem apenas projetos
+ * PUBLICADOS e com equipe anonimizada (LGPD); logados veem os nomes da
+ * equipe (variant `logged`). Três projetos de exemplo trazem foto de capa no
+ * card (imagem pública local em /img); os demais seguem sem capa. No banner de
  * descoberta usamos um bloco de cor/token.
  */
 import { useMemo, useState } from 'react';
@@ -23,7 +24,7 @@ import { FiArrowDown, FiSliders, FiStar, FiX } from 'react-icons/fi';
 
 import Button from '../components/ui/Button/Button.jsx';
 import FilterChips from '../components/ui/FilterChips/FilterChips.jsx';
-import Modal from '../components/ui/Modal/Modal.jsx';
+import Popover from '../components/ui/Popover/Popover.jsx';
 import SearchField from '../components/ui/SearchField/SearchField.jsx';
 import ProjectCard from '../components/public/ProjectCard/ProjectCard.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -163,17 +164,83 @@ export default function ExplorePage() {
   ];
 
   /* --------------------------------------- busca + botão de filtros
-     (IDÊNTICO nos dois estados: um só ponto de entrada para a caixa) */
+     (IDÊNTICO nos dois estados: um só ponto de entrada para o painel) */
+  const closeFilters = () => setFiltersOpen(false);
+
   const searchRow = (
-    <div className={styles.searchRow}>
-      <SearchField
-        value={query}
-        onChange={setQuery}
-        placeholder="Buscar projeto ou tecnologia"
-      />
-      <Button icon={<FiSliders aria-hidden="true" />} onClick={() => setFiltersOpen(true)}>
-        Filtrar projetos
-      </Button>
+    /* âncora (position:relative): o painel de filtros desce daqui */
+    <div className={styles.searchAnchor}>
+      <div className={styles.searchRow}>
+        <SearchField
+          value={query}
+          onChange={setQuery}
+          placeholder="Buscar projeto ou tecnologia"
+        />
+        <Button
+          icon={<FiSliders aria-hidden="true" />}
+          onClick={() => setFiltersOpen((open) => !open)}
+          aria-expanded={filtersOpen}
+          data-popover-trigger=""
+        >
+          Filtrar projetos
+        </Button>
+      </div>
+
+      {/* ------- painel ÚNICO de filtros (desce da linha de busca) */}
+      <Popover
+        open={filtersOpen}
+        onClose={closeFilters}
+        title="Filtros"
+        footer={
+          <div className={styles.sheetFooter}>
+            <Button variant="secondary" onClick={clearFilters}>
+              Limpar
+            </Button>
+            <Button onClick={closeFilters}>
+              Ver resultados
+              <FiSliders aria-hidden="true" />
+            </Button>
+          </div>
+        }
+      >
+        <div className={styles.sheetBody}>
+          <section className={styles.filterGroup}>
+            <h3 className={styles.filterTitle}>Semestre</h3>
+            <FilterChips
+              options={semesterOptions}
+              value={semesters}
+              onChange={setSemesters}
+              multiple
+              clearLabel="Todos"
+            />
+          </section>
+
+          <section className={styles.filterGroup}>
+            <h3 className={styles.filterTitle}>Ordenar por</h3>
+            {/* ordem é obrigatória → sem chip "limpar": ele teria o MESMO
+                rótulo "Mais recentes" da primeira opção (chip duplicado) */}
+            <FilterChips
+              options={SORT_OPTIONS}
+              value={sort}
+              onChange={(next) => setSort(next ?? 'recentes')}
+              clearLabel={null}
+            />
+          </section>
+
+          {isLogged && (
+            <section className={styles.filterGroup}>
+              <h3 className={styles.filterTitle}>Status</h3>
+              <FilterChips
+                options={STATUS_OPTIONS}
+                value={statuses}
+                onChange={setStatuses}
+                multiple
+                clearLabel="Todos"
+              />
+            </section>
+          )}
+        </div>
+      </Popover>
     </div>
   );
 
@@ -318,62 +385,6 @@ export default function ExplorePage() {
           </div>
         </>
       )}
-
-      {/* ------- caixa ÚNICA de filtros (desktop: diálogo; mobile: sheet) */}
-      <Modal
-        open={filtersOpen}
-        onClose={() => setFiltersOpen(false)}
-        title="Filtros"
-        footer={
-          <div className={styles.sheetFooter}>
-            <Button variant="secondary" onClick={clearFilters}>
-              Limpar
-            </Button>
-            <Button onClick={() => setFiltersOpen(false)}>
-              Ver resultados
-              <FiSliders aria-hidden="true" />
-            </Button>
-          </div>
-        }
-      >
-        <div className={styles.sheetBody}>
-          <section className={styles.filterGroup}>
-            <h3 className={styles.filterTitle}>Semestre</h3>
-            <FilterChips
-              options={semesterOptions}
-              value={semesters}
-              onChange={setSemesters}
-              multiple
-              clearLabel="Todos"
-            />
-          </section>
-
-          <section className={styles.filterGroup}>
-            <h3 className={styles.filterTitle}>Ordenar por</h3>
-            {/* ordem é obrigatória → sem chip "limpar": ele teria o MESMO
-                rótulo "Mais recentes" da primeira opção (chip duplicado) */}
-            <FilterChips
-              options={SORT_OPTIONS}
-              value={sort}
-              onChange={(next) => setSort(next ?? 'recentes')}
-              clearLabel={null}
-            />
-          </section>
-
-          {isLogged && (
-            <section className={styles.filterGroup}>
-              <h3 className={styles.filterTitle}>Status</h3>
-              <FilterChips
-                options={STATUS_OPTIONS}
-                value={statuses}
-                onChange={setStatuses}
-                multiple
-                clearLabel="Todos"
-              />
-            </section>
-          )}
-        </div>
-      </Modal>
     </div>
   );
 }

@@ -25,6 +25,12 @@
 }
 
 /* ------------------------------------- estado padrão (sem busca/filtros) */
+/* âncora da linha de busca: o painel de filtros é ABSOLUTO aqui dentro e
+   desce de baixo da busca (sem overlay cobrindo a página) */
+.searchAnchor {
+  position: relative;
+}
+
 /* busca + botão "Filtrar projetos": empilhados no mobile, lado a lado ≥768px */
 .searchRow {
   display: flex;
@@ -179,13 +185,24 @@
   text-align: center;
 }
 
-/* -------------------------- caixa de filtros (dialogo no desktop,
-   bottom sheet no mobile — mesma superfície nos dois estados) */
+/* -------------------------- painel de filtros (desce da linha de busca;
+   mesmo conteúdo nos dois estados — ver Popover/Popover.module.css) */
 .sheetBody {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
   padding-top: var(--space-2);
+}
+
+/* painel de ponta a ponta: em telas largas os grupos viram COLUNAS (2 ou 3,
+   conforme os filtros visíveis) pra não empilhar linhas compridas */
+@media (min-width: 768px) {
+  .sheetBody {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-6);
+    align-items: start;
+  }
 }
 
 .filterGroup {
@@ -202,11 +219,14 @@
 
 .sheetFooter {
   display: flex;
+  justify-content: flex-end; /* ações à direita */
   gap: var(--space-3);
 }
 
+/* painel de ponta a ponta: os botões não esticam junto (teto de 240px cada,
+   encolhem juntos quando a linha é mais estreita) */
 .sheetFooter > * {
-  flex: 1;
+  flex: 0 1 240px;
 }
 
 /* ------------------------- resultados (busca + pílulas + grade) */
