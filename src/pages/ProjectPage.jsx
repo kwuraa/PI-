@@ -10,6 +10,10 @@
  * O dono do projeto (aluno) encontra o atalho "Acompanhar análise".
  * Regra de comentários: só quem tem cadastro (aluno, professor etc.)
  * comenta — o público geral não precisa de acesso à área de comentários.
+ * MODERAÇÃO: cada aluno edita e exclui APENAS o próprio comentário;
+ * professor e coordenador podem EXCLUIR qualquer comentário (inclusive
+ * de outros alunos) para conter conteúdo inconveniente — a edição de
+ * comentários alheios é negada para todos os perfis.
  *
  * LAYOUT (mockup desktop 02):
  *  • topo → h1 + linha de meta (tipo · ano.semestre · publicação · salvos);
@@ -28,8 +32,10 @@ import {
   FiAlertTriangle,
   FiCheckCircle,
   FiDownload,
+  FiEdit2,
   FiFileText,
   FiSend,
+  FiTrash2,
 } from 'react-icons/fi';
 
 import Avatar from '../components/ui/Avatar/Avatar.jsx';
@@ -53,7 +59,7 @@ import styles from './ProjectPage.module.css';
 export default function ProjectPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { user } = useAuth();
+  const { user, isRole } = useAuth();
   const project = getProjectBySlug(slug);
 
   const isLogged = Boolean(user);
@@ -62,13 +68,31 @@ export default function ProjectPage() {
   const isOwner = Boolean(
     user && team && team.members.includes(user.name)
   );
+  /** Espaço ativo de moderação: professor ou coordenador exclui qualquer comentário. */
+  const canModerate = isRole('professor') || isRole('coordenador');
 
   /** Comentários em estado local (o envio só existe na área logada). */
   const [comment, setComment] = useState('');
   const [extraComments, setExtraComments] = useState([]);
+  /** Edições (id → texto) e exclusões (ids) aplicadas sobre os comentários. */
+  const [editedTexts, setEditedTexts] = useState({});
+  const [deletedIds, setDeletedIds] = useState([]);
+  /** Em edição: qual comentário e o texto no campo. */
+  const [editId, setEditId] = useState(null);
+  const [editText, setEditText] = useState('');
+  /** Exclusão em confirmação (evita apagar sem querer). */
+  const [confirmId, setConfirmId] = useState(null);
+
   const comments = useMemo(
-    () => [...(project?.comments ?? []), ...extraComments],
-    [project, extraComments]
+    () =>
+      [...(project?.comments ?? []), ...extraComments]
+        .filter((item) => !deletedIds.includes(item.id))
+        .map((item) =>
+          editedTexts[item.id] !== undefined
+            ? { ...item, text: editedTexts[item.id] }
+            : item
+        ),
+    [project, extraComments, deletedIds, editedTexts]
   );
 
   if (!project) {
@@ -114,6 +138,37 @@ export default function ProjectPage() {
       },
     ]);
     setComment('');
+  };
+
+  /* --------------------------- moderação dos comentários
+     (editar: só o autor; excluir: o autor OU professor/coordenador) */
+  const startEdit = (item) => {
+    setConfirmId(null);
+    setEditId(item.id);
+    setEditText(item.text);
+  };
+
+  const cancelEdit = () => {
+    setEditId(null);
+    setEditText('');
+  };
+
+  const submitEdit = (event, item) => {
+    event.preventDefault();
+    const text = editText.trim();
+    if (!text) return;
+    setEditedTexts((prev) => ({ ...prev, [item.id]: text }));
+    cancelEdit();
+  };
+
+  const askDelete = (id) => {
+    cancelEdit();
+    setConfirmId(id);
+  };
+
+  const deleteComment = (id) => {
+    setDeletedIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
+    setConfirmId(null);
   };
 
   return (
@@ -198,22 +253,111 @@ export default function ProjectPage() {
 
             {isLogged && (
               <ul className={styles.comments}>
-                {comments.map((item) => (
-                  <li key={item.id} className={styles.comment}>
-                    <Avatar
-                      initials={item.initials ?? '·'}
-                      tone={item.team ? 'primary' : 'neutral'}
-                      size="sm"
-                    />
-                    <div className={styles.commentBody}>
-                      <p className={styles.commentHead}>
-                        <strong>{item.author}</strong>
-                        <span>{item.when}</span>
-                      </p>
-                      <p className={styles.commentText}>{item.text}</p>
-                    </div>
-                  </li>
-                ))}
+                {comments.map((item) => {
+                  /* Dono do comentário (aluno que o publicou). */
+                  const isOwn = item.author === user.name;
+                  const canEdit = isOwn; /* edição: SÓ o próprio comentário */
+                  const canDelete = isOwn || canModerate;
+                  const isEditing = editId === item.id;
+                  const wasEdited = editedTexts[item.id] !== undefined;
+
+                  return (
+                    <li key={item.id} className={styles.comment}>
+                      <Avatar
+                        initials={item.initials ?? '·'}
+                        tone={item.team ? 'primary' : 'neutral'}
+                        size="sm"
+                      />
+                      <div className={styles.commentBody}>
+                        <p className={styles.commentHead}>
+                          <strong>{item.author}</strong>
+                          <span>
+                            {item.when}
+                            {wasEdited ? ' · editado' : ''}
+                          </span>
+                        </p>
+
+                        {isEditing ? (
+                          <form
+                            className={styles.commentEdit}
+                            onSubmit={(event) => submitEdit(event, item)}
+                          >
+                            <textarea
+                              className={styles.commentEditText}
+                              rows={3}
+                              aria-label={`Editar comentário de ${item.author}`}
+                              value={editText}
+                              onChange={(event) => setEditText(event.target.value)}
+                              autoFocus
+                            />
+                            <div className={styles.commentEditActions}>
+                              <Button type="submit" size="sm" disabled={!editText.trim()}>
+                                Salvar
+                              </Button>
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                onClick={cancelEdit}
+                              >
+                                Cancelar
+                              </Button>
+                            </div>
+                          </form>
+                        ) : (
+                          <>
+                            <p className={styles.commentText}>{item.text}</p>
+
+                            {(canEdit || canDelete) && (
+                              <div className={styles.commentActions}>
+                                {canEdit && (
+                                  <button
+                                    type="button"
+                                    className={styles.commentAction}
+                                    onClick={() => startEdit(item)}
+                                  >
+                                    <FiEdit2 size={14} aria-hidden="true" />
+                                    Editar
+                                  </button>
+                                )}
+
+                                {canDelete &&
+                                  (confirmId === item.id ? (
+                                    <span className={styles.commentConfirm}>
+                                      Excluir este comentário?
+                                      <button
+                                        type="button"
+                                        className={styles.commentActionDanger}
+                                        onClick={() => deleteComment(item.id)}
+                                      >
+                                        Sim, excluir
+                                      </button>
+                                      <button
+                                        type="button"
+                                        className={styles.commentAction}
+                                        onClick={() => setConfirmId(null)}
+                                      >
+                                        Manter
+                                      </button>
+                                    </span>
+                                  ) : (
+                                    <button
+                                      type="button"
+                                      className={styles.commentAction}
+                                      onClick={() => askDelete(item.id)}
+                                    >
+                                      <FiTrash2 size={14} aria-hidden="true" />
+                                      Excluir
+                                    </button>
+                                  ))}
+                              </div>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             )}
 
