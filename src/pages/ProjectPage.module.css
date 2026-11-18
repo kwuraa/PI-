@@ -285,6 +285,92 @@
   color: var(--color-text-body);
 }
 
+/* ------------------------------------- ações do comentário
+   (editar/excluir: só o autor; excluir também professor/coordenador) */
+.commentActions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.commentAction,
+.commentActionDanger {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.commentAction:hover,
+.commentAction:focus-visible {
+  color: var(--color-primary);
+}
+
+.commentActionDanger {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.commentActionDanger:hover,
+.commentActionDanger:focus-visible {
+  color: var(--color-primary-dark);
+}
+
+.commentConfirm {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* ---------------------------------------------- edição inline */
+.commentEdit {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-top: var(--space-1);
+}
+
+.commentEditText {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-surface);
+  font-family: inherit;
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+  resize: vertical;
+  transition: border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.commentEditText:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.commentEditActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
 .emptyComments {
   font-size: var(--font-size-sm);
   color: var(--color-text-muted);
