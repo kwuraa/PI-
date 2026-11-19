@@ -24,6 +24,8 @@ import {
   FiCheck,
   FiClock,
   FiEdit2,
+  FiEye,
+  FiHeart,
   FiMoreHorizontal,
   FiPlus,
 } from 'react-icons/fi';
@@ -31,11 +33,13 @@ import {
 import Badge from '../../components/ui/Badge/Badge.jsx';
 import StatCard from '../../components/ui/StatCard/StatCard.jsx';
 import { statusMeta } from '../../components/public/ProjectCard/ProjectCard.jsx';
+import { useEngagement } from '../../context/EngagementContext.jsx';
 import {
   COURSE_SHORT,
   MY_PROJECT_IDS,
   getProjectsByIds,
 } from '../../mocks/projectsMock.js';
+import { formatNumber } from '../../utils/format.js';
 import styles from './MyProjectsPage.module.css';
 
 /** Período letivo exibido nos protótipos desktop (mesmo valor do TopBar). */
@@ -110,6 +114,8 @@ export default function MyProjectsPage() {
   // status e contadores Publicado / Em análise / Rascunho.
   const projects = getProjectsByIds(MY_PROJECT_IDS);
   const [filter, setFilter] = useState(null);
+  /* Métricas públicas de cada projeto (views da sessão + curtidas). */
+  const { viewsFor, likesFor } = useEngagement();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
   /* Menu "..." do cartão: só um cartão com caixinha aberta por vez. */
@@ -305,6 +311,19 @@ export default function MyProjectsPage() {
                   <line.Icon size={16} aria-hidden="true" />
                 </span>
                 {line.text}
+              </p>
+
+              <p className={styles.cardMetrics} aria-label="Visualizações e curtidas">
+                <span>
+                  <FiEye aria-hidden="true" />
+                  {formatNumber(viewsFor(project.slug))}
+                  <span>visualizações</span>
+                </span>
+                <span>
+                  <FiHeart aria-hidden="true" />
+                  {formatNumber(likesFor(project.slug))}
+                  <span>curtidas</span>
+                </span>
               </p>
 
               <div className={styles.cardFooter}>

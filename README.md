@@ -55,6 +55,23 @@ Coordenador (Marta Campos) e Secretaria (Helena Souza).
 
 ---
 
+## 👁️ Views e curtidas (engajamento dos projetos)
+
+- **Views**: abrir `/projeto/:slug` conta **+1 por sessão do navegador**
+  (recarregar com F5 não infla a contagem; fechar a aba libera para contar
+  de novo na próxima visita).
+- **Curtidas**: apenas **usuários logados** (aluno, professor, coordenador…)
+  curtem **projetos publicados** — o botão alterna *Curtir projeto* ⇄
+  *Curtido*; o visitante vê a contagem e o convite *Entre para curtir*.
+- Os contadores ficam à mostra **nos cards** (vitrine, explorar, meus
+  projetos) e no card **Engajamento** da página do projeto.
+- Totais iniciais: campos `views`/`likes` de cada projeto no mock; os
+  incrementos são persistidos em `localStorage` (`pi2.engagement`) e as
+  views da sessão em `sessionStorage` (`pi2.viewed`), tudo em
+  `src/context/EngagementContext.jsx`.
+
+---
+
 ## ✏️ Como editar os dados (mocks)
 
 Todo o conteúdo de tela vem de dois arquivos — **sem tocar em JSX**:
@@ -65,6 +82,8 @@ Todo o conteúdo de tela vem de dois arquivos — **sem tocar em JSX**:
   comentários e pareceres.
   - `teamDisplay(project, { publicView })` aplica a **LGPD**: em vistas
     públicas a equipe aparece só como `Equipe DSM — Xº Semestre`.
+  - `views` e `likes` de cada projeto são o **estado inicial** das métricas
+    de engajamento (as contagens rodando ficam em `EngagementContext`).
 - **`src/mocks/usersMock.js`** — perfis do login, rótulo de espaço do
   cabeçalho (`spaceLabelFor`) e opções de troca de perfil (`spaceOptionsFor`).
 
@@ -104,7 +123,8 @@ src/
 ├── App.jsx             # rotas, guardas RBAC (RequireRole) e layouts
 ├── styles/             # tokens globais (variables.css) + reset.css
 ├── mocks/              # dados simulados (projetos/usuários) — edite aqui
-├── context/            # AuthContext: login, logout, espaço ativo, papéis
+├── context/            # AuthContext (login, papéis) + EngagementContext
+│                       #   (views e curtidas dos projetos)
 ├── utils/              # helpers puros (formatação de datas/números)
 ├── components/
 │   ├── ui/             # kit genérico: Button, Card, Modal, Badge, Select,

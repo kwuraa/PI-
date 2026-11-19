@@ -111,6 +111,8 @@ export const PROJECTS = [
     status: 'publicado',
     featured: true,
     saves: 24,
+    views: 1284,
+    likes: 96,
     highlights: ['Acessibilidade', 'Tecnologia', 'Inclusão'],
     technologies: ['React.js', 'TypeScript', 'Supabase'],
     description:
@@ -150,6 +152,8 @@ export const PROJECTS = [
     status: 'em-analise',
     featured: false,
     saves: 12,
+    views: 642,
+    likes: 41,
     highlights: ['Acervo', 'Comunidade', 'Web'],
     technologies: ['React.js', 'Node.js', 'SQLite'],
     description:
@@ -179,6 +183,8 @@ export const PROJECTS = [
     status: 'em-analise',
     featured: false,
     saves: 9,
+    views: 517,
+    likes: 33,
     highlights: ['Sensores', 'Ambiente', 'Dados'],
     technologies: ['Python', 'React.js', 'Supabase'],
     description:
@@ -213,6 +219,8 @@ export const PROJECTS = [
     status: 'rascunho',
     featured: false,
     saves: 7,
+    views: 89,
+    likes: 6,
     highlights: ['Sustentabilidade', 'Campus', 'Gestão'],
     technologies: ['React.js', 'Node.js', 'Tailwind CSS'],
     description:
@@ -242,6 +250,8 @@ export const PROJECTS = [
     status: 'publicado',
     featured: true,
     saves: 32,
+    views: 968,
+    likes: 74,
     highlights: ['Agricultura', 'Comunidade', 'Dados'],
     technologies: ['React.js', 'TypeScript', 'Docker'],
     description:
@@ -278,6 +288,8 @@ export const PROJECTS = [
     status: 'publicado',
     featured: false,
     saves: 18,
+    views: 731,
+    likes: 52,
     highlights: ['Ambiente', 'Território', 'Educação'],
     technologies: ['Python', 'Tailwind CSS', 'Supabase'],
     description:

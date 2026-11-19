@@ -76,6 +76,34 @@
   gap: var(--space-2);
 }
 
+/* ---------------------------------------- card "Engajamento"
+   Views (uma por sessão) + curtidas do projeto, com o botão de like
+   para projetos publicados (logado) ou o convite de acesso (visitante). */
+.engagementCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.metrics {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.metric strong {
+  color: var(--color-text-title);
+  font-weight: var(--font-weight-semibold);
+}
+
 /* --------------------------------------------- card "Sobre" */
 .aboutCard {
   display: flex;
