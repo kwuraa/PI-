@@ -18,6 +18,8 @@
  * navegador); o card "Engajamento" na coluna direita mostra views e
  * curtidas — o botão de like é só para projetos PUBLICADOS e usuários
  * logados (aluno, professor…), com convite de acesso para o visitante.
+ * A EQUIPE dona do projeto NÃO curte o próprio projeto: no lugar do
+ * botão aparece uma nota explicativa (a contagem é da comunidade).
  *
  * LAYOUT (mockup desktop 02):
  *  • topo → h1 + linha de meta (tipo · ano.semestre · publicação · salvos);
@@ -452,7 +454,8 @@ export default function ProjectPage() {
           {/* ------------------------------------------ engajamento
               Views (uma por sessão) + curtidas, visíveis para todos.
               O botão de like é só para PROJETOS PUBLICADOS e quem tem
-              conta (aluno/professor…); o visitante vê o convite. */}
+              conta (aluno/professor…); o visitante vê o convite e a
+              EQUIPE dona do projeto não curte o próprio projeto. */}
           <Card padding="md" className={styles.engagementCard}>
             <SectionHeader title="Engajamento" />
             <div className={styles.metrics}>
@@ -467,7 +470,14 @@ export default function ProjectPage() {
             </div>
 
             {project.status === 'publicado' &&
-              (isLogged ? (
+              (isOwner ? (
+                /* Regra: a equipe não curte o próprio projeto — a contagem
+                   é da comunidade. Só a equipe vê a nota (o visitante não
+                   tem como ser dono). */
+                <p className={styles.ownerLikeNote}>
+                  Projeto da sua equipe — curtir conta para a comunidade.
+                </p>
+              ) : isLogged ? (
                 <Button
                   fullWidth
                   variant={liked ? 'primary' : 'secondary'}
