@@ -98,6 +98,10 @@
   --topbar-height: 56px;
   --bottom-nav-height: 64px;
 
+  /* Altura padrão da capa dos cards de projeto (ProjectCard) — todas as
+     fotos ocupam a mesma faixa; o recorte é feito por object-fit: cover. */
+  --card-cover-height: 180px;
+
   /* Breakpoints (documentados — media queries não aceitam variáveis):
      mobile  : base (até 767px)
      tablet  : 768px
