@@ -104,6 +104,19 @@
   font-weight: var(--font-weight-semibold);
 }
 
+/* Nota exibida no lugar do botão para a EQUIPE dona do projeto:
+   não é possível curtir o próprio projeto (a contagem é da comunidade). */
+.ownerLikeNote {
+  padding: var(--space-3);
+  background-color: var(--color-bg-page);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
 /* --------------------------------------------- card "Sobre" */
 .aboutCard {
   display: flex;

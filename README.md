@@ -63,6 +63,8 @@ Coordenador (Marta Campos) e Secretaria (Helena Souza).
 - **Curtidas**: apenas **usuários logados** (aluno, professor, coordenador…)
   curtem **projetos publicados** — o botão alterna *Curtir projeto* ⇄
   *Curtido*; o visitante vê a contagem e o convite *Entre para curtir*.
+  A **equipe dona não curte o próprio projeto**: no lugar do botão aparece
+  uma nota ("Projeto da sua equipe — curtir conta para a comunidade").
 - Os contadores ficam à mostra **nos cards** (vitrine, explorar, meus
   projetos) e no card **Engajamento** da página do projeto.
 - Totais iniciais: campos `views`/`likes` de cada projeto no mock; os
