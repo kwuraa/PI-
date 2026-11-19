@@ -20,9 +20,11 @@
 }
 
 /* Foto de capa (só projetos com `image`): sangra para as laterais usando
-   margens negativas iguais ao padding de .card e usa a PROPORÇÃO NATURAL
-   do arquivo (height: auto) — a foto aparece inteira, sem corte e sem
-   distorção. `max-width: none` é essencial: o reset.css força
+   margens negativas iguais ao padding de .card e tem ALTURA PADRÃO
+   (--card-cover-height, 180px) — todos os cards ficam com a mesma faixa
+   de capa, sem pular linhas na grade. `object-fit: cover` recorta só o
+   que exceder, sem distorcer; `object-position: center` foca o meio da
+   foto. `max-width: none` é essencial: o reset.css força
    max-width:100% em todo img, o que anularia o +2×padding e deixaria
    uma faixa branca na direita do card. O overflow:hidden do .card
    garante o recorte nos cantos arredondados. Sem hex: só tokens. */
@@ -30,7 +32,9 @@
   display: block;
   width: calc(100% + var(--space-4) * 2);
   max-width: none;
-  height: auto;
+  height: var(--card-cover-height);
+  object-fit: cover;
+  object-position: center;
   margin: calc(-1 * var(--space-4)) calc(-1 * var(--space-4)) 0;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
