@@ -16,13 +16,19 @@
  * hotlink). Os demais seguem SEM capa: o card continua só com o conteúdo,
  * exatamente como antes. `index` (0, 1, 2…) define o atraso do card na
  * entrada em cascata.
+ *
+ * MÉTRICAS: todas as variantes exibem views (uma por sessão do navegador)
+ * e curtidas do projeto, lidas do EngagementContext — os totais iniciais
+ * vêm dos campos `views`/`likes` do mock.
  */
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiArrowUpRight, FiUsers } from 'react-icons/fi';
+import { FiArrowUpRight, FiEye, FiHeart, FiUsers } from 'react-icons/fi';
 import Badge from '../../ui/Badge/Badge.jsx';
 import { cardIn } from '../../../styles/motion.js';
+import { useEngagement } from '../../../context/EngagementContext.jsx';
 import { COURSE_SHORT, getTeam, teamDisplay } from '../../../mocks/projectsMock.js';
+import { formatNumber } from '../../../utils/format.js';
 import styles from './ProjectCard.module.css';
 
 /** Mapeia o status do projeto para o selo exibido. */
@@ -44,6 +50,27 @@ export default function ProjectCard({ project, variant = 'public', action = null
   const display = teamDisplay(project, { publicView: variant === 'public' || variant === 'vitrine' });
   const status = statusMeta(project.status);
   const isMine = variant === 'mine';
+
+  /** Métricas públicas do projeto (views da sessão + curtidas totais). */
+  const { viewsFor, likesFor } = useEngagement();
+  const views = viewsFor(project.slug);
+  const likes = likesFor(project.slug);
+
+  /** Linha de contadores exibida em TODAS as variantes do card. */
+  const metrics = (
+    <p className={styles.metrics} aria-label="Visualizações e curtidas">
+      <span className={styles.metric}>
+        <FiEye aria-hidden="true" />
+        {formatNumber(views)}
+        <span>visualizações</span>
+      </span>
+      <span className={styles.metric}>
+        <FiHeart aria-hidden="true" />
+        {formatNumber(likes)}
+        <span>curtidas</span>
+      </span>
+    </p>
+  );
 
   /**
    * Clique esticado: em qualquer ponto do card o visitante navega para o
@@ -81,6 +108,8 @@ export default function ProjectCard({ project, variant = 'public', action = null
         </h3>
 
         <p className={styles.description}>{project.description}</p>
+
+        {metrics}
 
         <p className={styles.credit}>Desenvolvido por: {display.primary}</p>
       </motion.article>
@@ -121,6 +150,8 @@ export default function ProjectCard({ project, variant = 'public', action = null
           {display.secondary && variant !== 'public' ? ` · ${display.secondary}` : ''}
         </span>
       </p>
+
+      {metrics}
 
       <div className={styles.footer}>
         {action ?? (

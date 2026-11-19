@@ -123,6 +123,22 @@
   color: var(--color-text-muted);
 }
 
+/* contadores públicos (views + curtidas) — linha acima do rodapé */
+.metrics {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.metric {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
 .footer {
   display: flex;
   align-items: center;

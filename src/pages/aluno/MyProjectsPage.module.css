@@ -262,6 +262,21 @@
   color: var(--color-text-muted);
 }
 
+/* contadores públicos (views + curtidas) do projeto no cartão */
+.cardMetrics {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.cardMetrics span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
 /* Rodapé do cartão: a ação fica em cima e o filete separador embaixo,
    como no mockup ("Ver projeto →" sobre uma linha fina). */
 .cardFooter {

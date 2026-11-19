@@ -14,6 +14,10 @@
  * professor e coordenador podem EXCLUIR qualquer comentário (inclusive
  * de outros alunos) para conter conteúdo inconveniente — a edição de
  * comentários alheios é negada para todos os perfis.
+ * ENGAGEMENT: abrir a página contabiliza +1 view (uma por sessão do
+ * navegador); o card "Engajamento" na coluna direita mostra views e
+ * curtidas — o botão de like é só para projetos PUBLICADOS e usuários
+ * logados (aluno, professor…), com convite de acesso para o visitante.
  *
  * LAYOUT (mockup desktop 02):
  *  • topo → h1 + linha de meta (tipo · ano.semestre · publicação · salvos);
@@ -23,17 +27,20 @@
  *  • mobile → tudo empilhado em 1 coluna;
  *  • desktop ≥1024px → grid de 2 colunas: coluna ESQUERDA larga (cards
  *    "Sobre o projeto" e "Comentários", parecer e ações) e coluna DIREITA
- *    estreita (~350px, sticky) com as pílulas de status, a equipe e os
- *    arquivos do projeto.
+ *    estreita (~350px, sticky) com as pílulas de status, o card
+ *    "Engajamento" (views/curtidas + like), a equipe e os arquivos do
+ *    projeto.
  */
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   FiAlertTriangle,
   FiCheckCircle,
   FiDownload,
   FiEdit2,
+  FiEye,
   FiFileText,
+  FiHeart,
   FiSend,
   FiTrash2,
 } from 'react-icons/fi';
@@ -47,6 +54,7 @@ import SectionHeader from '../components/ui/SectionHeader/SectionHeader.jsx';
 import TextField from '../components/ui/TextField/TextField.jsx';
 import { statusMeta } from '../components/public/ProjectCard/ProjectCard.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
+import { useEngagement } from '../context/EngagementContext.jsx';
 import {
   COURSE,
   COURSE_SHORT,
@@ -54,6 +62,7 @@ import {
   getTeam,
   teamDisplay,
 } from '../mocks/projectsMock.js';
+import { formatNumber } from '../utils/format.js';
 import styles from './ProjectPage.module.css';
 
 export default function ProjectPage() {
@@ -61,6 +70,9 @@ export default function ProjectPage() {
   const navigate = useNavigate();
   const { user, isRole } = useAuth();
   const project = getProjectBySlug(slug);
+
+  /** Métricas públicas: views (uma por sessão) e curtidas dos projetos. */
+  const { registerView, viewsFor, likesFor, hasLiked, toggleLike } = useEngagement();
 
   const isLogged = Boolean(user);
   const team = getTeam(project);
@@ -95,6 +107,12 @@ export default function ProjectPage() {
     [project, extraComments, deletedIds, editedTexts]
   );
 
+  /* Contabiliza a visita (uma view por sessão do navegador — protegido
+     contra o duplo-mount do StrictMode pelo guard em memória do contexto). */
+  useEffect(() => {
+    if (project) registerView(project.slug);
+  }, [project, registerView]);
+
   if (!project) {
     return (
       <div className={styles.page}>
@@ -107,6 +125,12 @@ export default function ProjectPage() {
   }
 
   const status = statusMeta(project.status);
+
+  /** Métricas públicas do projeto (views da sessão + curtidas totais). */
+  const views = viewsFor(project.slug);
+  const likes = likesFor(project.slug);
+  /** Este usuário logado já curtiu? (só faz sentido com conta). */
+  const liked = hasLiked(project.slug, user?.id);
 
   /** Linha de meta sob o h1: "Tipo · 2026.2 · Publicado em 02 out. 2026 · 24 salvos". */
   const period = project.year
@@ -424,6 +448,51 @@ export default function ProjectPage() {
             <Badge tone={status.tone}>{status.label}</Badge>
             {!isLogged && <Badge tone="neutral">Visualização pública</Badge>}
           </div>
+
+          {/* ------------------------------------------ engajamento
+              Views (uma por sessão) + curtidas, visíveis para todos.
+              O botão de like é só para PROJETOS PUBLICADOS e quem tem
+              conta (aluno/professor…); o visitante vê o convite. */}
+          <Card padding="md" className={styles.engagementCard}>
+            <SectionHeader title="Engajamento" />
+            <div className={styles.metrics}>
+              <span className={styles.metric}>
+                <FiEye aria-hidden="true" />
+                <strong>{formatNumber(views)}</strong> visualizações
+              </span>
+              <span className={styles.metric}>
+                <FiHeart aria-hidden="true" />
+                <strong>{formatNumber(likes)}</strong> curtidas
+              </span>
+            </div>
+
+            {project.status === 'publicado' &&
+              (isLogged ? (
+                <Button
+                  fullWidth
+                  variant={liked ? 'primary' : 'secondary'}
+                  icon={
+                    <FiHeart
+                      fill={liked ? 'currentColor' : 'none'}
+                      aria-hidden="true"
+                    />
+                  }
+                  onClick={() => toggleLike(project.slug, user.id)}
+                  aria-pressed={liked}
+                >
+                  {liked ? 'Curtido' : 'Curtir projeto'}
+                </Button>
+              ) : (
+                <Button
+                  fullWidth
+                  variant="secondary"
+                  icon={<FiHeart aria-hidden="true" />}
+                  onClick={() => navigate('/login')}
+                >
+                  Entre para curtir
+                </Button>
+              ))}
+          </Card>
 
           {/* ------------------------------------------------- equipe */}
           <Card padding="md" className={styles.teamCard}>
