@@ -56,6 +56,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-3);
+  margin-top: var(--space-10);
 }
 
 /* ------------------------------------------- filtros + banner + grade */
@@ -256,6 +257,7 @@
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     gap: var(--space-6);
-    align-items: end;
+    /* alinha o topo dos dois campos: os rótulos ficam na mesma linha */
+    align-items: start;
   }
 }
