@@ -18,7 +18,7 @@
  * conforme o mockup 03.
  */
 import { useMemo } from 'react';
-import { useLocation, useOutlet, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useOutlet, useSearchParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { useAuth } from '../../../context/AuthContext.jsx';
@@ -36,6 +36,7 @@ const SECTIONS = [
   { prefix: '/aluno', label: 'Meus projetos', to: '/aluno' },
   { prefix: '/painel', label: 'Painel unificado', to: '/painel' },
   { prefix: '/perfil', label: 'Perfil', to: '/perfil' },
+  { prefix: '/alterar-senha', label: 'Perfil', to: '/perfil' },
   { prefix: '/secretaria', label: 'Cursos', to: '/secretaria/cursos' },
   { prefix: '/ajuda', label: 'Ajuda e suporte', to: '/ajuda' },
 ];
@@ -50,6 +51,7 @@ const CRUMB_TITLES = {
   '/aluno': 'Minhas ideias em ação.',
   '/aluno/novo': 'Novo projeto',
   '/perfil': 'Meu perfil',
+  '/alterar-senha': 'Alterar senha',
   '/painel/relatorio-consolidado': 'Relatório consolidado',
 };
 
@@ -136,7 +138,11 @@ export default function MainLayout({ barVariant = 'brand', title, action }) {
             {outlet}
             <footer className={styles.footer}>
               <span>PI² · Ideias que multiplicam conhecimento</span>
-              <span className={styles.footerLinks}>Privacidade · Termos de uso</span>
+              <span className={styles.footerLinks}>
+                <Link to="/privacidade">Privacidade</Link>
+                {' · '}
+                <Link to="/termos">Termos de uso</Link>
+              </span>
             </footer>
           </motion.main>
         </AnimatePresence>

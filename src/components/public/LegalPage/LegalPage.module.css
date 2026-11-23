@@ -1,0 +1,131 @@
+/* LegalPage — shell compartilhado das páginas legais (Termos / Privacidade).
+   Mesma anatomia da RecoveryPage: sem card wrapper, barra superior com
+   título centralizado, tile de ícone e seções de texto. */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-4) var(--space-4) var(--space-10);
+}
+
+/* Desktop: só centraliza — texto legal pede medida curta (~720px) */
+@media (min-width: 768px) {
+  .page {
+    max-width: 720px;
+    margin-inline: auto;
+    padding: var(--space-4) var(--space-6) var(--space-10);
+  }
+}
+
+/* --------------------------------------------------- barra superior */
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-border);
+  color: var(--color-text-title);
+  transition: background-color var(--transition-fast);
+}
+
+.back:hover {
+  background-color: var(--color-border-strong);
+}
+
+/* título centralizado entre o botão e o espaçador do mesmo tamanho */
+.topTitle {
+  flex: 1;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+}
+
+.topSpacer {
+  width: 44px;
+  flex-shrink: 0;
+}
+
+/* ------------------------------------------------------- cabeçalho */
+.iconTile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-xl);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.subtitle {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+.updated {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* -------------------------------------------------------- conteúdo */
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* links DENTRO do texto legal (parágrafos e callouts) */
+.body a {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.sectionTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.paragraph {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+}
+
+/* bloco extra renderizado pelas páginas (filhos diretos do LegalPage) */
+.body > p {
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-body);
+}

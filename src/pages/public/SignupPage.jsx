@@ -179,8 +179,8 @@ export default function SignupPage() {
             required
           />
           <span>
-            Li e aceito os <a href="#termos">Termos de uso</a> e a{' '}
-            <a href="#privacidade">Política de privacidade</a> do PI².
+            Li e aceito os <Link to="/termos">Termos de uso</Link> e a{' '}
+            <Link to="/privacidade">Política de privacidade</Link> do PI².
           </span>
         </label>
 
@@ -213,9 +213,9 @@ export default function SignupPage() {
       <footer className={styles.footer}>
         <span>PI² · Ideias que multiplicam conhecimento</span>
         <span className={styles.footerLinks}>
-          <a href="#termos">Termos de uso</a>
+          <Link to="/termos">Termos de uso</Link>
           {' · '}
-          <a href="#privacidade">Política de privacidade</a>
+          <Link to="/privacidade">Política de privacidade</Link>
         </span>
       </footer>
     </div>

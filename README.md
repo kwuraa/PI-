@@ -34,6 +34,8 @@ Abra no navegador o endereço exibido no terminal (padrão:
 | `/login` | Acesso com 4 perfis simulados | visitante |
 | `/cadastro` | Cadastro institucional (curso travado no DSM) | visitante |
 | `/recuperar-senha` | Recuperação de senha simulada | visitante |
+| `/termos` | Termos de uso (página legal) | visitante |
+| `/privacidade` | Política de privacidade / LGPD | visitante |
 | `/explorar` | Busca + filtros em bottom sheet | todos |
 | `/projeto/:slug` | Detalhe do projeto (público anônimo / logado completo) | todos |
 | `/aluno` | Meus projetos | aluno |
@@ -48,6 +50,7 @@ Abra no navegador o endereço exibido no terminal (padrão:
 | `/painel/meu-projeto` | Projeto sob orientação + materiais | professor |
 | `/secretaria/cursos` | Cadastro de cursos (modal) | secretaria |
 | `/perfil` | Dados, notificações, espaço ativo e logout | logado |
+| `/alterar-senha` | Troca de senha da conta | logado |
 
 **Perfis do login (mock):** Aluno (Ana Costa), Professor (Rafael Martins —
 também coordena, use **Espaço ativo** no Perfil para ver o painel unificado),
