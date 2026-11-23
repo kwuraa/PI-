@@ -171,8 +171,8 @@ export default function WelcomePage() {
         </span>
         <nav className={styles.footerLinks} aria-label="Links institucionais">
           <a href="#instituicao">Instituição</a>
-          <a href="#termos">Termos de uso</a>
-          <a href="#privacidade">Privacidade</a>
+          <Link to="/termos">Termos de uso</Link>
+          <Link to="/privacidade">Privacidade</Link>
         </nav>
         <Link className={styles.footerAdmin} to="/login">
           <FiShield aria-hidden="true" />

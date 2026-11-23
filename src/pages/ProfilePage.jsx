@@ -185,12 +185,14 @@ export default function ProfilePage() {
                 danger
                 trailingIcon={<FiKey aria-hidden="true" />}
                 title="Alterar senha"
+                to="/alterar-senha"
               />
               <ListRow
                 plain
                 danger
                 trailingIcon={<FiShield aria-hidden="true" />}
                 title="Privacidade e termos de uso"
+                to="/privacidade"
               />
               <ListRow
                 plain

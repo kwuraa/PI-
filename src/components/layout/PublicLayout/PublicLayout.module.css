@@ -44,4 +44,12 @@
   .footerLinks {
     color: var(--color-text-muted);
   }
+
+  .footerLinks a {
+    transition: color var(--transition-fast);
+  }
+
+  .footerLinks a:hover {
+    color: var(--color-text-title);
+  }
 }

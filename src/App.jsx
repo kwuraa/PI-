@@ -39,6 +39,9 @@ import WelcomePage from './pages/public/WelcomePage.jsx';
 import LoginPage from './pages/public/LoginPage.jsx';
 import SignupPage from './pages/public/SignupPage.jsx';
 import RecoveryPage from './pages/public/RecoveryPage.jsx';
+import TermsPage from './pages/public/TermsPage.jsx';
+import PrivacyPage from './pages/public/PrivacyPage.jsx';
+import ChangePasswordPage from './pages/ChangePasswordPage.jsx';
 import ExplorePage from './pages/ExplorePage.jsx';
 import ProjectPage from './pages/ProjectPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
@@ -107,6 +110,8 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/cadastro" element={<SignupPage />} />
         <Route path="/recuperar-senha" element={<RecoveryPage />} />
+        <Route path="/termos" element={<TermsPage />} />
+        <Route path="/privacidade" element={<PrivacyPage />} />
       </Route>
 
       {/* ----------------------------------- barra brand (logo + espaço) */}
@@ -117,6 +122,16 @@ export default function App() {
           element={
             <RequireRole>
               <ProfilePage />
+            </RequireRole>
+          }
+        />
+
+        {/* troca de senha (conta) — qualquer usuário logado */}
+        <Route
+          path="/alterar-senha"
+          element={
+            <RequireRole>
+              <ChangePasswordPage />
             </RequireRole>
           }
         />

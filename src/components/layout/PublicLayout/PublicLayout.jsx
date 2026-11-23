@@ -8,7 +8,7 @@
  * Rodapé (só desktop, ≥768px): aparece nas telas de auth — a boas-vindas
  * tem as suas e o login não exibe barra de topo (a pedido).
  */
-import { useLocation, useOutlet } from "react-router-dom";
+import { Link, useLocation, useOutlet } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { pageVariants } from "../../../styles/motion.js";
@@ -35,7 +35,9 @@ export default function PublicLayout() {
         <footer className={styles.footer}>
           <span>PI² · Ideias que multiplicam conhecimento</span>
           <span className={styles.footerLinks}>
-            Termos de uso · Política de privacidade
+            <Link to="/termos">Termos de uso</Link>
+            {' · '}
+            <Link to="/privacidade">Política de privacidade</Link>
           </span>
         </footer>
       )}
