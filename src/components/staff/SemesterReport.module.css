@@ -1,0 +1,106 @@
+/* SemesterReport — face do COORDENADOR em /painel/relatorio-consolidado
+   (mockup 06 "Relatório consolidado": semestre vigente).
+   -----------------------------------------------------------------------------
+   Extraído de RelatorioConsolidadoPage.module.css na separação "um componente
+   por arquivo" (item 6). Importa ReportShared.module.css ANTES deste, para
+   que .cardAction/.statsWide sobrescrevam as classes compartilhadas. */
+
+/* ------------------------------------------------------ controles */
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.semesterField {
+  width: 100%;
+  max-width: 360px;
+}
+
+.cardAction {
+  display: flex;
+}
+
+/* ------------------------------------- acompanhamento (barra) */
+.progressList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.progressRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.progressTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.progressLabel {
+  font-size: var(--font-size-md);
+  color: var(--color-text-body);
+}
+
+.progressValue {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+  white-space: nowrap;
+}
+
+.progressTrack {
+  display: block;
+  height: 8px;
+  overflow: hidden;
+  background-color: var(--color-border);
+  border-radius: var(--radius-pill);
+}
+
+.progressFill {
+  display: block;
+  height: 100%;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-pill);
+}
+
+/* larguras das barras (classes prontas — style inline é proibido) */
+.fill75 {
+  width: 75%;
+}
+
+.fill33 {
+  width: 33%;
+}
+
+/* ------------------------------------- projetos por status */
+.countList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.countRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.countValue {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+/* ------------------------------------------- desktop (≥1024px) */
+@media (min-width: 1024px) {
+  /* face do semestre: as 4 métricas em uma única linha (mockup 06) */
+  .statsWide {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

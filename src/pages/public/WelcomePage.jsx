@@ -166,9 +166,7 @@ export default function WelcomePage() {
       </div>
 
       <footer className={styles.footer}>
-        <span className={styles.footerSlogan}>
-          PI² · Ideias que multiplicam conhecimento
-        </span>
+        <span>PI² · Ideias que multiplicam conhecimento</span>
         <nav className={styles.footerLinks} aria-label="Links institucionais">
           <a href="#instituicao">Instituição</a>
           <Link to="/termos">Termos de uso</Link>

@@ -55,7 +55,6 @@ export default function Popover({ open, onClose, title, children, footer, classN
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -12, transition: { duration: 0.18 } }}
           transition={{ duration: 0.25, ease: EASE }}
-          style={{ transformOrigin: 'top' }}
         >
           <header className={styles.header}>
             <h2 className={styles.title}>{title}</h2>

@@ -32,6 +32,7 @@ import Button from '../components/ui/Button/Button.jsx';
 import Card from '../components/ui/Card/Card.jsx';
 import FilterChips from '../components/ui/FilterChips/FilterChips.jsx';
 import ListRow from '../components/ui/ListRow/ListRow.jsx';
+import PageHeader from '../components/ui/PageHeader/PageHeader.jsx';
 import SectionHeader from '../components/ui/SectionHeader/SectionHeader.jsx';
 import TextField from '../components/ui/TextField/TextField.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
@@ -66,12 +67,11 @@ export default function ProfilePage() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <h1 className={styles.title}>Meu perfil</h1>
-        <p className={styles.subtitle}>
-          Seu espaço, suas informações e suas preferências no PI².
-        </p>
-      </header>
+      <PageHeader
+        gap="lg"
+        title="Meu perfil"
+        lead="Seu espaço, suas informações e suas preferências no PI²."
+      />
 
       {/* coluna esquerda (dados) + coluna direita (preferências) no desktop */}
       <div className={styles.grid}>

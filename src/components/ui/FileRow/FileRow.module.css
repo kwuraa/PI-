@@ -1,0 +1,98 @@
+/* FileRow — linha de arquivo (ícone + nome + meta + ação). */
+
+/* ---------------------------------------------------------- linha base */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* padding lateral menor (12px em vez de 16px) */
+.dense {
+  padding: var(--space-3);
+}
+
+/* variantes de fundo */
+.surface {
+  background-color: var(--color-bg-surface);
+}
+
+.page {
+  background-color: var(--color-bg-page);
+}
+
+/* bare: só a borda (fundo do card por baixo) */
+
+/* variante de link (<a>): remove âncora e destaca no hover */
+.link {
+  text-decoration: none;
+  transition: border-color var(--transition-fast);
+}
+
+.link:hover {
+  border-color: var(--color-border-strong);
+}
+
+/* ------------------------------------------------------------ textos */
+.texts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+/* nome em linha única (ex.: vitrine de arquivos do projeto) */
+.nameTruncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------------------- ação à direita */
+.trailingIcon {
+  flex-shrink: 0;
+  margin-left: auto;
+  color: var(--color-text-muted);
+}
+
+.download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  transition: background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.download:hover {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+/* botão compacto quando os ícones da linha são menores (size < 24) */
+.downloadSm {
+  width: auto;
+  height: auto;
+  padding: var(--space-1);
+}

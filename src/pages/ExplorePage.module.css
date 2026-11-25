@@ -6,24 +6,6 @@
   gap: var(--space-8);
 }
 
-/* -------------------------------------------------- cabeçalho */
-.pageHeader {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.pageTitle {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-title);
-}
-
-.pageSubtitle {
-  font-size: var(--font-size-md);
-  color: var(--color-text-muted);
-}
-
 /* ------------------------------------- estado padrão (sem busca/filtros) */
 /* âncora da linha de busca: o painel de filtros é ABSOLUTO aqui dentro e
    desce de baixo da busca (sem overlay cobrindo a página) */

@@ -16,7 +16,7 @@
  * uma estrutura própria: sem descrição/tecnologias, com linha de status e
  * ação em rodapé. Mobile-first: 1 coluna; ≥1024px: 3 colunas.
  */
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   FiArrowDown,
@@ -32,7 +32,7 @@ import {
 
 import Badge from '../../components/ui/Badge/Badge.jsx';
 import StatCard from '../../components/ui/StatCard/StatCard.jsx';
-import { statusMeta } from '../../components/public/ProjectCard/ProjectCard.jsx';
+import { statusMeta, statusOptions } from '../../utils/status.js';
 import { useEngagement } from '../../context/EngagementContext.jsx';
 import {
   COURSE_SHORT,
@@ -40,16 +40,19 @@ import {
   getProjectsByIds,
 } from '../../mocks/projectsMock.js';
 import { formatNumber } from '../../utils/format.js';
+import useClickOutside from '../../hooks/useClickOutside.js';
+import useCopyToClipboard from '../../hooks/useCopyToClipboard.js';
 import styles from './MyProjectsPage.module.css';
 
 /** Período letivo exibido nos protótipos desktop (mesmo valor do TopBar). */
 const PERIOD = '2026.2';
 
-/** Opções do seletor "Todos (N)" da seção "Seus projetos". */
+/** Opções do seletor "Todos (N)" da seção "Seus projetos" (plural no mock). */
 const FILTERS = [
   { value: null, label: 'Todos' },
-  { value: 'em-analise', label: 'Em análise' },
-  { value: 'publicado', label: 'Publicados' },
+  ...statusOptions(['em-analise', 'publicado'], {
+    publicado: 'Publicados',
+  }),
 ];
 
 /** Contagem de projetos por filtro (null = todos). */
@@ -122,37 +125,15 @@ export default function MyProjectsPage() {
   const [openCardId, setOpenCardId] = useState(null);
   const cardRef = useRef(null);
   /* Feedback do "Copiar link" (2s, enquanto a caixinha segue aberta). */
-  const [copiedSlug, setCopiedSlug] = useState(null);
+  const { copied: copiedSlug, copy } = useCopyToClipboard();
 
   /* Fecha os menus ("Todos (N)" e "..." do cartão) ao clicar fora. */
-  useEffect(() => {
-    if (!menuOpen && !openCardId) return undefined;
-    const handleOutside = (event) => {
-      if (menuOpen && menuRef.current && !menuRef.current.contains(event.target)) {
-        setMenuOpen(false);
-      }
-      if (openCardId && cardRef.current && !cardRef.current.contains(event.target)) {
-        setOpenCardId(null);
-      }
-    };
-    document.addEventListener('mousedown', handleOutside);
-    return () => document.removeEventListener('mousedown', handleOutside);
-  }, [menuOpen, openCardId]);
-
-  /* Zera o aviso "Link copiado!" depois de 2s. */
-  useEffect(() => {
-    if (!copiedSlug) return undefined;
-    const id = setTimeout(() => setCopiedSlug(null), 2000);
-    return () => clearTimeout(id);
-  }, [copiedSlug]);
+  useClickOutside(menuRef, () => setMenuOpen(false), menuOpen);
+  useClickOutside(cardRef, () => setOpenCardId(null), Boolean(openCardId));
 
   /** Copia o link público do projeto e mostra o feedback no item. */
-  const handleCopyLink = (project) => {
-    navigator.clipboard?.writeText(
-      `${window.location.origin}/projeto/${project.slug}`,
-    );
-    setCopiedSlug(project.slug);
-  };
+  const handleCopyLink = (project) =>
+    copy(`${window.location.origin}/projeto/${project.slug}`);
 
   const visible =
     filter === null ? projects : projects.filter((p) => p.status === filter);

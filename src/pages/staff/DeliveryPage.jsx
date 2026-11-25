@@ -22,18 +22,20 @@ import {
   FiCheck,
   FiCheckSquare,
   FiClock,
-  FiDownload,
   FiExternalLink,
   FiFileText,
 } from 'react-icons/fi';
 
+import CalloutNotFound from '../../components/staff/CalloutNotFound.jsx';
 import Badge from '../../components/ui/Badge/Badge.jsx';
 import Button from '../../components/ui/Button/Button.jsx';
 import Callout from '../../components/ui/Callout/Callout.jsx';
 import Card from '../../components/ui/Card/Card.jsx';
+import FileList from '../../components/ui/FileList/FileList.jsx';
+import FileRow from '../../components/ui/FileRow/FileRow.jsx';
 import Modal from '../../components/ui/Modal/Modal.jsx';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader.jsx';
-import { statusMeta } from '../../components/public/ProjectCard/ProjectCard.jsx';
+import { statusMeta } from '../../utils/status.js';
 import {
   BANCA_EVIDENCE,
   COURSE_SHORT,
@@ -151,20 +153,15 @@ export default function DeliveryPage() {
               </span>
             }
           />
-          <ul className={styles.files}>
+          <FileList>
             {project.files.map((file) => (
-              <li key={file.id} className={styles.file}>
-                <FiFileText className={styles.fileIcon} aria-hidden="true" />
-                <span className={styles.fileText}>
-                  <strong>{file.name}</strong>
-                  <small>
-                    {file.kind} · {file.size}
-                  </small>
-                </span>
-                <FiDownload className={styles.fileDownload} aria-hidden="true" />
-              </li>
+              <FileRow
+                key={file.id}
+                name={file.name}
+                meta={`${file.kind} · ${file.size}`}
+              />
             ))}
-          </ul>
+          </FileList>
         </section>
 
         {live && (
@@ -265,23 +262,15 @@ export default function DeliveryPage() {
               <strong>Anexar fotos</strong>
               <span>JPG ou PNG · até 10 MB cada</span>
             </button>
-            <ul className={styles.files}>
+            <FileList>
               {photos.map((item) => (
-                <li key={item.id} className={styles.file}>
-                  <FiFileText className={styles.fileIcon} aria-hidden="true" />
-                  <span className={styles.fileText}>
-                    <strong>{item.name}</strong>
-                    <small>
-                      {item.kind} · {item.size}
-                    </small>
-                  </span>
-                  <FiDownload
-                    className={styles.fileDownload}
-                    aria-hidden="true"
-                  />
-                </li>
+                <FileRow
+                  key={item.id}
+                  name={item.name}
+                  meta={`${item.kind} · ${item.size}`}
+                />
               ))}
-            </ul>
+            </FileList>
           </div>
 
           <div className={styles.evidenceBlock}>
@@ -300,23 +289,15 @@ export default function DeliveryPage() {
               <strong>Anexar ata ou registro</strong>
               <span>PDF, DOCX ou TXT · até 5 MB</span>
             </button>
-            <ul className={styles.files}>
+            <FileList>
               {minutes.map((item) => (
-                <li key={item.id} className={styles.file}>
-                  <FiFileText className={styles.fileIcon} aria-hidden="true" />
-                  <span className={styles.fileText}>
-                    <strong>{item.name}</strong>
-                    <small>
-                      {item.kind} · {item.size}
-                    </small>
-                  </span>
-                  <FiDownload
-                    className={styles.fileDownload}
-                    aria-hidden="true"
-                  />
-                </li>
+                <FileRow
+                  key={item.id}
+                  name={item.name}
+                  meta={`${item.kind} · ${item.size}`}
+                />
               ))}
-            </ul>
+            </FileList>
           </div>
         </Card>
       </aside>
@@ -346,22 +327,5 @@ export default function DeliveryPage() {
         </div>
       </Modal>
     </div>
-  );
-}
-
-/** Estado vazio quando o slug não existe. */
-function CalloutNotFound() {
-  return (
-    <Callout
-      tone="danger"
-      title="Entrega não encontrada"
-      action={
-        <Link to="/painel">
-          <Button>Voltar ao painel</Button>
-        </Link>
-      }
-    >
-      Nenhuma entrega corresponde a este endereço.
-    </Callout>
   );
 }

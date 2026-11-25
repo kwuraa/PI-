@@ -15,22 +15,12 @@ import { FiAlertCircle, FiArrowRight } from 'react-icons/fi';
 import Badge from '../../components/ui/Badge/Badge.jsx';
 import Button from '../../components/ui/Button/Button.jsx';
 import Modal from '../../components/ui/Modal/Modal.jsx';
+import PageHeader from '../../components/ui/PageHeader/PageHeader.jsx';
 import StatCard from '../../components/ui/StatCard/StatCard.jsx';
 import TextField from '../../components/ui/TextField/TextField.jsx';
 import { GROUPS, PROJECTS } from '../../mocks/projectsMock.js';
+import { statusMeta } from '../../utils/status.js';
 import styles from './GroupsPage.module.css';
-
-const STATUS_TONES = {
-  rascunho: 'neutral',
-  'em-analise': 'warning',
-  publicado: 'success',
-};
-
-const STATUS_LABELS = {
-  rascunho: 'Rascunho',
-  'em-analise': 'Em análise',
-  publicado: 'Publicado',
-};
 
 export default function GroupsPage() {
   const [groups, setGroups] = useState(GROUPS);
@@ -65,14 +55,12 @@ export default function GroupsPage() {
 
   return (
     <div className={styles.page}>
-      <header className={styles.header}>
-        <Badge tone="primary">Acompanhamento dos projetos</Badge>
-        <h1 className={styles.title}>Gestão de grupos — DSM</h1>
-        <p className={styles.lead}>
-          Acompanhe as pendências, documentação e evolução consolidada dos
-          grupos de DSM.
-        </p>
-      </header>
+      <PageHeader
+        eyebrow={<Badge tone="primary">Acompanhamento dos projetos</Badge>}
+        gap="sm"
+        title="Gestão de grupos — DSM"
+        lead="Acompanhe as pendências, documentação e evolução consolidada dos grupos de DSM."
+      />
 
       <div className={styles.stats}>
         <StatCard tone="accent" value={groups.length} label="Grupos ativos" />
@@ -84,14 +72,13 @@ export default function GroupsPage() {
       <div className={styles.list}>
         {groups.map((group) => {
           const needsLink = group.pendingLabel && !group.docsUrl;
+          const status = statusMeta(group.status);
           return (
             <article key={group.id} className={styles.card}>
               <h3 className={styles.name}>{group.name}</h3>
 
               <div className={styles.meta}>
-                <Badge tone={STATUS_TONES[group.status] ?? 'neutral'}>
-                  {STATUS_LABELS[group.status] ?? group.status}
-                </Badge>
+                <Badge tone={status.tone}>{status.label}</Badge>
                 <span className={styles.semester}>{group.semesterLabel}</span>
               </div>
 

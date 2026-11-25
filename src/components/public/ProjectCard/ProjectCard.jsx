@@ -29,21 +29,8 @@ import { cardIn } from '../../../styles/motion.js';
 import { useEngagement } from '../../../context/EngagementContext.jsx';
 import { COURSE_SHORT, getTeam, teamDisplay } from '../../../mocks/projectsMock.js';
 import { formatNumber } from '../../../utils/format.js';
+import { statusMeta } from '../../../utils/status.js';
 import styles from './ProjectCard.module.css';
-
-/** Mapeia o status do projeto para o selo exibido. */
-export function statusMeta(status) {
-  switch (status) {
-    case 'publicado':
-      return { label: 'Publicado', tone: 'success' };
-    case 'em-analise':
-      return { label: 'Em análise', tone: 'warning' };
-    case 'ajustes':
-      return { label: 'Ajustes solicitados', tone: 'primary' };
-    default:
-      return { label: 'Rascunho', tone: 'neutral' };
-  }
-}
 
 export default function ProjectCard({ project, variant = 'public', action = null, index = 0 }) {
   const team = getTeam(project);

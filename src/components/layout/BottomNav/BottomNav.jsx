@@ -64,7 +64,7 @@ export default function BottomNav({ user }) {
                 )}
                 <Icon size={22} aria-hidden="true" />
               </span>
-              <span className={styles.label}>{label}</span>
+              <span>{label}</span>
             </>
           )}
         </NavLink>

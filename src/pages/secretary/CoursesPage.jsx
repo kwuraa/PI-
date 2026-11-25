@@ -26,6 +26,7 @@ import Badge from '../../components/ui/Badge/Badge.jsx';
 import Button from '../../components/ui/Button/Button.jsx';
 import Card from '../../components/ui/Card/Card.jsx';
 import Modal from '../../components/ui/Modal/Modal.jsx';
+import PageHeader from '../../components/ui/PageHeader/PageHeader.jsx';
 import Select from '../../components/ui/Select/Select.jsx';
 import TextField from '../../components/ui/TextField/TextField.jsx';
 import { COURSE_SHORT } from '../../mocks/projectsMock.js';
@@ -145,24 +146,25 @@ export default function CoursesPage() {
   return (
     <div className={styles.page}>
       {/* ------------------- cabeçalho (badge + h1 + lead + ação) */}
-      <header className={styles.header}>
-        <div className={styles.headerTexts}>
-          <span className={styles.eyebrow}>Gestão institucional</span>
-          <h1 className={styles.title}>Cadastro de Cursos</h1>
-          <p className={styles.lead}>
-            Gerencie os cursos ativos da instituição e mantenha os dados do
-            cadastro atualizados.
-          </p>
-        </div>
-        <button
-          type="button"
-          className={styles.newButton}
-          onClick={() => setOpen(true)}
-        >
-          <FiPlus aria-hidden="true" />
-          Cadastrar novo curso
-        </button>
-      </header>
+      <PageHeader
+        eyebrow="Gestão institucional"
+        gap="sm"
+        actionsGap="md"
+        leadNarrow
+        split="lg"
+        title="Cadastro de Cursos"
+        lead="Gerencie os cursos ativos da instituição e mantenha os dados do cadastro atualizados."
+        actions={
+          <button
+            type="button"
+            className={styles.newButton}
+            onClick={() => setOpen(true)}
+          >
+            <FiPlus aria-hidden="true" />
+            Cadastrar novo curso
+          </button>
+        }
+      />
 
       {/* ------------- conteúdo: lista (esq.) + painel (dir.) */}
       <div className={styles.content}>

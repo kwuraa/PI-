@@ -13,18 +13,16 @@ import { FiArrowRight, FiClock } from 'react-icons/fi';
 
 import Badge from '../../components/ui/Badge/Badge.jsx';
 import FilterChips from '../../components/ui/FilterChips/FilterChips.jsx';
+import PageHeader from '../../components/ui/PageHeader/PageHeader.jsx';
 import SearchField from '../../components/ui/SearchField/SearchField.jsx';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader.jsx';
 import StatCard from '../../components/ui/StatCard/StatCard.jsx';
-import { statusMeta } from '../../components/public/ProjectCard/ProjectCard.jsx';
+import { statusMeta, statusOptions } from '../../utils/status.js';
 import { COURSE_SHORT, PROJECTS, teamDisplay } from '../../mocks/projectsMock.js';
 import styles from './DeliveriesPage.module.css';
 
 /** Situações de entrega (valores EXATOS do mock: 'em-analise' | 'publicado'). */
-const STATUS_FILTERS = [
-  { value: 'em-analise', label: 'Em análise' },
-  { value: 'publicado', label: 'Publicado' },
-];
+const STATUS_FILTERS = statusOptions(['em-analise', 'publicado']);
 
 export default function DeliveriesPage() {
   const [query, setQuery] = useState('');
@@ -51,14 +49,13 @@ export default function DeliveriesPage() {
   return (
     <div className={styles.page}>
       {/* ------------------------------------------- cabeçalho */}
-      <header className={styles.header}>
-        <Badge tone="primary">Área do professor</Badge>
-        <h1 className={styles.title}>Trabalhos enviados</h1>
-        <p className={styles.subtitle}>
-          Acompanhe as entregas dos alunos e acesse os materiais de cada
-          projeto.
-        </p>
-      </header>
+      <PageHeader
+        eyebrow={<Badge tone="primary">Área do professor</Badge>}
+        gap="md"
+        titleLine="normal"
+        title="Trabalhos enviados"
+        lead="Acompanhe as entregas dos alunos e acesse os materiais de cada projeto."
+      />
 
       {/* ---------------------------------------- estatísticas */}
       <div className={styles.stats}>

@@ -179,58 +179,6 @@
   color: var(--color-text-muted);
 }
 
-/* arquivo enviado (Relatório_EcoCampus.pdf) */
-.fileRow {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3);
-  padding: var(--space-3) var(--space-4);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-}
-
-.fileIcon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  padding: var(--space-2);
-  background-color: var(--color-primary-soft);
-  border-radius: var(--radius-sm);
-  color: var(--color-primary);
-}
-
-.fileTexts {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  min-width: 0;
-}
-
-.fileTexts strong {
-  font-size: var(--font-size-sm);
-  color: var(--color-text-title);
-}
-
-.fileTexts span {
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
-}
-
-.fileDownload {
-  display: inline-flex;
-  margin-left: auto;
-  padding: var(--space-1);
-  background: none;
-  border: 0;
-  color: var(--color-text-muted);
-  cursor: pointer;
-}
-
-.fileDownload:hover {
-  color: var(--color-text-title);
-}
-
 /* --------------------------- banner "Aguardando o parecer" */
 .waitBanner {
   display: flex;

@@ -1,0 +1,13 @@
+/* RouteFallback — estado de carregamento de uma rota com React.lazy.
+   Ocupa a área de conteúdo (onde a página entraria), centrado, para não
+   parecer uma tela em branco enquanto o chunk chega. */
+
+.fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  padding: var(--space-6) var(--space-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}

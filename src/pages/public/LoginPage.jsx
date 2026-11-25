@@ -82,7 +82,7 @@ export default function LoginPage() {
           aria-label="Voltar para a boas-vindas"
         >
           <FiArrowLeft size={20} aria-hidden="true" />
-          <span className={styles.backLabel}>Acessar o PI²</span>
+          <span>Acessar o PI²</span>
         </button>
       </div>
 

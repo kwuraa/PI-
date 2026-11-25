@@ -7,42 +7,6 @@
 }
 
 /* ------------------------------------------------- cabeçalho */
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-3);
-}
-
-.headerTexts {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-2);
-}
-
-.eyebrow {
-  padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-pill);
-  background-color: var(--color-primary-soft);
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-primary);
-}
-
-.title {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-title);
-}
-
-.lead {
-  max-width: 60ch;
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-muted);
-}
-
 .newButton {
   display: inline-flex;
   align-items: center;
@@ -329,12 +293,6 @@
 
 /* ------------------------------------------------- desktop */
 @media (min-width: 1024px) {
-  .header {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   .content {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 380px;

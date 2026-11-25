@@ -19,14 +19,15 @@ import {
   useParams,
   useSearchParams,
 } from 'react-router-dom';
-import { FiCheck, FiCircle, FiClock, FiDownload, FiFileText, FiLock, FiSend } from 'react-icons/fi';
+import { FiCheck, FiCircle, FiClock, FiLock, FiSend } from 'react-icons/fi';
 
 import Avatar from '../../components/ui/Avatar/Avatar.jsx';
 import Badge from '../../components/ui/Badge/Badge.jsx';
 import Button from '../../components/ui/Button/Button.jsx';
 import Callout from '../../components/ui/Callout/Callout.jsx';
 import Card from '../../components/ui/Card/Card.jsx';
-import { statusMeta } from '../../components/public/ProjectCard/ProjectCard.jsx';
+import FileRow from '../../components/ui/FileRow/FileRow.jsx';
+import { statusMeta } from '../../utils/status.js';
 import {
   ANALYSIS_STEPS,
   ANALYSIS_WATCHERS,
@@ -138,24 +139,15 @@ export default function ProjectStatusPage() {
               </div>
 
               {file && (
-                <div className={styles.fileRow}>
-                  <span className={styles.fileIcon}>
-                    <FiFileText size={18} aria-hidden="true" />
-                  </span>
-                  <span className={styles.fileTexts}>
-                    <strong>{file.name}</strong>
-                    <span>
-                      {file.kind} · {file.size} · Enviado para análise
-                    </span>
-                  </span>
-                  <button
-                    type="button"
-                    className={styles.fileDownload}
-                    aria-label={`Baixar ${file.name}`}
-                  >
-                    <FiDownload size={18} aria-hidden="true" />
-                  </button>
-                </div>
+                <FileRow
+                  as="div"
+                  name={file.name}
+                  meta={`${file.kind} · ${file.size} · Enviado para análise`}
+                  icon="square-sm"
+                  action="download"
+                  variant="bare"
+                  size={18}
+                />
               )}
             </Card>
           </div>

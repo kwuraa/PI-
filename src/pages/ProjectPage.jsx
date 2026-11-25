@@ -33,80 +33,34 @@
  *    "Engajamento" (views/curtidas + like), a equipe e os arquivos do
  *    projeto.
  */
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import {
-  FiAlertTriangle,
-  FiCheckCircle,
-  FiDownload,
-  FiEdit2,
-  FiEye,
-  FiFileText,
-  FiHeart,
-  FiSend,
-  FiTrash2,
-} from 'react-icons/fi';
+import { FiCheckCircle } from 'react-icons/fi';
 
-import Avatar from '../components/ui/Avatar/Avatar.jsx';
-import Badge from '../components/ui/Badge/Badge.jsx';
+import ProjectComments from '../components/project/ProjectComments.jsx';
+import ProjectSidebar from '../components/project/ProjectSidebar.jsx';
 import Button from '../components/ui/Button/Button.jsx';
 import Callout from '../components/ui/Callout/Callout.jsx';
 import Card from '../components/ui/Card/Card.jsx';
 import SectionHeader from '../components/ui/SectionHeader/SectionHeader.jsx';
-import TextField from '../components/ui/TextField/TextField.jsx';
-import { statusMeta } from '../components/public/ProjectCard/ProjectCard.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { useEngagement } from '../context/EngagementContext.jsx';
-import {
-  COURSE,
-  COURSE_SHORT,
-  getProjectBySlug,
-  getTeam,
-  teamDisplay,
-} from '../mocks/projectsMock.js';
-import { formatNumber } from '../utils/format.js';
+import { getProjectBySlug, getTeam } from '../mocks/projectsMock.js';
 import styles from './ProjectPage.module.css';
 
 export default function ProjectPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { user, isRole } = useAuth();
+  const { user } = useAuth();
   const project = getProjectBySlug(slug);
 
-  /** Métricas públicas: views (uma por sessão) e curtidas dos projetos. */
-  const { registerView, viewsFor, likesFor, hasLiked, toggleLike } = useEngagement();
+  const { registerView } = useEngagement();
 
   const isLogged = Boolean(user);
   const team = getTeam(project);
-  const display = project ? teamDisplay(project, { publicView: !isLogged }) : null;
+  /** Dono do projeto (aluno da equipe) — decide ações e a nota de "curtir". */
   const isOwner = Boolean(
     user && team && team.members.includes(user.name)
-  );
-  /** Espaço ativo de moderação: professor ou coordenador exclui qualquer comentário. */
-  const canModerate = isRole('professor') || isRole('coordenador');
-
-  /** Comentários em estado local (o envio só existe na área logada). */
-  const [comment, setComment] = useState('');
-  const [extraComments, setExtraComments] = useState([]);
-  /** Edições (id → texto) e exclusões (ids) aplicadas sobre os comentários. */
-  const [editedTexts, setEditedTexts] = useState({});
-  const [deletedIds, setDeletedIds] = useState([]);
-  /** Em edição: qual comentário e o texto no campo. */
-  const [editId, setEditId] = useState(null);
-  const [editText, setEditText] = useState('');
-  /** Exclusão em confirmação (evita apagar sem querer). */
-  const [confirmId, setConfirmId] = useState(null);
-
-  const comments = useMemo(
-    () =>
-      [...(project?.comments ?? []), ...extraComments]
-        .filter((item) => !deletedIds.includes(item.id))
-        .map((item) =>
-          editedTexts[item.id] !== undefined
-            ? { ...item, text: editedTexts[item.id] }
-            : item
-        ),
-    [project, extraComments, deletedIds, editedTexts]
   );
 
   /* Contabiliza a visita (uma view por sessão do navegador — protegido
@@ -126,14 +80,6 @@ export default function ProjectPage() {
     );
   }
 
-  const status = statusMeta(project.status);
-
-  /** Métricas públicas do projeto (views da sessão + curtidas totais). */
-  const views = viewsFor(project.slug);
-  const likes = likesFor(project.slug);
-  /** Este usuário logado já curtiu? (só faz sentido com conta). */
-  const liked = hasLiked(project.slug, user?.id);
-
   /** Linha de meta sob o h1: "Tipo · 2026.2 · Publicado em 02 out. 2026 · 24 salvos". */
   const period = project.year
     ? `${project.year}.${project.semester}`
@@ -147,55 +93,6 @@ export default function ProjectPage() {
     published,
     `${project.saves} salvos`,
   ].join(' · ');
-
-  const handleComment = (event) => {
-    event.preventDefault();
-    const text = comment.trim();
-    if (!text) return;
-    setExtraComments((prev) => [
-      ...prev,
-      {
-        id: `cmt-local-${prev.length + 1}`,
-        author: user.name,
-        initials: user.initials,
-        when: 'Agora',
-        text,
-        team: team?.members.includes(user.name) ?? false,
-      },
-    ]);
-    setComment('');
-  };
-
-  /* --------------------------- moderação dos comentários
-     (editar: só o autor; excluir: o autor OU professor/coordenador) */
-  const startEdit = (item) => {
-    setConfirmId(null);
-    setEditId(item.id);
-    setEditText(item.text);
-  };
-
-  const cancelEdit = () => {
-    setEditId(null);
-    setEditText('');
-  };
-
-  const submitEdit = (event, item) => {
-    event.preventDefault();
-    const text = editText.trim();
-    if (!text) return;
-    setEditedTexts((prev) => ({ ...prev, [item.id]: text }));
-    cancelEdit();
-  };
-
-  const askDelete = (id) => {
-    cancelEdit();
-    setConfirmId(id);
-  };
-
-  const deleteComment = (id) => {
-    setDeletedIds((prev) => (prev.includes(id) ? prev : [...prev, id]));
-    setConfirmId(null);
-  };
 
   return (
     <div className={styles.page}>
@@ -261,159 +158,7 @@ export default function ProjectPage() {
           )}
 
           {/* ----------------------------------------------- comentários */}
-          <Card padding="md" className={styles.commentsCard}>
-            <SectionHeader
-              title={`Comentários · ${comments.length} ${
-                comments.length === 1 ? 'comentário' : 'comentários'
-              }`}
-            />
-
-            {/* Lista de comentários RESERVADA a quem está logado (os autores
-                podem ter nome real — LGPD); o visitante vê só a contagem e
-                o convite de acesso. */}
-            {isLogged && comments.length === 0 && (
-              <p className={styles.emptyComments}>
-                Seja o primeiro a comentar este projeto.
-              </p>
-            )}
-
-            {isLogged && (
-              <ul className={styles.comments}>
-                {comments.map((item) => {
-                  /* Dono do comentário (aluno que o publicou). */
-                  const isOwn = item.author === user.name;
-                  const canEdit = isOwn; /* edição: SÓ o próprio comentário */
-                  const canDelete = isOwn || canModerate;
-                  const isEditing = editId === item.id;
-                  const wasEdited = editedTexts[item.id] !== undefined;
-
-                  return (
-                    <li key={item.id} className={styles.comment}>
-                      <Avatar
-                        initials={item.initials ?? '·'}
-                        tone={item.team ? 'primary' : 'neutral'}
-                        size="sm"
-                      />
-                      <div className={styles.commentBody}>
-                        <p className={styles.commentHead}>
-                          <strong>{item.author}</strong>
-                          <span>
-                            {item.when}
-                            {wasEdited ? ' · editado' : ''}
-                          </span>
-                        </p>
-
-                        {isEditing ? (
-                          <form
-                            className={styles.commentEdit}
-                            onSubmit={(event) => submitEdit(event, item)}
-                          >
-                            <textarea
-                              className={styles.commentEditText}
-                              rows={3}
-                              aria-label={`Editar comentário de ${item.author}`}
-                              value={editText}
-                              onChange={(event) => setEditText(event.target.value)}
-                              autoFocus
-                            />
-                            <div className={styles.commentEditActions}>
-                              <Button type="submit" size="sm" disabled={!editText.trim()}>
-                                Salvar
-                              </Button>
-                              <Button
-                                type="button"
-                                variant="ghost"
-                                size="sm"
-                                onClick={cancelEdit}
-                              >
-                                Cancelar
-                              </Button>
-                            </div>
-                          </form>
-                        ) : (
-                          <>
-                            <p className={styles.commentText}>{item.text}</p>
-
-                            {(canEdit || canDelete) && (
-                              <div className={styles.commentActions}>
-                                {canEdit && (
-                                  <button
-                                    type="button"
-                                    className={styles.commentAction}
-                                    onClick={() => startEdit(item)}
-                                  >
-                                    <FiEdit2 size={14} aria-hidden="true" />
-                                    Editar
-                                  </button>
-                                )}
-
-                                {canDelete &&
-                                  (confirmId === item.id ? (
-                                    <span className={styles.commentConfirm}>
-                                      Excluir este comentário?
-                                      <button
-                                        type="button"
-                                        className={styles.commentActionDanger}
-                                        onClick={() => deleteComment(item.id)}
-                                      >
-                                        Sim, excluir
-                                      </button>
-                                      <button
-                                        type="button"
-                                        className={styles.commentAction}
-                                        onClick={() => setConfirmId(null)}
-                                      >
-                                        Manter
-                                      </button>
-                                    </span>
-                                  ) : (
-                                    <button
-                                      type="button"
-                                      className={styles.commentAction}
-                                      onClick={() => askDelete(item.id)}
-                                    >
-                                      <FiTrash2 size={14} aria-hidden="true" />
-                                      Excluir
-                                    </button>
-                                  ))}
-                              </div>
-                            )}
-                          </>
-                        )}
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-
-            {isLogged ? (
-              <form className={styles.commentForm} onSubmit={handleComment}>
-                <TextField
-                  label="Participe da conversa"
-                  placeholder="Escreva um comentário..."
-                  value={comment}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-                <Button
-                  type="submit"
-                  icon={<FiSend aria-hidden="true" />}
-                  disabled={!comment.trim()}
-                >
-                  Enviar comentário
-                </Button>
-              </form>
-            ) : (
-              <Callout
-                tone="neutral"
-                icon={<FiAlertTriangle size={20} aria-hidden="true" />}
-                title="Entre para comentar"
-              >
-                <Link to="/login">Acesse com sua conta institucional</Link> para
-                comentar e acompanhar novidades.
-              </Callout>
-            )}
-          </Card>
+          <ProjectComments project={project} />
 
           {/* ------------------------------------ ações do dono / visitante */}
           {isOwner && project.status === 'em-analise' && (
@@ -444,144 +189,11 @@ export default function ProjectPage() {
 
         {/* ================================= coluna direita (resumo, sticky) */}
         <aside className={styles.side} aria-label="Resumo do projeto">
-          {/* --------------------------------------------- pílulas */}
-          <div className={styles.pills}>
-            <Badge tone="primary">{COURSE_SHORT}</Badge>
-            <Badge tone={status.tone}>{status.label}</Badge>
-            {!isLogged && <Badge tone="neutral">Visualização pública</Badge>}
-          </div>
-
-          {/* ------------------------------------------ engajamento
-              Views (uma por sessão) + curtidas, visíveis para todos.
-              O botão de like é só para PROJETOS PUBLICADOS e quem tem
-              conta (aluno/professor…); o visitante vê o convite e a
-              EQUIPE dona do projeto não curte o próprio projeto. */}
-          <Card padding="md" className={styles.engagementCard}>
-            <SectionHeader title="Engajamento" />
-            <div className={styles.metrics}>
-              <span className={styles.metric}>
-                <FiEye aria-hidden="true" />
-                <strong>{formatNumber(views)}</strong> visualizações
-              </span>
-              <span className={styles.metric}>
-                <FiHeart aria-hidden="true" />
-                <strong>{formatNumber(likes)}</strong> curtidas
-              </span>
-            </div>
-
-            {project.status === 'publicado' &&
-              (isOwner ? (
-                /* Regra: a equipe não curte o próprio projeto — a contagem
-                   é da comunidade. Só a equipe vê a nota (o visitante não
-                   tem como ser dono). */
-                <p className={styles.ownerLikeNote}>
-                  Projeto da sua equipe — curtir conta para a comunidade.
-                </p>
-              ) : isLogged ? (
-                <Button
-                  fullWidth
-                  variant={liked ? 'primary' : 'secondary'}
-                  icon={
-                    <FiHeart
-                      fill={liked ? 'currentColor' : 'none'}
-                      aria-hidden="true"
-                    />
-                  }
-                  onClick={() => toggleLike(project.slug, user.id)}
-                  aria-pressed={liked}
-                >
-                  {liked ? 'Curtido' : 'Curtir projeto'}
-                </Button>
-              ) : (
-                <Button
-                  fullWidth
-                  variant="secondary"
-                  icon={<FiHeart aria-hidden="true" />}
-                  onClick={() => navigate('/login')}
-                >
-                  Entre para curtir
-                </Button>
-              ))}
-          </Card>
-
-          {/* ------------------------------------------------- equipe */}
-          <Card padding="md" className={styles.teamCard}>
-            <SectionHeader title="Desenvolvido por:" />
-            {isLogged ? (
-              <>
-                <ul className={styles.members}>
-                  {team.members.map((member) => (
-                    <li key={member} className={styles.person}>
-                      <Avatar
-                        initials={member
-                          .split(' ')
-                          .map((n) => n[0])
-                          .slice(0, 2)
-                          .join('')}
-                        tone="neutral"
-                        size="sm"
-                      />
-                      <span className={styles.personTexts}>
-                        <strong>{member}</strong>
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <div className={styles.person}>
-                  <Avatar
-                    initials={team.advisorInitials}
-                    tone="primary"
-                    size="sm"
-                  />
-                  <span className={styles.personTexts}>
-                    <strong>{team.advisor}</strong>
-                    <span>Orientador</span>
-                  </span>
-                </div>
-              </>
-            ) : (
-              <div className={styles.person}>
-                <Avatar initials={COURSE_SHORT} tone="primary" size="sm" />
-                <span className={styles.personTexts}>
-                  <strong>{display.primary}</strong>
-                  <span>{COURSE}</span>
-                </span>
-              </div>
-            )}
-          </Card>
-
-          {/* ----------------------------------------------- arquivos */}
-          {isLogged && project.files.length > 0 && (
-            <Card padding="md" className={styles.filesCard}>
-              <SectionHeader title="Arquivos do projeto" />
-              <a className={styles.filesCount} href="#arquivos-do-projeto">
-                {project.files.length}{' '}
-                {project.files.length === 1 ? 'arquivo' : 'arquivos'}
-              </a>
-              <ul className={styles.files} id="arquivos-do-projeto">
-                {project.files.map((file) => (
-                  <li key={file.id} className={styles.file}>
-                    <span className={styles.fileIcon} aria-hidden="true">
-                      <FiFileText />
-                    </span>
-                    <span className={styles.fileTexts}>
-                      <strong>{file.name}</strong>
-                      <span>
-                        {file.kind} · {file.size}
-                      </span>
-                    </span>
-                    <button
-                      type="button"
-                      className={styles.fileDownload}
-                      aria-label={`Baixar ${file.name}`}
-                    >
-                      <FiDownload aria-hidden="true" />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          )}
+          <ProjectSidebar
+            project={project}
+            isLogged={isLogged}
+            isOwner={isOwner}
+          />
         </aside>
       </div>
     </div>

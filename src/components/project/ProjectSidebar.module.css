@@ -1,0 +1,101 @@
+/* ProjectSidebar — coluna direita (sticky) da página de detalhe do projeto:
+   pílulas de status, card "Engajamento" (views/curtidas + like), a equipe
+   e os arquivos. Espelha a coluna DIREITA do mockup desktop 02.
+   Regras movidas de ProjectPage.module.css na separação da página. */
+.pills {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* ---------------------------------------- card "Engajamento"
+   Views (uma por sessão) + curtidas do projeto, com o botão de like
+   para projetos publicados (logado) ou o convite de acesso (visitante). */
+.engagementCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.metrics {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.metric strong {
+  color: var(--color-text-title);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Nota exibida no lugar do botão para a EQUIPE dona do projeto:
+   não é possível curtir o próprio projeto (a contagem é da comunidade). */
+.ownerLikeNote {
+  padding: var(--space-3);
+  background-color: var(--color-bg-page);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+/* ----------------------------------------------------- equipe */
+.teamCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.members {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.personTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.personTexts strong {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-title);
+}
+
+.personTexts span {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------------------------- arquivos */
+.filesCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.filesCount {
+  align-self: flex-start;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}

@@ -14,6 +14,7 @@ import Callout from '../../components/ui/Callout/Callout.jsx';
 import Card from '../../components/ui/Card/Card.jsx';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader.jsx';
 import { getProjectBySlug, getTeam } from '../../mocks/projectsMock.js';
+import { statusMeta } from '../../utils/status.js';
 import styles from './ReviewResultPage.module.css';
 
 const APPROVED_MESSAGE =
@@ -72,7 +73,7 @@ export default function ReviewResultPage() {
       <Card padding="md" className={styles.summary}>
         <div className={styles.summaryTop}>
           <Badge tone={approved ? 'success' : 'warning'}>
-            {approved ? 'Publicado' : 'Ajustes solicitados'}
+            {statusMeta(approved ? 'publicado' : 'ajustes').label}
           </Badge>
           <span className={styles.summaryMeta}>
             {approved

@@ -21,6 +21,7 @@ import { FiArrowLeft, FiDownload, FiLock } from 'react-icons/fi';
 import Badge from '../../components/ui/Badge/Badge.jsx';
 import Button from '../../components/ui/Button/Button.jsx';
 import Card from '../../components/ui/Card/Card.jsx';
+import PageHeader from '../../components/ui/PageHeader/PageHeader.jsx';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader.jsx';
 import Select from '../../components/ui/Select/Select.jsx';
 import { GROUP_EVOLUTION } from '../../mocks/projectsMock.js';
@@ -37,13 +38,13 @@ export default function EvolutionPage() {
         Painel do professor
       </Link>
 
-      <header className={styles.head}>
-        <h1 className={styles.title}>Evolução do grupo</h1>
-        <p className={styles.lead}>
-          Acompanhe o histórico, marcos e entregas do grupo ao longo dos
-          semestres.
-        </p>
-      </header>
+      <PageHeader
+        gap="sm"
+        titleLine="normal"
+        className={styles.pageHeader}
+        title="Evolução do grupo"
+        lead="Acompanhe o histórico, marcos e entregas do grupo ao longo dos semestres."
+      />
 
       {/* --------------------------------- grupo selecionado */}
       <Card padding="md" className={styles.selector}>

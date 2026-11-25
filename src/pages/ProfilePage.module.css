@@ -6,23 +6,6 @@
   gap: var(--space-10);
 }
 
-.header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-
-.title {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-text-title);
-}
-
-.subtitle {
-  font-size: var(--font-size-md);
-  color: var(--color-text-muted);
-}
-
 /* ------------------------------------------------- layout em colunas */
 .grid {
   display: flex;

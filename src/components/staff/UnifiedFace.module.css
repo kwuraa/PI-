@@ -1,0 +1,66 @@
+/* UnifiedFace — face unificada professor + coordenador, com abas (mockup 07).
+   -----------------------------------------------------------------------------
+   Extraído de StaffPanel.module.css na separação "um componente por arquivo"
+   (item 6): seções professor/coordenador lado a lado, card único de métricas
+   e a aba "Atalhos". Usa `.stats`, `.block` e `.blockTitle` de
+   StaffPanelShared.module.css. */
+
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+/* ------------------------------- card único "Como coordenador" (2 linhas) */
+.combinedCard {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-1) var(--space-5);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.combinedRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
+}
+
+.combinedRow + .combinedRow {
+  border-top: 1px solid var(--color-border);
+}
+
+.combinedLabel {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+.combinedIcon {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+}
+
+.combinedIconAlt {
+  color: var(--color-primary);
+}
+
+/* base mobile: as colunas empilham */
+.splitTwo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+@media (min-width: 1024px) {
+  /* "Como professor" | "Como coordenador" e abas do Atalhos */
+  .splitTwo {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+    align-items: start;
+  }
+}

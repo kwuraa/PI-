@@ -1,0 +1,67 @@
+/* ReportShared — estrutura compartilhada pelas DUAS faces do relatório
+   consolidado (SemesterReport e CohortReport).
+   -----------------------------------------------------------------------------
+   Extraído de RelatorioConsolidadoPage.module.css na separação "um componente
+   por arquivo" (item 6): a grade de métricas, as duas colunas (principal +
+   lateral) e o card com título/legenda são idênticos nas duas faces.
+   IMPORTANTE: importar este módulo ANTES do módulo da face, para que as
+   classes da face (ex.: .filterCard) sobrescrevam as daqui.
+   Só design tokens de variables.css. */
+
+/* ------------------------------------------------------- métricas */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: var(--space-4);
+}
+
+/* ------------------------------------------- colunas principal/lateral */
+.columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-5);
+}
+
+.sideColumn {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* ------------------------------------------------------------ cards */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.cardTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+/* legenda em pé de card ("Indicadores parciais…", "Média geral: …") */
+.cardNote {
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------------------- tablet (≥768px) */
+@media (min-width: 768px) {
+  /* duas métricas por linha (faces de 2 e de 4 StatCards) */
+  .stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* relatório: coluna principal + coluna lateral */
+  .columns {
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+
+  .sideColumn {
+    gap: var(--space-6);
+  }
+}

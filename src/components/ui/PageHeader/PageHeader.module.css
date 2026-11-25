@@ -1,0 +1,119 @@
+/* PageHeader — cabecera estándar de página. */
+
+/* ------------------------------------------------------- contenedor */
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.gapSm {
+  gap: var(--space-2);
+}
+
+.gapMd {
+  gap: var(--space-3);
+}
+
+.gapLg {
+  gap: var(--space-4);
+}
+
+/* bloco de textos (eyebrow + título + lead) */
+.texts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* ---------------------------------------------------------- eyebrow */
+/* pill suave sin mayúsculas (ej.: "Gestão institucional") */
+.eyebrow {
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary-soft);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+/* pill en mayúsculas (ej.: "AJUDA E SUPORTE") */
+.eyebrowCaps {
+  composes: eyebrow;
+  letter-spacing: var(--letter-spacing-caps);
+  text-transform: uppercase;
+}
+
+/* ----------------------------------------------------------- título */
+.title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-title);
+}
+
+/* variante con interlínea holgada (títulos de 2 líneas) */
+.titleNormal {
+  line-height: var(--line-height-normal);
+}
+
+/* ------------------------------------------------------------- lead */
+.lead {
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+}
+
+/* medida de leitura (60ch) para leads largos */
+.leadNarrow {
+  max-width: 60ch;
+}
+
+/* ------------------------------------------- fila de acciones arriba */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* ---------------------------------------------------- acciones abajo */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+/* ---------------------------------- textos a la izquierda, a la derecha */
+@media (min-width: 768px) {
+  .splitMd {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+
+  .splitMd .actions {
+    width: auto;
+    flex-shrink: 0;
+    justify-content: flex-end;
+  }
+}
+
+@media (min-width: 1024px) {
+  .splitLg {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+
+  .splitLg .actions {
+    width: auto;
+    flex-shrink: 0;
+    justify-content: flex-end;
+  }
+}

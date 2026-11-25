@@ -15,19 +15,21 @@
 import { Link } from 'react-router-dom';
 import { FiMail, FiMessageCircle, FiChevronDown } from 'react-icons/fi';
 
+import PageHeader from '../components/ui/PageHeader/PageHeader.jsx';
 import styles from './HelpPage.module.css';
 
 export default function HelpPage() {
   return (
     <div className={styles.page}>
       {/* ---------- cabeçalho da página (badge + h1 + subtítulo) ---------- */}
-      <header className={styles.header}>
-        <span className={styles.badge}>Ajuda e suporte</span>
-        <h1 className={styles.title}>Como podemos ajudar?</h1>
-        <p className={styles.subtitle}>
-          Respostas rápidas sobre acesso, publicação e privacidade no PI².
-        </p>
-      </header>
+      <PageHeader
+        eyebrow="Ajuda e suporte"
+        caps
+        gap="sm"
+        titleLine="normal"
+        title="Como podemos ajudar?"
+        lead="Respostas rápidas sobre acesso, publicação e privacidade no PI²."
+      />
 
       {/* ---------- seção 1: canais de atendimento ---------- */}
       <section className={styles.section} aria-labelledby="ajuda-suporte">

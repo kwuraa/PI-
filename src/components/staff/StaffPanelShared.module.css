@@ -1,0 +1,27 @@
+/* StaffPanelShared — estrutura compartilhada pelas três faces do painel.
+   -----------------------------------------------------------------------------
+   Extraído de StaffPanel.module.css na separação "um componente por arquivo"
+   (item 6): `.stats` é usada pelas TRÊS faces e `.block`/`.blockTitle` pelas
+   duas que abrem blocos com título (professor e unificado). Cada face importa
+   este módulo ao lado do seu próprio. Só design tokens de variables.css. */
+
+/* gap 20px: respiro entre os dois cards como no mockup 04 (antes colavam) */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+  gap: var(--space-5);
+}
+
+/* respiro título → cards igual ao mockup 04 (o título não "gruda" na
+   métrica de cima nem nos cards de baixo) */
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.blockTitle {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}

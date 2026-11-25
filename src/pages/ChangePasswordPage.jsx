@@ -16,6 +16,7 @@ import { FiAlertCircle, FiCheckCircle, FiKey } from 'react-icons/fi';
 import Button from '../components/ui/Button/Button.jsx';
 import Callout from '../components/ui/Callout/Callout.jsx';
 import Card from '../components/ui/Card/Card.jsx';
+import PageHeader from '../components/ui/PageHeader/PageHeader.jsx';
 import TextField from '../components/ui/TextField/TextField.jsx';
 import styles from './ChangePasswordPage.module.css';
 
@@ -64,13 +65,14 @@ export default function ChangePasswordPage() {
   return (
     <div className={styles.page}>
       {/* -------------------------------------------------- cabeçalho */}
-      <header className={styles.header}>
-        <span className={styles.badge}>Conta e segurança</span>
-        <h1 className={styles.title}>Alterar sua senha</h1>
-        <p className={styles.subtitle}>
-          Mantenha sua conta protegida com uma senha que só você conhece.
-        </p>
-      </header>
+      <PageHeader
+        eyebrow="Conta e segurança"
+        caps
+        gap="sm"
+        titleLine="normal"
+        title="Alterar sua senha"
+        lead="Mantenha sua conta protegida com uma senha que só você conhece."
+      />
 
       {saved ? (
         /* -------------------------------------- sucesso (simulado) */

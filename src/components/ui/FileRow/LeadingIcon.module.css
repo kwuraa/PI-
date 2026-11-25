@@ -1,0 +1,37 @@
+/* LeadingIcon — ícone à esquerda do FileRow, por variante. */
+
+.iconPlain {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.iconCircle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-pill);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.iconSquare,
+.iconSquareSm {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: var(--space-2);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.iconSquare {
+  border-radius: var(--radius-md);
+}
+
+.iconSquareSm {
+  border-radius: var(--radius-sm);
+}

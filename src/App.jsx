@@ -11,6 +11,9 @@
  *  • StackShell   → variantes de barra superior empilhada (detalhes), que
  *    resolvem o título a partir dos parâmetros da rota (/projeto/:slug e
  *    as rotas /painel/* de detalhe).
+ *  • React.lazy   → as 25 telas são importadas por chunk (item 7) e o
+ *    <Suspense> mostra o RouteFallback enquanto o chunk chega; layouts,
+ *    guardas e mockados continuam síncronos no bundle principal.
  *
  * Regras RBAC (useAuth):
  *  • /aluno*            → apenas 'aluno';
@@ -21,273 +24,247 @@
  *  • /secretaria/cursos → 'secretaria';
  *  • /perfil            → qualquer usuário logado (visitante vê o convite).
  */
-import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useParams,
-  useSearchParams,
-} from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 import MainLayout from './components/layout/MainLayout/MainLayout.jsx';
 import PublicLayout from './components/layout/PublicLayout/PublicLayout.jsx';
-import { useAuth } from './context/AuthContext.jsx';
+import RequireRole from './components/routing/RequireRole.jsx';
+import RouteFallback from './components/routing/RouteFallback.jsx';
+import StackShell from './components/routing/StackShell.jsx';
 import { getProjectBySlug } from './mocks/projectsMock.js';
 
-import WelcomePage from './pages/public/WelcomePage.jsx';
-import LoginPage from './pages/public/LoginPage.jsx';
-import SignupPage from './pages/public/SignupPage.jsx';
-import RecoveryPage from './pages/public/RecoveryPage.jsx';
-import TermsPage from './pages/public/TermsPage.jsx';
-import PrivacyPage from './pages/public/PrivacyPage.jsx';
-import ChangePasswordPage from './pages/ChangePasswordPage.jsx';
-import ExplorePage from './pages/ExplorePage.jsx';
-import ProjectPage from './pages/ProjectPage.jsx';
-import ProfilePage from './pages/ProfilePage.jsx';
-import HelpPage from './pages/HelpPage.jsx';
-import NotFoundPage from './pages/NotFoundPage.jsx';
-import MyProjectsPage from './pages/aluno/MyProjectsPage.jsx';
-import NewProjectPage from './pages/aluno/NewProjectPage.jsx';
-import ProjectStatusPage from './pages/aluno/ProjectStatusPage.jsx';
-import StaffPanelPage from './pages/staff/StaffPanelPage.jsx';
-import DeliveriesPage from './pages/staff/DeliveriesPage.jsx';
-import ReviewPage from './pages/staff/ReviewPage.jsx';
-import ReviewResultPage from './pages/staff/ReviewResultPage.jsx';
-import DeliveryPage from './pages/staff/DeliveryPage.jsx';
-import EvolutionPage from './pages/staff/EvolutionPage.jsx';
-import GroupsPage from './pages/staff/GroupsPage.jsx';
-import RelatorioConsolidadoPage from './pages/staff/RelatorioConsolidadoPage.jsx';
-import ProfessorProjectPage from './pages/staff/ProfessorProjectPage.jsx';
-import CoursesPage from './pages/secretary/CoursesPage.jsx';
-
-/**
- * Guarda de rotas: exige login e, opcionalmente, um dos roles indicados.
- * Sem login → /login (guardando o destino para voltar depois).
- * Com login, mas sem o role → destino seguro do perfil (/painel ou /aluno).
- */
-function RequireRole({ roles, children }) {
-  const { user, isRole } = useAuth();
-  const location = useLocation();
-
-  if (!user) {
-    return <Navigate to="/login" replace state={{ from: location.pathname }} />;
-  }
-  if (roles && !roles.some(isRole)) {
-    const home = isRole('aluno') ? '/aluno' : '/painel';
-    return <Navigate to={home} replace />;
-  }
-  return children;
-}
-
-/**
- * Barra superior empilhada (voltar + título).
- * `resolveTitle(params, search)` monta o título com os parâmetros da rota e
- * da query string (ex.: título real do projeto em /projeto/:slug).
- * Observação: /aluno/novo e /aluno/status/:slug NÃO passam mais por aqui —
- * nos mockups 03 eles usam a barra brand (MainLayout), que monta a 3ª linha
- * do breadcrumb com useSearchParams.
- */
-function StackShell({ resolveTitle, fallback = '' }) {
-  const params = useParams();
-  const [search] = useSearchParams();
-  // resolveTitle é opcional: rotas sem ela (ex.: /painel/meu-projeto,
-  // /painel/revisar/:slug) usam direto o fallback como título da barra.
-  return (
-    <MainLayout barVariant="stack" title={resolveTitle?.(params, search) ?? fallback} />
-  );
-}
+/* ------------------------------------------------------------------ telas
+   React.lazy (item 7): cada rota importa seu próprio chunk, então o bundle
+   principal fica só com o shell (layouts, contextos, mocks e componentes de
+   UI) e o aviso de chunk >500 kB desaparece. Nenhum outro arquivo importa
+   pages, então o split é completo. */
+const WelcomePage = lazy(() => import('./pages/public/WelcomePage.jsx'));
+const LoginPage = lazy(() => import('./pages/public/LoginPage.jsx'));
+const SignupPage = lazy(() => import('./pages/public/SignupPage.jsx'));
+const RecoveryPage = lazy(() => import('./pages/public/RecoveryPage.jsx'));
+const TermsPage = lazy(() => import('./pages/public/TermsPage.jsx'));
+const PrivacyPage = lazy(() => import('./pages/public/PrivacyPage.jsx'));
+const ChangePasswordPage = lazy(() => import('./pages/ChangePasswordPage.jsx'));
+const ExplorePage = lazy(() => import('./pages/ExplorePage.jsx'));
+const ProjectPage = lazy(() => import('./pages/ProjectPage.jsx'));
+const ProfilePage = lazy(() => import('./pages/ProfilePage.jsx'));
+const HelpPage = lazy(() => import('./pages/HelpPage.jsx'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
+const MyProjectsPage = lazy(() => import('./pages/aluno/MyProjectsPage.jsx'));
+const NewProjectPage = lazy(() => import('./pages/aluno/NewProjectPage.jsx'));
+const ProjectStatusPage = lazy(
+  () => import('./pages/aluno/ProjectStatusPage.jsx')
+);
+const StaffPanelPage = lazy(() => import('./pages/staff/StaffPanelPage.jsx'));
+const DeliveriesPage = lazy(() => import('./pages/staff/DeliveriesPage.jsx'));
+const ReviewPage = lazy(() => import('./pages/staff/ReviewPage.jsx'));
+const ReviewResultPage = lazy(
+  () => import('./pages/staff/ReviewResultPage.jsx')
+);
+const DeliveryPage = lazy(() => import('./pages/staff/DeliveryPage.jsx'));
+const EvolutionPage = lazy(() => import('./pages/staff/EvolutionPage.jsx'));
+const GroupsPage = lazy(() => import('./pages/staff/GroupsPage.jsx'));
+const RelatorioConsolidadoPage = lazy(
+  () => import('./pages/staff/RelatorioConsolidadoPage.jsx')
+);
+const ProfessorProjectPage = lazy(
+  () => import('./pages/staff/ProfessorProjectPage.jsx')
+);
+const CoursesPage = lazy(() => import('./pages/secretary/CoursesPage.jsx'));
 
 /** Título da barra em /projeto/:slug — usa o título do projeto mockado. */
 const projectTitle = ({ slug }) => getProjectBySlug(slug)?.title ?? 'Projeto';
 
 export default function App() {
   return (
-    <Routes>
-      {/* ---------------------------------------------- telas públicas */}
-      <Route element={<PublicLayout />}>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/cadastro" element={<SignupPage />} />
-        <Route path="/recuperar-senha" element={<RecoveryPage />} />
-        <Route path="/termos" element={<TermsPage />} />
-        <Route path="/privacidade" element={<PrivacyPage />} />
-      </Route>
+    <Suspense fallback={<RouteFallback />}>
+      <Routes>
+        {/* ---------------------------------------------- telas públicas */}
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/cadastro" element={<SignupPage />} />
+          <Route path="/recuperar-senha" element={<RecoveryPage />} />
+          <Route path="/termos" element={<TermsPage />} />
+          <Route path="/privacidade" element={<PrivacyPage />} />
+        </Route>
 
-      {/* ----------------------------------- barra brand (logo + espaço) */}
-      <Route element={<MainLayout />}>
-        <Route path="/explorar" element={<ExplorePage />} />
-        <Route
-          path="/perfil"
-          element={
-            <RequireRole>
-              <ProfilePage />
-            </RequireRole>
-          }
-        />
+        {/* ----------------------------------- barra brand (logo + espaço) */}
+        <Route element={<MainLayout />}>
+          <Route path="/explorar" element={<ExplorePage />} />
+          <Route
+            path="/perfil"
+            element={
+              <RequireRole>
+                <ProfilePage />
+              </RequireRole>
+            }
+          />
 
-        {/* troca de senha (conta) — qualquer usuário logado */}
-        <Route
-          path="/alterar-senha"
-          element={
-            <RequireRole>
-              <ChangePasswordPage />
-            </RequireRole>
-          }
-        />
+          {/* troca de senha (conta) — qualquer usuário logado */}
+          <Route
+            path="/alterar-senha"
+            element={
+              <RequireRole>
+                <ChangePasswordPage />
+              </RequireRole>
+            }
+          />
 
-        {/* ajuda e suporte (aberta a visitantes e logados) */}
-        <Route path="/ajuda" element={<HelpPage />} />
+          {/* ajuda e suporte (aberta a visitantes e logados) */}
+          <Route path="/ajuda" element={<HelpPage />} />
 
-        {/* aluno — barra brand + breadcrumb "PI² / Meus projetos / …"
-            (mockups 03: "Novo projeto" e "Enviado para análise!") */}
-        <Route
-          path="/aluno"
-          element={
-            <RequireRole roles={['aluno']}>
-              <MyProjectsPage />
-            </RequireRole>
-          }
-        />
-        <Route
-          path="/aluno/novo"
-          element={
-            <RequireRole roles={['aluno']}>
-              <NewProjectPage />
-            </RequireRole>
-          }
-        />
-        <Route
-          path="/aluno/status/:slug"
-          element={
-            <RequireRole roles={['aluno']}>
-              <ProjectStatusPage />
-            </RequireRole>
-          }
-        />
+          {/* aluno — barra brand + breadcrumb "PI² / Meus projetos / …"
+              (mockups 03: "Novo projeto" e "Enviado para análise!") */}
+          <Route
+            path="/aluno"
+            element={
+              <RequireRole roles={['aluno']}>
+                <MyProjectsPage />
+              </RequireRole>
+            }
+          />
+          <Route
+            path="/aluno/novo"
+            element={
+              <RequireRole roles={['aluno']}>
+                <NewProjectPage />
+              </RequireRole>
+            }
+          />
+          <Route
+            path="/aluno/status/:slug"
+            element={
+              <RequireRole roles={['aluno']}>
+                <ProjectStatusPage />
+              </RequireRole>
+            }
+          />
 
-        {/* professor / coordenador */}
-        <Route
-          path="/painel"
-          element={
-            <RequireRole roles={['professor', 'coordenador']}>
-              <StaffPanelPage />
-            </RequireRole>
-          }
-        />
-        <Route
-          path="/painel/entregas"
-          element={
-            <RequireRole roles={['professor', 'coordenador']}>
-              <DeliveriesPage />
-            </RequireRole>
-          }
-        />
-        <Route
-          path="/painel/evolucao"
-          element={
-            <RequireRole roles={['professor', 'coordenador']}>
-              <EvolutionPage />
-            </RequireRole>
-          }
-        />
-        <Route
-          path="/painel/grupos"
-          element={
-            <RequireRole roles={['coordenador']}>
-              <GroupsPage />
-            </RequireRole>
-          }
-        />
-        {/* relatório consolidado (duas faces: semestre 06 / coorte 08) */}
-        <Route
-          path="/painel/relatorio-consolidado"
-          element={
-            <RequireRole roles={['coordenador']}>
-              <RelatorioConsolidadoPage />
-            </RequireRole>
-          }
-        />
+          {/* professor / coordenador */}
+          <Route
+            path="/painel"
+            element={
+              <RequireRole roles={['professor', 'coordenador']}>
+                <StaffPanelPage />
+              </RequireRole>
+            }
+          />
+          <Route
+            path="/painel/entregas"
+            element={
+              <RequireRole roles={['professor', 'coordenador']}>
+                <DeliveriesPage />
+              </RequireRole>
+            }
+          />
+          <Route
+            path="/painel/evolucao"
+            element={
+              <RequireRole roles={['professor', 'coordenador']}>
+                <EvolutionPage />
+              </RequireRole>
+            }
+          />
+          <Route
+            path="/painel/grupos"
+            element={
+              <RequireRole roles={['coordenador']}>
+                <GroupsPage />
+              </RequireRole>
+            }
+          />
+          {/* relatório consolidado (duas faces: semestre 06 / coorte 08) */}
+          <Route
+            path="/painel/relatorio-consolidado"
+            element={
+              <RequireRole roles={['coordenador']}>
+                <RelatorioConsolidadoPage />
+              </RequireRole>
+            }
+          />
 
-        {/* secretaria */}
+          {/* secretaria */}
+          <Route
+            path="/secretaria/cursos"
+            element={
+              <RequireRole roles={['secretaria']}>
+                <CoursesPage />
+              </RequireRole>
+            }
+          />
+        </Route>
+
+        {/* ---------------------------- barra empilhada (detalhes/fluxos) */}
         <Route
-          path="/secretaria/cursos"
-          element={
-            <RequireRole roles={['secretaria']}>
-              <CoursesPage />
-            </RequireRole>
-          }
-        />
-      </Route>
+          path="/projeto/:slug"
+          element={<StackShell resolveTitle={projectTitle} fallback="Projeto" />}
+        >
+          {/* Aberto a visitantes: a página decide entre leitura pública
+              (LGPD, sem nomes) e visão completa do usuário logado. */}
+          <Route index element={<ProjectPage />} />
+        </Route>
 
-      {/* ---------------------------- barra empilhada (detalhes/fluxos) */}
-      <Route
-        path="/projeto/:slug"
-        element={<StackShell resolveTitle={projectTitle} fallback="Projeto" />}
-      >
-        {/* Aberto a visitantes: a página decide entre leitura pública
-            (LGPD, sem nomes) e visão completa do usuário logado. */}
-        <Route index element={<ProjectPage />} />
-      </Route>
-
-      <Route
-        path="/painel/revisar/:slug"
-        element={<StackShell fallback="Revisar projeto" />}
-      >
         <Route
-          index
-          element={
-            <RequireRole roles={['professor']}>
-              <ReviewPage />
-            </RequireRole>
-          }
-        />
-      </Route>
+          path="/painel/revisar/:slug"
+          element={<StackShell fallback="Revisar projeto" />}
+        >
+          <Route
+            index
+            element={
+              <RequireRole roles={['professor']}>
+                <ReviewPage />
+              </RequireRole>
+            }
+          />
+        </Route>
 
-      <Route
-        path="/painel/resultado/:slug"
-        element={<StackShell fallback="Resultado da análise" />}
-      >
         <Route
-          index
-          element={
-            <RequireRole roles={['professor']}>
-              <ReviewResultPage />
-            </RequireRole>
-          }
-        />
-      </Route>
+          path="/painel/resultado/:slug"
+          element={<StackShell fallback="Resultado da análise" />}
+        >
+          <Route
+            index
+            element={
+              <RequireRole roles={['professor']}>
+                <ReviewResultPage />
+              </RequireRole>
+            }
+          />
+        </Route>
 
-      <Route
-        path="/painel/entrega/:slug"
-        element={<StackShell fallback="Detalhe da entrega" />}
-      >
         <Route
-          index
-          element={
-            <RequireRole roles={['professor', 'coordenador']}>
-              <DeliveryPage />
-            </RequireRole>
-          }
-        />
-      </Route>
+          path="/painel/entrega/:slug"
+          element={<StackShell fallback="Detalhe da entrega" />}
+        >
+          <Route
+            index
+            element={
+              <RequireRole roles={['professor', 'coordenador']}>
+                <DeliveryPage />
+              </RequireRole>
+            }
+          />
+        </Route>
 
-      <Route
-        path="/painel/meu-projeto"
-        element={<StackShell fallback="Meu projeto e materiais" />}
-      >
         <Route
-          index
-          element={
-            <RequireRole roles={['professor']}>
-              <ProfessorProjectPage />
-            </RequireRole>
-          }
-        />
-      </Route>
+          path="/painel/meu-projeto"
+          element={<StackShell fallback="Meu projeto e materiais" />}
+        >
+          <Route
+            index
+            element={
+              <RequireRole roles={['professor']}>
+                <ProfessorProjectPage />
+              </RequireRole>
+            }
+          />
+        </Route>
 
-      {/* ------------------------------------------- fallback / 404 */}
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+        {/* ------------------------------------------- fallback / 404 */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </Suspense>
   );
 }

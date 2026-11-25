@@ -21,8 +21,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import {
   FiCheck,
   FiCheckSquare,
-  FiDownload,
-  FiFileText,
   FiMessageSquare,
   FiShield,
   FiSquare,
@@ -32,8 +30,10 @@ import Badge from '../../components/ui/Badge/Badge.jsx';
 import Button from '../../components/ui/Button/Button.jsx';
 import Callout from '../../components/ui/Callout/Callout.jsx';
 import Card from '../../components/ui/Card/Card.jsx';
+import FileList from '../../components/ui/FileList/FileList.jsx';
+import FileRow from '../../components/ui/FileRow/FileRow.jsx';
 import SectionHeader from '../../components/ui/SectionHeader/SectionHeader.jsx';
-import { statusMeta } from '../../components/public/ProjectCard/ProjectCard.jsx';
+import { statusMeta } from '../../utils/status.js';
 import { COURSE_SHORT, getProjectBySlug, getTeam } from '../../mocks/projectsMock.js';
 import styles from './ReviewPage.module.css';
 
@@ -124,39 +124,26 @@ export default function ReviewPage() {
               </span>
             }
           />
-          <ul className={styles.files}>
+          <FileList>
             {project.files.map((file) => (
-              <li key={file.id} className={styles.file}>
-                <FiFileText className={styles.fileIcon} aria-hidden="true" />
-                <span className={styles.fileText}>
-                  <strong>{file.name}</strong>
-                  <small>
-                    {file.kind} · {file.size} · {file.version}
-                  </small>
-                </span>
-                <FiDownload className={styles.fileDownload} aria-hidden="true" />
-              </li>
+              <FileRow
+                key={file.id}
+                name={file.name}
+                meta={`${file.kind} · ${file.size} · ${file.version}`}
+              />
             ))}
             {project.links.live && (
-              <li>
-                <a
-                  className={styles.file}
+              <li key="live">
+                <FileRow
+                  as="a"
                   href={`https://${project.links.live.label}`}
                   target="_blank"
                   rel="noreferrer"
-                >
-                  <FiFileText className={styles.fileIcon} aria-hidden="true" />
-                  <span className={styles.fileText}>
-                    <strong>Link do Projeto</strong>
-                  </span>
-                  <FiDownload
-                    className={styles.fileDownload}
-                    aria-hidden="true"
-                  />
-                </a>
+                  name="Link do Projeto"
+                />
               </li>
             )}
-          </ul>
+          </FileList>
         </section>
       </div>
 

@@ -1,0 +1,6 @@
+/* FileList — pilha vertical de linhas de arquivo. */
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}

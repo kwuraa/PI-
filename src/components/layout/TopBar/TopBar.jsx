@@ -12,7 +12,7 @@
  * página — as duas (e o sininho) ficam mutuamente exclusivas e fecham ao
  * clicar fora.
  */
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   FiArrowLeft,
@@ -28,6 +28,8 @@ import {
 import Logo from '../../icons/Logo.jsx';
 import { useAuth } from '../../../context/AuthContext.jsx';
 import { LOGIN_PROFILES } from '../../../mocks/usersMock.js';
+import useClickOutside from '../../../hooks/useClickOutside.js';
+import useCopyToClipboard from '../../../hooks/useCopyToClipboard.js';
 import styles from './TopBar.module.css';
 
 /** Período letivo exibido no cabeçalho desktop (mock). */
@@ -39,7 +41,6 @@ const NOTIFICATIONS = [
   { id: 'n2', text: 'Orientador comentou em "Biblioteca Conectada".', when: 'Ontem, 18:40' },
   { id: 'n3', text: '2 entregáveis aguardando revisão.', when: '05 out.' },
 ];
-
 /**
  * Rótulo de papel no bloco do usuário (ex.: "Aluno",
  * "Coordenador e professor" quando atua nos dois espaços).
@@ -71,31 +72,16 @@ export default function TopBar({
   const bellRef = useRef(null);
   const userRef = useRef(null);
   const moreRef = useRef(null);
-  useEffect(() => {
-    if (!openPop) return undefined;
-    const ref = { bell: bellRef, user: userRef, more: moreRef }[openPop];
-    const handleOutside = (event) => {
-      if (ref.current && !ref.current.contains(event.target)) {
-        setOpenPop(null);
-      }
-    };
-    document.addEventListener('mousedown', handleOutside);
-    return () => document.removeEventListener('mousedown', handleOutside);
-  }, [openPop]);
+
+  /* Só a caixinha ABERTA escuta clique fora (as três compartilham o estado). */
+  const openRef = { bell: bellRef, user: userRef, more: moreRef }[openPop] ?? null;
+  useClickOutside(openRef, () => setOpenPop(null), Boolean(openPop));
 
   /* "Copiar link": 2s de feedback enquanto a caixinha continua aberta. */
-  const [copied, setCopied] = useState(false);
-  useEffect(() => {
-    if (!copied) return undefined;
-    const id = setTimeout(() => setCopied(false), 2000);
-    return () => clearTimeout(id);
-  }, [copied]);
+  const { copied, copy } = useCopyToClipboard();
 
   /** Copia a URL atual e deixa o item mostrar "Link copiado!". */
-  const handleCopyLink = () => {
-    navigator.clipboard?.writeText(window.location.href);
-    setCopied(true);
-  };
+  const handleCopyLink = () => copy(window.location.href);
 
   /** Sair da conta: encerra a sessão simulada e volta para a home. */
   const handleLogout = () => {

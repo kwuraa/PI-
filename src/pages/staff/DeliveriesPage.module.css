@@ -11,27 +11,6 @@
   gap: var(--space-5);
 }
 
-/* ------------------------------------------------------- cabeçalho */
-.header {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-3);
-}
-
-.title {
-  font-size: var(--font-size-2xl);
-  font-weight: var(--font-weight-bold);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-title);
-}
-
-.subtitle {
-  font-size: var(--font-size-md);
-  line-height: var(--line-height-normal);
-  color: var(--color-text-muted);
-}
-
 /* ---------------------------------------------------- estatísticas */
 /* cartões compartilhados (StatCard) — o grid é da página */
 .stats {

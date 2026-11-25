@@ -24,18 +24,17 @@ import { FiArrowDown, FiSliders, FiStar, FiX } from 'react-icons/fi';
 
 import Button from '../components/ui/Button/Button.jsx';
 import FilterChips from '../components/ui/FilterChips/FilterChips.jsx';
+import PageHeader from '../components/ui/PageHeader/PageHeader.jsx';
 import Popover from '../components/ui/Popover/Popover.jsx';
 import SearchField from '../components/ui/SearchField/SearchField.jsx';
 import ProjectCard from '../components/public/ProjectCard/ProjectCard.jsx';
 import { useAuth } from '../context/AuthContext.jsx';
 import { COURSE_SHORT, PROJECTS, SEMESTERS } from '../mocks/projectsMock.js';
+import { statusOptions } from '../utils/status.js';
 import styles from './ExplorePage.module.css';
 
-const STATUS_OPTIONS = [
-  { value: 'rascunho', label: 'Rascunho' },
-  { value: 'em-analise', label: 'Em análise' },
-  { value: 'publicado', label: 'Publicado' },
-];
+/** Filtro de status (rótulos canônicos de utils/status). */
+const STATUS_OPTIONS = statusOptions(['rascunho', 'em-analise', 'publicado']);
 const SORT_OPTIONS = [
   { value: 'recentes', label: 'Mais recentes' },
   { value: 'az', label: 'Título (A–Z)' },
@@ -258,22 +257,23 @@ export default function ExplorePage() {
   return (
     <div className={styles.page}>
       {/* -------- cabeçalho: título e subtítulo de cada estado -------- */}
-      <header className={styles.pageHeader}>
-        <h1 className={styles.pageTitle}>
-          {showResults
+      <PageHeader
+        gap="lg"
+        title={
+          showResults
             ? hasQuery
               ? `Projetos de ${query.trim()}`
               : 'Explorar projetos'
-            : 'Ideias de todos. Inspiração para você.'}
-        </h1>
-        <p className={styles.pageSubtitle}>
-          {showResults
+            : 'Ideias de todos. Inspiração para você.'
+        }
+        lead={
+          showResults
             ? `${results.length} projeto${results.length === 1 ? '' : 's'} encontrado${
                 results.length === 1 ? '' : 's'
               } · ${sortLabel}`
-            : `${greeting}. O que vamos descobrir?`}
-        </p>
-      </header>
+            : `${greeting}. O que vamos descobrir?`
+        }
+      />
 
       {showResults ? (
         /* --------------------------- resultados: busca + pílulas + grade */
