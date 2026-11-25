@@ -34,48 +34,48 @@ arquivo em `src/pages/`; **Acesso** é o papel exigido pela guarda
 
 ### Públicas — `PublicLayout`
 
-| Rota | Tela | Acesso |
-| --- | --- | --- |
-| `/` | Boas-vindas + vitrine pública (busca, semestre, cards anônimos) | visitante |
-| `/login` | Acesso com 4 perfis simulados | visitante |
-| `/cadastro` | Cadastro institucional (curso travado no DSM) | visitante |
-| `/recuperar-senha` | Recuperação de senha simulada | visitante |
-| `/termos` | Termos de uso (página legal) | visitante |
-| `/privacidade` | Política de privacidade / LGPD | visitante |
+| Rota               | Tela                                                            | Acesso    |
+| ------------------ | --------------------------------------------------------------- | --------- |
+| `/`                | Boas-vindas + vitrine pública (busca, semestre, cards anônimos) | visitante |
+| `/login`           | Acesso com 3 perfis simulados                                   | visitante |
+| `/cadastro`        | Cadastro institucional (curso travado no DSM)                   | visitante |
+| `/recuperar-senha` | Recuperação de senha simulada                                   | visitante |
+| `/termos`          | Termos de uso (página legal)                                    | visitante |
+| `/privacidade`     | Política de privacidade / LGPD                                  | visitante |
 
 ### Barra principal — `MainLayout`
 
-| Rota | Tela | Acesso |
-| --- | --- | --- |
-| `/explorar` | Busca + filtros em bottom sheet | todos |
-| `/projeto/:slug` | Detalhe do projeto (público anônimo / logado completo) | todos |
-| `/ajuda` | Central de ajuda (artigos + busca) | todos |
-| `/perfil` | Dados, notificações, espaço ativo e logout | logado |
-| `/alterar-senha` | Troca de senha da conta | logado |
-| `/aluno` | Meus projetos (lista + status) | aluno |
-| `/aluno/novo` | Publicação com **3 links** (GitHub, Live Preview, Docs) | aluno |
-| `/aluno/status/:slug` | Acompanhamento da análise (etapas qualitativas) | aluno |
-| `/painel` | Painel professor / coordenador / **unificado** (com abas) | professor, coordenador |
-| `/painel/entregas` | Fila de entregas com filtros e busca | professor, coordenador |
-| `/painel/evolucao` | Histórico e evolução do grupo (relatório) | professor, coordenador |
-| `/painel/grupos` | Gestão de grupos + link de documentação | coordenador |
-| `/painel/relatorio-consolidado` | Relatório consolidado (face do semestre **ou** da coorte) | coordenador |
-| `/secretaria/cursos` | Cadastro de cursos (modal) | secretaria |
+| Rota                            | Tela                                                      | Acesso                 |
+| ------------------------------- | --------------------------------------------------------- | ---------------------- |
+| `/explorar`                     | Busca + filtros em bottom sheet                           | todos                  |
+| `/projeto/:slug`                | Detalhe do projeto (público anônimo / logado completo)    | todos                  |
+| `/ajuda`                        | Central de ajuda (artigos + busca)                        | todos                  |
+| `/perfil`                       | Dados, notificações, espaço ativo e logout                | logado                 |
+| `/alterar-senha`                | Troca de senha da conta                                   | logado                 |
+| `/aluno`                        | Meus projetos (lista + status)                            | aluno                  |
+| `/aluno/novo`                   | Publicação com **3 links** (GitHub, Live Preview, Docs)   | aluno                  |
+| `/aluno/status/:slug`           | Acompanhamento da análise (etapas qualitativas)           | aluno                  |
+| `/painel`                       | Painel professor / coordenador / **unificado** (com abas) | professor, coordenador |
+| `/painel/entregas`              | Fila de entregas com filtros e busca                      | professor, coordenador |
+| `/painel/evolucao`              | Histórico e evolução do grupo (relatório)                 | professor, coordenador |
+| `/painel/grupos`                | Gestão de grupos + link de documentação                   | coordenador            |
+| `/painel/relatorio-consolidado` | Relatório consolidado (face do semestre **ou** da coorte) | coordenador            |
+| `/secretaria/cursos`            | Cadastro de cursos (modal)                                | secretaria             |
 
 ### Barra empilhada — `StackShell` (detalhes)
 
-| Rota | Tela | Acesso |
-| --- | --- | --- |
-| `/painel/revisar/:slug` | Revisão com checklist + parecer | professor |
-| `/painel/resultado/:slug` | Desfecho: aprovado ou ajustes (`?decisao=ajustes`) | professor |
-| `/painel/entrega/:slug` | Detalhe da entrega + upload de evidências | professor, coordenador |
-| `/painel/meu-projeto` | Projeto sob orientação + materiais | professor |
+| Rota                      | Tela                                               | Acesso                 |
+| ------------------------- | -------------------------------------------------- | ---------------------- |
+| `/painel/revisar/:slug`   | Revisão com checklist + parecer                    | professor              |
+| `/painel/resultado/:slug` | Desfecho: aprovado ou ajustes (`?decisao=ajustes`) | professor              |
+| `/painel/entrega/:slug`   | Detalhe da entrega + upload de evidências          | professor, coordenador |
+| `/painel/meu-projeto`     | Projeto sob orientação + materiais                 | professor              |
 
 ### Fallback
 
-| Rota | Tela | Acesso |
-| --- | --- | --- |
-| `*` | Página não encontrada (404) | todos |
+| Rota | Tela                        | Acesso |
+| ---- | --------------------------- | ------ |
+| `*`  | Página não encontrada (404) | todos  |
 
 **Perfis do login (mock):** Aluno (Ana Costa), Professor (Rafael Martins —
 também coordena, use **Espaço ativo** no Perfil para ver o painel unificado),
@@ -89,51 +89,51 @@ Arquivo em `src/pages/`, uma pasta por área.
 
 ### `pages/public/` — tela do visitante
 
-| Arquivo | O que mostra |
-| --- | --- |
-| `WelcomePage` | Hero institucional + vitrine com busca, seletor de semestre e cards de projeto |
-| `LoginPage` | Acesso com 4 perfis simulados (escolha rápida para o avaliador) |
-| `SignupPage` | Cadastro institucional com curso travado em DSM |
-| `RecoveryPage` | Recuperação de senha simulada |
-| `TermsPage` / `PrivacyPage` | Páginas legais (componente compartilhado `LegalPage`) |
+| Arquivo                     | O que mostra                                                                                                  |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `WelcomePage`               | Hero institucional + vitrine com busca, seletor de semestre e cards de projeto                                |
+| `LoginPage`                 | Acesso com 3 perfis de acesso rápido (escolha didática para o avaliador); a Secretaria entra por e-mail/senha |
+| `SignupPage`                | Cadastro institucional com curso travado em DSM                                                               |
+| `RecoveryPage`              | Recuperação de senha simulada                                                                                 |
+| `TermsPage` / `PrivacyPage` | Páginas legais (componente compartilhado `LegalPage`)                                                         |
 
 ### `pages/` (raiz) — telas logadas genéricas
 
-| Arquivo | O que mostra |
-| --- | --- |
-| `ExplorePage` | Busca + filtros em bottom sheet + resultado em cards |
-| `ProjectPage` | **Detalhe do projeto**: hero, links, equipe (LGPD), arquivos, comentários e engajamento |
-| `ProfilePage` | Dados da conta, notificações, **Espaço ativo** (troca de papel) e logout |
-| `ChangePasswordPage` | Troca de senha da conta |
-| `HelpPage` | Central de ajuda com busca e artigos |
-| `NotFoundPage` | 404 |
+| Arquivo              | O que mostra                                                                            |
+| -------------------- | --------------------------------------------------------------------------------------- |
+| `ExplorePage`        | Busca + filtros em bottom sheet + resultado em cards                                    |
+| `ProjectPage`        | **Detalhe do projeto**: hero, links, equipe (LGPD), arquivos, comentários e engajamento |
+| `ProfilePage`        | Dados da conta, notificações, **Espaço ativo** (troca de papel) e logout                |
+| `ChangePasswordPage` | Troca de senha da conta                                                                 |
+| `HelpPage`           | Central de ajuda com busca e artigos                                                    |
+| `NotFoundPage`       | 404                                                                                     |
 
 ### `pages/aluno/` — visão do aluno
 
-| Arquivo | O que mostra |
-| --- | --- |
-| `MyProjectsPage` | Lista dos projetos do aluno com status e ações |
-| `NewProjectPage` | Publicação de projeto com 3 links obrigatórios |
+| Arquivo             | O que mostra                                     |
+| ------------------- | ------------------------------------------------ |
+| `MyProjectsPage`    | Lista dos projetos do aluno com status e ações   |
+| `NewProjectPage`    | Publicação de projeto com 3 links obrigatórios   |
 | `ProjectStatusPage` | Acompanhamento da análise em etapas qualitativas |
 
 ### `pages/staff/` — visão da equipe
 
-| Arquivo | O que mostra |
-| --- | --- |
-| `StaffPanelPage` | Entrada única que escolhe a **face** pelo espaço ativo: `ProfessorFace`, `CoordinatorFace` ou `UnifiedFace` (com abas) |
-| `ReviewPage` | Revisão com checklist de critérios e parecer |
-| `ReviewResultPage` | Desfecho da análise: aprovado ou ajustes |
-| `DeliveryPage` | Detalhe da entrega + upload de evidências |
-| `DeliveriesPage` | Fila de entregas com filtros e busca |
-| `EvolutionPage` | Histórico e evolução do grupo |
-| `GroupsPage` | Gestão de grupos + link de documentação |
-| `RelatorioConsolidadoPage` | Escolhe entre `SemesterReport` (face 06) e `CohortReport` (face 08) conforme o papel |
-| `ProfessorProjectPage` | Meus projetos sob orientação + materiais (um `ProjectBlock` por projeto) |
+| Arquivo                    | O que mostra                                                                                                           |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `StaffPanelPage`           | Entrada única que escolhe a **face** pelo espaço ativo: `ProfessorFace`, `CoordinatorFace` ou `UnifiedFace` (com abas) |
+| `ReviewPage`               | Revisão com checklist de critérios e parecer                                                                           |
+| `ReviewResultPage`         | Desfecho da análise: aprovado ou ajustes                                                                               |
+| `DeliveryPage`             | Detalhe da entrega + upload de evidências                                                                              |
+| `DeliveriesPage`           | Fila de entregas com filtros e busca                                                                                   |
+| `EvolutionPage`            | Histórico e evolução do grupo                                                                                          |
+| `GroupsPage`               | Gestão de grupos + link de documentação                                                                                |
+| `RelatorioConsolidadoPage` | Escolhe entre `SemesterReport` (face 06) e `CohortReport` (face 08) conforme o papel                                   |
+| `ProfessorProjectPage`     | Meus projetos sob orientação + materiais (um `ProjectBlock` por projeto)                                               |
 
 ### `pages/secretary/`
 
-| Arquivo | O que mostra |
-| --- | --- |
+| Arquivo       | O que mostra                           |
+| ------------- | -------------------------------------- |
 | `CoursesPage` | Cadastro e listagem de cursos em modal |
 
 ---
@@ -142,13 +142,13 @@ Arquivo em `src/pages/`, uma pasta por área.
 
 ### Layouts e guardas (`src/components/routing/`)
 
-| Componente | Papel |
-| --- | --- |
-| `PublicLayout` | Tela cheia para visitantes (sem barra de app); animações no conteúdo |
-| `MainLayout` | Barra principal (`TopBar` + `SideNav` no desktop, `BottomNav` no mobile) com `<Outlet/>` |
-| `StackShell` | Barra empilhada com voltar + título; **resolve o título a partir dos parâmetros** da rota (`/projeto/:slug`, `/painel/*`) |
-| `RequireRole` | Guarda RBAC — redireciona para `/login` se deslogado ou para a home da área se o papel não bate |
-| `RouteFallback` | Texto centrado com `role="status"` exibido enquanto o chunk da rota chega |
+| Componente      | Papel                                                                                                                     |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `PublicLayout`  | Tela cheia para visitantes (sem barra de app); animações no conteúdo                                                      |
+| `MainLayout`    | Barra principal (`TopBar` + `SideNav` no desktop, `BottomNav` no mobile) com `<Outlet/>`                                  |
+| `StackShell`    | Barra empilhada com voltar + título; **resolve o título a partir dos parâmetros** da rota (`/projeto/:slug`, `/painel/*`) |
+| `RequireRole`   | Guarda RBAC — redireciona para `/login` se deslogado ou para a home da área se o papel não bate                           |
+| `RouteFallback` | Texto centrado com `role="status"` exibido enquanto o chunk da rota chega                                                 |
 
 ### Carregamento por rota (code splitting)
 
@@ -156,31 +156,31 @@ As **25 telas** são importadas com `React.lazy` em `App.jsx` e envolvidas por
 `<Suspense fallback={<RouteFallback />}>`. Layouts, guardas, contextos e mocks
 permanecem síncronos no bundle principal.
 
-| Métrica | Antes | Depois |
-| --- | --- | --- |
-| Bundle principal (JS) | 509,76 kB | **379,74 kB** |
-| Aviso de chunk > 500 kB | presente | **eliminado** |
-| Chunks JS gerados | 1 | 46 |
+| Métrica                 | Antes     | Depois        |
+| ----------------------- | --------- | ------------- |
+| Bundle principal (JS)   | 509,76 kB | **379,74 kB** |
+| Aviso de chunk > 500 kB | presente  | **eliminado** |
+| Chunks JS gerados       | 1         | 46            |
 
 Nenhum arquivo fora de `App.jsx` importa `pages/`, então o split é completo.
 
 ### Contextos
 
-| Contexto | Responsabilidade |
-| --- | --- |
-| `AuthContext` | Login/logout, papéis (`aluno`, `professor`, `coordenador`, `secretaria`), perfil ativo e **Espaço ativo** |
+| Contexto            | Responsabilidade                                                                                                     |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `AuthContext`       | Login/logout, papéis (`aluno`, `professor`, `coordenador`, `secretaria`), perfil ativo e **Espaço ativo**            |
 | `EngagementContext` | Views (+1 por sessão) e curtidas, persistidas em `localStorage` (`pi2.engagement`) e `sessionStorage` (`pi2.viewed`) |
 
 ### Dados e helpers
 
-| Caminho | Conteúdo |
-| --- | --- |
+| Caminho                     | Conteúdo                                                           |
+| --------------------------- | ------------------------------------------------------------------ |
 | `src/mocks/projectsMock.js` | Projetos, equipes, grupos, evolução, etapas de análise, evidências |
-| `src/mocks/usersMock.js` | Perfis do login, `spaceLabelFor`, `spaceOptionsFor` |
-| `src/utils/status.js` | `statusMeta()` — rótulo, tom e ícone de cada status (fonte única) |
-| `src/utils/format.js` | Formatação de datas e números |
-| `src/hooks/` | `useClickOutside`, `useCopyToClipboard` |
-| `src/styles/motion.js` | Variantes centralizadas do framer-motion |
+| `src/mocks/usersMock.js`    | Perfis do login, `spaceLabelFor`, `spaceOptionsFor`                |
+| `src/utils/status.js`       | `statusMeta()` — rótulo, tom e ícone de cada status (fonte única)  |
+| `src/utils/format.js`       | Formatação de datas e números                                      |
+| `src/hooks/`                | `useClickOutside`, `useCopyToClipboard`                            |
+| `src/styles/motion.js`      | Variantes centralizadas do framer-motion                           |
 
 ---
 
@@ -190,8 +190,8 @@ Nenhum arquivo fora de `App.jsx` importa `pages/`, então o split é completo.
   (recarregar com F5 não infla a contagem; fechar a aba libera para contar
   de novo na próxima visita).
 - **Curtidas**: apenas **usuários logados** curtem **projetos publicados** —
-  o botão alterna *Curtir projeto* ⇄ *Curtido*; o visitante vê a contagem e o
-  convite *Entre para curtir*. A **equipe dona não curte o próprio projeto**:
+  o botão alterna _Curtir projeto_ ⇄ _Curtido_; o visitante vê a contagem e o
+  convite _Entre para curtir_. A **equipe dona não curte o próprio projeto**:
   no lugar do botão aparece uma nota ("Projeto da sua equipe — curtir conta
   para a comunidade").
 - Os contadores ficam à mostra **nos cards** (vitrine, explorar, meus
@@ -232,9 +232,9 @@ raios e sombras. Componentes e páginas só usam `var(--token)` — por isso
 mudar a paleta ou a tipografia em um arquivo atualiza o sistema inteiro.
 
 ```css
---color-primary: #b80000;   /* vermelho dos botões/links/ativos */
---color-bg-page: #fafafa;   /* fundo das páginas */
---font-family: 'Inter', …;  /* tipografia */
+--color-primary: #b80000; /* vermelho dos botões/links/ativos */
+--color-bg-page: #fafafa; /* fundo das páginas */
+--font-family: "Inter", …; /* tipografia */
 ```
 
 **Kit de componentes** (`src/components/ui/`): `Avatar`, `Badge`,
@@ -299,11 +299,11 @@ deslizante nas abas; variantes centralizadas em `src/styles/motion.js`.
 
 Detalhamento completo em [`docs/`](docs/):
 
-| Arquivo | Conteúdo |
-| --- | --- |
-| [`docs/01-visao-geral.md`](docs/01-visao-geral.md) | O que é o PI², escopo do protótipo e personas |
-| [`docs/02-arquitetura.md`](docs/02-arquitetura.md) | Rotas, layouts, RBAC, code splitting e contextos |
-| [`docs/03-telas.md`](docs/03-telas.md) | As 25 telas, o que cada uma mostra e os mockups de referência |
-| [`docs/04-design-system.md`](docs/04-design-system.md) | Tokens, kit de componentes e animações |
-| [`docs/05-mocks.md`](docs/05-mocks.md) | Fonte de dados simulados e como editar |
-| [`docs/06-refatoracao.md`](docs/06-refatoracao.md) | Histórico das melhorias de código (itens 1–7) |
+| Arquivo                                                | Conteúdo                                                      |
+| ------------------------------------------------------ | ------------------------------------------------------------- |
+| [`docs/01-visao-geral.md`](docs/01-visao-geral.md)     | O que é o PI², escopo do protótipo e personas                 |
+| [`docs/02-arquitetura.md`](docs/02-arquitetura.md)     | Rotas, layouts, RBAC, code splitting e contextos              |
+| [`docs/03-telas.md`](docs/03-telas.md)                 | As 25 telas, o que cada uma mostra e os mockups de referência |
+| [`docs/04-design-system.md`](docs/04-design-system.md) | Tokens, kit de componentes e animações                        |
+| [`docs/05-mocks.md`](docs/05-mocks.md)                 | Fonte de dados simulados e como editar                        |
+| [`docs/06-refatoracao.md`](docs/06-refatoracao.md)     | Histórico das melhorias de código (itens 1–7)                 |
