@@ -92,7 +92,7 @@ teamDisplay(project)              // logado
 | `usr-ana` | Ana Costa | `['aluno']` | `ana.costa@aluno.faculdade.edu.br` |
 | `usr-rafael` | Rafael Martins (`prof. Rafael`) | `['professor','coordenador']` | `rafael.martins@faculdade.edu.br` |
 | `usr-marta` | Marta Campos (`coordenadora Marta`) | `['coordenador']` | `marta.campos@faculdade.edu.br` |
-| `usr-helena` | Helena Souza (`sec. Helena`) | `['secretaria']` | `helena.souza@faculdade.edu.br` |
+| `usr-helena` | Helena Souza (`sec. Helena`) | `['secretaria']` (legado; mesmos acessos da coordenação) | `helena.souza@faculdade.edu.br` |
 
 ### Funções exportadas
 

@@ -11,7 +11,7 @@ Software**. A plataforma reúne os projetos dos alunos em quatro movimentos:
    parecer e marca como *Aprovado* ou *Ajustes solicitados*.
 3. **A coordenação acompanha** os grupos, os entregáveis e a evolução
    consolidada por semestre e por coorte.
-4. **A secretaria** mantém a base de cursos da instituição.
+4. **A coordenação** mantém a base de cursos da instituição.
 
 O projeto público é exibido em duas camadas de privacidade:
 
@@ -43,14 +43,16 @@ envio de e-mail, geração de PDF própria.
 
 ## Personas e perfis
 
-Quatro perfis de login simulados, todos em `src/mocks/usersMock.js`:
+Três perfis de login simulados, todos em `src/mocks/usersMock.js`:
 
 | Perfil | Usuário | Papéis | Espaço no cabeçalho |
 | --- | --- | --- | --- |
 | Aluno | **Ana Costa** | `aluno` | Espaço do aluno |
 | Professor | **Rafael Martins** (`prof. Rafael`) | `professor` **+** `coordenador` | Espaço do professor e coordenador (unificado) |
 | Coordenador | **Marta Campos** (`coordenadora Marta`) | `coordenador` | Espaço do coordenador |
-| Secretaria | **Helena Souza** (`sec. Helena`) | `secretaria` | Espaço da secretaria |
+
+Helena Souza (`secretaria`) permanece como usuário legado no mock, com os
+mesmos acessos da coordenação — inclusive o cadastro de cursos.
 
 Um usuário pode ter **mais de um papel** (`roles: [...]`). O Rafael Martins é
 justamente o caso: ele é professor e coordenador, então o painel (`/painel`)
@@ -67,8 +69,8 @@ Os rótulos vêm de `spaceLabelFor(roles)` e as opções de troca de
 | --- | --- |
 | `aluno` | `/aluno`, `/aluno/novo`, `/aluno/status/:slug` |
 | `professor` | `/painel/revisar/:slug`, `/painel/resultado/:slug`, `/painel/meu-projeto` |
-| `coordenador` | `/painel/grupos`, `/painel/relatorio-consolidado` |
-| `secretaria` | `/secretaria/cursos` |
+| `coordenador` | `/painel/grupos`, `/painel/relatorio-consolidado`, `/secretaria/cursos` |
+| `secretaria` (legado) | `/secretaria/cursos` — mesmo acesso da coordenação |
 | `professor` **ou** `coordenador` | `/painel`, `/painel/entregas`, `/painel/evolucao`, `/painel/entrega/:slug` |
 | `logado` (qualquer) | `/perfil`, `/alterar-senha` |
 | visitante | `/`, `/login`, `/cadastro`, `/recuperar-senha`, `/termos`, `/privacidade` |
@@ -100,7 +102,7 @@ tela:
 | `02-aluno` | 7 | meus projetos, novo projeto, status (2 estados), projeto logado, perfil, alterar senha |
 | `03-professor` | 9 | painel, entregas, entrega detalhe, revisar, resultado (aprovado + ajustes), evolução, meu projeto, perfil |
 | `04-coordenador` | 7 | painel, grupos, relatório consolidado, evolução, entregas, entrega detalhe, perfil |
-| `05-secretaria` | 3 | cursos, modal de cursos, perfil |
+| `05-secretaria` | 3 | cursos, modal de cursos, perfil (pasta de prints legada; tela hoje é da coordenação) |
 
 Esses prints são a **referência de fidelidade visual** do protótipo.
 

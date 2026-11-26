@@ -115,7 +115,7 @@ export default function CoursesPage() {
         code: code.toUpperCase(),
         shift: form.shift,
         status: 'ativo',
-        meta: `Cadastro da secretaria · Turno ${form.shift}`,
+        meta: `Cadastro da coordenação · Turno ${form.shift}`,
       },
     ]);
     setForm({ name: '', code: '', shift: 'Noturno' });

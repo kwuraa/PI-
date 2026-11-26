@@ -16,7 +16,7 @@ são simuladas no estado local.
 - [Raiz — logado e público](#raiz--logado-e-público)
 - [Aluno](#aluno)
 - [Professor / Coordenador (painel)](#professor--coordenador-painel)
-- [Secretaria](#secretaria)
+- [Coordenação — cursos](#coordenação--cursos)
 
 ---
 
@@ -25,7 +25,7 @@ são simuladas no estado local.
 | Layout         | O que entrega                                                                                | Telas                                                                             |
 | -------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------- | ------------------------------------- |
 | `PublicLayout` | Shell público sem BottomNav (boas-vindas, login, cadastro, recuperação, termos, privacidade) | 6                                                                                 |
-| `MainLayout`   | Área do sistema com **TopBar + breadcrumb + BottomNav/SideNav** persistentes                 | explorar, perfil, alterar senha, ajuda, `/aluno*`, `/painel` (índice), secretaria |
+| `MainLayout`   | Área do sistema com **TopBar + breadcrumb + BottomNav/SideNav** persistentes                 | explorar, perfil, alterar senha, ajuda, `/aluno*`, `/painel` (índice), cursos     |
 | `StackShell`   | Barra superior **empilhada** com título resolvido a partir da rota (detalhes/fluxos)         | `/projeto/:slug`, `/painel/revisar                                                | resultado | entrega/:slug`, `/painel/meu-projeto` |
 
 Regras de acesso (`RequireRole` + `useAuth`):
@@ -33,7 +33,7 @@ Regras de acesso (`RequireRole` + `useAuth`):
 - `/aluno*` → apenas `aluno`
 - `/painel*` → `professor` | `coordenador`
 - `/painel/grupos` e `/painel/relatorio-consolidado` → `coordenador`
-- `/secretaria/cursos` → `secretaria`
+- `/secretaria/cursos` → `coordenador` (`secretaria` legado também passa)
 - `/perfil` e `/alterar-senha` → qualquer usuário logado
 
 As 25 telas são carregadas com `React.lazy` (code splitting por rota) e o
@@ -57,8 +57,8 @@ cascata.
 
 Chaveamento de perfis **simulado**: escolher um card (Aluno, Professor,
 Coordenador) preenche o e-mail e define o papel do login — a senha **não é
-validada** (protótipo). A Secretaria entra pelo formulário convencional, sem
-card de atalho. Ao selecionar, o card reage com animação de pop + check
+validada** (protótipo). Não há atalho para papéis legados. Ao selecionar, o
+card reage com animação de pop + check
 (keyframes com guarda de `prefers-reduced-motion`). Após entrar, redireciona
 para o espaço do perfil (ou para a rota que originou o acesso).
 
@@ -347,7 +347,7 @@ documentos e links) — a anatomia do bloco vive em
 
 ---
 
-## Secretaria — `src/pages/secretary/`
+## Coordenação — cursos (`src/pages/secretary/`)
 
 ### Cadastro de cursos — `/secretaria/cursos` → `CoursesPage.jsx`
 

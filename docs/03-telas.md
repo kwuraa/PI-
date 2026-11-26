@@ -22,8 +22,9 @@ e cards de projeto. Apenas projetos **publicados** aparecem para o visitante.
 ### Login — `/login` → `LoginPage.jsx`
 
 Acesso com **3 perfis de acesso rápido** (Aluno, Professor e Coordenador —
-recurso didático para o avaliador) ou e-mail/senha. A Secretaria (Helena
-Souza) entra pelo formulário, sem card de atalho. Também há o formulário de e-mail/senha convencional.
+recurso didático para o avaliador) ou e-mail/senha. Não há atalho para papéis
+legados (`secretaria`), que usam os mesmos fluxos da coordenação. Também há o
+formulário de e-mail/senha convencional.
 
 - Print: `01-visitante/desktop/02-login.png`
 
@@ -250,7 +251,7 @@ Ação por status:
 
 ---
 
-## Secretaria — `src/pages/secretary/`
+## Coordenação — cursos (`src/pages/secretary/`)
 
 ### Cursos — `/secretaria/cursos` → `CoursesPage.jsx`
 
@@ -287,5 +288,5 @@ Cadastro e listagem de cursos da instituição, com **modal** de criação.
 | `/painel/revisar/:slug`         | `staff/ReviewPage.jsx`               | professor               |
 | `/painel/resultado/:slug`       | `staff/ReviewResultPage.jsx`         | professor               |
 | `/painel/meu-projeto`           | `staff/ProfessorProjectPage.jsx`     | professor               |
-| `/secretaria/cursos`            | `secretary/CoursesPage.jsx`          | secretaria              |
+| `/secretaria/cursos`            | `secretary/CoursesPage.jsx`          | coordenador (secretaria legado) |
 | `*`                             | `NotFoundPage.jsx`                   | todos                   |

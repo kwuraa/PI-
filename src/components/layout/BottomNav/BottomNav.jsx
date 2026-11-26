@@ -1,6 +1,15 @@
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FiCompass, FiGrid, FiLayers, FiLogIn, FiUser } from 'react-icons/fi';
+import {
+  FiBookOpen,
+  FiCompass,
+  FiGrid,
+  FiLayers,
+  FiLogIn,
+  FiUser,
+} from 'react-icons/fi';
+
+import { useAuth } from '../../../context/AuthContext.jsx';
 import styles from './BottomNav.module.css';
 
 const GUEST_ITEMS = [
@@ -21,15 +30,25 @@ const EQUIPE_ITEMS = [
   { to: '/perfil', Icon: FiUser, label: 'Perfil' },
 ];
 
-/** Escolhe a barra conforme os roles do usuário (ou visitante). */
-export function itemsFor(user) {
+/* Coordenação tem acesso ao cadastro de cursos, antes restrito à secretaria. */
+const COORDENACAO_ITEMS = [
+  { to: '/explorar', Icon: FiCompass, label: 'Explorar' },
+  { to: '/painel', Icon: FiGrid, label: 'Painel' },
+  { to: '/secretaria/cursos', Icon: FiBookOpen, label: 'Cursos' },
+  { to: '/perfil', Icon: FiUser, label: 'Perfil' },
+];
+
+/** Escolhe a barra conforme o espaço ativo (ou visitante). */
+export function itemsFor(user, activeRoles = user?.roles ?? []) {
   if (!user) return GUEST_ITEMS;
-  if (user.roles.includes('aluno')) return ALUNO_ITEMS;
+  if (activeRoles.includes('aluno')) return ALUNO_ITEMS;
+  if (activeRoles.includes('coordenador')) return COORDENACAO_ITEMS;
   return EQUIPE_ITEMS;
 }
 
 export default function BottomNav({ user }) {
-  const items = itemsFor(user);
+  const { activeRoles } = useAuth();
+  const items = itemsFor(user, activeRoles);
 
   return (
     <nav className={styles.nav} aria-label="Navegação principal" data-print-hide>

@@ -46,7 +46,7 @@ mobile).
 /painel/evolucao              EvolutionPage                   professor | coordenador
 /painel/grupos                GroupsPage                      coordenador
 /painel/relatorio-consolidado RelatorioConsolidadoPage        coordenador
-/secretaria/cursos            CoursesPage                     secretaria
+/secretaria/cursos            CoursesPage                     coordenador (secretaria legado)
 ```
 
 > `/perfil` e `/alterar-senha` usam `<RequireRole>` **sem** `roles`, ou seja:
@@ -92,7 +92,7 @@ Cada uma envolve a tela em `<RequireRole roles={[...]}>`.
 │   ├── /painel/evolucao   (RequireRole: professor|coordenador)
 │   ├── /painel/grupos     (RequireRole: coordenador)
 │   ├── /painel/relatorio-consolidado (RequireRole: coordenador)
-│   └── /secretaria/cursos (RequireRole: secretaria)
+│   └── /secretaria/cursos (RequireRole: coordenador|secretaria)
 ├── StackShell (resolveTitle / fallback)
 │   ├── /projeto/:slug                    (index → ProjectPage)
 │   ├── /painel/revisar/:slug             (RequireRole: professor)
@@ -129,7 +129,7 @@ Comportamento:
 
 1. **Deslogado** → redireciona para `/login`.
 2. **Logado, mas nenhum papel bate** → redireciona para a home da área
-   (`/aluno`, `/painel`, `/secretaria/cursos` conforme o papel principal).
+   (`/aluno` ou `/painel`; coordenação vai para `/painel`).
 3. **Papel ok** → renderiza os filhos.
 
 `roles` é opcional: sem ele, qualquer usuário logado passa.

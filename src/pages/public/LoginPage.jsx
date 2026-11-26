@@ -24,7 +24,7 @@ const PROFILE_ICONS = {
   sliders: FiSliders,
 };
 
-/** Para onde cada perfil vai ao entrar. */
+/** Para onde cada perfil vai ao entrar (`secretaria` é papel legado). */
 const HOME_BY_ROLE = {
   aluno: "/aluno",
   professor: "/painel",

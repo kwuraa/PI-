@@ -154,11 +154,11 @@ export default function App() {
             }
           />
 
-          {/* secretaria */}
+          {/* coordenação (mantém compatibilidade com o papel legado secretaria) */}
           <Route
             path="/secretaria/cursos"
             element={
-              <RequireRole roles={["secretaria"]}>
+              <RequireRole roles={["coordenador", "secretaria"]}>
                 <CoursesPage />
               </RequireRole>
             }

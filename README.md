@@ -2,8 +2,8 @@
 
 Front-end do **PI²**, plataforma que reúne os **Projetos Integradores** do curso
 **DSM · Desenvolvimento de Software**. Os alunos publicam entregas por links,
-professores revisam com critérios qualitativos, a coordenação acompanha os
-grupos e a secretaria gerencia os cursos.
+professores revisam com critérios qualitativos e a coordenação acompanha os
+grupos e gerencia os cursos.
 
 > Protótipo didático: **não há backend**. Login, envios, revisões e uploads são
 > simulados com dados locais (`src/mocks`).
@@ -60,7 +60,7 @@ arquivo em `src/pages/`; **Acesso** é o papel exigido pela guarda
 | `/painel/evolucao`              | Relatório por projeto de PI sob orientação do professor   | professor, coordenador |
 | `/painel/grupos`                | Gestão de grupos + link de documentação                   | coordenador            |
 | `/painel/relatorio-consolidado` | Relatório consolidado (face do semestre **ou** da coorte) | coordenador            |
-| `/secretaria/cursos`            | Cadastro de cursos (modal)                                | secretaria             |
+| `/secretaria/cursos`            | Cadastro de cursos (modal)                                | coordenador            |
 
 ### Barra empilhada — `StackShell` (detalhes)
 
@@ -78,8 +78,9 @@ arquivo em `src/pages/`; **Acesso** é o papel exigido pela guarda
 | `*`  | Página não encontrada (404) | todos  |
 
 **Perfis do login (mock):** Aluno (Ana Costa), Professor (Rafael Martins —
-também coordena, use **Espaço ativo** no Perfil para ver o painel unificado),
-Coordenador (Marta Campos) e Secretaria (Helena Souza).
+também coordena, use **Espaço ativo** no Perfil para ver o painel unificado) e
+Coordenador (Marta Campos). Helena Souza (`secretaria`) é um usuário legado com
+acesso equivalente ao da coordenação.
 
 ---
 
@@ -92,7 +93,7 @@ Arquivo em `src/pages/`, uma pasta por área.
 | Arquivo                     | O que mostra                                                                                                  |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `WelcomePage`               | Hero institucional + vitrine com busca, seletor de semestre e cards de projeto                                |
-| `LoginPage`                 | Acesso com 3 perfis de acesso rápido (escolha didática para o avaliador); a Secretaria entra por e-mail/senha |
+| `LoginPage`                 | Acesso com 3 perfis de acesso rápido (escolha didática para o avaliador); papéis legados não têm atalho |
 | `SignupPage`                | Cadastro institucional com curso travado em DSM                                                               |
 | `RecoveryPage`              | Recuperação de senha simulada                                                                                 |
 | `TermsPage` / `PrivacyPage` | Páginas legais (componente compartilhado `LegalPage`)                                                         |
@@ -168,7 +169,7 @@ Nenhum arquivo fora de `App.jsx` importa `pages/`, então o split é completo.
 
 | Contexto            | Responsabilidade                                                                                                     |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `AuthContext`       | Login/logout, papéis (`aluno`, `professor`, `coordenador`, `secretaria`), perfil ativo e **Espaço ativo**            |
+| `AuthContext`       | Login/logout, papéis (`aluno`, `professor`, `coordenador` e `secretaria` legado), perfil ativo e **Espaço ativo**    |
 | `EngagementContext` | Views (+1 por sessão) e curtidas, persistidas em `localStorage` (`pi2.engagement`) e `sessionStorage` (`pi2.viewed`) |
 
 ### Dados e helpers

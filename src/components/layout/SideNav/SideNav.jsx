@@ -1,5 +1,6 @@
 import { NavLink, Link } from 'react-router-dom';
 import {
+  FiBookOpen,
   FiClipboard,
   FiFileText,
   FiFolder,
@@ -19,8 +20,8 @@ function groupItemClass({ isActive }) {
 }
 
 export default function SideNav({ user }) {
-  const { isRole } = useAuth();
-  const items = itemsFor(user);
+  const { isRole, activeRoles } = useAuth();
+  const items = itemsFor(user, activeRoles ?? []);
   const isStaff = Boolean(user) && (isRole('professor') || isRole('coordenador'));
   const isCoord = Boolean(user) && isRole('coordenador');
 
@@ -64,6 +65,12 @@ export default function SideNav({ user }) {
                 <FiSliders size={20} aria-hidden="true" />
               </span>
               Gestão de grupos
+            </NavLink>
+            <NavLink to="/secretaria/cursos" className={groupItemClass}>
+              <span className={styles.icon}>
+                <FiBookOpen size={20} aria-hidden="true" />
+              </span>
+              Cadastro de cursos
             </NavLink>
           </div>
         )}
