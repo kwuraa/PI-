@@ -28,6 +28,7 @@
   gap: var(--space-3);
 }
 
+/* ------------------------------------------- card de revisão */
 .reviewCard {
   display: flex;
   flex-direction: column;
@@ -79,6 +80,7 @@
   color: var(--color-primary);
 }
 
+/* ---------------------------------------- card de orientação */
 .advisedCard {
   display: flex;
   flex-direction: column;
@@ -88,7 +90,8 @@
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  transition: border-color var(--transition-fast),
+  transition:
+    border-color var(--transition-fast),
     box-shadow var(--transition-fast);
 }
 
@@ -116,7 +119,7 @@
   color: var(--color-primary);
 }
 
-/* rodapé do card-resumo: leva à lista completa */
+/* rodapé do card-resumo: leva à lista completa (mockup 04) */
 .verTodas {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -131,7 +134,6 @@
 }
 
 @media (min-width: 1024px) {
-  /* revisões (2 col de cards) + orientações */
   .split {
     display: grid;
     grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);

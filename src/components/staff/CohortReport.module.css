@@ -1,3 +1,10 @@
+/* CohortReport — face do COORDENADOR + PROFESSOR em
+   /painel/relatorio-consolidado (mockup 08 "Relatório consolidado — coorte").
+   -----------------------------------------------------------------------------
+   Extraído de RelatorioConsolidadoPage.module.css na separação "um componente
+   por arquivo" (item 6). Importa ReportShared.module.css ANTES deste, para
+   que .filterCard sobrescreva o gap do .card compartilhado. */
+
 .cardSubtitle {
   font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
@@ -11,7 +18,6 @@
 }
 
 /* ------------------------------------- card da coorte (seletor) */
-/* definido depois de .card para sobrescrever o gap na linha desktop */
 .filterCard {
   gap: var(--space-4);
 }
@@ -55,12 +61,10 @@
   border-radius: var(--radius-sm);
 }
 
-/* semestre corrente em vermelho (última barra) */
 .chartBarHighlight {
   background-color: var(--color-primary);
 }
 
-/* alturas das barras (escala 0 a 10 — classes prontas, sem style inline) */
 .h70 {
   height: 70%;
 }
@@ -139,7 +143,7 @@
   color: var(--color-primary);
 }
 
-/* ------------------------------------- banca e entregáveis */
+/* ------------------------------------- entregáveis */
 .detailBlock {
   display: flex;
   flex-direction: column;
@@ -159,14 +163,15 @@
   color: var(--color-text-muted);
 }
 
+/* ------------------------------------------- rodapé da tela */
 .footnote {
   font-size: var(--font-size-xs);
   line-height: var(--line-height-normal);
   color: var(--color-text-muted);
 }
 
+/* ------------------------------------------- tablet (≥768px) */
 @media (min-width: 768px) {
-  /* coorte: seletor e resumo na mesma linha */
   .filterCard {
     flex-direction: row;
     align-items: center;

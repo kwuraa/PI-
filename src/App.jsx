@@ -1,54 +1,49 @@
-import { lazy, Suspense } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { lazy, Suspense } from "react";
+import { Route, Routes } from "react-router-dom";
 
-import MainLayout from './components/layout/MainLayout/MainLayout.jsx';
-import PublicLayout from './components/layout/PublicLayout/PublicLayout.jsx';
-import RequireRole from './components/routing/RequireRole.jsx';
-import RouteFallback from './components/routing/RouteFallback.jsx';
-import StackShell from './components/routing/StackShell.jsx';
-import { getProjectBySlug } from './mocks/projectsMock.js';
+import MainLayout from "./components/layout/MainLayout/MainLayout.jsx";
+import PublicLayout from "./components/layout/PublicLayout/PublicLayout.jsx";
+import RequireRole from "./components/routing/RequireRole.jsx";
+import RouteFallback from "./components/routing/RouteFallback.jsx";
+import StackShell from "./components/routing/StackShell.jsx";
+import { getProjectBySlug } from "./mocks/projectsMock.js";
 
-/* ------------------------------------------------------------------ telas
-   React.lazy (item 7): cada rota importa seu próprio chunk, então o bundle
-   principal fica só com o shell (layouts, contextos, mocks e componentes de
-   UI) e o aviso de chunk >500 kB desaparece. Nenhum outro arquivo importa
-   pages, então o split é completo. */
-const WelcomePage = lazy(() => import('./pages/public/WelcomePage.jsx'));
-const LoginPage = lazy(() => import('./pages/public/LoginPage.jsx'));
-const SignupPage = lazy(() => import('./pages/public/SignupPage.jsx'));
-const RecoveryPage = lazy(() => import('./pages/public/RecoveryPage.jsx'));
-const TermsPage = lazy(() => import('./pages/public/TermsPage.jsx'));
-const PrivacyPage = lazy(() => import('./pages/public/PrivacyPage.jsx'));
-const ChangePasswordPage = lazy(() => import('./pages/ChangePasswordPage.jsx'));
-const ExplorePage = lazy(() => import('./pages/ExplorePage.jsx'));
-const ProjectPage = lazy(() => import('./pages/ProjectPage.jsx'));
-const ProfilePage = lazy(() => import('./pages/ProfilePage.jsx'));
-const HelpPage = lazy(() => import('./pages/HelpPage.jsx'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
-const MyProjectsPage = lazy(() => import('./pages/aluno/MyProjectsPage.jsx'));
-const NewProjectPage = lazy(() => import('./pages/aluno/NewProjectPage.jsx'));
+const WelcomePage = lazy(() => import("./pages/public/WelcomePage.jsx"));
+const LoginPage = lazy(() => import("./pages/public/LoginPage.jsx"));
+const SignupPage = lazy(() => import("./pages/public/SignupPage.jsx"));
+const RecoveryPage = lazy(() => import("./pages/public/RecoveryPage.jsx"));
+const TermsPage = lazy(() => import("./pages/public/TermsPage.jsx"));
+const PrivacyPage = lazy(() => import("./pages/public/PrivacyPage.jsx"));
+const ChangePasswordPage = lazy(() => import("./pages/ChangePasswordPage.jsx"));
+const ExplorePage = lazy(() => import("./pages/ExplorePage.jsx"));
+const ProjectPage = lazy(() => import("./pages/ProjectPage.jsx"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage.jsx"));
+const HelpPage = lazy(() => import("./pages/HelpPage.jsx"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage.jsx"));
+const MyProjectsPage = lazy(() => import("./pages/aluno/MyProjectsPage.jsx"));
+const NewProjectPage = lazy(() => import("./pages/aluno/NewProjectPage.jsx"));
 const ProjectStatusPage = lazy(
-  () => import('./pages/aluno/ProjectStatusPage.jsx')
+  () => import("./pages/aluno/ProjectStatusPage.jsx"),
 );
-const StaffPanelPage = lazy(() => import('./pages/staff/StaffPanelPage.jsx'));
-const DeliveriesPage = lazy(() => import('./pages/staff/DeliveriesPage.jsx'));
-const ReviewPage = lazy(() => import('./pages/staff/ReviewPage.jsx'));
+const StaffPanelPage = lazy(() => import("./pages/staff/StaffPanelPage.jsx"));
+const DeliveriesPage = lazy(() => import("./pages/staff/DeliveriesPage.jsx"));
+const ReviewPage = lazy(() => import("./pages/staff/ReviewPage.jsx"));
 const ReviewResultPage = lazy(
-  () => import('./pages/staff/ReviewResultPage.jsx')
+  () => import("./pages/staff/ReviewResultPage.jsx"),
 );
-const DeliveryPage = lazy(() => import('./pages/staff/DeliveryPage.jsx'));
-const EvolutionPage = lazy(() => import('./pages/staff/EvolutionPage.jsx'));
-const GroupsPage = lazy(() => import('./pages/staff/GroupsPage.jsx'));
+const DeliveryPage = lazy(() => import("./pages/staff/DeliveryPage.jsx"));
+const EvolutionPage = lazy(() => import("./pages/staff/EvolutionPage.jsx"));
+const GroupsPage = lazy(() => import("./pages/staff/GroupsPage.jsx"));
 const RelatorioConsolidadoPage = lazy(
-  () => import('./pages/staff/RelatorioConsolidadoPage.jsx')
+  () => import("./pages/staff/RelatorioConsolidadoPage.jsx"),
 );
 const ProfessorProjectPage = lazy(
-  () => import('./pages/staff/ProfessorProjectPage.jsx')
+  () => import("./pages/staff/ProfessorProjectPage.jsx"),
 );
-const CoursesPage = lazy(() => import('./pages/secretary/CoursesPage.jsx'));
+const CoursesPage = lazy(() => import("./pages/secretary/CoursesPage.jsx"));
 
 /** Título da barra em /projeto/:slug — usa o título do projeto mockado. */
-const projectTitle = ({ slug }) => getProjectBySlug(slug)?.title ?? 'Projeto';
+const projectTitle = ({ slug }) => getProjectBySlug(slug)?.title ?? "Projeto";
 
 export default function App() {
   return (
@@ -90,11 +85,11 @@ export default function App() {
           <Route path="/ajuda" element={<HelpPage />} />
 
           {/* aluno — barra brand + breadcrumb "PI² / Meus projetos / …"
-              ("Novo projeto" e "Enviado para análise!") */}
+              (mockups 03: "Novo projeto" e "Enviado para análise!") */}
           <Route
             path="/aluno"
             element={
-              <RequireRole roles={['aluno']}>
+              <RequireRole roles={["aluno"]}>
                 <MyProjectsPage />
               </RequireRole>
             }
@@ -102,7 +97,7 @@ export default function App() {
           <Route
             path="/aluno/novo"
             element={
-              <RequireRole roles={['aluno']}>
+              <RequireRole roles={["aluno"]}>
                 <NewProjectPage />
               </RequireRole>
             }
@@ -110,7 +105,7 @@ export default function App() {
           <Route
             path="/aluno/status/:slug"
             element={
-              <RequireRole roles={['aluno']}>
+              <RequireRole roles={["aluno"]}>
                 <ProjectStatusPage />
               </RequireRole>
             }
@@ -120,7 +115,7 @@ export default function App() {
           <Route
             path="/painel"
             element={
-              <RequireRole roles={['professor', 'coordenador']}>
+              <RequireRole roles={["professor", "coordenador"]}>
                 <StaffPanelPage />
               </RequireRole>
             }
@@ -128,7 +123,7 @@ export default function App() {
           <Route
             path="/painel/entregas"
             element={
-              <RequireRole roles={['professor', 'coordenador']}>
+              <RequireRole roles={["professor", "coordenador"]}>
                 <DeliveriesPage />
               </RequireRole>
             }
@@ -136,7 +131,7 @@ export default function App() {
           <Route
             path="/painel/evolucao"
             element={
-              <RequireRole roles={['professor', 'coordenador']}>
+              <RequireRole roles={["professor", "coordenador"]}>
                 <EvolutionPage />
               </RequireRole>
             }
@@ -144,7 +139,7 @@ export default function App() {
           <Route
             path="/painel/grupos"
             element={
-              <RequireRole roles={['coordenador']}>
+              <RequireRole roles={["coordenador"]}>
                 <GroupsPage />
               </RequireRole>
             }
@@ -153,7 +148,7 @@ export default function App() {
           <Route
             path="/painel/relatorio-consolidado"
             element={
-              <RequireRole roles={['coordenador']}>
+              <RequireRole roles={["coordenador"]}>
                 <RelatorioConsolidadoPage />
               </RequireRole>
             }
@@ -163,7 +158,7 @@ export default function App() {
           <Route
             path="/secretaria/cursos"
             element={
-              <RequireRole roles={['secretaria']}>
+              <RequireRole roles={["secretaria"]}>
                 <CoursesPage />
               </RequireRole>
             }
@@ -173,7 +168,9 @@ export default function App() {
         {/* ---------------------------- barra empilhada (detalhes/fluxos) */}
         <Route
           path="/projeto/:slug"
-          element={<StackShell resolveTitle={projectTitle} fallback="Projeto" />}
+          element={
+            <StackShell resolveTitle={projectTitle} fallback="Projeto" />
+          }
         >
           {/* Aberto a visitantes: a página decide entre leitura pública
               (LGPD, sem nomes) e visão completa do usuário logado. */}
@@ -187,7 +184,7 @@ export default function App() {
           <Route
             index
             element={
-              <RequireRole roles={['professor']}>
+              <RequireRole roles={["professor"]}>
                 <ReviewPage />
               </RequireRole>
             }
@@ -201,7 +198,7 @@ export default function App() {
           <Route
             index
             element={
-              <RequireRole roles={['professor']}>
+              <RequireRole roles={["professor"]}>
                 <ReviewResultPage />
               </RequireRole>
             }
@@ -215,7 +212,7 @@ export default function App() {
           <Route
             index
             element={
-              <RequireRole roles={['professor', 'coordenador']}>
+              <RequireRole roles={["professor", "coordenador"]}>
                 <DeliveryPage />
               </RequireRole>
             }
@@ -229,7 +226,7 @@ export default function App() {
           <Route
             index
             element={
-              <RequireRole roles={['professor']}>
+              <RequireRole roles={["professor"]}>
                 <ProfessorProjectPage />
               </RequireRole>
             }
