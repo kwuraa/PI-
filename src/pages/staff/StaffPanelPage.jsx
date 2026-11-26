@@ -1,15 +1,3 @@
-/**
- * PI² — Painel da equipe (rota "/painel").
- * -----------------------------------------------------------------------------
- * Um único ponto de entrada que escolhe a face conforme o espaço ativo:
- *  • só 'professor'   → ProfessorFace (fila de revisão + orientações);
- *  • só 'coordenador' → CoordinatorFace (métricas + alerta + áreas);
- *  • os dois (unido)  → UnifiedFace com abas "Painel unificado | Atalhos"
- *                       (a aba Atalhos tem h1 próprio, como no mockup 07).
- * As três faces vivem em components/staff/ (separação "um componente por
- * arquivo" — item 6) e leem os números dos mocks (fila de revisão, grupos,
- * entregáveis) via staffMetrics.js — nada fixo.
- */
 import CoordinatorFace from '../../components/staff/CoordinatorFace.jsx';
 import ProfessorFace from '../../components/staff/ProfessorFace.jsx';
 import UnifiedFace from '../../components/staff/UnifiedFace.jsx';

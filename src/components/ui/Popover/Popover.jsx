@@ -1,18 +1,3 @@
-/**
- * PI² — Popover ancorado (painel que DESCE do gatilho).
- * -----------------------------------------------------------------------------
- * Diferente do Modal, aqui NÃO existe overlay fixo nem travamento de rolagem:
- * o painel é `position: absolute` dentro do wrapper do gatilho, por isso ele
- * desce de cima (busca + botão) e o conteúdo da página segue visível ao redor.
- * Uso: renderize dentro de um ancestral com `position: relative` que também
- * contenha o gatilho — o painel é posicionado logo abaixo dele.
- * Feche pelo X, por Esc ou clicando fora do painel. O gatilho (que alterna
- * o painel) precisa marcar `data-popover-trigger` para NÃO fechar o painel
- * no próprio toque que o abre/fecha. Fora disso, o toque fecha: usamos
- * `pointerdown` (e não `click`) porque ele acontece ANTES do toque chegar
- * ao gatilho — evita abrir e fechar no mesmo gesto.
- * Entrada/saída (fade + descida) via framer-motion — AnimatePresence INTERNO.
- */
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FiX } from 'react-icons/fi';

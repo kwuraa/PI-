@@ -1,10 +1,3 @@
-/**
- * PI² — Abas em controle segmentado ("Painel unificado | Atalhos").
- * Props: items [{ id, label }], value, onChange.
- * O item ativo vira pílula branca sobre o trilho cinza (protótipos);
- * a pílula DESLIZA entre as abas via layoutId (framer-motion).
- * Obs.: usa um layoutId único — mantenha apenas UMA Tabs por tela.
- */
 import { motion } from 'framer-motion';
 import styles from './Tabs.module.css';
 

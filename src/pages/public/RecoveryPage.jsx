@@ -1,13 +1,3 @@
-/**
- * PI² — Recuperação de senha (rota "/recuperar-senha").
- * -----------------------------------------------------------------------------
- * Mockup desktop "Recuperação de senha": barra superior (voltar, título
- * centralizado, menu), tile de chave, título "Vamos recuperar seu acesso.",
- * campo de e-mail, botão "Enviar instruções", card "Como funciona" (3
- * passos), alerta de spam e botão secundário "Voltar para o acesso".
- * Envio simulado: após o envio, um callout de sucesso confirma que o link
- * foi enviado para o e-mail institucional (sem backend).
- */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -24,7 +14,7 @@ import Callout from '../../components/ui/Callout/Callout.jsx';
 import TextField from '../../components/ui/TextField/TextField.jsx';
 import styles from './RecoveryPage.module.css';
 
-/** Passos do card "Como funciona" (mockup). */
+/** Passos do card "Como funciona". */
 const STEPS = [
   {
     title: 'Confira sua caixa de entrada',
@@ -116,7 +106,6 @@ export default function RecoveryPage() {
         </form>
       )}
 
-      {/* ------------------------------------------- como funciona */}
       <section className={styles.howto} aria-labelledby="como-funciona-title">
         <h2 className={styles.howtoTitle} id="como-funciona-title">
           Como funciona
@@ -136,7 +125,6 @@ export default function RecoveryPage() {
         </ol>
       </section>
 
-      {/* ------------------------------------------- alerta de spam */}
       <aside className={styles.spam}>
         <FiAlertCircle aria-hidden="true" />
         <div>

@@ -1,11 +1,3 @@
-/**
- * DeliveryPage — detalhe da entrega + evidências da banca (mockup 09).
- * -----------------------------------------------------------------------------
- * Mobile-first: coluna principal + coluna lateral empilhadas; a partir de
- * 1024px viram duas colunas (≈1.6fr / 1fr) como no desktop do protótipo.
- * Dropzones tracejados, linhas de arquivo e cards laterais usam apenas
- * design tokens de src/styles/variables.css — nenhuma cor fixa.
- */
 .page {
   display: flex;
   flex-direction: column;
@@ -34,7 +26,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------------- identidade */
 .identity {
   display: flex;
   flex-direction: column;
@@ -67,7 +58,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------------------ blocos */
 .block {
   display: flex;
   flex-direction: column;
@@ -95,7 +85,6 @@
   color: var(--color-text-body);
 }
 
-/* ------------------------------------------- materiais enviados */
 .fileCount {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
@@ -144,7 +133,6 @@
   text-decoration: none;
 }
 
-/* ------------------------------------------ coluna lateral */
 .side {
   gap: var(--space-4);
 }
@@ -185,7 +173,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------- checklist */
 .checklist {
   display: flex;
   flex-direction: column;
@@ -269,7 +256,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------------ modal */
 .modalBody {
   display: flex;
   flex-direction: column;
@@ -287,7 +273,6 @@
   color: var(--color-text-body);
 }
 
-/* ------------------------------------------- desktop (≥1024) */
 @media (min-width: 1024px) {
   .page {
     display: grid;

@@ -1,27 +1,3 @@
-/**
- * PI² — Contexto de engajamento (visualizações e curtidas dos projetos).
- * -----------------------------------------------------------------------------
- * Simula, sem backend, as métricas públicas dos projetos:
- *  • VIEWS  → cada visita à página "/projeto/:slug" conta UMA vez por
- *    sessão do navegador (sessionStorage): recarregar (F5) não infla a
- *    contagem; abrir o projeto em outra aba/sessão conta de novo.
- *  • LIKES  → apenas usuários LOGADOS (aluno, professor, coordenador…)
- *    curtem projetos PUBLICADOS; o toggle desfaz a própria curtida. O
- *    visitante vê a contagem e o convite "Entre para curtir".
- *
- * Persistência (mock de "permanência", como a sessão do AuthContext):
- *  • `localStorage["pi2.engagement"]` → totais acumulados (views + likes);
- *  • `sessionStorage["pi2.viewed"]`   → slugs já contados NA SESSÃO.
- * Sem armazenamento disponível (modo privado), tudo segue em memória.
- *
- * Seed: os totais iniciais vêm dos campos `views`/`likes` de cada projeto
- * em `src/mocks/projectsMock.js` — edite os números lá para o "estado
- * inicial" do protótipo.
- *
- * Uso em qualquer componente:
- *   const { viewsFor, likesFor, hasLiked, registerView, toggleLike } =
- *     useEngagement();
- */
 import {
   createContext,
   useCallback,
@@ -35,7 +11,7 @@ import { PROJECTS } from '../mocks/projectsMock.js';
 
 const EngagementContext = createContext(null);
 
-/** Chaves de persistência (mock de "banco" do protótipo). */
+/** Chaves de persistência (mock de "banco" da aplicação). */
 const STORE_KEY = 'pi2.engagement';
 const VIEWED_KEY = 'pi2.viewed';
 

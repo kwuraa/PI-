@@ -1,12 +1,3 @@
-/**
- * ProjectBlock — UM bloco completo de projeto na tela "Meu projeto e
- * materiais" (anatomia do mockup 09).
- * -----------------------------------------------------------------------------
- * Extraído de ProfessorProjectPage.module.css na separação "um componente
- * por arquivo" (item 6). Cada bloco usa a grade que no desktop (≥1024) vira
- * duas colunas — identidade/documentos à esquerda e "Links do projeto"
- * sticky à direita. Só design tokens de variables.css.
- */
 .project {
   display: flex;
   flex-direction: column;
@@ -18,7 +9,6 @@
   border-top: 1px solid var(--color-border);
 }
 
-/* ------------------------------------------------- grade */
 .grid {
   display: flex;
   flex-direction: column;
@@ -34,7 +24,6 @@
   min-width: 0;
 }
 
-/* ------------------------------------------------ identidade */
 .identity {
   display: flex;
   flex-direction: column;
@@ -73,7 +62,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------ ação do bloco */
 .actions {
   display: flex;
   flex-wrap: wrap;
@@ -82,7 +70,6 @@
   margin-top: var(--space-1);
 }
 
-/* remove o estilo de âncora do wrapper do botão */
 .actionLink {
   text-decoration: none;
 }
@@ -93,7 +80,6 @@
   color: var(--color-text-muted);
 }
 
-/* -------------------------------------------------- cards */
 .card {
   display: flex;
   flex-direction: column;
@@ -127,7 +113,6 @@
   color: var(--color-text-body);
 }
 
-/* ------------------------------------------ documentos */
 /* ---------------------------------------- coluna de links */
 .sideTitle {
   font-size: var(--font-size-xl);
@@ -156,7 +141,6 @@
   color: var(--color-text-muted);
 }
 
-/* remove o estilo de âncora do wrapper do botão */
 .linkAnchor {
   display: block;
   margin-top: var(--space-2);
@@ -169,7 +153,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------- desktop (≥1024) */
 @media (min-width: 1024px) {
   /* conteúdo + lateral sticky por bloco (2 colunas) */
   .grid {

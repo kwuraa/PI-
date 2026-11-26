@@ -1,22 +1,3 @@
-/**
- * PI² — Shell da área logada: TopBar de fora a fora + SideNav (desktop) +
- * conteúdo + BottomNav.
- * -----------------------------------------------------------------------------
- * Regra de animação: a entrada/saída do conteúdo acontece APENAS no <main>
- * (stage), com framer-motion (AnimatePresence mode="wait" + `key` por rota).
- * TopBar, SideNav e BottomNav ficam fora do stage e, por isso, NÃO re-animam
- * entre rotas. O stage renderiza breadcrumb (decorrido da rota) e rodapé
- * interno junto com a página (fazem parte do conteúdo).
- *
- * Props:
- *  • barVariant: 'brand' | 'stack' (como a barra superior se apresenta)
- *  • title / action: usados na variante 'stack' (e no último item do breadcrumb)
- *
- * Breadcrumb da variante 'brand': além das rotas fixas, ele cobre os fluxos
- * do aluno — /aluno/novo → "Novo projeto" e /aluno/status/:slug →
- * "Enviado para análise!" (com ?enviado=1) ou "Acompanhar análise",
- * conforme o mockup 03.
- */
 import { useMemo } from 'react';
 import { Link, useLocation, useOutlet, useSearchParams } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -42,7 +23,7 @@ const SECTIONS = [
 ];
 
 /**
- * 3ª linha conversacional do breadcrumb (rota exata) — nos protótipos ela
+ * 3ª linha conversacional do breadcrumb (rota exata) — ela
  * repete o título da página ("PI² / Meus projetos / Minhas ideias em ação.").
  * Rotas parametrizadas (com :slug) não cabem aqui: ver `crumbForRota`.
  */
@@ -57,7 +38,7 @@ const CRUMB_TITLES = {
 
 /**
  * 2ª linha do breadcrumb para rotas cuja seção própria não é "/painel"
- * (mockup 06: "PI² / Relatório consolidado / Relatório consolidado").
+ * ("PI² / Relatório consolidado / Relatório consolidado").
  */
 const SECTION_OVERRIDES = {
   '/painel/relatorio-consolidado': {
@@ -69,7 +50,7 @@ const SECTION_OVERRIDES = {
 /**
  * 3ª linha de rotas PARAMETRIZADAS (o CRUMB_TITLES exato não as alcança).
  * -----------------------------------------------------------------------------
- * /aluno/status/:slug (mockups 03): a trilha depende da QUERY STRING —
+ * /aluno/status/:slug: a trilha depende da QUERY STRING —
  * useSearchParams lê `?enviado=1`, colocado pelo NewProjectPage depois do
  * envio, e então o breadcrumb vira "Enviado para análise!"; sem a query
  * (projeto em acompanhamento) ele é "Acompanhar análise".
@@ -100,10 +81,10 @@ export default function MainLayout({ barVariant = 'brand', title, action }) {
   const location = useLocation();
   const outlet = useOutlet();
   // query string atual — usada pelo breadcrumb (ex.: ?enviado=1 em
-  // /aluno/status/:slug → "Enviado para análise!", mockup 03).
+  // /aluno/status/:slug → "Enviado para análise!").
   const [search] = useSearchParams();
 
-  /** Breadcrumb: PI² / seção da rota / título conversacional (como no mockup). */
+  /** Breadcrumb: PI² / seção da rota / título conversacional. */
   const crumbs = useMemo(() => {
     const list = [{ label: 'PI²', to: '/' }];
     const section =

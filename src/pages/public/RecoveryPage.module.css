@@ -1,5 +1,3 @@
-/* RecoveryPage — recuperação de senha (mockup desktop: sem card wrapper,
-   barra superior com título centralizado, tile de chave e card "Como funciona"). */
 .page {
   display: flex;
   flex-direction: column;
@@ -7,7 +5,7 @@
   padding: var(--space-4) var(--space-4) var(--space-10);
 }
 
-/* Desktop: só centraliza — sem card wrapper (mockup 01 · Recuperação) */
+/* Desktop: só centraliza — sem card wrapper */
 @media (min-width: 768px) {
   .page {
     max-width: 640px;
@@ -16,7 +14,6 @@
   }
 }
 
-/* ------------------------------------------------- barra superior */
 .topBar {
   display: flex;
   align-items: center;
@@ -53,7 +50,6 @@
   color: var(--color-text-title);
 }
 
-/* ------------------------------------------------- cabeçalho */
 .keyTile {
   display: flex;
   align-items: center;

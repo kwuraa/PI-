@@ -1,49 +1,25 @@
-/**
- * PI² — Meu perfil e configurações (rota "/perfil").
- * -----------------------------------------------------------------------------
- * Segue o protótipo "Perfil e configurações de Ana Costa":
- *  • topo com h1 "Meu perfil" + subtítulo;
- *  • no desktop (≥1024px) DUAS colunas — à esquerda o cartão de identidade e
- *    o card "Dados institucionais" (e-mail e curso travados, com texto de
- *    apoio); à direita os cards "Notificações" e "Conta e privacidade" e o
- *    botão "Sair da conta" (largura própria, como no mockup);
- *  • no mobile tudo se empilha na mesma ordem do protótipo;
- *  • o card "Conta e privacidade" usa a variante `trailingIcon` do ListRow:
- *    título à esquerda e ícone simples à DIREITA (sem chip, sem chevron),
- *    como no mockup 02.
- * Extras do sistema:
- *  • seletor de ESPAÇO ATIVO (troca de perfis simulada) para usuários
- *    multiperfil (ex.: professor que também coordena);
- *  • salvar alterações e logout são simulados (sem backend).
- * TopBar, breadcrumb e rodapé vêm do MainLayout — a página NÃO repete rodapé.
- */
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {
-  FiHelpCircle,
-  FiKey,
-  FiLogOut,
-  FiShield,
-} from 'react-icons/fi';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FiHelpCircle, FiKey, FiLogOut, FiShield } from "react-icons/fi";
 
-import Avatar from '../components/ui/Avatar/Avatar.jsx';
-import Badge from '../components/ui/Badge/Badge.jsx';
-import Button from '../components/ui/Button/Button.jsx';
-import Card from '../components/ui/Card/Card.jsx';
-import FilterChips from '../components/ui/FilterChips/FilterChips.jsx';
-import ListRow from '../components/ui/ListRow/ListRow.jsx';
-import PageHeader from '../components/ui/PageHeader/PageHeader.jsx';
-import SectionHeader from '../components/ui/SectionHeader/SectionHeader.jsx';
-import TextField from '../components/ui/TextField/TextField.jsx';
-import { useAuth } from '../context/AuthContext.jsx';
-import styles from './ProfilePage.module.css';
+import Avatar from "../components/ui/Avatar/Avatar.jsx";
+import Badge from "../components/ui/Badge/Badge.jsx";
+import Button from "../components/ui/Button/Button.jsx";
+import Card from "../components/ui/Card/Card.jsx";
+import FilterChips from "../components/ui/FilterChips/FilterChips.jsx";
+import ListRow from "../components/ui/ListRow/ListRow.jsx";
+import PageHeader from "../components/ui/PageHeader/PageHeader.jsx";
+import SectionHeader from "../components/ui/SectionHeader/SectionHeader.jsx";
+import TextField from "../components/ui/TextField/TextField.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
+import styles from "./ProfilePage.module.css";
 
 /** Rótulo do papel (badge do cartão). */
 const ROLE_LABELS = {
-  aluno: 'Aluna',
-  professor: 'Professor',
-  coordenador: 'Coordenador',
-  secretaria: 'Secretaria',
+  aluno: "Aluna",
+  professor: "Professor",
+  coordenador: "Coordenador",
+  secretaria: "Secretaria",
 };
 
 export default function ProfilePage() {
@@ -55,14 +31,14 @@ export default function ProfilePage() {
   const [notifyProjects, setNotifyProjects] = useState(true);
   const [notifyNews, setNotifyNews] = useState(false);
 
-  const roleLabel = activeRoles.map((r) => ROLE_LABELS[r]).join(' e ');
+  const roleLabel = activeRoles.map((r) => ROLE_LABELS[r]).join(" e ");
 
   /** Espaço ativo como "value" do seletor (chave estável = roles juntos). */
-  const activeKey = activeRoles.join(',');
+  const activeKey = activeRoles.join(",");
 
   const handleLogout = () => {
     logout();
-    navigate('/', { replace: true });
+    navigate("/", { replace: true });
   };
 
   return (
@@ -76,7 +52,6 @@ export default function ProfilePage() {
       {/* coluna esquerda (dados) + coluna direita (preferências) no desktop */}
       <div className={styles.grid}>
         <div className={styles.mainColumn}>
-          {/* ---------------------------------- cartão do perfil */}
           <Card padding="lg" className={styles.identity}>
             <Avatar initials={user.initials} tone="primary" size="lg" />
             <div className={styles.identityTexts}>
@@ -84,32 +59,11 @@ export default function ProfilePage() {
               <Badge tone="primary">{roleLabel}</Badge>
               <p className={styles.identityMeta}>
                 {user.course}
-                {user.period ? ` · ${user.period}` : ''}
-                {user.registration ? ` · Matrícula ${user.registration}` : ''}
+                {user.period ? ` · ${user.period}` : ""}
+                {user.registration ? ` · Matrícula ${user.registration}` : ""}
               </p>
             </div>
           </Card>
-
-          {/* --------------------------------- espaço ativo (RBAC) */}
-          {spaceOptions && (
-            <Card padding="lg" className={styles.block}>
-              <SectionHeader
-                title="Espaço ativo"
-                subtitle="Simulação de troca de perfis: escolha como você quer atuar agora."
-              />
-              <FilterChips
-                options={spaceOptions.map((option) => ({
-                  value: option.roles.join(','),
-                  label: option.label,
-                }))}
-                value={activeKey}
-                onChange={(key) => key && switchSpace(key.split(','))}
-                clearLabel={null}
-              />
-            </Card>
-          )}
-
-          {/* ------------------------------------------- dados */}
           <Card padding="lg" className={styles.block}>
             <SectionHeader title="Dados institucionais" />
             <form
@@ -139,13 +93,16 @@ export default function ProfilePage() {
               <Button type="submit" fullWidth size="lg">
                 Salvar alterações
               </Button>
-              {saved && <p className={styles.savedNote}>Alterações salvas (simulação).</p>}
+              {saved && (
+                <p className={styles.savedNote}>
+                  Alterações salvas (simulação).
+                </p>
+              )}
             </form>
           </Card>
         </div>
 
         <div className={styles.sideColumn}>
-          {/* -------------------------------------- notificações */}
           <Card padding="lg" className={styles.block}>
             <SectionHeader title="Notificações" />
             <div className={styles.settings}>
@@ -176,7 +133,6 @@ export default function ProfilePage() {
             </div>
           </Card>
 
-          {/* ---------------------------------- conta/privacidade */}
           <Card padding="lg" className={styles.block}>
             <SectionHeader title="Conta e privacidade" />
             <div className={styles.rows}>

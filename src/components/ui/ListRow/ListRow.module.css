@@ -1,4 +1,3 @@
-/* ListRow — linha de navegação/lista com seta. */
 .row {
   display: flex;
   align-items: center;
@@ -55,7 +54,7 @@
 .badgeSlot {
   display: inline-flex;
   margin-top: var(--space-1);
-  /* selos de papel (PROFESSOR / COORDENADOR) em caixa alta, como no mockup */
+  /* selos de papel (PROFESSOR / COORDENADOR) em caixa alta */
   text-transform: uppercase;
   letter-spacing: var(--letter-spacing-caps);
 }
@@ -90,7 +89,7 @@
 }
 
 /* ícone simples à direita (sem chip de fundo e sem seta) —
-   variante "Conta e privacidade" do perfil (mockup 02) */
+   variante "Conta e privacidade" do perfil */
 .trailingIcon {
   display: inline-flex;
   align-items: center;

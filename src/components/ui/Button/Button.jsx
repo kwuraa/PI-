@@ -1,9 +1,3 @@
-/**
- * PI² — Botão (design token driven).
- * Variantes: primary (vermelho), secondary (contorno), ghost (texto).
- * Use `fullWidth` para ocupar a largura toda (padrão dos protótipos).
- * Micro-interação: leve escala no toque (framer-motion `whileTap`).
- */
 import { motion } from 'framer-motion';
 import styles from './Button.module.css';
 

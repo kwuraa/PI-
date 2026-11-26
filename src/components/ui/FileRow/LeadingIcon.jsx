@@ -1,19 +1,3 @@
-/**
- * PI² — Ícone da esquerda do FileRow, conforme a variante pedida.
- * -----------------------------------------------------------------------------
- * Extraído de FileRow.jsx na separação "um componente por arquivo" (item 6).
- *
- * Variantes:
- *  • 'circle'      → pílula 40px com o ícone centrado (arquivos do projeto);
- *  • 'square'      → quadradinho com radius-md (materiais do professor);
- *  • 'square-sm'   → quadradinho com radius-sm (arquivo enviado do aluno);
- *  • 'plain'       → só o ícone na cor primária (padrão do protótipo).
- *
- * `size` (opcional) repassa o tamanho ao ícone do react-icons.
- *
- * Uso (dentro do FileRow):
- *   <LeadingIcon variant={icon} size={size} />
- */
 import { FiFileText } from 'react-icons/fi';
 
 import styles from './LeadingIcon.module.css';

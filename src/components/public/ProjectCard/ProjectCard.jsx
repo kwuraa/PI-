@@ -1,26 +1,3 @@
-/**
- * PI² — Card de projeto (vitrine, explorar e "meus projetos").
- * -----------------------------------------------------------------------------
- * Variantes:
- *  • 'vitrine' → vitrine pública da Welcome: SEM status/tecnologias/salvos;
- *               pílula "DSM — Xº Semestre" no topo e crédito
- *               "Desenvolvido por: …" num rodapé próprio (mockup 01).
- *  • 'public' → LGPD: equipe ANONIMIZADA ("Equipe DSM — Xº Semestre");
- *               usada em telas visitantes e na vitrine pública.
- *  • 'logged' → nomes completos do time + orientador (área logada).
- *  • 'mine'   → cartão do aluno com status e ação principal
- *               (Acompanhar análise / Ver projeto).
- *
- * CAPA: projetos de exemplo podem trazer foto de capa — imagens públicas
- * baixadas localmente para `public/img` e servidas como `/img/…` (nada de
- * hotlink). Os demais seguem SEM capa: o card continua só com o conteúdo,
- * exatamente como antes. `index` (0, 1, 2…) define o atraso do card na
- * entrada em cascata.
- *
- * MÉTRICAS: todas as variantes exibem views (uma por sessão do navegador)
- * e curtidas do projeto, lidas do EngagementContext — os totais iniciais
- * vêm dos campos `views`/`likes` do mock.
- */
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiArrowUpRight, FiEye, FiHeart, FiUsers } from 'react-icons/fi';

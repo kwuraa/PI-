@@ -1,13 +1,3 @@
-/**
- * PI² — Perfis de acesso simulados (MOCK DATA).
- * -----------------------------------------------------------------------------
- * O login NÃO valida senha de verdade: basta escolher um perfil e o sistema
- * "loga" com aquele usuário de demonstração. É o ponto único para alterar
- * quem aparece na tela de "Como você acessa o PI²?".
- *
- * Roles suportadas (RBAC): 'aluno' | 'professor' | 'coordenador' | 'secretaria'.
- * Um usuário pode ter mais de um role (ex.: professor que também coordena).
- */
 export const MOCK_USERS = [
   {
     id: 'usr-ana',
@@ -25,7 +15,7 @@ export const MOCK_USERS = [
     name: 'Rafael Martins',
     displayName: 'prof. Rafael',
     initials: 'RM',
-    /* Multiperfil (como nos protótipos): atua como professor e coordena.
+    /* Multiperfil: atua como professor e coordena.
        O espaço PADRÃO ao entrar é o do professor; a troca acontece na
        tela de Perfil (ver AuthContext.switchSpace). */
     roles: ['professor', 'coordenador'],

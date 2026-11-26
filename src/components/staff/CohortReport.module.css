@@ -1,10 +1,3 @@
-/* CohortReport — face do COORDENADOR + PROFESSOR em
-   /painel/relatorio-consolidado (mockup 08 "Relatório consolidado — coorte").
-   -----------------------------------------------------------------------------
-   Extraído de RelatorioConsolidadoPage.module.css na separação "um componente
-   por arquivo" (item 6). Importa ReportShared.module.css ANTES deste, para
-   que .filterCard sobrescreva o gap do .card compartilhado. */
-
 .cardSubtitle {
   font-size: var(--font-size-sm);
   line-height: var(--line-height-normal);
@@ -62,7 +55,7 @@
   border-radius: var(--radius-sm);
 }
 
-/* semestre corrente em vermelho (última barra do mockup) */
+/* semestre corrente em vermelho (última barra) */
 .chartBarHighlight {
   background-color: var(--color-primary);
 }
@@ -166,14 +159,12 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------- rodapé da tela */
 .footnote {
   font-size: var(--font-size-xs);
   line-height: var(--line-height-normal);
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------- tablet (≥768px) */
 @media (min-width: 768px) {
   /* coorte: seletor e resumo na mesma linha */
   .filterCard {

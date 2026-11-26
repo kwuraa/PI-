@@ -1,18 +1,9 @@
-/**
- * ProfessorProjectPage — meu projeto e materiais (mockup 09).
- * -----------------------------------------------------------------------------
- * Mobile-first: topo com badge + ação, cabeçalho da seção "Projetos sob
- * orientação" e UM BLOCO POR PROJETO (o bloco em si vive em
- * components/staff/ProjectBlock.module.css). Entre os blocos, uma divisória
- * leve. Só design tokens de variables.css.
- */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
-/* ------------------------------------------- seção de projetos */
 .section {
   display: flex;
   flex-direction: column;
@@ -47,7 +38,6 @@
   min-width: 0;
 }
 
-/* ------------------------------------------- desktop (≥1024) */
 @media (min-width: 1024px) {
   /* título do <PageHeader/> sobe para 3xl no desktop */
   .pageHeader h1 {

@@ -1,16 +1,4 @@
 /**
- * PI² — Variantes de animação compartilhadas (framer-motion).
- * -----------------------------------------------------------------------------
- * Centraliza o "vocabulário" de movimento do app (DRY):
- *  • pageVariants  → entrada/saída das telas nos stages dos layouts;
- *  • staggerParent → container que escalona os filhos (hero, etc.);
- *  • fadeUpChild   → filho individual do stagger (fade + subida);
- *  • cardIn(index) → props de um card de grade com atraso pela posição.
- * Cores NÃO vivem aqui (regra: só tokens em variables.css) — só opacidade
- * e posição, sempre com duração espelhando --transition-base (250ms ease).
- */
-
-/**
  * Curva CSS `ease` = cubic-bezier(0.25, 0.1, 0.25, 1).
  * O framer-motion NÃO aceita a string 'ease' (só 'easeIn'/'easeOut'/…);
  * usamos a tupla para reproduzir exatamente a curva do CSS.

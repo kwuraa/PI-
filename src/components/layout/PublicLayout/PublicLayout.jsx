@@ -1,13 +1,3 @@
-/**
- * PI² — Shell das telas públicas/autenticadas sem BottomNav
- * (boas-vindas, login, cadastro, recuperação de senha).
- * Animação (framer-motion): o stage entra com fade + subida e SAÍ antes da
- * próxima tela entrar (AnimatePresence mode="wait"). O `key` por rota +
- * `useOutlet()` garantem que quem anima a saída é a tela ANTIGA; o shell
- * em si permanece estável.
- * Rodapé (só desktop, ≥768px): aparece nas telas de auth — a boas-vindas
- * tem as suas e o login não exibe barra de topo (a pedido).
- */
 import { Link, useLocation, useOutlet } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 

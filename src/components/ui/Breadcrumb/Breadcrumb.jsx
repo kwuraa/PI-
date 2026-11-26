@@ -1,10 +1,3 @@
-/**
- * PI² — Trilha de navegação (breadcrumb) das telas logadas.
- * -----------------------------------------------------------------------------
- * Montada pelo MainLayout a partir da rota: "PI² / seção / (título da barra
- * empilhada)". Fica no topo do stage e entra junto com a animação de
- * conteúdo da página (regra do briefing: só o stage anima).
- */
 import { Link } from 'react-router-dom';
 import styles from './Breadcrumb.module.css';
 

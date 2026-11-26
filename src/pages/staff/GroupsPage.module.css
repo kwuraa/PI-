@@ -1,11 +1,9 @@
-/* GroupsPage — gestão de grupos da coordenação (mockup 06 desktop). */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
-/* ------------------------------------------------- métricas */
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
@@ -18,7 +16,6 @@
   color: var(--color-text-title);
 }
 
-/* ------------------------------------------------- grade de cards */
 .list {
   display: flex;
   flex-direction: column;
@@ -111,7 +108,6 @@
   color: var(--color-primary);
 }
 
-/* ----------------------------------------------- ações */
 .cardActions {
   display: flex;
   flex-direction: column;
@@ -153,7 +149,6 @@
   border-color: var(--color-border-strong);
 }
 
-/* ------------------------------------------- rodapé */
 .empty {
   padding: var(--space-8) var(--space-4);
   border: 1px dashed var(--color-border-strong);
@@ -178,9 +173,8 @@
   flex: 1;
 }
 
-/* ------------------------------------------- desktop */
 @media (min-width: 768px) {
-  /* grade de 2 colunas como no mockup */
+  /* grade de 2 colunas */
   .list {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

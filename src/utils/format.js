@@ -1,9 +1,3 @@
-/**
- * PI² — Funções utilitárias (formatação PT-BR).
- * Centraliza regras de exibição como números, datas e contagens para que
- * nenhuma página precise repetir toLocaleString / replace por aí.
- */
-
 /** Formata um número no padrão brasileiro (1.284 · 32). */
 export function formatNumber(value) {
   return new Intl.NumberFormat('pt-BR').format(value);

@@ -1,7 +1,3 @@
-/**
- * PI² — Cabeçalho de seção (título + subtítulo opcional + ação à direita).
- * Padrão das listas dos protótipos: "Aguardando revisão", "Notificações"…
- */
 import styles from './SectionHeader.module.css';
 
 export default function SectionHeader({ title, subtitle, action = null }) {

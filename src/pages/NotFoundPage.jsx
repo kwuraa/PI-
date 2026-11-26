@@ -1,7 +1,3 @@
-/**
- * PI² — Página não encontrada (rota "*").
- * Estado vazio didático com atalhos de volta para os espaços principais.
- */
 import { useNavigate } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 

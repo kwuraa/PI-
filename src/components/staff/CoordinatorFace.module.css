@@ -1,10 +1,3 @@
-/* CoordinatorFace — painel do coordenador (mockup 06).
-   -----------------------------------------------------------------------------
-   Extraído de StaffPanel.module.css na separação "um componente por arquivo"
-   (item 6): métricas do curso + alerta + áreas de gestão em 2 colunas no
-   desktop. Usa a classe `.stats` de StaffPanelShared.module.css. */
-
-/* linhas dentro de um card (sem borda própria, com divisores) */
 .rowsPlain {
   display: flex;
   flex-direction: column;

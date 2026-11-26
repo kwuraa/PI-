@@ -1,10 +1,3 @@
-/* UnifiedFace — face unificada professor + coordenador, com abas (mockup 07).
-   -----------------------------------------------------------------------------
-   Extraído de StaffPanel.module.css na separação "um componente por arquivo"
-   (item 6): seções professor/coordenador lado a lado, card único de métricas
-   e a aba "Atalhos". Usa `.stats`, `.block` e `.blockTitle` de
-   StaffPanelShared.module.css. */
-
 .rows {
   display: flex;
   flex-direction: column;

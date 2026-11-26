@@ -1,10 +1,3 @@
-/**
- * PI² — Chips de filtro (semestre, tecnologia, status…).
- * Props: options [{ value, label }], value (id ativo | null),
- *        onChange(value), multiple (modo conjunto), clearLabel.
- * No modo múltiplo, value é um array; o chip "Todos" limpa a seleção.
- * Micro-interação: o chip afina levemente no toque (framer-motion whileTap).
- */
 import { motion } from 'framer-motion';
 import styles from './FilterChips.module.css';
 

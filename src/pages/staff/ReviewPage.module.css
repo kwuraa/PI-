@@ -1,10 +1,3 @@
-/**
- * ReviewPage — revisão do projeto pelo professor (mockup 04).
- * -----------------------------------------------------------------------------
- * Mobile-first: coluna principal + coluna lateral empilhadas; a partir de
- * 1024px elas viram duas colunas (≈1.6fr / 1fr) como no desktop do protótipo.
- * Só design tokens de src/styles/variables.css — nenhuma cor fixa.
- */
 .page {
   display: flex;
   flex-direction: column;
@@ -32,7 +25,6 @@
   color: var(--color-text-muted);
 }
 
-/* --------------------------------------------------- identidade */
 .identity {
   display: flex;
   flex-direction: column;
@@ -62,7 +54,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------------------ blocos */
 .block {
   display: flex;
   flex-direction: column;
@@ -176,7 +167,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------------- decisões */
 .decisions {
   display: flex;
   flex-direction: column;
@@ -189,7 +179,6 @@
   text-align: center;
 }
 
-/* ------------------------------------------- desktop (≥1024) */
 @media (min-width: 1024px) {
   .page {
     display: grid;

@@ -1,27 +1,3 @@
-/**
- * PI² — Face do COORDENADOR do relatório consolidado: semestre vigente
- * (mockup 06 "Relatório consolidado").
- * -----------------------------------------------------------------------------
- * Extraído de RelatorioConsolidadoPage.jsx na separação "um componente por
- * arquivo" (item 6), junto com as classes de RelatorioConsolidadoPage.module.css
- * que só ela usa.
- *
- * Conteúdo: seletor do semestre vigente, 4 StatCards (Grupos ativos ·
- * Alunos participantes · Média dos projetos · Entregas concluídas), card
- * "Acompanpanhamento geral" com barras de progresso e card "Projetos no
- * semestre" + botão "Ver pendências dos grupos".
- *
- * Fonte única: GROUPS em src/mocks/projectsMock.js. Os demais números são os
- * indicadores parciais do mockup — não existem nos mocks, por isso ficam como
- * constantes locais documentadas. As barras usam classes de largura prontas no
- * CSS Module, porque o projeto proíbe estilo inline nos elementos JSX.
- *
- * Usa as classes compartilhadas de ReportShared.module.css — importe-o ANTES
- * deste módulo.
- *
- * Uso (dentro da RelatorioConsolidadoPage):
- *   <SemesterReport />
- */
 import { Link } from 'react-router-dom';
 import { FiDownload } from 'react-icons/fi';
 
@@ -52,7 +28,7 @@ const METRICS = {
 };
 
 /**
- * Linhas do card "Acompanpanhamento geral" (mockup 06).
+ * Linhas do card "Acompanpanhamento geral".
  * `fill` aponta a classe de largura da barra — não há cálculo em linha,
  * pois o estilo inline nos elementos JSX é proibido no projeto.
  */
@@ -80,7 +56,7 @@ const PROGRESS_ROWS = [
   },
 ];
 
-/** Contagem de projetos por status no semestre (mockup 06). */
+/** Contagem de projetos por status no semestre. */
 const PROJECT_STATUS_ROWS = [
   { id: 'publicado', value: 2 },
   { id: 'em-analise', value: 1 },

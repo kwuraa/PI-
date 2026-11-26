@@ -1,8 +1,3 @@
-/**
- * PI² — Campo de busca com ícone e ação opcional (filtros).
- * Props: value, onChange, placeholder, onFilterClick (abre o painel de filtros).
- * Controlado: o estado do texto vive na página que usa o componente.
- */
 import { FiSearch, FiSliders } from 'react-icons/fi';
 import styles from './SearchField.module.css';
 

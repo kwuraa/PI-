@@ -1,17 +1,3 @@
-/**
- * PI² — Página de Ajuda e suporte (rota "/ajuda").
- *
- * Central de dúvidas do protótipo, renderizada dentro do MainLayout
- * (TopBar, sidebar, breadcrumb e rodapé já vêm do layout):
- *  1. Badge/eyebrow "Ajuda e suporte" + h1 + subtítulo (padrão das páginas);
- *  2. Seção "Fale com o suporte": 2 cards de contato em grade responsiva;
- *  3. Seção "Perguntas frequentes": 4 itens <details>/<summary> nativos,
- *     que abrem e fecham sem JavaScript (o navegador cuida disso);
- *  4. Link final de volta à vitrine pública ("/explorar").
- *
- * Regras do projeto: estilo SEMPRE em CSS Module (nunca estilo inline),
- * cores SOMENTE via variáveis CSS (nunca hex) e ícones apenas de react-icons/fi.
- */
 import { Link } from 'react-router-dom';
 import { FiMail, FiMessageCircle, FiChevronDown } from 'react-icons/fi';
 
@@ -21,7 +7,6 @@ import styles from './HelpPage.module.css';
 export default function HelpPage() {
   return (
     <div className={styles.page}>
-      {/* ---------- cabeçalho da página (badge + h1 + subtítulo) ---------- */}
       <PageHeader
         eyebrow="Ajuda e suporte"
         caps
@@ -31,7 +16,6 @@ export default function HelpPage() {
         lead="Respostas rápidas sobre acesso, publicação e privacidade no PI²."
       />
 
-      {/* ---------- seção 1: canais de atendimento ---------- */}
       <section className={styles.section} aria-labelledby="ajuda-suporte">
         <h2 id="ajuda-suporte" className={styles.sectionTitle}>
           Fale com o suporte
@@ -71,7 +55,6 @@ export default function HelpPage() {
         </div>
       </section>
 
-      {/* ---------- seção 2: FAQ em <details> nativos ---------- */}
       <section className={styles.section} aria-labelledby="ajuda-faq">
         <h2 id="ajuda-faq" className={styles.sectionTitle}>
           Perguntas frequentes
@@ -85,7 +68,7 @@ export default function HelpPage() {
             </summary>
             <p className={styles.faqAnswer}>
               Escolha o seu perfil (aluno, professor ou coordenador)
-              na tela de acesso e entre com o e-mail institucional. O protótipo
+              na tela de acesso e entre com o e-mail institucional. O sistema
               não valida senha.
             </p>
           </details>

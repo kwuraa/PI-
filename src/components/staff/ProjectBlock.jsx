@@ -1,26 +1,3 @@
-/**
- * PI² — UM bloco completo de projeto na tela "Meu projeto e materiais"
- * (rota /painel/meu-projeto, anatomia do mockup 09).
- * -----------------------------------------------------------------------------
- * Extraído de ProfessorProjectPage.jsx na separação "um componente por
- * arquivo" (item 6), junto com os helpers que SÓ ele usa (data por situação,
- * ação coerente com o status e nota de aprovação).
- *
- * Estrutura (empilhada no mobile, DUAS colunas no desktop ≥1024):
- *  • coluna principal — pills (DSM + status), título, meta (tipo · turma ·
- *    publicação/envio · salvos), equipe e orientador, ação coerente com o
- *    status, card "Sobre o projeto", card "Meus documentos" e o callout
- *    "Seus materiais, acessos diferentes";
- *  • coluna lateral sticky — "Links do projeto" (versão navegável + GitHub)
- *    e a nota de aprovação (só para projetos publicados).
- *
- * Ação por status: publicado → /projeto/:slug; em análise → /painel/revisar/
- * :slug; ajustes → /painel/resultado/:slug; rascunho → /painel/grupos (a
- * equipe ainda não enviou o projeto, então a referência é a ficha do grupo).
- *
- * Uso (dentro da ProfessorProjectPage):
- *   <ProjectBlock key={project.id} project={project} />
- */
 import { Link } from 'react-router-dom';
 import {
   FiArrowRight,
@@ -39,7 +16,7 @@ import { statusMeta } from '../../utils/status.js';
 import { COURSE_SHORT, getTeam } from '../../mocks/projectsMock.js';
 import styles from './ProjectBlock.module.css';
 
-/** Turma canônica do semestre corrente (mesmo rótulo dos protótipos). */
+/** Turma canônica do semestre corrente. */
 const TURMA = '2026.2';
 
 /** Data por situação: publicado usa a data de publicação; senão, de envio. */
@@ -107,7 +84,6 @@ export default function ProjectBlock({ project }) {
   return (
     <article className={styles.project} aria-labelledby={headingId}>
       <div className={styles.grid}>
-        {/* ---------------------------------- coluna principal */}
         <div className={styles.main}>
           <div className={styles.identity}>
             <div className={styles.badgesRow}>
@@ -155,7 +131,7 @@ export default function ProjectBlock({ project }) {
             <h4 className={styles.cardTitle}>
               Meus documentos · {project.files.length} arquivos
             </h4>
-            {/* ladrilho do arquivo (mockup 09): bloco de token, sem imagem */}
+            {/* ladrilho do arquivo: bloco de token, sem imagem */}
             <FileList>
               {project.files.map((file) => (
                 <FileRow
@@ -179,7 +155,6 @@ export default function ProjectBlock({ project }) {
           </Callout>
         </div>
 
-        {/* ---------------------------------------- coluna lateral */}
         <aside
           className={styles.side}
           aria-label={`Links do projeto ${project.title}`}

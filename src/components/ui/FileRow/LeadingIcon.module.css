@@ -1,5 +1,3 @@
-/* LeadingIcon — ícone à esquerda do FileRow, por variante. */
-
 .iconPlain {
   flex-shrink: 0;
   color: var(--color-primary);

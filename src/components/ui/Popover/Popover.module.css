@@ -1,7 +1,3 @@
-/* Popover — painel ancorado que desce do gatilho (sem overlay).
-   O posicionamento é ABSOLUTO em relação ao wrapper `position: relative`
-   do gatilho: o painel desce da âncora e o conteúdo da página continua
-   visível ao redor. As animações (fade + descida) vivem no JSX (framer-motion). */
 .panel {
   position: absolute;
   top: calc(100% + var(--space-3));

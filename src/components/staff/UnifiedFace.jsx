@@ -1,22 +1,5 @@
-/**
- * PI² — Face unificada de /painel (professor + coordenador no mesmo espaço).
- * -----------------------------------------------------------------------------
- * Extraído de StaffPanelPage.jsx na separação "um componente por arquivo"
- * (item 6), junto com as classes de StaffPanel.module.css que só ela usa.
- *
- * Conteúdo (mockup 07): saudação dupla, abas "Painel unificado | Atalhos"
- * (a aba Atalhos tem h1 próprio), as seções "Como professor" e "Como
- * coordenador" lado a lado, o card único de métricas do coordenador, o alerta
- * de grupo sem link e as linhas de atalho de cada papel.
- *
- * Usa as classes de estrutura de StaffPanelShared.module.css
- * (`.stats`, `.block`, `.blockTitle`).
- *
- * Uso (dentro da StaffPanelPage):
- *   <UnifiedFace user={user} />
- */
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowRight,
   FiFileText,
@@ -24,52 +7,52 @@ import {
   FiSliders,
   FiTrendingUp,
   FiUsers,
-} from 'react-icons/fi';
+} from "react-icons/fi";
 
-import Badge from '../ui/Badge/Badge.jsx';
-import Button from '../ui/Button/Button.jsx';
-import Callout from '../ui/Callout/Callout.jsx';
-import ListRow from '../ui/ListRow/ListRow.jsx';
-import PageHeader from '../ui/PageHeader/PageHeader.jsx';
-import StatCard from '../ui/StatCard/StatCard.jsx';
-import Tabs from '../ui/Tabs/Tabs.jsx';
-import { METRICS } from './staffMetrics.js';
-import shared from './StaffPanelShared.module.css';
-import styles from './UnifiedFace.module.css';
+import Badge from "../ui/Badge/Badge.jsx";
+import Button from "../ui/Button/Button.jsx";
+import Callout from "../ui/Callout/Callout.jsx";
+import ListRow from "../ui/ListRow/ListRow.jsx";
+import PageHeader from "../ui/PageHeader/PageHeader.jsx";
+import StatCard from "../ui/StatCard/StatCard.jsx";
+import Tabs from "../ui/Tabs/Tabs.jsx";
+import { METRICS } from "./staffMetrics.js";
+import shared from "./StaffPanelShared.module.css";
+import styles from "./UnifiedFace.module.css";
 
 const TABS = [
-  { id: 'painel', label: 'Painel unificado' },
-  { id: 'atalhos', label: 'Atalhos' },
+  { id: "painel", label: "Painel unificado" },
+  { id: "atalhos", label: "Atalhos" },
 ];
 
 export default function UnifiedFace({ user }) {
-  const [tab, setTab] = useState('painel');
-  const who = user?.displayName ?? user?.name ?? '';
-  /** "prof. Rafael" → "Prof. Rafael" (lead da aba Atalhos). */
+  const [tab, setTab] = useState("painel");
+  const who = user?.displayName ?? user?.name ?? "";
   const whoCap = who.charAt(0).toUpperCase() + who.slice(1);
 
   return (
     <>
       <PageHeader
-        eyebrow={<Badge tone="primary">Espaço do professor e coordenador</Badge>}
+        eyebrow={
+          <Badge tone="primary">Espaço do professor e coordenador</Badge>
+        }
         gap="md"
         title={
-          tab === 'atalhos'
-            ? 'Atalhos'
+          tab === "atalhos"
+            ? "Atalhos"
             : `Olá, ${who}. Você orienta e coordena.`
         }
         lead={
-          tab === 'atalhos'
+          tab === "atalhos"
             ? `${whoCap}, suas ações para orientar e coordenar, reunidas aqui.`
-            : 'Suas orientações e a gestão do curso, no mesmo lugar.'
+            : "Suas orientações e a gestão do curso, no mesmo lugar."
         }
       />
 
       <Tabs items={TABS} value={tab} onChange={setTab} />
 
-      {tab === 'painel' ? (
+      {tab === "painel" ? (
         <>
-          {/* seções professor/coordenador lado a lado (mockup 07) */}
           <div className={styles.splitTwo}>
             <section className={shared.block}>
               <h2 className={shared.blockTitle}>Como professor</h2>
@@ -88,7 +71,6 @@ export default function UnifiedFace({ user }) {
 
             <section className={shared.block}>
               <h2 className={shared.blockTitle}>Como coordenador</h2>
-              {/* card único com as 2 métricas em linhas inline (mockup 07) */}
               <div className={styles.combinedCard}>
                 <div className={styles.combinedRow}>
                   <span className={styles.combinedLabel}>

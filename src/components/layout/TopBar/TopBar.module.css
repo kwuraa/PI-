@@ -1,6 +1,3 @@
-/* TopBar — variante brand (painel) e stack (detalhe).
-   No desktop (≥1024px) a brand ganha título da marca, chip do semestre e
-   bloco nome/papel — igual aos protótipos desktop. */
 .brand {
   display: flex;
   align-items: center;
@@ -138,7 +135,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------- caixinhas (menus) */
 /* gatilhos que abrem uma caixinha posicionada embaixo (perfil e "...") */
 .userWrap,
 .moreWrap {
@@ -267,7 +263,6 @@
   text-align: left;
 }
 
-/* ------------------------------------------------------- desktop */
 @media (min-width: 1024px) {
   .brand {
     position: sticky;
@@ -318,7 +313,6 @@
   }
 }
 
-/* ---- variante stack ---- */
 .stack {
   position: sticky;
   top: 0;

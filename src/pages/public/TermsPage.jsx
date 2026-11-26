@@ -1,12 +1,3 @@
-/**
- * PI² — Termos de uso (rota "/termos").
- * -----------------------------------------------------------------------------
- * Página legal pública montada no shell compartilhado LegalPage (barra com
- * voltar, tile de documento, seções de texto e botão de volta). O conteúdo
- * é mockado: 7 seções curtas cobrindo aceitação, conta institucional, uso
- * aceitável, propriedade dos projetos, moderação, LGPD e contato.
- * Acesse também a Política de privacidade (link cruzado na seção de LGPD).
- */
 import { Link } from 'react-router-dom';
 import { FiFileText } from 'react-icons/fi';
 

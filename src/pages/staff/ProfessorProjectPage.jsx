@@ -1,21 +1,3 @@
-/**
- * PI² — Visão do professor: meu projeto e materiais (rota "/painel/meu-projeto").
- * -----------------------------------------------------------------------------
- * A lista vem de PROJECTS filtrada por ADVISED_GROUP_IDS (que guarda ids de
- * EQUIPE, team-*), ou seja: Rota Acessível (publicado), Biblioteca Conectada
- * (em análise) e EcoCampus (rascunho).
- *
- * Estrutura alinhada ao mockup "Visão Professor — meu projeto e materiais":
- *  • topo — badge "Área do professor", ação "Gerenciar materiais e links",
- *    h1 "Meu projeto e materiais" (igual ao fallback da barra de pilha) e lead;
- *  • cabeçalho de seção — "Projetos sob orientação · N projetos";
- *  • UM BLOCO POR PROJETO — a anatomia de cada bloco (duas colunas no
- *    desktop, pills/status/equipe/documentos/links) vive em
- *    components/staff/ProjectBlock.jsx.
- *
- * Ação por status e imagens do projeto: ver o JSDoc do próprio ProjectBlock
- * (imagens FORA DE ESCOPO — item 16 adiado; usa-se blocos/tokens).
- */
 import { FiEdit3 } from 'react-icons/fi';
 
 import ProjectBlock from '../../components/staff/ProjectBlock.jsx';
@@ -37,7 +19,6 @@ const ADVISED_PROJECTS = PROJECTS.filter((project) =>
 export default function ProfessorProjectPage() {
   return (
     <div className={styles.page}>
-      {/* ------------------------------------------ topo */}
       <PageHeader
         actionsTop
         gap="sm"
@@ -53,7 +34,6 @@ export default function ProfessorProjectPage() {
         lead="Seus documentos, materiais e links de cada projeto sob sua orientação, reunidos em um só lugar."
       />
 
-      {/* --------------------------------- seção de projetos */}
       <section
         className={styles.section}
         aria-labelledby="projetos-sob-orientacao"

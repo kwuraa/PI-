@@ -303,7 +303,7 @@ Detalhamento completo em [`docs/`](docs/):
 | ------------------------------------------------------ | ------------------------------------------------------------- |
 | [`docs/01-visao-geral.md`](docs/01-visao-geral.md)     | O que é o PI², escopo do protótipo e personas                 |
 | [`docs/02-arquitetura.md`](docs/02-arquitetura.md)     | Rotas, layouts, RBAC, code splitting e contextos              |
-| [`docs/03-telas.md`](docs/03-telas.md)                 | As 25 telas, o que cada uma mostra e os mockups de referência |
+| [`docs/03-telas.md`](docs/03-telas.md)                 | As 25 telas e o que cada uma mostra |
 | [`docs/04-design-system.md`](docs/04-design-system.md) | Tokens, kit de componentes e animações                        |
 | [`docs/05-mocks.md`](docs/05-mocks.md)                 | Fonte de dados simulados e como editar                        |
 | [`docs/06-refatoracao.md`](docs/06-refatoracao.md)     | Histórico das melhorias de código (itens 1–7)                 |

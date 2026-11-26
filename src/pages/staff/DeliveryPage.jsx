@@ -1,20 +1,3 @@
-/**
- * PI² — Detalhe da entrega (rota "/painel/entrega/:slug").
- * -----------------------------------------------------------------------------
- * Visão do professor/coordenador sobre uma entrega, em DUAS colunas no
- * desktop (mockup "Detalhe da entrega") e empilhada no mobile:
- *  • coluna principal — badge "Área do professor" + situação da entrega,
- *    selo do curso + status, título, metadados (tipo · turma · publicação ·
- *    salvos), equipe e orientador, seção "Sobre o projeto" (descrição +
- *    destaques), "Materiais enviados" (arquivos + contagem) e o card do
- *    link navegável com o botão "Acessar projeto";
- *  • coluna lateral — card "Revisão concluída" (parecer registrado com os
- *    critérios conferidos + botão "Ver parecer registrado" em modal) ou o
- *    callout de revisão pendente, e o card "Upload de Evidências da Banca"
- *    com dropzones "Anexar fotos" / "Anexar ata ou registro" (upload
- *    simulado: o item entra apenas na lista em estado local, sem backend).
- * Imagens do projeto: FORA DE ESCOPO (item 16 adiado).
- */
 import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
@@ -44,10 +27,10 @@ import {
 } from '../../mocks/projectsMock.js';
 import styles from './DeliveryPage.module.css';
 
-/** Turma canônica do semestre corrente (mesmo rótulo dos protótipos). */
+/** Turma canônica do semestre corrente. */
 const TURMA = '2026.2';
 
-/** Rótulo da situação no topo da coluna direita (copy do mockup). */
+/** Rótulo da situação no topo da coluna direita. */
 function situationLabel(status) {
   switch (status) {
     case 'publicado':
@@ -104,7 +87,6 @@ export default function DeliveryPage() {
 
   return (
     <div className={styles.page}>
-      {/* ------------------------------------- coluna principal */}
       <div className={styles.main}>
         <div className={styles.statusRow}>
           <Badge tone="primary">Área do professor</Badge>
@@ -188,7 +170,6 @@ export default function DeliveryPage() {
         )}
       </div>
 
-      {/* --------------------------------------- coluna lateral */}
       <aside className={styles.side}>
         {project.review ? (
           <Card padding="md" className={styles.sideCard}>
@@ -302,7 +283,6 @@ export default function DeliveryPage() {
         </Card>
       </aside>
 
-      {/* ---------------------------------- parecer registrado */}
       <Modal
         open={reviewOpen}
         onClose={() => setReviewOpen(false)}

@@ -1,24 +1,3 @@
-/**
- * PI² — Cadastro de Cursos da instituição (rota "/secretaria/cursos", secretaria).
- * -----------------------------------------------------------------------------
- * Tela institucional de cursos, com quatro blocos:
- *  1. Cabeçalho (badge "Gestão institucional" + h1 + lead) com o botão
- *     "+ Cadastrar novo curso", que abre o modal de cadastro (simulado);
- *  2. Coluna esquerda: título "Cursos cadastrados" + link "Todos", lista de
- *     cards (código grande, nome completo, meta e rodapé com "Editar curso"
- *     — abre o painel lateral — e "Desativar" — alterna o estado visual do
- *     card, sem backend) e o card rosa "Disponibilidade no MVP" (FiShield);
- *  3. Coluna direita (desktop ≥1024px; abaixo da lista no mobile): painel
- *     "Editar curso" com selo "<SIGLA> selecionado", campos "Sigla *" e
- *     "Nome do curso *", bloco "Curso ativo" com switch e os botões
- *     "Salvar alterações" (aplica na lista) e "Cancelar edição" (limpa a
- *     seleção);
- *  4. Modal de cadastro de novos cursos (mantido do protótipo original).
- * Todo o estado é local (useState) — protótipo sem backend.
- *
- * Regras do projeto: estilo SEMPRE em CSS Module (nunca estilo inline),
- * cores SOMENTE via variáveis CSS (nunca hex) e ícones apenas de react-icons/fi.
- */
 import { useState } from 'react';
 import { FiCheck, FiEdit2, FiPlus, FiShield } from 'react-icons/fi';
 
@@ -35,7 +14,7 @@ import styles from './CoursesPage.module.css';
 /**
  * Nome completo do DSM exibido NESTA tela.
  * O mock de dados (COURSE em projectsMock.js) traz "DSM · Desenvolvimento
- * de Software", mas o mockup da tela define "Desenvolvimento de Software
+ * de Software", mas a exibição usa "Desenvolvimento de Software
  * Multiplataforma" — divergência resolvida só na exibição, sem tocar no mock.
  */
 const DSM_FULL_NAME = 'Desenvolvimento de Software Multiplataforma';
@@ -145,7 +124,6 @@ export default function CoursesPage() {
 
   return (
     <div className={styles.page}>
-      {/* ------------------- cabeçalho (badge + h1 + lead + ação) */}
       <PageHeader
         eyebrow="Gestão institucional"
         gap="sm"
@@ -166,7 +144,6 @@ export default function CoursesPage() {
         }
       />
 
-      {/* ------------- conteúdo: lista (esq.) + painel (dir.) */}
       <div className={styles.content}>
         <div className={styles.listColumn}>
           <div className={styles.listHeader}>
@@ -233,7 +210,6 @@ export default function CoursesPage() {
           </aside>
         </div>
 
-        {/* ---------------------- painel lateral de edição */}
         {selectedCourse && (
           <aside className={styles.panel} aria-label="Painel de edição de curso">
             <div className={styles.panelTop}>
@@ -304,7 +280,6 @@ export default function CoursesPage() {
         )}
       </div>
 
-      {/* ---------------------------------- modal de cadastro */}
       <Modal
         open={open}
         onClose={() => setOpen(false)}

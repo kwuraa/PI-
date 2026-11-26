@@ -1,11 +1,3 @@
-/**
- * PI² — Resultado da revisão (rota "/painel/resultado/:slug").
- * -----------------------------------------------------------------------------
- * Duas decisões do professor (como nos protótipos):
- *  • padrão              → "AquaSense aprovado e publicado";
- *  • ?decisao=ajustes    → "AquaSense com ajustes solicitados".
- * Mostra o resumo do projeto, a checklist conferida e os próximos passos.
- */
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { FiAlertTriangle, FiCheckCircle } from 'react-icons/fi';
 
@@ -52,7 +44,6 @@ export default function ReviewResultPage() {
 
   return (
     <div className={styles.page}>
-      {/* ------------------------------------------- banner */}
       <Callout
         tone={approved ? 'success' : 'danger'}
         icon={
@@ -69,7 +60,6 @@ export default function ReviewResultPage() {
           : 'Orientador pediu correções. A equipe foi avisada e poderá reenviar a entrega.'}
       </Callout>
 
-      {/* ------------------------------------------- resumo */}
       <Card padding="md" className={styles.summary}>
         <div className={styles.summaryTop}>
           <Badge tone={approved ? 'success' : 'warning'}>
@@ -89,7 +79,6 @@ export default function ReviewResultPage() {
         </p>
       </Card>
 
-      {/* ---------------------------------------- parecer */}
       <section className={styles.block}>
         <SectionHeader
           title={approved ? 'Parecer do orientador' : 'O que precisa de ajustes'}
@@ -109,7 +98,6 @@ export default function ReviewResultPage() {
         </ul>
       </section>
 
-      {/* ------------------------------------------ ações */}
       <div className={styles.actions}>
         {approved ? (
           <Link to={`/projeto/${project.slug}`} className={styles.primaryLink}>

@@ -1,20 +1,3 @@
-/**
- * PI² — Histórico e Evolução do Grupo (rota "/painel/evolucao").
- * -----------------------------------------------------------------------------
- * Relatório QUALITATIVO (sem notas), em DUAS colunas no desktop (mockup
- * "Relatório Histórico e Evolução do Grupo") e empilhado no mobile:
- *  • topo — link "← Painel do professor", título "Evolução do grupo" e o
- *    lead do protótipo;
- *  • card "Grupo selecionado" — select do grupo + linha da sala/período +
- *    nota de atualização dos dados;
- *  • coluna esquerda — "Histórico por semestre": cards com selo do período,
- *    cadeado, marco, resumo e evidência, encerrados no botão
- *    "Exportar relatório";
- *  • coluna direita — "Evolução qualitativa": cards de critérios
- *    comportamentais (título, resumo e evidência).
- * Fonte única: GROUP_EVOLUTION em src/mocks/projectsMock.js.
- * Imagens/relatórios em PDF: FORA DE ESCOPO (item 16 adiado).
- */
 import { Link } from 'react-router-dom';
 import { FiArrowLeft, FiDownload, FiLock } from 'react-icons/fi';
 
@@ -32,7 +15,6 @@ export default function EvolutionPage() {
 
   return (
     <div className={styles.page}>
-      {/* ------------------------------------------ topo */}
       <Link to="/painel" className={styles.backLink}>
         <FiArrowLeft aria-hidden="true" />
         Painel do professor
@@ -46,7 +28,6 @@ export default function EvolutionPage() {
         lead="Acompanhe o histórico, marcos e entregas do grupo ao longo dos semestres."
       />
 
-      {/* --------------------------------- grupo selecionado */}
       <Card padding="md" className={styles.selector}>
         <Select label="Grupo selecionado" defaultValue={report.groupLabel}>
           <option value={report.groupLabel}>{report.groupLabel}</option>
@@ -55,7 +36,6 @@ export default function EvolutionPage() {
         <p className={styles.updated}>{report.updatedNote}</p>
       </Card>
 
-      {/* ---------------------- timeline + evolução (2 colunas) */}
       <div className={styles.grid}>
         <section className={styles.column}>
           <SectionHeader title="Histórico por semestre" />

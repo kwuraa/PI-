@@ -1,17 +1,3 @@
-/**
- * PI² — Status da análise do projeto (rota "/aluno/status/:slug").
- * -----------------------------------------------------------------------------
- * Duas telas do protótipo 03 (desktop), selecionadas por ?enviado=1:
- *  • "Enviado para análise!" (enviado=1) — hero com selo "Envio do projeto",
- *    resumo do projeto + aviso "O projeto ainda NÃO está publicado", card
- *    "Enviado ao orientador" (parecer + arquivo) e coluna "E agora?" com
- *    as ações "Acompanhar análise" / "Voltar aos meus projetos";
- *  • "Análise de Biblioteca Conectada" (padrão) — h1 "Status do Projeto",
- *    banner âmbar "Aguardando o parecer do orientador", card "Etapas da
- *    análise" (linha do tempo qualitativa) e coluna com "Quem acompanha" +
- *    "Nenhum parecer registrado" + botão de volta.
- * Linha do tempo e watchers vêm do mock (ANALYSIS_STEPS / ANALYSIS_WATCHERS).
- */
 import {
   Link,
   useLocation,
@@ -38,7 +24,7 @@ import {
 } from '../../mocks/projectsMock.js';
 import styles from './ProjectStatusPage.module.css';
 
-/** Período letivo exibido nos protótipos desktop (mesmo valor do TopBar). */
+/** Período letivo exibido no cabeçalho (mesmo valor do TopBar). */
 const PERIOD = '2026.2';
 
 /** Ícone de cada estado da etapa. */
@@ -97,7 +83,6 @@ export default function ProjectStatusPage() {
         </header>
 
         <div className={styles.split}>
-          {/* ----------------------------------- coluna principal */}
           <div className={styles.mainCol}>
             <Card padding="lg" className={styles.sentCard}>
               <Badge tone={status.tone}>{status.label} · Não publicado</Badge>
@@ -152,7 +137,6 @@ export default function ProjectStatusPage() {
             </Card>
           </div>
 
-          {/* ---------------------------------------- coluna lateral */}
           <aside className={styles.aside}>
             <Card padding="lg" className={styles.blockCard}>
               <h2 className={styles.blockTitle}>E agora?</h2>
@@ -215,7 +199,6 @@ export default function ProjectStatusPage() {
       )}
 
       <div className={styles.split}>
-        {/* ------------------------------------ etapas da análise */}
         <Card padding="lg" className={styles.blockCard}>
           <h2 className={styles.blockTitle}>Etapas da análise</h2>
           <ol className={styles.steps}>
@@ -239,7 +222,6 @@ export default function ProjectStatusPage() {
           </ol>
         </Card>
 
-        {/* ----------------------------------- quem acompanha + parecer */}
         <aside className={styles.aside}>
           <Card padding="lg" className={styles.blockCard}>
             <h2 className={styles.blockTitle}>Quem acompanha</h2>

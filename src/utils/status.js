@@ -1,22 +1,3 @@
-/**
- * PI² — Status dos projetos: rótulos, tons e opções de filtro (fonte única).
- * -----------------------------------------------------------------------------
- * Antes deste arquivo cada tela reimplementava o mapeamento status →
- * selo (GroupsPage, ExplorePage, DeliveriesPage, MyProjectsPage…), com o
- * risco de um rótulo divergir em uma tela. Aqui mora a regra:
- *
- *   statusMeta('publicado') → { label: 'Publicado', tone: 'success' }
- *
- * Os `label` são os textos EXATOS dos mockups — mantenha-os ao editar.
- * Os `tone` são as variantes do componente <Badge/>:
- *   neutral | primary | success | warning | dark.
- *
- * Uso:
- *   import { statusMeta, statusOptions } from '../utils/status.js';
- *   const meta = statusMeta(project.status);   // { label, tone }
- *   const opts = statusOptions(['em-analise', 'publicado']);
- */
-
 /** Status canônicos do domínio (mock: 'rascunho' | 'em-analise' | 'publicado' | 'ajustes'). */
 export const STATUS_VALUES = ['rascunho', 'em-analise', 'publicado', 'ajustes'];
 
@@ -39,7 +20,7 @@ export const STATUS_TONES = {
 /**
  * Mapeia um status para { label, tone }.
  * Status desconhecido cai no padrão "Rascunho" (neutral) — mesma regra
- * do protótipo original.
+ * adotada em toda a aplicação.
  */
 export function statusMeta(status) {
   return {

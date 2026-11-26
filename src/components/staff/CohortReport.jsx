@@ -1,26 +1,3 @@
-/**
- * PI² — Face do COORDENADOR + PROFESSOR do relatório consolidado: coorte
- * (mockup 08 "Relatório consolidado — coorte").
- * -----------------------------------------------------------------------------
- * Extraído de RelatorioConsolidadoPage.jsx na separação "um componente por
- * arquivo" (item 6), junto com as classes de RelatorioConsolidadoPage.module.css
- * que só ela usa.
- *
- * Conteúdo: seletor "Coorte · data de ingresso", 2 StatCards (Média geral ·
- * Pontos desde 2025.1), gráfico "Evolução por semestre", cards "Travas de
- * disciplinas" e "Banca e entregáveis" e a nota de consolidação.
- *
- * A série do gráfico e as travas são os indicadores parciais do mockup — não
- * existem nos mocks, por isso ficam como constantes locais documentadas. As
- * barras usam classes de altura prontas no CSS Module, porque o projeto proíbe
- * estilo inline nos elementos JSX.
- *
- * Usa as classes compartilhadas de ReportShared.module.css — importe-o ANTES
- * deste módulo.
- *
- * Uso (dentro da RelatorioConsolidadoPage):
- *   <CohortReport />
- */
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiDownload, FiLock, FiPrinter } from 'react-icons/fi';
 
@@ -34,7 +11,7 @@ import { REPORT_TITLE, handlePrint } from './reportShared.js';
 import shared from './ReportShared.module.css';
 import styles from './CohortReport.module.css';
 
-/** Série do gráfico "Evolução por semestre" (mockup 08 — coorte). */
+/** Série do gráfico "Evolução por semestre" (coorte). */
 const COHORT_SERIES = [
   { id: '2025-1', label: '2025.1', value: '7,0', fill: 'h70' },
   { id: '2025-2', label: '2025.2', value: '7,5', fill: 'h75' },
@@ -42,7 +19,7 @@ const COHORT_SERIES = [
   { id: '2026-2', label: '2026.2', value: '8,5', fill: 'h85', highlight: true },
 ];
 
-/** Disciplinas-chave que travam a progressão da coorte (mockup 08). */
+/** Disciplinas-chave que travam a progressão da coorte. */
 const COHORT_LOCKS = [
   { id: 'bd', course: 'Banco de Dados', students: '2 alunos' },
   { id: 'es', course: 'Engenharia de Software', students: '1 aluno' },

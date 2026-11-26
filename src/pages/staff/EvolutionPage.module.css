@@ -1,17 +1,9 @@
-/**
- * EvolutionPage — relatório de histórico e evolução do grupo (mockup 05).
- * -----------------------------------------------------------------------------
- * Mobile-first: bloco único empilhado; a partir de 1024px "Histórico por
- * semestre" e "Evolução qualitativa" ficam lado a lado (≈1.6fr / 1fr), como
- * no desktop do protótipo. Só design tokens — nenhuma cor fixa.
- */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
-/* ------------------------------------------------- topo */
 .backLink {
   display: inline-flex;
   align-items: center;
@@ -45,7 +37,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------------ grade */
 .grid {
   display: flex;
   flex-direction: column;
@@ -139,7 +130,6 @@
   color: var(--color-text-body);
 }
 
-/* ------------------------------------------- desktop (≥1024) */
 @media (min-width: 1024px) {
   /* título do <PageHeader/> sobe para 3xl (maior especificidade que .title) */
   .pageHeader h1 {

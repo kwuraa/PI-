@@ -1,23 +1,3 @@
-/**
- * PI² — Coluna DIREITA da página de detalhe do projeto (resumo sticky).
- * -----------------------------------------------------------------------------
- * Bloco extraído do ProjectPage.jsx na separação da página (item 5).
- * Espelha a coluna direita do mockup desktop 02: pílulas de status, card
- * "Engajamento" (views + curtidas), a equipe e os arquivos do projeto.
- *
- * Auto-suficiente: lê o usuário (`useAuth`) e as métricas (`useEngagement`)
- * direto dos contextos, e deriva equipe/exibição/status dos mocks — o pai
- * só informa quem é dono, para a regra "a equipe não curte o próprio projeto".
- *
- * Regras de engajamento:
- *  • as métricas (views e curtidas) são públicas;
- *  • o botão de like só aparece em projetos PUBLICADOS e para quem tem conta;
- *  • o visitante vê o convite para entrar; a EQUIPE dona vê a nota explicando
- *    que a contagem é da comunidade.
- *
- * Uso (dentro do <aside> do ProjectPage):
- *   <ProjectSidebar project={project} isLogged={isLogged} isOwner={isOwner} />
- */
 import { useNavigate } from 'react-router-dom';
 import { FiEye, FiHeart } from 'react-icons/fi';
 
@@ -52,7 +32,6 @@ export default function ProjectSidebar({ project, isLogged, isOwner }) {
 
   return (
     <>
-      {/* --------------------------------------------- pílulas */}
       <div className={styles.pills}>
         <Badge tone="primary">{COURSE_SHORT}</Badge>
         <Badge tone={status.tone}>{status.label}</Badge>
@@ -112,7 +91,6 @@ export default function ProjectSidebar({ project, isLogged, isOwner }) {
           ))}
       </Card>
 
-      {/* ------------------------------------------------- equipe */}
       <Card padding="md" className={styles.teamCard}>
         <SectionHeader title="Desenvolvido por:" />
         {isLogged ? (
@@ -158,7 +136,6 @@ export default function ProjectSidebar({ project, isLogged, isOwner }) {
         )}
       </Card>
 
-      {/* ----------------------------------------------- arquivos */}
       {isLogged && project.files.length > 0 && (
         <Card padding="md" className={styles.filesCard}>
           <SectionHeader title="Arquivos do projeto" />

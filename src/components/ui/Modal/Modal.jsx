@@ -1,10 +1,3 @@
-/**
- * PI² — Modal / Bottom Sheet (fundo escurecido + painel deslizante).
- * No mobile abre como bottom sheet (como nos protótipos de filtros);
- * no desktop centraliza. Feche pelo botão X, pelo overlay ou Esc.
- * Entrada (fade + subida) e SAÍDA (fade + descida) via framer-motion:
- * o AnimatePresence é INTERNO — quem usa o componente não muda nada.
- */
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FiX } from 'react-icons/fi';

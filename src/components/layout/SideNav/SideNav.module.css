@@ -1,4 +1,3 @@
-/* SideNav — barra lateral fixa do desktop (≥1024px); oculta no mobile. */
 .side {
   display: none;
 }

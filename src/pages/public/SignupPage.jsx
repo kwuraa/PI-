@@ -1,18 +1,3 @@
-/**
- * PI² — Cadastro institucional (rota "/cadastro").
- * -----------------------------------------------------------------------------
- * Mockup desktop "Cadastro institucional": título "Suas ideias começam aqui.",
- * cards de perfil ("Como você participa da faculdade?"), seções "Seus dados"
- * (nome, e-mail e — somente no perfil Aluno — matrícula, curso travado no
- * DSM e período; professor e coordenação não preenchem dados de estudante)
- * e "Crie sua senha"
- * (senha + confirmação), consentimento com links, botão "Criar conta de
- * <perfil>", aviso "Confirme seu vínculo institucional!" e rodapé.
- * Ao selecionar um card de perfil a escolha reage com a MESMA animação
- * do login (pop + check, keyframes com reduced-motion).
- * Sem card wrapper: conteúdo centralizado com máx. 800px.
- * Após criar a conta, o usuário é levado ao login.
- */
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
@@ -54,7 +39,7 @@ export default function SignupPage() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Protótipo: não há backend — só leva ao login.
+    // Não há backend — só leva ao login.
     navigate('/login');
   };
 
@@ -81,7 +66,6 @@ export default function SignupPage() {
       </header>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        {/* ------------------------------------ perfil de participação */}
         <fieldset className={styles.profileGroup}>
           <legend className={styles.groupLabel}>
             Como você participa da faculdade?

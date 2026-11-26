@@ -1,14 +1,3 @@
-/**
- * PI² — Boas-Vindas / Vitrine Pública (rota "/").
- * -----------------------------------------------------------------------------
- * Hero em 2 colunas (protótipo desktop): eyebrow "VITRINE PÚBLICA DA
- * COMUNIDADE", título "Grandes ideias. Conhecimento que transforma." à
- * esquerda; lead + CTAs ("Entrar no Sistema" / "Ver Projetos") à direita.
- * Abaixo: seção "Explore os projetos DSM" (busca + chips rotulados),
- * banner LGPD e a grade "Projetos da comunidade" com cards ANONIMIZADOS
- * (variante "vitrine": pílula do semestre + crédito da equipe).
- * Movimento: hero em stagger (framer-motion) e cards em cascata.
- */
 import { useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -23,7 +12,7 @@ import { COURSE_SHORT, PROJECTS, SEMESTERS } from '../../mocks/projectsMock.js';
 import { fadeUpChild, staggerParent } from '../../styles/motion.js';
 import styles from './WelcomePage.module.css';
 
-/** Opções do chip de semestre: "1º DSM"…"6º DSM" (como no protótipo). */
+/** Opções do chip de semestre: "1º DSM"…"6º DSM". */
 const SEMESTER_OPTIONS = SEMESTERS.map((n) => ({ value: n, label: `${n}º DSM` }));
 
 export default function WelcomePage() {
@@ -61,7 +50,6 @@ export default function WelcomePage() {
         <span className={styles.brandBarLabel}>Conhecimento conectado</span>
       </div>
 
-      {/* ------------------------------------------------------- hero */}
       <motion.header
         className={styles.hero}
         variants={staggerParent}
@@ -101,7 +89,6 @@ export default function WelcomePage() {
         </motion.div>
       </motion.header>
 
-      {/* ------------------------------------------- filtros + vitrine */}
       <div className={styles.showcase}>
         <section className={styles.filters} aria-labelledby="filtros-title">
           <h2 className={styles.sectionTitle} id="filtros-title">
@@ -128,7 +115,6 @@ export default function WelcomePage() {
           </div>
         </section>
 
-        {/* ------------------------------------------- banner LGPD */}
         <aside className={styles.lgpd}>
           <FiShield className={styles.lgpdIcon} aria-hidden="true" />
           <div className={styles.lgpdTexts}>
@@ -140,7 +126,6 @@ export default function WelcomePage() {
           </div>
         </aside>
 
-        {/* ------------------------------------------- resultados */}
         <section className={styles.vitrine} id="vitrine" aria-labelledby="vitrine-title">
           <h2 className={styles.sectionTitle} id="vitrine-title">
             Projetos da comunidade

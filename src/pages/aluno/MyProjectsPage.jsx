@@ -1,21 +1,3 @@
-/**
- * PI² — Meus projetos do aluno (rota "/aluno").
- * -----------------------------------------------------------------------------
- * Protótipo "Meus projetos do aluno" (mockup 03 · desktop). Estrutura:
- *  1. hero — selo "Área do aluno", h1 "Minhas ideias em ação.", lead e
- *     botão "+ Novo projeto";
- *  2. estatísticas — Publicado / Em análise / Rascunho (contagem dinâmica);
- *  3. seção "Seus projetos" com o seletor "Todos (N)";
- *  4. grade de cartões — badge de status, título, meta do curso/período,
- *     linha do status (aprovação / envio / última edição) e ação principal
- *     (Ver projeto · Acompanhar análise · Continuar edição). O "..." do
- *     topo do cartão abre uma caixinha com a ação de status, "Ver projeto"
- *     e "Copiar link" (fecha ao clicar fora, como o seletor "Todos").
- *
- * O cartão é montado aqui (e não com <ProjectCard>) porque o protótipo usa
- * uma estrutura própria: sem descrição/tecnologias, com linha de status e
- * ação em rodapé. Mobile-first: 1 coluna; ≥1024px: 3 colunas.
- */
 import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
@@ -44,7 +26,7 @@ import useClickOutside from '../../hooks/useClickOutside.js';
 import useCopyToClipboard from '../../hooks/useCopyToClipboard.js';
 import styles from './MyProjectsPage.module.css';
 
-/** Período letivo exibido nos protótipos desktop (mesmo valor do TopBar). */
+/** Período letivo exibido no cabeçalho (mesmo valor do TopBar). */
 const PERIOD = '2026.2';
 
 /** Opções do seletor "Todos (N)" da seção "Seus projetos" (plural no mock). */
@@ -62,7 +44,7 @@ function countFor(projects, value) {
     : projects.filter((project) => project.status === value).length;
 }
 
-/** Data curta do protótipo: "02 out. 2026" → "02 out." */
+/** Data curta: "02 out. 2026" → "02 out." */
 function shortDate(date) {
   return (date ?? '').replace(/ \d{4}$/, '');
 }
@@ -78,7 +60,7 @@ function actionFor(project) {
   return { label: 'Continuar edição', to: '/aluno/novo' };
 }
 
-/** Ícone + cor + texto da linha de status do cartão (copy do mockup). */
+/** Ícone + cor + texto da linha de status do cartão. */
 function statusLineFor(project) {
   switch (project.status) {
     case 'publicado':
@@ -90,7 +72,7 @@ function statusLineFor(project) {
     case 'em-analise':
       return {
         Icon: FiClock,
-        // Mockup: ícone de relógio cinza (neutro) na linha de status.
+        // Ícone de relógio cinza (neutro) na linha de status.
         tone: styles.toneNeutral,
         text: `Enviado em ${shortDate(project.submittedAt)} · Aguardando orientador`,
       };
@@ -101,7 +83,7 @@ function statusLineFor(project) {
         text: `Ajustes solicitados em ${shortDate(project.submittedAt)}`,
       };
     default:
-      // Rascunho do protótipo: rótulo fixo (mesma hora do "Rascunho salvo").
+      // Rascunho: rótulo fixo (mesma hora do "Rascunho salvo").
       return {
         Icon: FiEdit2,
         tone: styles.toneNeutral,
@@ -141,7 +123,6 @@ export default function MyProjectsPage() {
 
   return (
     <div className={styles.page}>
-      {/* ------------------------------------------------------- hero */}
       <header className={styles.hero}>
         <div className={styles.heroTexts}>
           <Badge tone="primary">Área do aluno</Badge>
@@ -156,7 +137,6 @@ export default function MyProjectsPage() {
         </Link>
       </header>
 
-      {/* --------------------------------------------- estatísticas */}
       <div className={styles.stats}>
         <StatCard
           value={countFor(projects, 'publicado')}
@@ -172,7 +152,6 @@ export default function MyProjectsPage() {
         />
       </div>
 
-      {/* ------------------------------------ seção + seletor "Todos" */}
       <div className={styles.sectionHead}>
         <h2 className={styles.sectionTitle}>Seus projetos</h2>
         <div className={styles.filterWrap} ref={menuRef}>
@@ -211,7 +190,6 @@ export default function MyProjectsPage() {
         </div>
       </div>
 
-      {/* ----------------------------------------------------- grade */}
       <div className={styles.grid}>
         {visible.map((project) => {
           const action = actionFor(project);

@@ -1,5 +1,3 @@
-/* SignupPage — cadastro institucional (mockup desktop: sem card wrapper,
-   conteúdo centralizado com máx. 800px, seções "Seus dados"/"Crie sua senha"). */
 .page {
   display: flex;
   flex-direction: column;
@@ -7,7 +5,7 @@
   padding: var(--space-4) var(--space-4) var(--space-10);
 }
 
-/* Desktop: só centraliza — sem card wrapper (mockup 01 · Cadastro) */
+/* Desktop: só centraliza — sem card wrapper */
 @media (min-width: 768px) {
   .page {
     max-width: 800px;
@@ -180,7 +178,6 @@
   }
 }
 
-/* ------------------------------------------ seções do formulário */
 .sectionTitle {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
@@ -256,7 +253,6 @@
   color: var(--color-primary);
 }
 
-/* ------------------------------------------ rodapé */
 .footer {
   display: flex;
   flex-direction: column;
@@ -278,7 +274,6 @@
   color: var(--color-text-title);
 }
 
-/* ------------------------------------------ desktop */
 @media (min-width: 768px) {
   .profileGrid {
     grid-template-columns: repeat(3, minmax(0, 1fr));

@@ -1,12 +1,3 @@
-/**
- * PI² — Constantes e utilitários compartilhados pelas DUAS faces do
- * relatório consolidado (/painel/relatorio-consolidado).
- * -----------------------------------------------------------------------------
- * Extraído de RelatorioConsolidadoPage.jsx na separação "um componente por
- * arquivo" (item 6): o título é único das duas faces e o botão de exportar/
- * imprimir chama o mesmo diálogo nativo do navegador.
- */
-
 /** Título único das duas faces do relatório (badge + lead variam por face). */
 export const REPORT_TITLE = 'Relatório consolidado';
 

@@ -1,28 +1,3 @@
-/**
- * PI² — Linha de arquivo da entrega (nome + metadados + ação).
- * -----------------------------------------------------------------------------
- * Unifica as 5 reimplementações espalhadas pelas telas (ProjectPage,
- * DeliveryPage, ProfessorProjectPage, ReviewPage, ProjectStatusPage),
- * que divergiam em nomes de classe (`fileText` x `fileTexts`), no elemento
- * (`<li>` x `<div>`) e no ícone.
- *
- * Props:
- *  • name     → nome do arquivo (obrigatório);
- *  • meta     → linha secundária (ex.: "PDF · 2,4 MB · v3");
- *  • icon     → 'plain' (só cor) | 'circle' (pílula 40px) |
- *               'square' (quadradinho radius-md) | 'square-sm' (radius-sm);
- *  • action   → 'icon' (decorativo, padrão do protótipo) |
- *               'download' (botão com aria-label "Baixar …") | nó | null;
- *  • as       → 'li' (padrão) | 'div' | 'a' (com href, ganha hover);
- *  • variant  → 'surface' (branco) | 'page' (cinza) | 'bare' (só borda);
- *  • dense    → padding lateral menor (12px em vez de 16px);
- *  • truncate → corta o nome com reticências (linha única);
- *  • size     → tamanho dos ícones (ex.: 18 no status do aluno).
- *
- * Uso:
- *   <FileRow name={file.name} meta={`${file.kind} · ${file.size}`}
- *            icon="circle" action="download" variant="page" dense truncate />
- */
 import { FiDownload } from 'react-icons/fi';
 
 import LeadingIcon from './LeadingIcon.jsx';

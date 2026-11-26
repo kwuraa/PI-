@@ -1,4 +1,3 @@
-/* Tabs — controle segmentado de abas. */
 .track {
   display: flex;
   gap: var(--space-1);

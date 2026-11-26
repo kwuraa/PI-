@@ -1,13 +1,9 @@
-/* MyProjectsPage — tela "Minhas ideias em ação." (mockup 03 · Meus projetos).
-   Mobile-first: 1 coluna; ≥768px hero em 2 colunas; ≥1024px grade de 3
-   cartões e título do hero em 40px (font-size-3xl). */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
 }
 
-/* --------------------------------------------------------- hero */
 .hero {
   display: flex;
   flex-direction: column;
@@ -54,7 +50,6 @@
   background-color: var(--color-primary-dark);
 }
 
-/* --------------------------------------------- estatísticas */
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
@@ -134,7 +129,6 @@
   color: var(--color-primary);
 }
 
-/* ---------------------------------------------------- grade */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
@@ -277,8 +271,8 @@
   gap: var(--space-1);
 }
 
-/* Rodapé do cartão: a ação fica em cima e o filete separador embaixo,
-   como no mockup ("Ver projeto →" sobre uma linha fina). */
+/* Rodapé do cartão: a ação fica em cima e o filete separador embaixo
+   ("Ver projeto →" sobre uma linha fina). */
 .cardFooter {
   display: flex;
   margin-top: auto;
@@ -305,7 +299,6 @@
   transform: translateX(2px);
 }
 
-/* ---------------------------------------------------- vazio */
 .empty {
   padding: var(--space-8) var(--space-4);
   border: 1px dashed var(--color-border-strong);
@@ -315,7 +308,6 @@
   text-align: center;
 }
 
-/* -------------------------------------------------- desktop */
 @media (min-width: 768px) {
   .hero {
     flex-direction: row;

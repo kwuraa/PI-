@@ -1,11 +1,3 @@
-/**
- * PI² — Logotipo oficial (SVG autoral da identidade visual).
- * -----------------------------------------------------------------------------
- * Losangos em camadas (vermelho vivo → translúcido → cinza) + wordmark "PI²",
- * tudo em um único asset 206×257. As cores dos camadas são parte da marca e
- * vivem apenas aqui, nunca em componentes de interface. A prop `size` define
- * a ALTURA em px e a proporção é mantida automaticamente.
- */
 export default function Logo({ size = 56, className }) {
   const width = (size * 206) / 257;
 

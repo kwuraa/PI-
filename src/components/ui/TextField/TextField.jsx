@@ -1,9 +1,3 @@
-/**
- * PI² — Campo de texto com rótulo, ícone opcional à direita e texto de apoio.
- * Props: label, hint, icon (nó JSX à direita), locked (cadeado), required.
- * O input herda o estilo do módulo; nenhuma cor é fixada aqui (só tokens).
- * Ícones: react-icons/feather.
- */
 import { FiLock } from 'react-icons/fi';
 import styles from './TextField.module.css';
 

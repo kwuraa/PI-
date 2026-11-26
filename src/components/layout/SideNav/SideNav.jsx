@@ -1,17 +1,3 @@
-/**
- * PI² — Navegação lateral do desktop (≥1024px), da área logada.
- * -----------------------------------------------------------------------------
- * Versão vertical da BottomNav: reutiliza os MESMOS destinos (`itemsFor`),
- * com pílula vermelha no item ativo. Professores/coordenadores ganham o
- * grupo "Área acadêmica" (Histórico e evolução do grupo, Meu projeto e
- * materiais e Trabalhos enviados — os atalhos que antes ficavam no painel
- * do professor); a coordenação ganha também o grupo "Coordenação"
- * (Relatório consolidado + Gestão de grupos) e o rodapé traz Ajuda e suporte
- * + assinatura. Abaixo de 1024px ela fica oculta (a BottomNav assume o
- * lugar); ela NÃO re-anima entre rotas (regra do briefing) — exceto a
- * pílula do item ativo, que dá uma animação de entrada (deslize) quando
- * o item muda, com guarda de prefers-reduced-motion.
- */
 import { NavLink, Link } from 'react-router-dom';
 import {
   FiClipboard,
@@ -42,10 +28,10 @@ export default function SideNav({ user }) {
     <aside className={styles.side} aria-label="Navegação lateral">
       <nav className={styles.nav}>
         {items.map(({ to, Icon, label }) => (
-          // "Painel" só acende na rota exata (nos mockups, /painel/* mantém o
+          // "Painel" só acende na rota exata (/painel/* mantém o
           // ativo no item do grupo). "Meus projetos" NÃO usa `end`: ele
-          // continua ativo em /aluno/novo e /aluno/status/* — o mockup 03
-          // mostra o item ativo nessas telas do aluno.
+          // continua ativo em /aluno/novo e /aluno/status/* — o item
+          // fica ativo nessas telas do aluno.
           <NavLink
             key={to}
             to={to}

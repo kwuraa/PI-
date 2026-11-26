@@ -1,29 +1,3 @@
-/**
- * PI² — Roteamento da aplicação (React Router v6).
- * -----------------------------------------------------------------------------
- * Estrutura:
- *  • PublicLayout → telas públicas/autenticadas sem BottomNav
- *    (boas-vindas, login, cadastro, recuperação de senha);
- *  • MainLayout   → área do sistema com TopBar + BottomNav persistentes.
- *    Recebe também os fluxos do aluno (/aluno/novo e /aluno/status/:slug):
- *    nos mockups 03 eles abrem com a barra BRAND (logo + espaço do aluno) e
- *    o breadcrumb "PI² / Meus projetos / …", não a barra empilhada;
- *  • StackShell   → variantes de barra superior empilhada (detalhes), que
- *    resolvem o título a partir dos parâmetros da rota (/projeto/:slug e
- *    as rotas /painel/* de detalhe).
- *  • React.lazy   → as 25 telas são importadas por chunk (item 7) e o
- *    <Suspense> mostra o RouteFallback enquanto o chunk chega; layouts,
- *    guardas e mockados continuam síncronos no bundle principal.
- *
- * Regras RBAC (useAuth):
- *  • /aluno*            → apenas 'aluno';
- *  • /painel*           → 'professor' | 'coordenador';
- *  • /painel/grupos     → 'coordenador';
- *  • /painel/relatorio-consolidado → 'coordenador' (face da coorte quando o
- *    papel é coordenador + professor);
- *  • /secretaria/cursos → 'secretaria';
- *  • /perfil            → qualquer usuário logado (visitante vê o convite).
- */
 import { lazy, Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
@@ -116,7 +90,7 @@ export default function App() {
           <Route path="/ajuda" element={<HelpPage />} />
 
           {/* aluno — barra brand + breadcrumb "PI² / Meus projetos / …"
-              (mockups 03: "Novo projeto" e "Enviado para análise!") */}
+              ("Novo projeto" e "Enviado para análise!") */}
           <Route
             path="/aluno"
             element={

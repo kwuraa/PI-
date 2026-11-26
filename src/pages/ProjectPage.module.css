@@ -1,13 +1,9 @@
-/* ProjectPage — detalhes do projeto (público ou logado).
-   Mobile-first em 1 coluna; no desktop (≥1024px) vira um grid de 2 colunas:
-   conteúdo à esquerda e resumo sticky (~350px) à direita (mockup 02). */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
-/* ------------------------------------------------------- topo */
 .header {
   display: flex;
   align-items: flex-start;
@@ -36,8 +32,8 @@
   color: var(--color-text-muted);
 }
 
-/* Banner da foto de capa (mockup 02) — só quando project.image existe.
-   Proporção 16:9 como no mockup (não uma faixa fina): object-fit: cover
+/* Banner da foto de capa — só quando project.image existe.
+   Proporção 16:9 (não uma faixa fina): object-fit: cover
    recorta só o que exceder, sem distorcer; cantos com o raio do card. */
 .cover {
   display: block;
@@ -69,7 +65,6 @@
   min-width: 0;
 }
 
-/* --------------------------------------------- card "Sobre" */
 .aboutCard {
   display: flex;
   flex-direction: column;
@@ -136,7 +131,6 @@
   padding-top: var(--space-2);
 }
 
-/* --------------------------------------------------- desktop */
 @media (min-width: 1024px) {
   .title {
     font-size: var(--font-size-3xl);

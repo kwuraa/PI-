@@ -1,21 +1,3 @@
-/**
- * PI² — Painel do professor (face de /painel quando o espaço é só professor).
- * -----------------------------------------------------------------------------
- * Extraído de StaffPanelPage.jsx na separação "um componente por arquivo"
- * (item 6), junto com as classes de StaffPanel.module.css que só ele usa.
- *
- * Conteúdo (mockup 04): saudação, métricas CLICÁVEIS (revisão abre o próximo
- * projeto da fila; orientações rola até a seção), a fila "Aguardando revisão"
- * e o card-resumo da primeira orientação (a lista completa fica em
- * /painel/meu-projeto). Os atalhos que existiam aqui passaram para o grupo
- * "Área acadêmica" da SideNav.
- *
- * Usa as classes de estrutura de StaffPanelShared.module.css
- * (`.stats`, `.block`, `.blockTitle`).
- *
- * Uso (dentro da StaffPanelPage):
- *   <ProfessorFace user={user} />
- */
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiClock } from 'react-icons/fi';
 
@@ -118,7 +100,7 @@ export default function ProfessorFace({ user }) {
 
         <section className={shared.block} id="minhas-orientacoes">
           <h2 className={shared.blockTitle}>Minhas orientações</h2>
-          {/* mockup 04: card-resumo da PRIMEIRA orientação + "Ver todas" —
+          {/* card-resumo da PRIMEIRA orientação + "Ver todas" —
               a lista completa (3 projetos) fica em /painel/meu-projeto. */}
           {advised[0] ? (
             <div className={styles.advisedCard}>

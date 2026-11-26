@@ -1,13 +1,3 @@
-/**
- * PI² — Acesso à conta (rota "/login").
- * -----------------------------------------------------------------------------
- * Chaveamento de perfis SIMULADO: escolher um card (Aluno, Professor,
- * Coordenador) preenche o e-mail e define o papel do login —
- * a senha NÃO é validada (protótipo). Ao selecionar, o card reage com uma
- * animação de pop + check (keyframes no CSS do componente, com guarda de
- * prefers-reduced-motion). Após entrar, redireciona para o
- * espaço do perfil (ou para a rota que originou o acesso).
- */
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
@@ -91,7 +81,6 @@ export default function LoginPage() {
         Entre com sua conta institucional para continuar suas ideias.
       </p>
 
-      {/* -------------------------------------- cards de perfil */}
       <fieldset className={styles.profiles}>
         <legend className={styles.profilesLabel}>
           Como você acessa o PI²?
@@ -119,7 +108,6 @@ export default function LoginPage() {
         </div>
       </fieldset>
 
-      {/* --------------------------------------------------- form */}
       <form className={styles.form} onSubmit={handleSubmit}>
         <TextField
           label="E-mail institucional"

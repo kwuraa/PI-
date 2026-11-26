@@ -1,12 +1,3 @@
-/**
- * PI² — Trabalhos enviados do professor (rota "/painel/entregas").
- * -----------------------------------------------------------------------------
- * Visão do professor sobre as entregas dos alunos: cartões de estatística
- * compartilhados (StatCard — "Em análise" em destaque vermelho x "Publicado"),
- * busca por projeto/aluno, chips de turma/situação e grade de cards com o
- * relógio de status, link para a entrega completa (/painel/entrega/:slug) e
- * estado vazio. Fonte única: PROJECTS em projectsMock.js — nada fixo.
- */
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiClock } from 'react-icons/fi';
@@ -48,7 +39,6 @@ export default function DeliveriesPage() {
 
   return (
     <div className={styles.page}>
-      {/* ------------------------------------------- cabeçalho */}
       <PageHeader
         eyebrow={<Badge tone="primary">Área do professor</Badge>}
         gap="md"
@@ -57,13 +47,11 @@ export default function DeliveriesPage() {
         lead="Acompanhe as entregas dos alunos e acesse os materiais de cada projeto."
       />
 
-      {/* ---------------------------------------- estatísticas */}
       <div className={styles.stats}>
         <StatCard tone="primary" value={pendingCount} label="Em análise" />
         <StatCard value={publishedCount} label="Publicado" />
       </div>
 
-      {/* ------------------------------------------------ busca + filtros */}
       <div className={styles.filters}>
         <SearchField
           value={query}
@@ -80,7 +68,6 @@ export default function DeliveriesPage() {
 
       <SectionHeader title={`Entregas dos alunos · ${visible.length} projetos`} />
 
-      {/* -------------------------------------------------- grade de cards */}
       <div className={styles.grid}>
         {visible.map((project) => {
           const meta = statusMeta(project.status);

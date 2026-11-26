@@ -1,38 +1,3 @@
-/**
- * PI² — Detalhes do projeto (rota "/projeto/:slug").
- * -----------------------------------------------------------------------------
- * Duas leituras na mesma tela:
- *  • VISITANTE → "leitura pública": equipe ANONIMIZADA (LGPD) e SEM dados
- *    sensíveis: sem parecer (nome do orientador e texto interno), sem
- *    lista de comentários (nomes de autores) e sem arquivos — apenas o
- *    convite para entrar no sistema;
- *  • LOGADO → visão completa: nomes da equipe, arquivos, parecer e comentários.
- * O dono do projeto (aluno) encontra o atalho "Acompanhar análise".
- * Regra de comentários: só quem tem cadastro (aluno, professor etc.)
- * comenta — o público geral não precisa de acesso à área de comentários.
- * MODERAÇÃO: cada aluno edita e exclui APENAS o próprio comentário;
- * professor e coordenador podem EXCLUIR qualquer comentário (inclusive
- * de outros alunos) para conter conteúdo inconveniente — a edição de
- * comentários alheios é negada para todos os perfis.
- * ENGAGEMENT: abrir a página contabiliza +1 view (uma por sessão do
- * navegador); o card "Engajamento" na coluna direita mostra views e
- * curtidas — o botão de like é só para projetos PUBLICADOS e usuários
- * logados (aluno, professor…), com convite de acesso para o visitante.
- * A EQUIPE dona do projeto NÃO curte o próprio projeto: no lugar do
- * botão aparece uma nota explicativa (a contagem é da comunidade).
- *
- * LAYOUT (mockup desktop 02):
- *  • topo → h1 + linha de meta (tipo · ano.semestre · publicação · salvos);
- *  • capa → quando o projeto tem `image` (imagem pública local em /img) um
- *    banner da foto abre a coluna ESQUERDA logo abaixo do topo — exatamente
- *    como no mockup 02; projetos sem `image` seguem sem banner;
- *  • mobile → tudo empilhado em 1 coluna;
- *  • desktop ≥1024px → grid de 2 colunas: coluna ESQUERDA larga (cards
- *    "Sobre o projeto" e "Comentários", parecer e ações) e coluna DIREITA
- *    estreita (~350px, sticky) com as pílulas de status, o card
- *    "Engajamento" (views/curtidas + like), a equipe e os arquivos do
- *    projeto.
- */
 import { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { FiCheckCircle } from 'react-icons/fi';
@@ -96,7 +61,6 @@ export default function ProjectPage() {
 
   return (
     <div className={styles.page}>
-      {/* --------------------------------------------------- topo */}
       <header className={styles.header}>
         <div className={styles.headerTexts}>
           <h1 className={styles.title}>{project.title}</h1>
@@ -108,9 +72,9 @@ export default function ProjectPage() {
         {/* ================================== coluna esquerda (conteúdo) */}
         <div className={styles.main}>
           {/* ------------------------------------------------- capa
-              (mockup 02): presente SOMENTE quando o projeto tem `image`.
-              Fica aqui — e não acima do grid — porque o mockup mostra o
-              banner ocupando só a coluna esquerda, com as pílulas da
+              presente SOMENTE quando o projeto tem `image`.
+              Fica aqui — e não acima do grid — porque o banner ocupa
+              só a coluna esquerda, com as pílulas da
               coluna direita alinhadas ao topo dele. */}
           {project.image && (
             <img
@@ -121,7 +85,6 @@ export default function ProjectPage() {
             />
           )}
 
-          {/* ------------------------------------------------- sobre */}
           <Card padding="md" className={styles.aboutCard}>
             <SectionHeader title="Sobre o projeto" />
             <p className={styles.description}>{project.description}</p>
@@ -157,7 +120,6 @@ export default function ProjectPage() {
             </Callout>
           )}
 
-          {/* ----------------------------------------------- comentários */}
           <ProjectComments project={project} />
 
           {/* ------------------------------------ ações do dono / visitante */}

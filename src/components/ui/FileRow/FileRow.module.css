@@ -1,6 +1,3 @@
-/* FileRow — linha de arquivo (ícone + nome + meta + ação). */
-
-/* ---------------------------------------------------------- linha base */
 .row {
   display: flex;
   align-items: center;
@@ -36,7 +33,6 @@
   border-color: var(--color-border-strong);
 }
 
-/* ------------------------------------------------------------ textos */
 .texts {
   display: flex;
   flex-direction: column;

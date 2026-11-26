@@ -1,4 +1,3 @@
-/* Campo de texto — rótulo + controle + dica. */
 .field {
   display: flex;
   flex-direction: column;

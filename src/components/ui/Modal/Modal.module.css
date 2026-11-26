@@ -1,6 +1,3 @@
-/* Modal — overlay + bottom sheet (mobile) / centralizado (desktop).
-   A entrada (fade do overlay + subida do painel) é animada por
-   framer-motion no JSX; aqui ficam só as regras visuais. */
 .overlay {
   position: fixed;
   inset: 0;

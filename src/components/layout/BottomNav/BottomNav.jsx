@@ -1,13 +1,3 @@
-/**
- * PI² — Navegação inferior persistente (3 destinos).
- * Ícones: react-icons/feather (traço fino igual ao dos protótipos).
- * Os itens mudam conforme o perfil logado (aluno: Meus projetos;
- * professor/coordenador/secretaria: Painel). O destino ativo ganha
- * pílula vermelha de fundo no ícone — e ela DESLIZA entre os itens
- * (framer-motion `layoutId`) quando o ativo muda.
- * Obs.: a barra em si NÃO re-anima entre rotas (regra do briefing);
- * só a pílula reage à troca de item ativo.
- */
 import { NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FiCompass, FiGrid, FiLayers, FiLogIn, FiUser } from 'react-icons/fi';

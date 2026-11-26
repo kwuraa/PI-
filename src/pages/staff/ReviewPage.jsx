@@ -1,21 +1,3 @@
-/**
- * PI² — Revisão do projeto pelo professor (rota "/painel/revisar/:slug").
- * -----------------------------------------------------------------------------
- * Tela em DUAS colunas no desktop (mockup 04 · "Revisão de projeto pelo
- * professor"), empilhada no mobile:
- *  • coluna principal — badge de situação ("Aguardando seu parecer") + data
- *    do envio, título, metadados da turma, equipe e orientador, seção
- *    "Resumo do projeto" e seção "Materiais enviados" (arquivos da entrega +
- *    atalho "Link do Projeto", com a contagem à direita);
- *  • coluna lateral — card "Critérios de revisão" (checklist marcável),
- *    bloco "Seu parecer" (rótulo + textarea + instrução), callout
- *    "Você decide a próxima etapa" e as decisões "Aprovar e publicar" /
- *    "Solicitar ajustes" com a nota de notificação da equipe.
- * Estados iniciais reproduzem o mockup: critérios já conferidos e parecer de
- * exemplo preenchido — desmarcar um critério volta a bloquear a aprovação.
- * Imagens do projeto: FORA DE ESCOPO (item 16 adiado).
- * Decisões continuam indo para /painel/resultado/:slug (fluxo inalterado).
- */
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
@@ -37,12 +19,12 @@ import { statusMeta } from '../../utils/status.js';
 import { COURSE_SHORT, getProjectBySlug, getTeam } from '../../mocks/projectsMock.js';
 import styles from './ReviewPage.module.css';
 
-/** Turma canônica do semestre corrente (mesmo rótulo dos protótipos). */
+/** Turma canônica do semestre corrente. */
 const TURMA = '2026.2';
 
 /**
  * Checklist QUALITATIVO da revisão (sem notas numéricas) — os três itens
- * exatos do mockup; em projetos já revisados eles aparecem em project.review.
+ * conferidos; em projetos já revisados eles aparecem em project.review.
  */
 const CRITERIA = [
   'Dados e autoria conferidos',
@@ -50,7 +32,7 @@ const CRITERIA = [
   'Conteúdo adequado ao repositório',
 ];
 
-/** Parecer de exemplo do mockup (estado inicial preenchido do textarea). */
+/** Parecer de exemplo (estado inicial preenchido do textarea). */
 const EXAMPLE_COMMENT =
   'O projeto apresenta metodologia clara e resultados bem documentados. Os arquivos estão completos e o conteúdo contribui para as pesquisas em monitoramento ambiental. Recomendo a publicação.';
 
@@ -59,7 +41,7 @@ export default function ReviewPage() {
   const navigate = useNavigate();
   const project = getProjectBySlug(slug);
 
-  // Estado inicial igual ao mockup: critérios conferidos + parecer de exemplo.
+  // Estado inicial: critérios conferidos + parecer de exemplo.
   const [checked, setChecked] = useState(CRITERIA);
   const [comment, setComment] = useState(EXAMPLE_COMMENT);
 
@@ -78,7 +60,7 @@ export default function ReviewPage() {
   const allChecked = checked.length === CRITERIA.length;
   const canApprove = allChecked && comment.trim().length > 0;
 
-  /** Situação exibida no badge (mockup: "Aguardando seu parecer"). */
+  /** Situação exibida no badge ("Aguardando seu parecer"). */
   const situation =
     project.status === 'em-analise'
       ? { label: 'Aguardando seu parecer', tone: 'warning' }
@@ -94,7 +76,6 @@ export default function ReviewPage() {
 
   return (
     <div className={styles.page}>
-      {/* ------------------------------------- coluna principal */}
       <div className={styles.main}>
         <div className={styles.statusRow}>
           <Badge tone={situation.tone}>{situation.label}</Badge>
@@ -147,7 +128,6 @@ export default function ReviewPage() {
         </section>
       </div>
 
-      {/* --------------------------------------- coluna lateral */}
       <aside className={styles.side}>
         <Card padding="md" className={styles.sideCard}>
           <h2 className={styles.sideTitle}>Critérios de revisão</h2>

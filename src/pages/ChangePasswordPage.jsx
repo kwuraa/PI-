@@ -1,14 +1,3 @@
-/**
- * PI² — Alterar senha (rota "/alterar-senha").
- * -----------------------------------------------------------------------------
- * Tela de conta acessada pelo card "Conta e privacidade" do perfil
- * (ListRow "Alterar senha"). Segue o padrão das páginas logadas:
- * badge + h1 + subtítulo no topo, card com o formulário (senha atual,
- * nova senha e confirmação), dicas de segurança e callout de sucesso
- * após a troca — tudo simulado, sem backend.
- * A recuperação de senha (quem esqueceu a atual) continua em
- * "/recuperar-senha", linkado abaixo do formulário.
- */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiAlertCircle, FiCheckCircle, FiKey } from 'react-icons/fi';
@@ -64,7 +53,6 @@ export default function ChangePasswordPage() {
 
   return (
     <div className={styles.page}>
-      {/* -------------------------------------------------- cabeçalho */}
       <PageHeader
         eyebrow="Conta e segurança"
         caps

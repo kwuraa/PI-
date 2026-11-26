@@ -1,21 +1,3 @@
-/**
- * PI² — Contexto de autenticação e RBAC (simulado).
- * -----------------------------------------------------------------------------
- * Simula login/logout trocando o "usuário ativo" em memória (sem backend).
- * O perfil escolhido na tela de login define os roles, e as rotas protegidas
- * consultam useAuth() para decidir quem pode ver o quê.
- *
- * Sessão persistida: o par (usuário, roles ativos) fica salvo em
- * localStorage — atualizar a página NÃO desloga mais (id do usuário +
- * roles; o objeto em si é reidratado dos mocks).
- *
- * Espaço ativo (troca de perfis): um usuário com mais de um role (ex.:
- * professor que também coordena) pode atuar em um espaço por vez —
- * `activeRoles` define o que vale AGORA (cabeçalho, guardas e painel).
- *
- * Uso em qualquer componente:
- *   const { user, activeRoles, isRole, login, logout, switchSpace } = useAuth();
- */
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import {
   MOCK_USERS,

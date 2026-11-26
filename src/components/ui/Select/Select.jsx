@@ -1,8 +1,3 @@
-/**
- * PI² — Select nativo estilizado (chevron próprio via CSS).
- * Uso: <Select label="Período" options={[{value,label}]} … />
- * Ícone de chevron: react-icons/feather.
- */
 import { FiChevronDown } from 'react-icons/fi';
 import styles from './Select.module.css';
 

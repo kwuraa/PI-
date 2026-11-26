@@ -1,7 +1,3 @@
-/* ProjectSidebar — coluna direita (sticky) da página de detalhe do projeto:
-   pílulas de status, card "Engajamento" (views/curtidas + like), a equipe
-   e os arquivos. Espelha a coluna DIREITA do mockup desktop 02.
-   Regras movidas de ProjectPage.module.css na separação da página. */
 .pills {
   display: flex;
   align-items: center;
@@ -50,7 +46,6 @@
   text-align: center;
 }
 
-/* ----------------------------------------------------- equipe */
 .teamCard {
   display: flex;
   flex-direction: column;
@@ -86,7 +81,6 @@
   color: var(--color-text-muted);
 }
 
-/* --------------------------------------------------- arquivos */
 .filesCard {
   display: flex;
   flex-direction: column;

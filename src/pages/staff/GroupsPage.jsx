@@ -1,13 +1,3 @@
-/**
- * PI² — Gestão de grupos (rota "/painel/grupos", exclusiva da coordenação).
- * -----------------------------------------------------------------------------
- * Mockup desktop "Gestão de grupos": badge "Acompanhamento dos projetos" +
- * h1 "Gestão de grupos — DSM", 2 StatCards ("Grupos ativos" com borda
- * vermelha e "Grupos com pendências"), título "Grupos do semestre · 2026.2"
- * e grade de cards (nome primeiro, selo + semestre, integrantes, pendência
- * em caixa rosa, documentação e ações). Fonte única: GROUPS em projectsMock.
- * O modal "Adicionar link de documentação" simula a correção da pendência.
- */
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiAlertCircle, FiArrowRight } from 'react-icons/fi';
@@ -27,7 +17,7 @@ export default function GroupsPage() {
   const [linkTarget, setLinkTarget] = useState(null);
   const [linkValue, setLinkValue] = useState('');
 
-  /** Pendências de QUALQUER tipo (mockup: "2 Grupos com pendências"). */
+  /** Pendências de QUALQUER tipo. */
   const pendingCount = groups.filter((g) => g.pendingLabel).length;
 
   /** Salva o link de documentação e remove a pendência do grupo. */
@@ -46,7 +36,7 @@ export default function GroupsPage() {
     setLinkValue('');
   };
 
-  /** "Ana Costa, Lucas Silva + 2 alunos" — nomes + contador do mockup. */
+  /** "Ana Costa, Lucas Silva + 2 alunos" — nomes + contador. */
   const membersLine = (members) => {
     const names = members.filter((m) => !m.startsWith('+'));
     const extra = members.find((m) => m.startsWith('+'));
@@ -165,7 +155,6 @@ export default function GroupsPage() {
         professores orientadores do DSM.
       </p>
 
-      {/* -------------------------------------- modal de link */}
       <Modal
         open={Boolean(linkTarget)}
         onClose={() => setLinkTarget(null)}

@@ -1,19 +1,3 @@
-/**
- * PI² — Painel do coordenador (face de /painel quando o espaço é só coordenação).
- * -----------------------------------------------------------------------------
- * Extraído de StaffPanelPage.jsx na separação "um componente por arquivo"
- * (item 6), junto com as classes de StaffPanel.module.css que só ele usa.
- *
- * Conteúdo (mockup 06): saudação, métricas do curso (grupos ativos e
- * entregáveis pendentes), alerta de grupo sem link de documentação e as
- * "Áreas da coordenação" (relatório consolidado e gestão de grupos) — as
- * duas colunas viram grid no desktop (≥1024).
- *
- * Usa a classe `.stats` de StaffPanelShared.module.css.
- *
- * Uso (dentro da StaffPanelPage):
- *   <CoordinatorFace />
- */
 import { Link } from 'react-router-dom';
 
 import Badge from '../ui/Badge/Badge.jsx';
@@ -42,7 +26,7 @@ export default function CoordinatorFace() {
         <StatCard value={METRICS.pendingDeliveries} label="Entregáveis pendentes" />
       </div>
 
-      {/* alerta + áreas em 2 colunas no desktop (mockup 06) */}
+      {/* alerta + áreas em 2 colunas no desktop */}
       <div className={styles.splitCoordinator}>
         {METRICS.pendingGroup && (
           <Callout

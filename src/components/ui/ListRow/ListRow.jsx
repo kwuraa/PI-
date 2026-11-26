@@ -1,15 +1,3 @@
-/**
- * PI² — Linha de lista com ícone, título, selo opcional e seta vermelha.
- * Padrão das listas de atalhos, configurações e áreas de ação.
- * Props: icon, title, hint, badge (JSX — ex.: <Badge/>), to (link) | onClick,
- * danger (título em vermelho, linhas da coordenação),
- * plain (sem borda própria + divisor, para uso dentro de um card).
- * Variante ADITIVA (não altera o comportamento padrão das demais telas):
- *  • trailingIcon (JSX) — ícone simples à DIREITA, sem chevron e sem chip
- *    à esquerda, como as linhas de "Conta e privacidade" do mockup 02
- *    (perfil). Quando presente, o prop `icon` (esquerda) é ignorado e a
- *    seta vermelha não é renderizada; `danger`/`plain` continuam valendo.
- */
 import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
 import styles from './ListRow.module.css';

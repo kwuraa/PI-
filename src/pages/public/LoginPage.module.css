@@ -1,4 +1,3 @@
-/* LoginPage — chaveamento de perfis + formulário de acesso. */
 .page {
   display: flex;
   flex-direction: column;
@@ -6,7 +5,7 @@
   padding: var(--space-4) var(--space-4) var(--space-10);
 }
 
-/* Desktop: o formulário vira um card centralizado (protótipo "Acesso à conta") */
+/* Desktop: o formulário vira um card centralizado */
 @media (min-width: 768px) {
   .page {
     max-width: 640px;
@@ -53,7 +52,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------------- perfis */
 .profiles {
   border: 0;
   padding: 0;
@@ -69,8 +67,8 @@
 .profileGrid {
   display: grid;
   /* mobile: 3 botões empilhados; no desktop (media logo abaixo) os 3
-     perfis ficam lado a lado, do mesmo tamanho, como no mockup
-     "Acesso à conta" — sem célula vazia na grade. */
+     perfis ficam lado a lado, do mesmo tamanho —
+     sem célula vazia na grade. */
   grid-template-columns: 1fr;
   gap: var(--space-3);
 }
@@ -178,7 +176,6 @@
   }
 }
 
-/* --------------------------------------------------- form */
 .form {
   display: flex;
   flex-direction: column;
@@ -212,7 +209,6 @@
   color: var(--color-primary);
 }
 
-/* --------------------------------------------------- info */
 .info {
   display: flex;
   gap: var(--space-3);

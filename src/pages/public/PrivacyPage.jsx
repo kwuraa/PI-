@@ -1,11 +1,3 @@
-/**
- * PI² — Política de privacidade (rota "/privacidade").
- * -----------------------------------------------------------------------------
- * Página legal pública montada no shell compartilhado LegalPage (mesma
- * anatomia dos Termos de uso). Conteúdo mockado em 6 seções alinhadas à
- * LGPD: dados coletados, finalidade, base legal, compartilhamento, retenção
- * e direitos do titular — com link cruzado de volta para os Termos.
- */
 import { Link } from 'react-router-dom';
 import { FiShield } from 'react-icons/fi';
 

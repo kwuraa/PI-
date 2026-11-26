@@ -1,24 +1,3 @@
-/**
- * PI² — Explorar projetos (rota "/explorar").
- * -----------------------------------------------------------------------------
- * DOIS estados de tela, condicionais ao estado da busca/filtros:
- *  • PADRÃO (sem busca e sem filtros ativos) → protótipo "Explorar projetos":
- *    h1 "Ideias de todos. Inspiração para você." + saudação, campo de busca e
- *    botão "Filtrar projetos", pílula de escopo (DSM),
- *    banner "CONHECIMENTO SEM FRONTEIRAS" e as seções "Em destaque"
- *    e "Novas descobertas" com cards;
- *  • RESULTADOS (busca e/ou filtros ativos, ou "Ver todos") → contagem de
- *    resultados, pílulas removíveis e grade.
- * FILTROS COM UMA ÚNICA SUPERFÍCIE: nos dois estados o mesmo botão
- * "Filtrar projetos" abre o MESMO painel de filtros (Popover âncorado na
- * linha de busca — ele DESCE de baixo da busca, sem overlay cobrindo a
- * página) com chips de Semestre, Ordenar por e Status — sem tecnologia, sem
- * painel lateral nem atalhos duplicados. Visitantes veem apenas projetos
- * PUBLICADOS e com equipe anonimizada (LGPD); logados veem os nomes da
- * equipe (variant `logged`). Três projetos de exemplo trazem foto de capa no
- * card (imagem pública local em /img); os demais seguem sem capa. No banner de
- * descoberta usamos um bloco de cor/token.
- */
 import { useMemo, useState } from 'react';
 import { FiArrowDown, FiSliders, FiStar, FiX } from 'react-icons/fi';
 
@@ -100,7 +79,7 @@ export default function ExplorePage() {
     return list;
   }, [results, sort]);
 
-  /* --------------------------- seções do estado PADRÃO (mockup) */
+  /* --------------------------- seções do estado PADRÃO */
   /** Só projetos publicados entram nas seções de descoberta. */
   const publishedProjects = useMemo(
     () => visibleProjects.filter((p) => p.status === 'publicado'),
@@ -109,7 +88,7 @@ export default function ExplorePage() {
 
   /**
    * "Em destaque": o projeto publicado com destaque mais salvo
-   * (1 card, como no protótipo "Explorar projetos").
+   * (1 card).
    */
   const highlight = useMemo(() => {
     const featured = publishedProjects
@@ -140,13 +119,13 @@ export default function ExplorePage() {
     setBrowsing(false);
   };
 
-  /** Rótulo do campo de ordenação (mockup: "8 projetos encontrados · Mais recentes"). */
+  /** Rótulo do campo de ordenação ("8 projetos encontrados · Mais recentes"). */
   const sortLabel = SORT_OPTIONS.find((option) => option.value === sort)?.label ?? 'Mais recentes';
 
-  /** Saudação do estado padrão (mockup: "Olá, Ana. O que vamos descobrir?"). */
+  /** Saudação do estado padrão ("Olá, Ana. O que vamos descobrir?"). */
   const greeting = user ? `Olá, ${user.name.split(' ')[0]}` : 'Olá';
 
-  /** Filtros ativos como pílulas removíveis acima da grade (mockup). */
+  /** Filtros ativos como pílulas removíveis acima da grade. */
   const activePills = [
     ...semesters.map((n) => ({
       key: `sem-${n}`,
@@ -243,7 +222,6 @@ export default function ExplorePage() {
     </div>
   );
 
-  /* --------------------------------------- card das seções do padrão */
   const renderSectionCards = (list) =>
     list.map((project, index) => (
       <ProjectCard
@@ -276,7 +254,6 @@ export default function ExplorePage() {
       />
 
       {showResults ? (
-        /* --------------------------- resultados: busca + pílulas + grade */
         <div className={styles.content}>
           {searchRow}
 

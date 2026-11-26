@@ -1,10 +1,3 @@
-/* StaffPanel — painéis do professor, coordenador e unificado.
-   `.page` envolve as faces (que devolvem fragmento) e é quem dá o respiro
-   vertical entre header → métricas → colunas, aproveitando a altura da
-   tela do desktop (mockup 04).
-   As classes de cada face vivem em components/staff/*.module.css e as de
-   estrutura compartilhadas em components/staff/StaffPanelShared.module.css
-   (separação "um componente por arquivo" — item 6). */
 .page {
   display: flex;
   flex-direction: column;

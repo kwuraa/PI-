@@ -1,14 +1,3 @@
-/**
- * PI² — Shell das páginas legais (Termos de uso e Política de privacidade).
- * -----------------------------------------------------------------------------
- * Mesmo padrão das telas de auth: barra superior (voltar + título central),
- * tile de ícone, cabeçalho com título / subtítulo / data de atualização,
- * lista de seções (título + parágrafos) e botão de volta. O CONTEÚDO fica
- * nas páginas (TermsPage / PrivacyPage), que passam os dados via props —
- * o shell evita duplicar layout e estilo entre as duas telas.
- * Regras do projeto: estilo SEMPRE em CSS Module (nunca estilo inline),
- * cores SOMENTE via variáveis CSS (nunca hex) e ícones apenas de react-icons/fi.
- */
 import { useNavigate } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
@@ -35,7 +24,6 @@ export default function LegalPage({
 
   return (
     <div className={styles.page}>
-      {/* ------------------------------------------------- barra superior */}
       <header className={styles.topBar}>
         <button
           type="button"
@@ -49,7 +37,6 @@ export default function LegalPage({
         <span className={styles.topSpacer} aria-hidden="true" />
       </header>
 
-      {/* ----------------------------------------------------- cabeçalho */}
       <div className={styles.iconTile}>{icon}</div>
 
       <header className={styles.header}>
@@ -58,7 +45,6 @@ export default function LegalPage({
         {updated && <p className={styles.updated}>Última atualização: {updated}</p>}
       </header>
 
-      {/* ------------------------------------------------------ conteúdo */}
       <div className={styles.body}>
         {sections.map((section) => (
           <section

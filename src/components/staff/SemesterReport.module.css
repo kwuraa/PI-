@@ -1,11 +1,3 @@
-/* SemesterReport — face do COORDENADOR em /painel/relatorio-consolidado
-   (mockup 06 "Relatório consolidado": semestre vigente).
-   -----------------------------------------------------------------------------
-   Extraído de RelatorioConsolidadoPage.module.css na separação "um componente
-   por arquivo" (item 6). Importa ReportShared.module.css ANTES deste, para
-   que .cardAction/.statsWide sobrescrevam as classes compartilhadas. */
-
-/* ------------------------------------------------------ controles */
 .controls {
   display: flex;
   flex-direction: column;
@@ -97,10 +89,9 @@
   color: var(--color-text-title);
 }
 
-/* ------------------------------------------- desktop (≥1024px) */
 @media (min-width: 1024px) {
-  /* face do semestre: as 4 métricas em uma única linha (mockup 06) */
   .statsWide {
     grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin: 21px 0 21px 0;
   }
 }

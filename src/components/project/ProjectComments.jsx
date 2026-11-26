@@ -1,22 +1,3 @@
-/**
- * PI² — Card "Comentários" da página de detalhe do projeto (/projeto/:slug).
- * -----------------------------------------------------------------------------
- * Bloco extraído do ProjectPage.jsx na separação da página (item 5), junto
- * com TODO o estado de comentários (envio, edição, exclusão e confirmação).
- *
- * Regras do protótipo:
- *  • a lista é RESERVADA a quem está logado — os autores podem ter nome
- *    real, então o visitante vê só a contagem e o convite de acesso (LGPD);
- *  • EDIÇÃO: somente o autor edita o próprio comentário;
- *  • EXCLUSÃO: o autor OU professor/coordenador (moderação) podem excluir;
- *    uma etapa de confirmação evita apagar sem querer.
- *
- * É auto-suficiente: lê `user`/`isRole` do contexto de autenticação e o
- * projeto (mockado) via props, sem depender do estado do componente-pai.
- *
- * Uso (dentro da coluna esquerda do ProjectPage):
- *   <ProjectComments project={project} />
- */
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiAlertTriangle, FiEdit2, FiSend, FiTrash2 } from 'react-icons/fi';

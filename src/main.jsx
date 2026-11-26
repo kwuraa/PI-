@@ -1,8 +1,3 @@
-/**
- * PI² — Ponto de entrada da aplicação.
- * Monta o React na div #root, carrega o CSS Reset + Design Tokens globais
- * e envolve tudo com o AuthProvider (autenticação simulada / RBAC).
- */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';

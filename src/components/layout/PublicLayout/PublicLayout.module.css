@@ -1,7 +1,3 @@
-/* PublicLayout — shell enxuto das telas públicas.
-   Mobile: coluna estreita (480px); ≥768px: largura total (as próprias
-   páginas definem sua largura útil — a vitrine usa --content-max) e
-   aparece o rodapé das telas de auth (sem barra de topo). */
 .shell {
   min-height: 100dvh;
   display: flex;

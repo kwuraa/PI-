@@ -1,4 +1,3 @@
-/* StatCard — número grande do painel. */
 .card {
   display: flex;
   flex-direction: column;
@@ -28,7 +27,7 @@
   color: var(--color-text-inverse);
 }
 
-/* borda vermelha, conteúdo escuro (mockup "Gestão de grupos") */
+/* borda vermelha, conteúdo escuro */
 .accent {
   border-color: var(--color-primary);
 }
@@ -47,7 +46,7 @@
 }
 
 .value {
-  /* maior que o padrão das telas (mockup 06 ≈ 48px): usa o maior token
+  /* maior que o padrão das telas (≈ 48px): usa o maior token
      de tipografia existente em variables.css (--font-size-3xl = 40px);
      os valores são curtos (4 · 16 · 8,2 · 75%), então não há overflow
      nem nos cards estreitos do mobile */

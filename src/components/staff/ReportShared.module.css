@@ -1,21 +1,9 @@
-/* ReportShared — estrutura compartilhada pelas DUAS faces do relatório
-   consolidado (SemesterReport e CohortReport).
-   -----------------------------------------------------------------------------
-   Extraído de RelatorioConsolidadoPage.module.css na separação "um componente
-   por arquivo" (item 6): a grade de métricas, as duas colunas (principal +
-   lateral) e o card com título/legenda são idênticos nas duas faces.
-   IMPORTANTE: importar este módulo ANTES do módulo da face, para que as
-   classes da face (ex.: .filterCard) sobrescrevam as daqui.
-   Só design tokens de variables.css. */
-
-/* ------------------------------------------------------- métricas */
 .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
   gap: var(--space-4);
 }
 
-/* ------------------------------------------- colunas principal/lateral */
 .columns {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -28,7 +16,6 @@
   gap: var(--space-5);
 }
 
-/* ------------------------------------------------------------ cards */
 .card {
   display: flex;
   flex-direction: column;
@@ -48,7 +35,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------- tablet (≥768px) */
 @media (min-width: 768px) {
   /* duas métricas por linha (faces de 2 e de 4 StatCards) */
   .stats {

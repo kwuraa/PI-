@@ -1,11 +1,3 @@
-/* =============================================================================
-   PI² — CSS RESET GLOBAL
-   -----------------------------------------------------------------------------
-   Padroniza o comportamento base de todos os elementos antes que os
-   componentes (CSS Modules) estilizem suas partes. Importado uma única vez
-   em src/main.jsx. Depende dos tokens de src/styles/variables.css.
-   ========================================================================== */
-
 *,
 *::before,
 *::after {

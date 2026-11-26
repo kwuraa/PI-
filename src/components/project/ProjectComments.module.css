@@ -1,8 +1,3 @@
-/* ProjectComments — card "Comentários" da página de detalhe: lista,
-   edição/exclusão (autor OU moderação) e formulário de envio.
-   Reservado a quem está logado (LGPD); o visitante vê só a contagem.
-   Regras movidas de ProjectPage.module.css na separação da página. */
-/* ------------------------------------------------- comentários */
 .commentsCard {
   display: flex;
   flex-direction: column;
@@ -98,7 +93,6 @@
   color: var(--color-text-muted);
 }
 
-/* ---------------------------------------------- edição inline */
 .commentEdit {
   display: flex;
   flex-direction: column;

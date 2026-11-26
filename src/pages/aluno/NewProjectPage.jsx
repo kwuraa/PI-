@@ -1,15 +1,3 @@
-/**
- * PI² — Publicação de projeto (rota "/aluno/novo").
- * -----------------------------------------------------------------------------
- * Protótipo "Publicação de projeto" (mockup 03 · desktop). Briefing: a entrega
- * do aluno é feita APENAS com 3 links (GitHub, Live Preview e Documentação /
- * Portfólio) — sem upload de PDF e sem notas numéricas. Ao enviar, o projeto
- * entra em "análise" e o aluno é levado à confirmação "Enviado para análise!".
- *
- * O formulário abre com o rascunho EcoCampus ("Rascunho salvo às 09:38"),
- * como no protótipo. Desktop (≥1024px): 2 colunas — "Sobre o projeto" e
- * "Quem participa" à esquerda; materiais, visibilidade e ações à direita.
- */
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiInfo, FiSend } from 'react-icons/fi';
@@ -25,11 +13,11 @@ import {
 } from '../../mocks/projectsMock.js';
 import styles from './NewProjectPage.module.css';
 
-/** Rascunho em edição (protótipo: EcoCampus — ver mockup "Publicação"). */
+/** Rascunho em edição (EcoCampus). */
 const DRAFT = getProjectBySlug('ecocampus');
 const DRAFT_TEAM = getTeam(DRAFT);
 
-/** Hora do rascunho salvo exibida no chip do cabeçalho (copy do mockup). */
+/** Hora do rascunho salvo exibida no chip do cabeçalho. */
 const DRAFT_SAVED_AT = 'Rascunho salvo às 09:38';
 
 export default function NewProjectPage() {
@@ -45,7 +33,7 @@ export default function NewProjectPage() {
     // para que "Meus projetos" (card, linha de status e contadores) e a
     // tela de status já reflitam o envio (ver updateProjectStatus no mock).
     updateProjectStatus(DRAFT?.slug ?? 'ecocampus', 'em-analise');
-    // Protótipo: envio simulado → confirmação de envio do projeto em análise.
+    // Envio simulado → confirmação de envio do projeto em análise.
     navigate(`/aluno/status/${DRAFT?.slug ?? 'ecocampus'}?enviado=1`);
   };
 
@@ -69,7 +57,6 @@ export default function NewProjectPage() {
 
   return (
     <div className={styles.page}>
-      {/* ------------------------------------------------------- hero */}
       <header className={styles.hero}>
         <div className={styles.heroTexts}>
           <h1 className={styles.heroTitle}>Sua ideia merece ser compartilhada.</h1>
@@ -82,7 +69,6 @@ export default function NewProjectPage() {
       </header>
 
       <form className={styles.form} onSubmit={handleSubmit}>
-        {/* --------------------------------------- coluna principal */}
         <div className={styles.mainCol}>
           <section className={styles.card}>
             <h2 className={styles.cardTitle}>Sobre o projeto</h2>
@@ -142,7 +128,6 @@ export default function NewProjectPage() {
           </section>
         </div>
 
-        {/* ----------------------------------------- coluna lateral */}
         <aside className={styles.aside}>
           <section className={styles.card}>
             <h2 className={styles.cardTitle}>Materiais e submissão</h2>

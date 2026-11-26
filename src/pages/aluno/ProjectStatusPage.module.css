@@ -1,13 +1,9 @@
-/* ProjectStatusPage — protótipos 03 "Enviado para análise!" (?enviado=1) e
-   "Análise de Biblioteca Conectada" (padrão). Mobile-first: coluna única;
-   ≥1024px: 2 colunas (7fr / 5fr) como no desktop do mockup. */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-5);
 }
 
-/* --------------------------------------------------------- hero */
 .hero {
   display: flex;
   align-items: flex-start;
@@ -46,7 +42,6 @@
   color: var(--color-text-muted);
 }
 
-/* ------------------------------------------------------ layout */
 .split {
   display: flex;
   flex-direction: column;
@@ -62,7 +57,7 @@
   min-width: 0;
 }
 
-/* Card genérico: título + conteúdo com espaçamento do protótipo. */
+/* Card genérico: título + conteúdo com espaçamento padrão. */
 .blockCard {
   display: flex;
   flex-direction: column;
@@ -260,7 +255,7 @@
   z-index: 1;
 }
 
-/* concluída: círculo verde suave (mockup "Análise de Biblioteca") */
+/* concluída: círculo verde suave */
 .done .stepIcon {
   background-color: var(--color-success-soft);
   border-color: var(--color-success-soft);
@@ -330,7 +325,6 @@
   color: var(--color-text-muted);
 }
 
-/* -------------------------------------------------- desktop */
 @media (min-width: 1024px) {
   .heroTitle {
     font-size: var(--font-size-3xl);

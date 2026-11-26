@@ -1,17 +1,9 @@
-/**
- * PI² — Página de Ajuda e suporte (rota "/ajuda").
- * Estilos da central de ajuda: grade de cards de contato (mobile-first,
- * 1 coluna → várias via auto-fill) e itens de FAQ com <details>/<summary>
- * nativos. O cabeçalho vem do <PageHeader/>. Tudo em CSS Module, sem style
- * inline, sem cores hex e sem animação própria (o layout já anima a entrada).
- */
 .page {
   display: flex;
   flex-direction: column;
   gap: var(--space-6);
 }
 
-/* --------------------------------------------------- seções */
 .section {
   display: flex;
   flex-direction: column;
@@ -25,7 +17,6 @@
   color: var(--color-text-title);
 }
 
-/* ------------------------------------------- contatos (cards) */
 .contactGrid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));

@@ -1,10 +1,3 @@
-/* ProfessorFace — painel do professor (mockup 04).
-   -----------------------------------------------------------------------------
-   Extraído de StaffPanel.module.css na separação "um componente por arquivo"
-   (item 6). Métricas clicáveis, fila de revisão (2 colunas no desktop) e
-   card-resumo da primeira orientação. Usa as classes de estrutura de
-   StaffPanelShared.module.css (.stats, .block, .blockTitle). */
-
 /* envolve o StatCard para as métricas virarem link/botão clicável —
    o cartão em si continua o mesmo componente de sempre */
 .statLink {
@@ -35,7 +28,6 @@
   gap: var(--space-3);
 }
 
-/* ------------------------------------------- card de revisão */
 .reviewCard {
   display: flex;
   flex-direction: column;
@@ -87,7 +79,6 @@
   color: var(--color-primary);
 }
 
-/* ---------------------------------------- card de orientação */
 .advisedCard {
   display: flex;
   flex-direction: column;
@@ -125,7 +116,7 @@
   color: var(--color-primary);
 }
 
-/* rodapé do card-resumo: leva à lista completa (mockup 04) */
+/* rodapé do card-resumo: leva à lista completa */
 .verTodas {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
