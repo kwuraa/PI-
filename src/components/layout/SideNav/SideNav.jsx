@@ -25,7 +25,7 @@ export default function SideNav({ user }) {
   const isCoord = Boolean(user) && isRole('coordenador');
 
   return (
-    <aside className={styles.side} aria-label="Navegação lateral">
+    <aside className={styles.side} aria-label="Navegação lateral" data-print-hide>
       <nav className={styles.nav}>
         {items.map(({ to, Icon, label }) => (
           // "Painel" só acende na rota exata (/painel/* mantém o

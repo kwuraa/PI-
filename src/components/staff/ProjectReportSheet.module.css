@@ -1,0 +1,22 @@
+/* O aviso existe apenas no arquivo impresso; a tela mantém os cards. */
+.sheet {
+  display: none;
+}
+
+@media print {
+  .sheet {
+    display: block;
+  }
+
+  .title {
+    margin: 12pt 0 !important;
+    text-align: center !important;
+    text-transform: uppercase !important;
+  }
+
+  .notice {
+    margin: 0 !important;
+    text-align: justify !important;
+    text-indent: 1.25cm !important;
+  }
+}

@@ -1,0 +1,58 @@
+.letterhead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--color-primary);
+}
+
+.image {
+  align-self: flex-start;
+  max-width: 100%;
+  height: 44px;
+  object-fit: contain;
+}
+
+.institution {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
+.course {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.semester {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-primary);
+}
+
+@media print {
+  .letterhead {
+    width: 100%;
+    margin-bottom: 12pt;
+    padding-bottom: 6pt;
+    border-bottom: 1px solid #000;
+  }
+
+  .image {
+    height: 26mm;
+    max-height: 26mm;
+    object-fit: contain;
+  }
+
+  .institution,
+  .course,
+  .semester {
+    margin: 0 !important;
+    text-align: left !important;
+    text-indent: 0 !important;
+  }
+}

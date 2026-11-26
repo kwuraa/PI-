@@ -117,7 +117,7 @@ export default function MainLayout({ barVariant = 'brand', title, action }) {
           <motion.main key={location.pathname} className={styles.stage} {...pageVariants}>
             <Breadcrumb crumbs={crumbs} />
             {outlet}
-            <footer className={styles.footer}>
+            <footer className={styles.footer} data-print-hide>
               <span>PI² · Ideias que multiplicam conhecimento</span>
               <span className={styles.footerLinks}>
                 <Link to="/privacidade">Privacidade</Link>

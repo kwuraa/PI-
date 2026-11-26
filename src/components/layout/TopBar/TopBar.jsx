@@ -86,7 +86,7 @@ export default function TopBar({
 
   if (variant === "stack") {
     return (
-      <header className={styles.stack}>
+      <header className={styles.stack} data-print-hide>
         <button
           type="button"
           className={styles.iconButton}
@@ -171,7 +171,7 @@ export default function TopBar({
     spaceLabel === "Conhecimento conectado" ? "Espaço do aluno" : spaceLabel;
 
   return (
-    <header className={styles.brand}>
+    <header className={styles.brand} data-print-hide>
       <Logo size={44} className={styles.logo} />
       <div className={styles.brandBlock}>
         <strong className={styles.brandTitle}>Conhecimento conectado</strong>

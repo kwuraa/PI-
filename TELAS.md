@@ -285,20 +285,34 @@ Visão do professor/coordenador sobre uma entrega, em 2 colunas no desktop:
   Banca" com dropzones "Anexar fotos" e "Anexar ata ou registro" (upload
   simulado, só estado local).
 
-### Histórico e evolução do grupo — `/painel/evolucao` → `EvolutionPage.jsx`
+### Relatório por projeto — `/painel/evolucao` → `EvolutionPage.jsx`
 
-Relatório **qualitativo** (sem notas), em 2 colunas no desktop:
+Relatório **qualitativo** (sem notas) de cada projeto de PI cadastrado para o
+professor logado, em 2 colunas no desktop:
 
-- topo — link "← Painel do professor", título "Evolução do grupo" e lead;
-- card "Grupo selecionado" — select do grupo + linha da sala/período + nota
-  de atualização dos dados;
-- coluna esquerda — "Histórico por semestre": cards com selo do período,
-  cadeado, marco, resumo e evidência, encerrados no botão "Exportar
-  relatório";
-- coluna direita — "Evolução qualitativa": cards de critérios
-  comportamentais (título, resumo e evidência).
+- topo — link "← Painel do professor", badge com a quantidade de projetos,
+  título "Relatório por projeto", lead e botão "Exportar relatório em PDF";
+- card do seletor — select com **todos** os projetos sob orientação do
+  usuário (vínculo `TEAMS[*].advisor` com o nome do professor), status,
+  semestre/ano, equipe, orientador e nota de atualização;
+- coluna esquerda — "Histórico do projeto": envio, análise (parecer quando
+  houver) e desfecho, com selo, cadeado nas etapas registradas, resumo e
+  evidência; encerrada no botão "Exportar relatório";
+- coluna direita — "Evolução qualitativa" (organização e feedback) e card
+  "Documentos entregues".
 
-Fonte única: `GROUP_EVOLUTION` no mock.
+Fontes: `PROJECTS`/`TEAMS` no mock, filtradas por `getAdvisedProjects(user)`;
+o conteúdo de cada relatório é montado por `buildProjectReport(project)` em
+`src/utils/projectReport.js`. Ambos os botões de exportação abrem a impressão
+do navegador (`window.print()`). Por enquanto, a folha impressa traz **apenas
+um aviso** (`ProjectReportSheet.jsx`) de que a formatação institucional será
+implementada mais tarde, quando o template oficial com o timbre da FATEC for
+fornecido. Os cards, o seletor, os botões e o cabeçalho da tela
+(`<ReportLetterhead/>`) ficam ocultos na impressão. A página já sai em A4,
+Times New Roman 12 pt, margens ABNT (3 cm superior/esquerda, 2 cm
+inferior/direita), espaçamento 1,5 e parágrafos justificados com recuo de
+1,25 cm. As instruções para adicionar o timbre estão em
+`docs/07-impressao-abnt.md`.
 
 ### Gestão de grupos — `/painel/grupos` → `GroupsPage.jsx` (coordenação)
 

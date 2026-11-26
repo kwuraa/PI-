@@ -26,6 +26,24 @@
   gap: var(--space-3);
 }
 
+.identity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.projectMeta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+}
+
+.groupLabel {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-title);
+}
+
 .groupMeta {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
@@ -34,6 +52,11 @@
 
 .updated {
   font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.emptyText {
+  font-size: var(--font-size-sm);
   color: var(--color-text-muted);
 }
 
@@ -130,6 +153,18 @@
   color: var(--color-text-body);
 }
 
+.docsCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.docsTitle {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-title);
+}
+
 @media (min-width: 1024px) {
   /* título do <PageHeader/> sobe para 3xl (maior especificidade que .title) */
   .pageHeader h1 {
@@ -140,5 +175,16 @@
     display: grid;
     grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
     align-items: start;
+  }
+}
+
+/* Na impressão, os cards dão lugar à ficha docente (ProjectReportSheet). */
+@media print {
+  .backLink,
+  .selector,
+  .exportRow,
+  .printHide,
+  .grid {
+    display: none;
   }
 }

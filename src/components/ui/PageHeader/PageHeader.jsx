@@ -19,6 +19,7 @@ export default function PageHeader({
   split = null,
   titleAs: TitleTag = 'h1',
   className = '',
+  ...rest
 }) {
   /* Eyebrow: nó pronto (Badge) ou string → pill do cabeçalho. */
   const eyebrowNode =
@@ -61,7 +62,7 @@ export default function PageHeader({
   ) : null;
 
   return (
-    <header className={headerClasses}>
+    <header className={headerClasses} {...rest}>
       {actionsTop ? (
         <>
           <div className={styles.top}>

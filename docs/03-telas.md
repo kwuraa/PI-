@@ -187,9 +187,20 @@ Desfecho da revisão: **aprovado** ou **ajustes solicitados**
 - Print: `03-professor/desktop/05-resultado-aprovado.png`,
   `03-professor/desktop/06-resultado-ajustes.png`
 
-### Evolução do grupo — `/painel/evolucao` → `EvolutionPage.jsx`
+### Relatório por projeto — `/painel/evolucao` → `EvolutionPage.jsx`
 
-Histórico e evolução do grupo ao longo dos semestres (relatório).
+Relatório qualitativo de cada projeto de PI sob orientação do professor
+logado. O seletor lista os projetos cadastrados para ele; ao trocar a seleção,
+o histórico (envio, parecer e desfecho), a evolução qualitativa e os documentos
+do projeto selecionado são atualizados. A exportação abre a impressão do
+navegador (`window.print()`). A folha impressa ainda não replica os cards nem
+apresenta o relatório formatado: sai **apenas um aviso** de que a formatação
+institucional será implementada mais tarde, quando o template oficial com a
+identidade da instituição e o timbre da FATEC for fornecido
+(`ProjectReportSheet.jsx`). A página já está preparada em ABNT: A4, margens
+3/2 cm, Times New Roman 12 pt, entrelinha 1,5, recuo de 1,25 cm e numeração de
+página. O cabeçalho institucional aparece só na tela; instruções para o timbre
+em [`07-impressao-abnt.md`](07-impressao-abnt.md).
 
 - Print: `03-professor/desktop/07-evolucao.png`, `04-coordenador/desktop/04-evolucao.png`
 

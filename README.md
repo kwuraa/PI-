@@ -57,7 +57,7 @@ arquivo em `src/pages/`; **Acesso** é o papel exigido pela guarda
 | `/aluno/status/:slug`           | Acompanhamento da análise (etapas qualitativas)           | aluno                  |
 | `/painel`                       | Painel professor / coordenador / **unificado** (com abas) | professor, coordenador |
 | `/painel/entregas`              | Fila de entregas com filtros e busca                      | professor, coordenador |
-| `/painel/evolucao`              | Histórico e evolução do grupo (relatório)                 | professor, coordenador |
+| `/painel/evolucao`              | Relatório por projeto de PI sob orientação do professor   | professor, coordenador |
 | `/painel/grupos`                | Gestão de grupos + link de documentação                   | coordenador            |
 | `/painel/relatorio-consolidado` | Relatório consolidado (face do semestre **ou** da coorte) | coordenador            |
 | `/secretaria/cursos`            | Cadastro de cursos (modal)                                | secretaria             |
@@ -125,7 +125,7 @@ Arquivo em `src/pages/`, uma pasta por área.
 | `ReviewResultPage`         | Desfecho da análise: aprovado ou ajustes                                                                               |
 | `DeliveryPage`             | Detalhe da entrega + upload de evidências                                                                              |
 | `DeliveriesPage`           | Fila de entregas com filtros e busca                                                                                   |
-| `EvolutionPage`            | Histórico e evolução do grupo                                                                                          |
+| `EvolutionPage`            | Relatório por projeto: seletor dos PIs do professor + histórico e evidências                                          |
 | `GroupsPage`               | Gestão de grupos + link de documentação                                                                                |
 | `RelatorioConsolidadoPage` | Escolhe entre `SemesterReport` (face 06) e `CohortReport` (face 08) conforme o papel                                   |
 | `ProfessorProjectPage`     | Meus projetos sob orientação + materiais (um `ProjectBlock` por projeto)                                               |
@@ -307,3 +307,4 @@ Detalhamento completo em [`docs/`](docs/):
 | [`docs/04-design-system.md`](docs/04-design-system.md) | Tokens, kit de componentes e animações                        |
 | [`docs/05-mocks.md`](docs/05-mocks.md)                 | Fonte de dados simulados e como editar                        |
 | [`docs/06-refatoracao.md`](docs/06-refatoracao.md)     | Histórico das melhorias de código (itens 1–7)                 |
+| [`docs/07-impressao-abnt.md`](docs/07-impressao-abnt.md) | Impressão provisória do relatório e como adicionar o timbre da FATEC |

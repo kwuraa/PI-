@@ -32,7 +32,7 @@ export default function BottomNav({ user }) {
   const items = itemsFor(user);
 
   return (
-    <nav className={styles.nav} aria-label="Navegação principal">
+    <nav className={styles.nav} aria-label="Navegação principal" data-print-hide>
       {items.map(({ to, Icon, label }) => (
         <NavLink
           key={to}

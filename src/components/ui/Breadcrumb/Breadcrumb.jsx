@@ -5,7 +5,7 @@ export default function Breadcrumb({ crumbs = [] }) {
   if (crumbs.length === 0) return null;
 
   return (
-    <nav className={styles.breadcrumb} aria-label="Trilha de navegação">
+    <nav className={styles.breadcrumb} aria-label="Trilha de navegação" data-print-hide>
       <ol className={styles.list}>
         {crumbs.map((crumb, index) => {
           const isLast = index === crumbs.length - 1;

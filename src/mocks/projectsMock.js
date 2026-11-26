@@ -525,66 +525,6 @@ export const GROUPS = [
   },
 ];
 
-/**
- * Evolução do grupo ao longo dos semestres (timeline PBL — qualitativa,
- * sem notas numéricas). Usada em "Histórico e Evolução do Grupo".
- */
-export const GROUP_EVOLUTION = {
-  groupId: "team-rota",
-  groupLabel: "Grupo DSM 2026.1",
-  groupMeta: "Sala A · 4 alunos · Período 2026.2",
-  updatedNote: "Dados demonstrativos · Atualizado em 06 out. 2026.",
-  timeline: [
-    {
-      id: "sem-1",
-      tag: "2026.1 · Início",
-      title: "1º semestre · Formação do grupo e alinhamento inicial",
-      summary:
-        "Primeiro contato com a disciplina, definição de papéis e apresentação do escopo do projeto.",
-      evidence:
-        "Evidência: apresentação inicial, definição de responsabilidades e primeiro alinhamento com o professor.",
-      locked: true,
-    },
-    {
-      id: "sem-2",
-      tag: "2026.2 · Consolidação",
-      title: "2º semestre · Entregas intermediárias e ajustes",
-      summary: "Revisão de entregas, feedbacks e ajustes no escopo do projeto.",
-      evidence:
-        "Evidência: entregas intermediárias, registro de feedbacks e ajustes no cronograma.",
-      locked: true,
-    },
-    {
-      id: "sem-3",
-      tag: "2027.1 · Planejado",
-      title: "3º semestre · Próximos marcos",
-      summary:
-        "Planejamento da próxima etapa: ampliar funcionalidades e preparar a apresentação.",
-      evidence:
-        "Evidências previstas: demonstração da próxima versão e registro da banca. Ainda não anexadas.",
-      locked: false,
-    },
-  ],
-  qualitative: [
-    {
-      id: "qual-1",
-      title: "Organização e gestão do tempo",
-      summary:
-        "Melhoria na distribuição de tarefas, cumprimento de prazos e alinhamento entre os integrantes.",
-      evidence:
-        "Evidência: cronograma revisado, registros de reuniões e entregas intermediárias.",
-    },
-    {
-      id: "qual-2",
-      title: "Comunicação e feedback",
-      summary:
-        "Maior clareza nas entregas, melhor registro de feedbacks e ajustes mais rápidos.",
-      evidence:
-        "Evidência: registros de feedbacks, versões revisadas e ajustes documentados.",
-    },
-  ],
-};
-
 /** Evidências da banca já anexadas na entrega do projeto Rota Acessível. */
 export const BANCA_EVIDENCE = {
   photos: [

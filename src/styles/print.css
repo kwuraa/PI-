@@ -1,0 +1,105 @@
+/**
+ * Regras de impressão do relatório (ABNT NBR 14724).
+ * -----------------------------------------------------------------------------
+ * Aplica-se somente à árvore marcada com `data-abnt-report`; o restante da
+ * aplicação continua com a tipografia normal. Elementos de navegação devem
+ * levar `data-print-hide` para não aparecerem na folha.
+ * O timbre institucional é inserido por <ReportLetterhead/>.
+ */
+@media print {
+  @page {
+    size: A4;
+    margin: 3cm 2cm 2cm 3cm; /* superior · direita · inferior · esquerda */
+
+    /* Numerância em algarismos arábicos no canto superior direito.
+       Marmboxes de página são suportados apenas por parte dos navegadores;
+       veja docs/07-impressao-abnt.md para o fallback. */
+    @top-right {
+      content: counter(page);
+      font-family: "Times New Roman", Times, serif;
+      font-size: 10pt;
+    }
+  }
+
+  html,
+  body,
+  #root {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  [data-print-hide] {
+    display: none !important;
+  }
+
+  [data-abnt-report] {
+    color: #000 !important;
+    font-family: "Times New Roman", Times, serif !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+  }
+
+  [data-abnt-report] h1,
+  [data-abnt-report] h2,
+  [data-abnt-report] h3,
+  [data-abnt-report] h4 {
+    color: #000 !important;
+    font-family: inherit !important;
+    font-size: 12pt !important;
+    font-weight: 700 !important;
+    margin: 6pt 0 !important;
+    text-transform: uppercase !important;
+  }
+
+  [data-abnt-report] h1 {
+    margin: 12pt 0 !important;
+    text-align: center !important;
+  }
+
+  [data-abnt-report] p,
+  [data-abnt-report] li,
+  [data-abnt-report] span,
+  [data-abnt-report] strong,
+  [data-abnt-report] code {
+    background: transparent !important;
+    color: #000 !important;
+    font-family: inherit !important;
+    font-size: 12pt !important;
+    line-height: 1.5 !important;
+    text-align: justify !important;
+  }
+
+  [data-abnt-report] [data-report-body] p {
+    margin: 0 0 6pt !important;
+    text-indent: 1.25cm !important;
+  }
+
+  [data-abnt-report] [data-report-body] li {
+    margin: 0 0 6pt !important;
+  }
+
+  [data-abnt-report] [data-abnt-flat] {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    margin: 0 0 6pt !important;
+    padding: 0 !important;
+    break-inside: avoid;
+  }
+
+  [data-abnt-report] button,
+  [data-abnt-report] svg {
+    display: none !important;
+  }
+
+  [data-abnt-report] a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  [data-abnt-report] img {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
